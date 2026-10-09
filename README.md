@@ -228,3 +228,43 @@ If you find nanochat helpful in your research cite simply as:
 ## License
 
 MIT
+
+## B300 / Blackwell
+
+Use `uv >= 0.12` (the lockfile uses relative package-age limits), then install the optional Blackwell attention kernel:
+
+```bash
+uv sync --extra gpu --extra b300
+source .venv/bin/activate
+```
+
+The existing CUDA 12.8 / PyTorch 2.9.1 configuration supports B300. BF16 training automatically selects Flash Attention 4 on Blackwell when the optional package is installed. The small custom-op bridge keeps CuTe compilation outside Dynamo and runs FA4's actual forward and backward kernels under `torch.compile`. The package is pinned because the bridge uses its private kernel API. KV-cache inference retains the existing SDPA implementation. Other GPUs retain upstream's FA3/SDPA selection.
+
+Set `NANOCHAT_ATTENTION=fa4` to require FA4, or `NANOCHAT_ATTENTION=sdpa` to measure the reference fallback. No optimizer, model, precision defaults, or training schedules are changed. Run the usual tokenizer/dataset preparation before training.
+
+For one B300, a starting configuration is:
+
+```bash
+python -m scripts.base_train --depth=24 --device-batch-size=64 --run=dummy
+```
+
+On multiple B300s, launch the same entry point with `torchrun --standalone --nproc_per_node=<GPU-count>`. Batch size depends on model depth and sequence length; reduce it if necessary.
+
+Reproduce correctness and throughput checks on one GPU:
+
+```bash
+python -m pytest tests/test_attention_fallback.py tests/test_attention_b300.py tests/test_engine.py -q
+python -m scripts.bench_b300 --output /path/outside/repo/b300-benchmark
+```
+
+The benchmark compares SDPA/BF16, FA4/BF16 and FA4/FP8 through the real d24 training entry point (2048-token sequences, one GPU). It includes data loading and Muon updates, omits the first 11 compilation/warmup steps from steady throughput, and reports end-to-end time separately. Raw logs and checkpoints stay outside Git.
+
+Measured on one NVIDIA B300 SXM6 AC, upstream `92d63d4`, d24/width1536, sequence2048, batch64 (131072 tokens/update), BF16 activations, PyTorch2.9.1/CUDA12.8 and FA4 4.0.0b32. These are training tokens/sec/GPU, including the canonical packer and optimizer. Each case ran80 updates; the final69 updates (9043968 tokens) determine steady throughput.
+
+| Training backend | Tokens/sec/GPU | Median tokens/sec/GPU | Versus SDPA/BF16 |
+|---|---:|---:|---:|
+| SDPA/BF16 | 96,480 | 96,534 | 1.00× |
+| FA4/BF16 | 200,441 | 200,490 | 2.08× |
+| FA4/FP8 | 213,955 | 214,050 | 2.22× |
+
+Correctness:25 tests passed;10 FA3/Hopper-specific tests skipped. Checks cover eager and fullgraph-compiled FA4 output/gradient parity with SDPA, causal and local windows, grouped-query attention, and upstream KV-cache inference. All three benchmark losses decreased. This is a throughput check, not a long-run quality comparison; FP8 remains an optional upstream flag. The same BF16 attention comparison improved throughput by2.08×.

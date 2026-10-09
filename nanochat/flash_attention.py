@@ -1,5 +1,5 @@
 """
-Unified Flash Attention interface with automatic FA3/SDPA switching.
+Unified Flash Attention interface with automatic FA4/FA3/SDPA switching.
 
 Exports `flash_attn` module that matches the FA3 API exactly, but falls back
 to PyTorch SDPA on incompatible CUDA GPUs, MPS, and CPU.
@@ -13,6 +13,8 @@ Usage (drop-in replacement for FA3):
     # Inference (with KV cache)
     y = flash_attn.flash_attn_with_kvcache(q, k_cache, v_cache, k=k, v=v, ...)
 """
+import os
+import warnings
 import torch
 import torch.nn.functional as F
 
@@ -26,6 +28,8 @@ def _load_flash_attention_3():
         return None
     try:
         major, _ = torch.cuda.get_device_capability()
+        if major == 10:  # Blackwell uses optional FA4 instead of Hopper kernels.
+            return None
         # FA3 kernels are currently compiled for Hopper (sm90), Ada (sm89) and Ampere (sm80/sm86)
         # Blackwell (sm100) needs SDPA fallback until FA3 is recompiled or FA4 is released
         import os
@@ -46,11 +50,43 @@ def _load_flash_attention_3():
         return None
 
 
+def _load_flash_attention_4():
+    if not torch.cuda.is_available() or torch.cuda.get_device_capability()[0] != 10:
+        return None
+    try:
+        from nanochat.fa4 import flash_attn_func
+        return flash_attn_func
+    except ImportError:
+        return None
+
+
+_fa4 = _load_flash_attention_4()
+HAS_FA4 = _fa4 is not None
 _fa3 = _load_flash_attention_3()
 HAS_FA3 = _fa3 is not None
 
-# Override for testing: set to 'fa3', 'sdpa', or None (auto)
-_override_impl = None
+# Optional process-wide override, also used by attention parity tests.
+_requested_impl = os.environ.get('NANOCHAT_ATTENTION', 'auto')
+if _requested_impl not in ('auto', 'fa4', 'fa3', 'sdpa'):
+    raise ValueError('NANOCHAT_ATTENTION must be auto, fa4, fa3 or sdpa')
+_override_impl = None if _requested_impl == 'auto' else _requested_impl
+
+
+def _resolve_use_fa4():
+    if _override_impl == 'fa4':
+        assert HAS_FA4, 'FA4 requested but unavailable; install the b300 extra on Blackwell'
+        from nanochat.common import COMPUTE_DTYPE
+        assert COMPUTE_DTYPE == torch.bfloat16, 'FA4 selection requires BF16 compute'
+        return True
+    if _override_impl is not None or not HAS_FA4:
+        return False
+    from nanochat.common import COMPUTE_DTYPE
+    return COMPUTE_DTYPE == torch.bfloat16
+
+
+USE_FA4 = _resolve_use_fa4()
+if torch.cuda.is_available() and torch.cuda.get_device_capability()[0] == 10 and not HAS_FA4 and _override_impl is None:
+    warnings.warn('Blackwell training is using SDPA. Install with uv sync --extra gpu --extra b300 for FA4.', RuntimeWarning)
 
 
 def _resolve_use_fa3():
@@ -58,7 +94,7 @@ def _resolve_use_fa3():
     if _override_impl == 'fa3':
         assert HAS_FA3, "Cannot override to FA3: not available on this hardware"
         return True
-    if _override_impl == 'sdpa':
+    if _override_impl in ('sdpa', 'fa4') or USE_FA4:
         return False
     if HAS_FA3:
         # FA3 Hopper kernels only support bf16 and fp8; fp16/fp32 must use SDPA fallback
@@ -124,6 +160,10 @@ def flash_attn_func(q, k, v, causal=False, window_size=(-1, -1)):
     Returns:
         Output tensor of shape (B, T, H, D)
     """
+    if USE_FA4 and _override_impl not in ('fa3', 'sdpa'):
+        # CuTe FA4 uses None, whereas the upstream FA3 API uses -1 for no limit.
+        window = tuple(None if value < 0 else value for value in window_size)
+        return _fa4(q, k, v, causal=causal, window_size=window)
     if USE_FA3:
         return _fa3.flash_attn_func(q, k, v, causal=causal, window_size=window_size)
 

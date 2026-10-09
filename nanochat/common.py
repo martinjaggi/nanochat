@@ -230,7 +230,10 @@ def get_peak_flops(device_name: str) -> float:
 
     # Table order matters: more specific patterns first.
     _PEAK_FLOPS_TABLE = (
-        # NVIDIA Blackwell
+        # NVIDIA Blackwell (dense BF16, half the sparse datasheet figures)
+        # https://resources.nvidia.com/en-us-gpu-resources/blackwell-ultra-datasheet
+        (["gb300"], 2.5e15),
+        (["b300"], 2.25e15),
         (["gb200"], 2.5e15),
         (["grace blackwell"], 2.5e15),
         (["b200"], 2.25e15),
