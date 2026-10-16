@@ -35,6 +35,8 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-main-reciprocal-lr0p02 | reciprocal | 2000 updates | 0 | 3.609994 | — | 67.004 | 0 | 26.860 | 123.51 |
 | um-lens-main-reciprocal-lr0p04 | reciprocal | 2000 updates | 0 | 3.610242 | — | 65.990 | 0 | 23.884 | 116.29 |
 | um-lens-main-reciprocal-lr0p08 | reciprocal | 2000 updates | 0 | 3.617905 | — | 65.564 | 0 | 40.199 | 149.97 |
+| um-lens-refine-control-0 | control | 2000 updates | 0 | 3.559476 | — | 63.222 | 0 | 23.534 | 114.70 |
+| um-lens-refine-control-1 | control | 2000 updates | 0 | 3.563508 | — | 61.486 | 0 | 24.116 | 115.07 |
 
 ## Adaptive diagnostics and contraction
 
