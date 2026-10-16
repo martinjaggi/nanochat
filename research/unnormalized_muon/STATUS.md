@@ -101,3 +101,5 @@ FW-lens v2 hardware prerequisites passed. Screen18 configurations at65.5M tokens
 User raised the hard PROJECT TOTAL budget to50 B300 GPU-hours, including all earlier runs/failures. One verified B300 per job and maximum6 concurrent/outstanding jobs remain unchanged. Updated the single central queue guard; scheduled jobs were not interrupted. Continue screening/refinement, creative variants, selective655M-token promotions, paired seeds and separately scheduled equal-time comparisons. Extra budget is an allowance, not a spending target.
 
 FW-lens v2 hardware prerequisites passed. Screen18 configurations at65.5M tokens: tuned ordinary-WD control and shifted reciprocal; joint quadratic and layer Armijo share caps{.005,.02,.08}, stable versus cooldown. All trials recorded; no heldout selection.
+
+Refine best LR/cap for ALL six families; factor-two boundary checks or geometric midpoints, plus matched initial-curvature sensitivity for all four adaptive families. Same2000-update budget.

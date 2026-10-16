@@ -1,0 +1,20 @@
+{
+  "protocol_version": 2,
+  "clean": true,
+  "variant": false,
+  "decay_mode": "standard",
+  "fixed_wd": 0.1837498798375862,
+  "gap_geometry": "q_scaled",
+  "matrix_lr": 0.04,
+  "matrix_schedule": "cooldown",
+  "updates": 2000,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1800,
+  "warmup_updates": 3,
+  "gap_scope": "layer",
+  "gap_acceptance": "armijo",
+  "gap_eta_cap": 0.0025,
+  "gap_cap_schedule": "cooldown",
+  "lens_family": "layer-cooldown"
+}
