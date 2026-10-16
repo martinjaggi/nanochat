@@ -293,7 +293,7 @@ um-lens-main-joint-stable-cap0p02: accepted 2000/2000; skipped nonpositive block
 
 Timing seconds: direction=60.891, reference=14.582, candidates=28.241, auxiliary=1.806.
 
-| um-lens-main-joint-stable-cap0p08 | joint native | 0.1837499 | 2000 | 4.107661 | 5999 | 0.00 |
+| um-lens-main-joint-stable-cap0p08 | joint native | 0.1837499 | 2000 | 4.107661 | 5999 | 246.74 |
 
 um-lens-main-joint-stable-cap0p08: accepted 2000/2000; skipped nonpositive blocks 368; median actual eta 0.0572021; median gamma 0.0105109; median L 0.0025; median trials 2; max measured spectral ratio lambda*||W||op=0.780575. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
 
