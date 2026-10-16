@@ -78,7 +78,10 @@ def main():
  while True:
   with (ROOT/'queue.lock').open('w') as lock:
    fcntl.flock(lock,fcntl.LOCK_EX)
-   if a.action=='submit':submit(a.stage,a.name,a.seconds);return
+   if a.action=='submit':
+    config_path=REPO/'research/unnormalized_muon/configs'/(a.stage+'.json')
+    cfg=json.loads(config_path.read_text()) if config_path.exists() else None
+    submit(a.stage,a.name,a.seconds,cfg);return
    if a.action=='status':print(jobs());return
    reap()
    if a.action=='sweep':
