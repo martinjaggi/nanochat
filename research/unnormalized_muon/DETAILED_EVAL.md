@@ -32,6 +32,12 @@ CLI lambda = 0.28*(0.04/CLI_eta)*strength matches nominal eta*lambda exposure ac
 | normalized | cautious | 0.25 | 0.04 | 0.07 | 2000 | 3.561607 | 0.40773–0.81545 |
 | normalized | cautious | 0.25 | 0.08 | 0.035 | 2000 | 3.561807 | 0.40773–0.81545 |
 | unnormalized | cautious | 0.25 | 0.16 | 0.0175 | 2000 | 3.703818 | 0.40773–0.81545 |
+| unnormalized | cautious | 0.25 | 0.32 | 0.00875 | 2000 | 3.677685 | 0.40773–0.81545 |
+| unnormalized | cautious | 0.25 | 0.64 | 0.004375 | 2000 | 3.669621 | 0.40773–0.81545 |
+| unnormalized | cautious | 0.25 | 1.28 | 0.0021875 | 2000 | 3.741636 | 0.40773–0.81545 |
+| normalized | standard | 1 | 0.02 | 0.56 | 2000 | 3.578252 | 1.6309–3.2618 |
+| normalized | standard | 1 | 0.04 | 0.28 | 2000 | 3.568284 | 1.6309–3.2618 |
+| normalized | standard | 1 | 0.08 | 0.14 | 2000 | 3.562765 | 1.6309–3.2618 |
 
 ## FW gap-based step and line search
 
@@ -151,3 +157,14 @@ Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius fac
 
 FW timing components (seconds): direction=104.832, reference=43.252, candidates=80.372, auxiliary=2.291.
 Accepted steps with measured minibatch increase: 62; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
+
+## Fixed ordinary WD: per-layer and joint gap LR
+
+This subtopic holds the actual unmasked decay coefficient lambda fixed. P_i=Q_i+lambda W_i includes shrinkage. Native Nesterov/five NS/Frobenius are retained; row equilibration and NorMuon remain off. Native finite NS is approximate: spectral ratios are measured without claiming the exact spectral-ball theorem. Optional certified directions are separately labelled.
+
+Per-layer LR uses eta_i=min(1/lambda,[<G_i,P_i>]_+/(L||P_i||F^2)), proposed simultaneously and accepted using the complete-loss summed quadratic bound. One shared backtracked Frobenius L accounts for cross-layer changes; no52-way independent forward search. Joint-uniform shares one actual eta. Joint-native instead searches c_i P_i, clips outer eta at1/(lambda max c_i), and records actual eta_i=c_i eta; it is not a single common FW mixing coefficient.
+
+The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after40 warmup updates, with native actual eta_i0=CLI_LR*.25*c_i. This corresponds to gamma_i=2/(t+2/(lambda eta_i0)). Auxiliary schedules and native momentum are held consistent, so convex FW guarantees do not apply directly to this stochastic hybrid optimizer.
+
+| Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |
+|---|---|---:|---:|---:|---:|---:|
