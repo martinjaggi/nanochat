@@ -380,3 +380,15 @@ um-lens-refine-joint-stable-1: accepted 2000/2000; skipped nonpositive blocks 94
 
 Timing seconds: direction=54.074, reference=14.283, candidates=27.896, auxiliary=1.739.
 
+| um-lens-refine-layer-cooldown-0 | layer native | 0.1837499 | 2000 | 3.617586 | 4000 | 227.00 |
+
+um-lens-refine-layer-cooldown-0: accepted 2000/2000; skipped nonpositive blocks 188; median actual eta 0.00189529; median gamma 0.000348259; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.305577. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=56.684, reference=14.195, candidates=13.854, auxiliary=1.740.
+
+| um-lens-refine-layer-cooldown-1 | layer native | 0.1837499 | 2000 | 3.554595 | 4000 | 222.00 |
+
+um-lens-refine-layer-cooldown-1: accepted 2000/2000; skipped nonpositive blocks 94; median actual eta 0.00758846; median gamma 0.00139438; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.397119. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=56.742, reference=14.521, candidates=14.085, auxiliary=1.897.
+
