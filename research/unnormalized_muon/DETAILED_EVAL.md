@@ -14,6 +14,10 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199618 | 710.50 | 788.71 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.168332 | 723.17 | 786.20 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.199090 | 1763.98 | 1834.23 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.207725 | 1751.45 | 1837.54 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.200458 | 1844.61 | 1931.00 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.319987 | 1781.19 | 1867.68 |
 
 ## Weight decay search
 
@@ -316,6 +320,30 @@ Timing seconds: direction=54.636, reference=14.182, candidates=17.375, auxiliary
 
 | um-lens-long-control-0 | cooldown native | 0.1837499 | 20000 | 3.199618 | 0 | 788.71 |
 | um-lens-long-control-1 | cooldown native | 0.1837499 | 20000 | 3.168332 | 0 | 786.20 |
+| um-lens-long-creative-0 | layer native | 0.1837499 | 20000 | 3.199090 | 40000 | 1834.23 |
+
+um-lens-long-creative-0: accepted 20000/20000; skipped nonpositive blocks 437; median actual eta 0.00778065; median gamma 0.00142969; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.300626. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=622.508, reference=149.101, candidates=182.732, auxiliary=18.600.
+
+| um-lens-long-creative-1 | layer native | 0.1837499 | 20000 | 3.207725 | 40000 | 1837.54 |
+
+um-lens-long-creative-1: accepted 20000/20000; skipped nonpositive blocks 302; median actual eta 0.00674423; median gamma 0.00123925; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.305307. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=601.929, reference=146.306, candidates=181.080, auxiliary=17.769.
+
+| um-lens-long-joint-cooldown | joint native | 0.1837499 | 20000 | 3.200458 | 60004 | 1931.00 |
+
+um-lens-long-joint-cooldown: accepted 20000/20000; skipped nonpositive blocks 426; median actual eta 0.00778394; median gamma 0.0014303; median L 0.02; median trials 2; max measured spectral ratio lambda*||W||op=0.287582. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=626.609, reference=147.527, candidates=289.369, auxiliary=17.911.
+
+| um-lens-long-joint-stable | joint native | 0.1837499 | 20000 | 3.319987 | 59997 | 1867.68 |
+
+um-lens-long-joint-stable: accepted 19996/20000; skipped nonpositive blocks 725; median actual eta 0.0025; median gamma 0.000459375; median L 0.04; median trials 2; max measured spectral ratio lambda*||W||op=0.285411. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=539.257, reference=145.317, candidates=284.106, auxiliary=18.299.
+
 | um-lens-main-control-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.568986 | 0 | 141.52 |
 | um-lens-main-control-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.554822 | 0 | 133.67 |
 | um-lens-main-control-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.586261 | 0 | 139.40 |
