@@ -441,3 +441,15 @@ um-lens-startl-layer-cooldown-1: accepted 2000/2000; skipped nonpositive blocks 
 
 Timing seconds: direction=52.435, reference=14.308, candidates=13.883, auxiliary=1.796.
 
+| um-lens-startl-layer-stable-0 | layer native | 0.1837499 | 2000 | 3.654067 | 4000 | 247.29 |
+
+um-lens-startl-layer-stable-0: accepted 2000/2000; skipped nonpositive blocks 205; median actual eta 0.005; median gamma 0.000918749; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.306437. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=68.799, reference=15.065, candidates=14.671, auxiliary=1.925.
+
+| um-lens-startl-layer-stable-1 | layer native | 0.1837499 | 2000 | 3.653376 | 4000 | 237.19 |
+
+um-lens-startl-layer-stable-1: accepted 2000/2000; skipped nonpositive blocks 226; median actual eta 0.005; median gamma 0.000918749; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.309576. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=60.805, reference=14.714, candidates=14.296, auxiliary=1.824.
+
