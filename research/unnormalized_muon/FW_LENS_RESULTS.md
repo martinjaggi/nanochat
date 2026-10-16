@@ -37,6 +37,10 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-main-reciprocal-lr0p08 | reciprocal | 2000 updates | 0 | 3.617905 | — | 65.564 | 0 | 40.199 | 149.97 |
 | um-lens-refine-control-0 | control | 2000 updates | 0 | 3.559476 | — | 63.222 | 0 | 23.534 | 114.70 |
 | um-lens-refine-control-1 | control | 2000 updates | 0 | 3.563508 | — | 61.486 | 0 | 24.116 | 115.07 |
+| um-lens-refine-joint-cooldown-0 | joint-cooldown | 2000 updates | 0 | 3.623444 | — | 190.861 | 5997 | 38.859 | 274.70 |
+| um-lens-refine-joint-cooldown-1 | joint-cooldown | 2000 updates | 0 | 3.555091 | — | 172.412 | 6001 | 38.700 | 256.27 |
+| um-lens-refine-joint-stable-0 | joint-stable | 2000 updates | 0 | 3.645341 | — | 173.432 | 5995 | 39.220 | 257.49 |
+| um-lens-refine-joint-stable-1 | joint-stable | 2000 updates | 0 | 3.727101 | — | 176.259 | 6001 | 40.371 | 262.87 |
 
 ## Adaptive diagnostics and contraction
 
@@ -62,5 +66,9 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-main-layer-stable-cap0p005 | 2000/2000 | 0 | 0.005 | 0.00091875 | 1e-16 | 1 | -1.82 to -1.8 | 0.305951 |
 | um-lens-main-layer-stable-cap0p02 | 2000/2000 | 0 | 0.02 | 0.003675 | 1e-16 | 1 | -7.286 to -7.098 | 0.460939 |
 | um-lens-main-layer-stable-cap0p08 | 2000/2000 | 0 | 0.08 | 0.0147 | 1e-16 | 1 | -28.98 to -27.8 | 0.790492 |
+| um-lens-refine-joint-cooldown-0 | 1996/2000 | 0 | 0.001898 | 0.00034876 | 0.04 | 2 | -0.625 to -0.625 | 0.308598 |
+| um-lens-refine-joint-cooldown-1 | 2000/2000 | 0 | 0.0075921 | 0.0013951 | 0.01 | 2 | -2.507 to -2.507 | 0.39888 |
+| um-lens-refine-joint-stable-0 | 1996/2000 | 0 | 0.0025 | 0.00045937 | 0.04 | 2 | -0.9084 to -0.9084 | 0.287777 |
+| um-lens-refine-joint-stable-1 | 2000/2000 | 0 | 0.01 | 0.0018375 | 0.01 | 2 | -3.642 to -3.642 | 0.361899 |
 
 Curvature values in Armijo variants parameterize proposals; their acceptance is NOT a certificate of the quadratic upper model. Final spectral ratios are lambda*||W_l||op/c_l; native approximate NS output is not certified to have unit spectral norm. Initial/final iterate feasibility alone does not certify oracle accuracy. Cold two-second clock checks intentionally permit one-update overshoot; do not use them as quality endpoints.
