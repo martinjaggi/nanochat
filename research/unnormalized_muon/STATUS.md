@@ -95,3 +95,5 @@ Creative staged plan:18 main v2 short trials; fair peak-LR/cap refinement across
 FW-lens v2 controller stopped at a failed prerequisite or30GPUh budget guard; no further stages submitted. Remaining jobs preserved/reaped. Inspect private lens-campaign.log before resuming; incomplete comparisons are not final rankings.
 
 Warm/reset timing checks passed: control96 updates/5.03375 active seconds; layer50/5.01591; state reset after3 warmup gradients validated, single-step overshoot .03375/.01591s. CLI cached deleted jobs beyond20s; authoritative job/pod checks now verify removal. Reconciled repeated completed ledger row from interrupted cleanup, preserving one outcome and conservative charge. Both GPU allocations and jobs are gone. Resume v2 campaign; prior stop was cleanup bookkeeping, not a scientific failure.
+
+FW-lens v2 hardware prerequisites passed. Screen18 configurations at65.5M tokens: tuned ordinary-WD control and shifted reciprocal; joint quadratic and layer Armijo share caps{.005,.02,.08}, stable versus cooldown. All trials recorded; no heldout selection.
