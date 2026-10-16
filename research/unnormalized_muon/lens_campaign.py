@@ -83,17 +83,18 @@ def main():
  record(main_configs(),'FW-lens v2 hardware prerequisites passed. Screen18 configurations at65.5M tokens: tuned ordinary-WD control and shifted reciprocal; joint quadratic and layer Armijo share caps{.005,.02,.08}, stable versus cooldown. All trials recorded; no heldout selection.')
  stage('lens-main-,wd-grid-')
  # Refine each family's best peak/cap fairly and check startup curvature.
- configs={}
- for fam in ['control','reciprocal','joint-stable','joint-cooldown','layer-stable','layer-cooldown']:
-  best=min([r for r in screen() if family(r['c'])==fam],key=score);c=best['c']
-  key='matrix_lr' if fam in ['control','reciprocal'] else 'gap_eta_cap'
-  values=[r['c'][key] for r in screen() if family(r['c'])==fam]
-  for index,factor in enumerate(([.5,2.] if key=='gap_eta_cap' or c[key] in [min(values),max(values)] else [2**-.5,2**.5])):
-   cc=copy.deepcopy(c);cc[key]*=factor
-   if cc[key] not in values:configs[f'lens-refine-{fam}-{index}']=cc
-  if c.get('gap_scope'):
-   for index,L in enumerate([.001,.1]):configs[f'lens-startL-{fam}-{index}']=dict(c,gap_initial_L=L)
- record(configs,'Refine best LR/cap for ALL six families; factor-two boundary checks or geometric midpoints, plus matched initial-curvature sensitivity for all four adaptive families. Same2000-update budget.')
+ if not list((D/'configs').glob('lens-refine-*.json')):
+  configs={}
+  for fam in ['control','reciprocal','joint-stable','joint-cooldown','layer-stable','layer-cooldown']:
+   best=min([r for r in screen() if family(r['c'])==fam],key=score);c=best['c']
+   key='matrix_lr' if fam in ['control','reciprocal'] else 'gap_eta_cap'
+   values=[r['c'][key] for r in screen() if family(r['c'])==fam]
+   for index,factor in enumerate(([.5,2.] if key=='gap_eta_cap' or c[key] in [min(values),max(values)] else [2**-.5,2**.5])):
+    cc=copy.deepcopy(c);cc[key]*=factor
+    if cc[key] not in values:configs[f'lens-refine-{fam}-{index}']=cc
+   if c.get('gap_scope'):
+    for index,L in enumerate([.001,.1]):configs[f'lens-startL-{fam}-{index}']=dict(c,gap_initial_L=L)
+  record(configs,'Refine best LR/cap for ALL six families; factor-two boundary checks or geometric midpoints, plus matched initial-curvature sensitivity for all four adaptive families. Same2000-update budget.')
  stage('lens-refine-,lens-startL-')
  configs={};joint=min([r for r in screen() if r['c'].get('gap_scope')=='joint'],key=score);layer=min([r for r in screen() if r['c'].get('gap_scope')=='layer'],key=score)
  for beta in [.5,.9]:configs[f'lens-creative-ema{beta:g}']=dict(layer['c'],gap_proposal_beta=beta,lens_family='layer-ema')
