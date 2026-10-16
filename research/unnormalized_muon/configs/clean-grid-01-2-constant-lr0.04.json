@@ -1,0 +1,10 @@
+{
+  "variant": true,
+  "clean": true,
+  "matrix_schedule": "constant",
+  "matrix_lr": 0.04,
+  "updates": 2000,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1200
+}
