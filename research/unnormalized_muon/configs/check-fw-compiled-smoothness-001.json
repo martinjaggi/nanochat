@@ -14,5 +14,7 @@
   "depth": 8,
   "runtime_limit": 1800,
   "decay_mode": "none",
-  "microbatch_size": 32
+  "microbatch_size": 32,
+  "fw_gamma_cap": 0.03,
+  "fw_schedule_gamma": true
 }

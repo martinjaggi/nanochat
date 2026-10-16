@@ -57,3 +57,9 @@ def test_armijo_safeguard_is_explicit_and_monotone():
  gamma,L,trials,ok=backtrack(evaluate,f0=1.,b=1.,v=1.,L=10.,acceptance='armijo',armijo_c=.01,tolerance=0.)
  assert ok and gamma==.1 and trials[0]['loss']<=1.-.01*gamma
  assert not backtrack(lambda gamma:1.0000001,f0=1.,b=1.,v=1.,L=1.,acceptance='armijo',tolerance=1.)[3]
+
+def test_shared_fw_cap_and_zero_cap():
+ gamma,L,trials,ok=backtrack(lambda g:1.-g,f0=1.,b=1.,v=1.,L=1.,max_gamma=.03,tolerance=0.)
+ assert ok and gamma==.03 and trials[0]['bound']==1.-.03+.5*.03**2
+ def never(g):raise AssertionError('zero cap must not query')
+ assert backtrack(never,f0=1.,b=1.,v=1.,L=1.,max_gamma=0.)==(0.,1.,[],False)
