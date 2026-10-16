@@ -253,3 +253,13 @@ um-lens-check-6-periodic: accepted 16/64; skipped nonpositive blocks 59; median 
 
 Timing seconds: direction=6.270, reference=1.728, candidates=0.259, auxiliary=0.606.
 
+| um-lens-check-7-warm-time-control | cooldown native | 0.1837499 | 96 | 6.041687 | 0 | 81.78 |
+| um-lens-check-8-warm-time-layer | layer native | 0.1837499 | 50 | 6.365249 | 100 | 85.49 |
+
+um-lens-check-8-warm-time-layer: accepted 50/50; skipped nonpositive blocks 70; median actual eta 0.02; median gamma 0.003675; median L 2.23517e-10; median trials 1; max measured spectral ratio lambda*||W||op=0.537713. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=1.317, reference=0.399, candidates=0.395, auxiliary=0.041.
+
+| um-lens-main-control-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.568986 | 0 | 141.52 |
+| um-lens-main-control-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.554822 | 0 | 133.67 |
+| um-lens-main-control-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.586261 | 0 | 139.40 |

@@ -15,6 +15,11 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-check-4-time-layer | layer | 2.000s | 0 | 10.394308 | — | 8.964 | 2 | 0.000 | 83.55 |
 | um-lens-check-5-creative | layer | 64 updates | 0 | 6.337770 | — | 14.474 | 128 | 0.000 | 96.43 |
 | um-lens-check-6-periodic | joint | 64 updates | 0 | 6.490925 | — | 14.250 | 48 | 0.000 | 95.36 |
+| um-lens-check-7-warm-time-control | cooldown | 5.000s | 0 | 6.041687 | — | 5.034 | 0 | 34.360 | 81.78 |
+| um-lens-check-8-warm-time-layer | layer | 5.000s | 0 | 6.365249 | — | 5.016 | 100 | 31.631 | 85.49 |
+| um-lens-main-control-lr0p02 | control | 2000 updates | 0 | 3.568986 | — | 71.320 | 0 | 31.621 | 141.52 |
+| um-lens-main-control-lr0p04 | control | 2000 updates | 0 | 3.554822 | — | 65.063 | 0 | 30.883 | 133.67 |
+| um-lens-main-control-lr0p08 | control | 2000 updates | 0 | 3.586261 | — | 71.566 | 0 | 31.026 | 139.40 |
 
 ## Adaptive diagnostics and contraction
 
@@ -27,5 +32,6 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-check-4-time-layer | 1/1 | 0 | 0 | 0 | 0.005 | 1 | -9.188e-05 to 0 | 0.368177 |
 | um-lens-check-5-creative | 64/64 | 0 | 0.011606 | 0.0021326 | 1.7462e-12 | 1 | -0.1297 to -0.09009 | 0.379675 |
 | um-lens-check-6-periodic | 16/64 | 48 | 0.0042842 | 0.00078723 | 0.0075 | 0 | -0.06363 to -0.06363 | 0.366569 |
+| um-lens-check-8-warm-time-layer | 50/50 | 0 | 0.02 | 0.003675 | 2.2352e-10 | 1 | -0.179 to -0.1481 | 0.537713 |
 
 Curvature values in Armijo variants parameterize proposals; their acceptance is NOT a certificate of the quadratic upper model. Final spectral ratios are lambda*||W_l||op/c_l; native approximate NS output is not certified to have unit spectral norm. Initial/final iterate feasibility alone does not certify oracle accuracy. Cold two-second clock checks intentionally permit one-update overshoot; do not use them as quality endpoints.

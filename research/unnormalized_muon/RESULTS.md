@@ -65,6 +65,11 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-lens-check-4-time-layer | Clean GapWD layer uniform v2 c-in-Q armijo cap0.02/stable time2.0s fixed_lambda=0.18375 WD:standard(0) | 1 | 0 | 0.04 | 10.394308 | 3.148566 | — | 83.55 |
 | um-lens-check-5-creative | Clean GapWD layer uniform v2 c-in-Q armijo cap0.02/stable fixed_lambda=0.18375 WD:standard(0) | 64 | 0 | 0.04 | 6.337770 | 1.920751 | — | 96.43 |
 | um-lens-check-6-periodic | Clean GapWD joint uniform v2 c-in-Q quadratic cap0.02/stable fixed_lambda=0.18375 WD:standard(0) | 64 | 0 | 0.04 | 6.490925 | 1.967030 | — | 95.36 |
+| um-lens-check-7-warm-time-control | Clean Native cooldown v2 c-in-Q time5.0s fixed_lambda=0.18375 WD:standard(0) | 96 | 0 | 0.04 | 6.041687 | 1.831145 | — | 81.78 |
+| um-lens-check-8-warm-time-layer | Clean GapWD layer uniform v2 c-in-Q armijo cap0.02/stable time5.0s fixed_lambda=0.18375 WD:standard(0) | 50 | 0 | 0.04 | 6.365249 | 1.929079 | — | 85.49 |
+| um-lens-main-control-lr0p02 | Clean Native cooldown v2 c-in-Q fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.02 | 3.568986 | 1.081936 | — | 141.52 |
+| um-lens-main-control-lr0p04 | Clean Native cooldown v2 c-in-Q fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.554822 | 1.077668 | — | 133.67 |
+| um-lens-main-control-lr0p08 | Clean Native cooldown v2 c-in-Q fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.08 | 3.586261 | 1.087199 | — | 139.40 |
 | um-screen-00-0-native-lr0p005 | Native cooldown | 2000 | 0 | 0.005 | 3.734536 | 1.132046 | — | 145.49 |
 | um-screen-00-1-scaled-lr0p0002 | Unnormalized cooldown | 2000 | 0 | 0.0002 | 4.818060 | 1.460343 | — | 153.42 |
 | um-screen-00-2-constant-lr0p0002 | Unnormalized constant | 2000 | 0 | 0.0002 | 4.581043 | 1.388601 | — | 151.98 |
@@ -104,7 +109,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 6.5803 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 8.7871 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
