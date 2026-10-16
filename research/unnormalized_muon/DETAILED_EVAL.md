@@ -27,9 +27,27 @@ Backtracking compares a same-path functional reference at gamma=0 with candidate
 
 | Run | Updates | Val CE | Accepted | Negative b | Extra batch forwards | FW sec | Max spectral ratio |
 |---|---:|---:|---:|---:|---:|---:|---:|
+| um-check-fw-derivative-001 | 48 | 6.648578 | 48 | 0 | 179 | 23.38 | 0.499494 |
 | um-check-fw-gradient-001 | 64 | 6.488285 | 64 | 0 | 197 | 22.68 | 0.499329 |
 | um-check-fw-momentum-001 | 64 | 6.470441 | 58 | 6 | 183 | 22.14 | 0.499287 |
 | um-clean-fw-accumcheck-001 | 16 | 9.061382 | — | — | 63 | 15.85 | 0.499600 |
+
+### um-check-fw-derivative-001
+
+Oracle: gradient; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 358. Extra diagnostic gradient queries: 3, diagnostic seconds: 2.061.
+
+| Quantity | Min | P25 | Median | P75 | Max |
+|---|---:|---:|---:|---:|---:|
+| gamma | 4.14126e-09 | 4.02707e-07 | 1.69877e-05 | 3.01467e-05 | 0.000277723 |
+| L | 0.01 | 0.32 | 1.28 | 204.8 | 335544 |
+| b | 0.0623085 | 0.317002 | 0.518499 | 1.1338 | 278.384 |
+| v | 16260.3 | 26835.2 | 28929.6 | 36980 | 39119.8 |
+| trials | 1 | 1 | 2 | 3 | 12 |
+| actual_decrease | -9.53674e-07 | 0 | 0 | 9.53674e-07 | 2.86102e-06 |
+| predicted_decrease | 5.63842e-09 | 2.82269e-07 | 4.52352e-06 | 7.22271e-06 | 1.18288e-05 |
+
+FW timing components (seconds): direction=12.952, reference=4.173, candidates=2.238, auxiliary=0.576.
+Accepted steps with measured minibatch increase: 6; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
 
 ### um-check-fw-gradient-001
 
