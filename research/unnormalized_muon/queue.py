@@ -83,7 +83,7 @@ def main():
    reap()
    if a.action=='sweep':
     s=load();known={v['stage'] for v in s.values()};pending=[p for p in sorted((REPO/'research/unnormalized_muon/configs').glob(a.prefix+'*.json')) if p.stem not in known]
-    while pending and len(jobs())<3:
+    while pending and len(set(jobs())|{n for n,v in load().items() if not v['recorded']})<3:
      p=pending.pop(0);cfg=json.loads(p.read_text());submit(p.stem,'um-'+p.stem.replace('.','p'),cfg.get('runtime_limit',1800),cfg)
    else:pending=[]
    if a.action=='reap' or (not jobs() and not pending):return

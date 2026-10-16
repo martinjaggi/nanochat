@@ -64,7 +64,8 @@ class Recorder:
             scales=getattr(opt,'last_dual_scales',[])
             if scales:
                 flat=torch.cat([x.flatten() for x in scales]);assert bool(torch.isfinite(flat).all() & (flat>=0).all())
-                fields['dual_scales']=[dict(names=[self.names[id(p)] for p in g['params']],values=s.flatten().cpu().tolist())
+                fields['dual_scales']=[dict(names=[self.names[id(p)] for p in g['params']],values=s.flatten().cpu().tolist(),shape_multiplier=max(1.,g['params'][0].shape[-2]/g['params'][0].shape[-1])**.5,
+                    effective_directional_lrs=(s.flatten()*g['lr']*max(1.,g['params'][0].shape[-2]/g['params'][0].shape[-1])**.5).cpu().tolist())
                     for g,s in zip((g for g in opt.param_groups if g['kind']=='muon'),scales)]
                 fields['scale_min']=float(flat.min());fields['scale_median']=float(flat.median());fields['scale_max']=float(flat.max())
                 rank=torch.cat([torch.full_like(s.flatten(),min(g['params'][0].shape)) for g,s in zip((g for g in opt.param_groups if g['kind']=='muon'),scales)])

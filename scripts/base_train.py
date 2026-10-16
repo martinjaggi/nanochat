@@ -542,6 +542,8 @@ while True:
     for group in optimizer.param_groups:
         group["lr"] = group["initial_lr"] * lrm
         if group['kind'] == 'muon':
+            if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "constant":
+                group["lr"] = group["initial_lr"] * min(1.0, (step + 1) / max(1, args.warmup_steps))
             group["momentum"] = muon_momentum
             group["weight_decay"] = muon_weight_decay
     if scaler is not None:
