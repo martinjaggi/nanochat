@@ -95,5 +95,16 @@ def generate():
   for ax in axs:ax.set_ylabel('Validation CE');ax.grid(alpha=.2)
   if axs[0].lines:axs[0].legend(fontsize=6)
   fig.tight_layout();fig.savefig(DEST/'gap_wd_comparison.png',dpi=140);plt.close(fig)
- return ['research/unnormalized_muon/'+name for name in ['DETAILED_EVAL.md','long_comparison.png','fw_diagnostics.png','gap_wd_comparison.png'] if (DEST/name).exists()]
+ wd=[r for r in runs if 'wd_strength' in r[1] and r[2]['updates']==2000 and r[1]['seed']==0]
+ if wd:
+  fig,axs=plt.subplots(1,2,figsize=(11,4.5))
+  colors={.25:'tab:blue',1.:'tab:orange',4.:'tab:green'}
+  for ax,mode in zip(axs,['standard','cautious']):
+   for variant in [False,True]:
+    for strength in sorted({r[1]['wd_strength'] for r in wd}):
+     selected=sorted([r for r in wd if r[1]['decay_mode']==mode and r[1]['variant']==variant and r[1]['wd_strength']==strength],key=lambda r:r[1]['matrix_lr'])
+     if selected:ax.plot([r[1]['matrix_lr'] for r in selected],[r[2]['validation']['loss'] for r in selected],marker='^' if variant else 'o',color=colors.get(strength,'tab:purple'),linestyle='--' if variant else '-',label=f'{"U" if variant else "N"} strength{strength:g}')
+   ax.set_xscale('log',base=2);ax.set_xlabel('CLI outer matrix LR');ax.set_ylabel('Validation CE');ax.set_title(mode+' WD, 65.5M tokens');ax.grid(alpha=.2);ax.legend(fontsize=7)
+  fig.tight_layout();fig.savefig(DEST/'wd_grid.png',dpi=140);plt.close(fig)
+ return ['research/unnormalized_muon/'+name for name in ['DETAILED_EVAL.md','long_comparison.png','fw_diagnostics.png','gap_wd_comparison.png','wd_grid.png'] if (DEST/name).exists()]
 if __name__=='__main__':generate()

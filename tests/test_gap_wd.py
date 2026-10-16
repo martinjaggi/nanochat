@@ -55,3 +55,15 @@ def test_no_extra_queries_when_no_descent():
  def never(etas):raise AssertionError('must skip without evaluating')
  e,L,trials,ok=block_backtrack(never,f0=1.,b=[-1.,0.],v=[1.,0.],L=1.,decay=.2,scope='layer')
  assert e==[0.,0.] and not ok and not trials
+
+
+def test_resume_rebinds_inner_optimizer_groups():
+ from research.unnormalized_muon.gap_wd import GapWD
+ class Inner:
+  param_groups=['old']
+  def load_state_dict(self,s):self.param_groups=['restored']
+ adapter=GapWD.__new__(GapWD);adapter.inner=Inner();adapter.param_groups=adapter.inner.param_groups
+ adapter.decay=.2;adapter.scope='layer';adapter.shape_policy='uniform'
+ state=dict(m={},L=1.,step=5,decay=.2,scope='layer',shape_policy='uniform',history=[],extra_forward_evals=0,extra_microbatch_forward_evals=0,line_seconds=0.,components={},decay_exposure_by_parameter={})
+ adapter.load_state_dict(dict(inner={},gap_wd=state))
+ assert adapter.param_groups is adapter.inner.param_groups and adapter.param_groups==['restored']

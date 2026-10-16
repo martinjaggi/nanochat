@@ -146,5 +146,5 @@ class GapWD(FWMuon):
             scope=self.scope,shape_policy=self.shape_policy,history=self.history,extra_forward_evals=self.extra_forward_evals,
             extra_microbatch_forward_evals=self.extra_microbatch_forward_evals,line_seconds=self.line_seconds,components=self.components,decay_exposure_by_parameter=self.decay_exposure_by_parameter))
     def load_state_dict(self,state):
-        self.inner.load_state_dict(state['inner']);s=state['gap_wd'];assert s['decay']==self.decay and s['scope']==self.scope and s['shape_policy']==self.shape_policy
+        self.inner.load_state_dict(state['inner']);self.param_groups=self.inner.param_groups;s=state['gap_wd'];assert s['decay']==self.decay and s['scope']==self.scope and s['shape_policy']==self.shape_policy
         self.m=s['m'];self.L=s['L'];self.step_index=s['step'];self.history=s['history'];self.extra_forward_evals=s['extra_forward_evals'];self.extra_microbatch_forward_evals=s['extra_microbatch_forward_evals'];self.line_seconds=s['line_seconds'];self.components=s['components'];self.decay_exposure_by_parameter=s['decay_exposure_by_parameter']

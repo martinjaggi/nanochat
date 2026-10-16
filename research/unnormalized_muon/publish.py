@@ -38,15 +38,23 @@ def publish():
   import matplotlib
   matplotlib.use('Agg')
   import matplotlib.pyplot as plt
-  fig,ax=plt.subplots(figsize=(8,4.5))
-  for name,arm,c,s,p in runs:
-   if s['updates']<1000:continue
+  fig,ax=plt.subplots(figsize=(9,5))
+  eligible=[r for r in runs if r[3]['updates']>=1000 and r[2]['seed']==0]
+  longest=max([r[3]['updates'] for r in eligible],default=1000)
+  chosen={}
+  for r in eligible:
+   name,arm,c,s,p=r
+   if s['updates']!=longest:continue
+   key=(bool(c.get('fw')),bool(c.get('clean')),c['variant'],c.get('matrix_schedule','cooldown'),c.get('decay_mode','none'),bool(c.get('fixed_wd')),c.get('gap_scope'),c.get('gap_shape'))
+   if key not in chosen or s['validation']['loss']<chosen[key][3]['validation']['loss']:chosen[key]=r
+  ax.set_title(f'Seed0 tuning: best LR per method at {longest:,} updates')
+  for name,arm,c,s,p in chosen.values():
    points=[json.loads(x) for x in (p.parent/'metrics.jsonl').read_text().splitlines() if x.strip()]
    points=[x for x in points if x['event']=='validation' and x['label']=='tuning' and x['step']>0]
    ax.plot([x['step']*32768 for x in points],[x['loss'] for x in points],marker='.',label=f'{arm} lr{c["matrix_lr"]:g}, n{s["updates"]}, seed{c["seed"]}')
   ax.set_xlabel('Fresh training tokens');ax.set_ylabel('Validation CE (nats)');ax.grid(alpha=.2)
-  if ax.lines:ax.legend(fontsize=6)
-  fig.tight_layout();fig.savefig(DEST/'validation_vs_tokens.png',dpi=140);plt.close(fig)
+  if ax.lines:ax.legend(fontsize=6,loc='upper left',bbox_to_anchor=(1.02,1))
+  fig.tight_layout();fig.savefig(DEST/'validation_vs_tokens.png',dpi=140,bbox_inches='tight');plt.close(fig)
  paths=['research/unnormalized_muon/EXPERIMENTS.csv','research/unnormalized_muon/STATUS.md','research/unnormalized_muon/RESULTS.md']
  if (DEST/'validation_vs_tokens.png').exists():paths.append('research/unnormalized_muon/validation_vs_tokens.png')
  from research.unnormalized_muon.analyze import generate
