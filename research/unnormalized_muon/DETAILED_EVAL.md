@@ -9,6 +9,9 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD none 0 | 0.04 | 20000 | 3.107198 | 668.45 | 743.22 |
 | unnormalized cooldown WD none 0 | 0.64 | 20000 | 3.168528 | 705.21 | 779.28 |
 | unnormalized constant WD none 0 | 0.64 | 20000 | 3.210816 | 665.00 | 737.52 |
+| normalized WD none 0 | 0.08 | 20000 | 3.112453 | 680.91 | 755.24 |
+| unnormalized cooldown WD none 0 | 0.32 | 20000 | 3.168984 | 681.31 | 754.69 |
+| unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
 
 ## Weight decay search
 
@@ -20,10 +23,12 @@ CLI lambda = 0.28*(0.04/CLI_eta)*strength matches nominal eta*lambda exposure ac
 |---|---|---:|---:|---:|---:|---:|---|
 | normalized | standard | 0.25 | 0.02 | 0.14 | 2000 | 3.576236 | 0.40773–0.81545 |
 | normalized | standard | 0.25 | 0.04 | 0.07 | 2000 | 3.561056 | 0.40773–0.81545 |
+| normalized | standard | 0.25 | 0.08 | 0.035 | 2000 | 3.557473 | 0.40773–0.81545 |
+| unnormalized | standard | 0.25 | 0.16 | 0.0175 | 2000 | 3.708944 | 0.40773–0.81545 |
 
 ## FW gap-based step and line search
 
-Fixed radii R_i=max(1,radius_factor*initial spectral norm(W_i)). A certified spectral-safe approximate polar direction Q_i defines D_i=-R_i Q_i-W_i. One shared gamma=clip(b/(L*v),0,1), b=-sum<G_i,D_i>, v=sum||D_i||F^2. Current-gradient and momentum oracles are separately labelled. With an approximate or momentum oracle, b is a directional gap, not an exact FW optimality certificate. Nonpositive b skips all candidate forwards. No additional matrix decay is applied.
+Fixed radii R_i=max(1,radius_factor*initial spectral norm(W_i)). A certified spectral-safe approximate polar direction Q_i defines D_i=-R_i Q_i-W_i. One shared gamma=clip(b/(L*v),0,gamma_cap); original runs use gamma_cap=1, while scheduled-cap variants multiply a tuned cap by the common warmup/cooldown LR multiplier. This is an explicit additional safeguard, not automatic shrinking from the gap alone. The gap uses b=-sum<G_i,D_i>, v=sum||D_i||F^2. Current-gradient and momentum oracles are separately labelled. With an approximate or momentum oracle, b is a directional gap, not an exact FW optimality certificate. Nonpositive b skips all candidate forwards. No additional matrix decay is applied.
 
 Strict smoothness backtracking compares a same-path functional reference at gamma=0 with candidates on the entire current effective batch, using the same token weighting and preserved RNG. Auxiliary weights are frozen during checks and updated afterward. The separately labelled Armijo variant accepts f(candidate)<=f0-c*gamma*b with c=.01 and forbids measured increases; it does NOT certify the original quadratic smoothness bound. Same-batch decrease does not guarantee heldout improvement.
 
@@ -37,7 +42,7 @@ Strict smoothness backtracking compares a same-path functional reference at gamm
 
 ### um-check-fw-derivative-001
 
-Oracle: gradient; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 358. Extra diagnostic gradient queries: 3, diagnostic seconds: 2.061.
+Oracle: gradient; acceptance: smoothness; compiled candidates: False; radius factor: 2; gamma cap: 1; scheduled: False. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 358. Extra diagnostic gradient queries: 3, diagnostic seconds: 2.061.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
@@ -54,7 +59,7 @@ Accepted steps with measured minibatch increase: 6; acceptance has relative BF16
 
 ### um-check-fw-gradient-001
 
-Oracle: gradient; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 394. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+Oracle: gradient; acceptance: smoothness; compiled candidates: False; radius factor: 2; gamma cap: 1; scheduled: False. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 394. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
@@ -71,7 +76,7 @@ Accepted steps with measured minibatch increase: 11; acceptance has relative BF1
 
 ### um-check-fw-momentum-001
 
-Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 366. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius factor: 2; gamma cap: 1; scheduled: False. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 366. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
@@ -88,7 +93,7 @@ Accepted steps with measured minibatch increase: 14; acceptance has relative BF1
 
 ### um-clean-long-2-fw-pilot
 
-Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 5995. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius factor: 2; gamma cap: 1; scheduled: False. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 5995. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
