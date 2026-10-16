@@ -221,6 +221,7 @@ Timing seconds: direction=64.952, reference=16.005, candidates=28.579, auxiliary
 | um-gapwd-pilot-reciprocal-lr0p02 | fw_reciprocal native | 0.1837499 | 2000 | 3.622123 | 0 | 144.58 |
 | um-gapwd-pilot-reciprocal-lr0p04 | fw_reciprocal native | 0.1837499 | 2000 | 3.625030 | 0 | 138.08 |
 | um-gapwd-pilot-reciprocal-lr0p08 | fw_reciprocal native | 0.1837499 | 2000 | 3.627100 | 0 | 138.60 |
+| um-lens-check-0-control | cooldown native | 0.1837499 | 64 | 6.414393 | 0 | 69.03 |
 | um-lens-check-1-joint | joint native | 0.1837499 | 64 | 6.423715 | 191 | 94.79 |
 
 um-lens-check-1-joint: accepted 64/64; skipped nonpositive blocks 53; median actual eta 0.00955982; median gamma 0.00175661; median L 0.005; median trials 1; max measured spectral ratio lambda*||W||op=0.379967. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
