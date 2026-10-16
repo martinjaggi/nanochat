@@ -115,3 +115,5 @@ Report-inspired NEXT phase implemented (not GPU-validated yet): exact named-stat
 Verification after follow-up integration: full CPU analytic/regression suite40/40 passed. GPU frozen-state/continuation validation remains pending the existing campaign; no new GPU claims. Removed an accidentally copied pytest-cache README from version control. Fresh controller is a waiting handoff, not a second submission queue.
 
 Creative controlled screening: layer LR proposal EMA beta{.5,.9}; relative update norm cap{.01,.03}; joint cached-curvature checks every{2,4}. Six candidates restart at identical seed0; unchecked steps have NO loss probes or acceptance claim.
+
+Promote at most10 fresh655M-token settings: control/reciprocal best2, best stable/cooled joint and layer, plus best2 from ONE competitive creative family. All full-horizon schedules restarted; no test-set tuning. Keep costs within50GPUh total.
