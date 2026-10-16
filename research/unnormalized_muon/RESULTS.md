@@ -21,6 +21,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-clean-grid-04-0-normalized-lr0p08 | Clean Native cooldown | 2000 | 0 | 0.08 | 3.563980 | 1.080480 | — | 145.26 |
 | um-clean-grid-04-1-cooldown-lr0p32 | Clean Unnormalized cooldown | 2000 | 0 | 0.32 | 3.698252 | 1.121036 | — | 157.86 |
 | um-clean-grid-04-2-constant-lr0p32 | Clean Unnormalized constant | 2000 | 0 | 0.32 | 3.728677 | 1.130279 | — | 151.60 |
+| um-clean-grid-05-1-cooldown-lr0p64 | Clean Unnormalized cooldown | 2000 | 0 | 0.64 | 3.683407 | 1.116578 | — | 157.17 |
 | um-fw-diagnostic-001 | FW backtracking | 64 | 0 | 0.02 | 6.469995 | 1.960658 | — | 95.07 |
 | um-fw-diagnostic-002 | FW backtracking | 64 | 0 | 0.02 | 6.900428 | 2.091122 | — | 117.14 |
 | um-screen-00-0-native-lr0p005 | Native cooldown | 2000 | 0 | 0.005 | 3.734536 | 1.132046 | — | 145.49 |
@@ -36,7 +37,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 2.1253 / 10 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Three-slot central queue; one B300 per run.
+Conservative charged/reserved total: 2.5227 / 10 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Three-slot central queue; one B300 per run.
 
 Current CLEAN comparison: no row equilibration, NorMuon, or Muon decay in either arm. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
