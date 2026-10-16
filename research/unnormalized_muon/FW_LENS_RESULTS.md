@@ -23,6 +23,8 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-creative-periodic4 | joint-periodic | 2000 updates | 0 | 3.556331 | — | 142.721 | 1501 | 43.339 | 235.46 |
 | um-lens-creative-relative0p01 | layer-relative | 2000 updates | 0 | 3.568293 | — | 171.388 | 4000 | 43.342 | 263.55 |
 | um-lens-creative-relative0p03 | layer-relative | 2000 updates | 0 | 3.553957 | — | 158.188 | 4000 | 43.444 | 249.47 |
+| um-lens-long-control-0 | control | 20000 updates | 0 | 3.199618 | — | 713.370 | 0 | 32.972 | 788.71 |
+| um-lens-long-control-1 | control | 20000 updates | 0 | 3.168332 | — | 725.928 | 0 | 27.617 | 786.20 |
 | um-lens-main-control-lr0p02 | control | 2000 updates | 0 | 3.568986 | — | 71.320 | 0 | 31.621 | 141.52 |
 | um-lens-main-control-lr0p04 | control | 2000 updates | 0 | 3.554822 | — | 65.063 | 0 | 30.883 | 133.67 |
 | um-lens-main-control-lr0p08 | control | 2000 updates | 0 | 3.586261 | — | 71.566 | 0 | 31.026 | 139.40 |

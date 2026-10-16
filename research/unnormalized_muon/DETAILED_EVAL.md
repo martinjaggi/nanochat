@@ -12,6 +12,8 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD none 0 | 0.08 | 20000 | 3.112453 | 680.91 | 755.24 |
 | unnormalized cooldown WD none 0 | 0.32 | 20000 | 3.168984 | 681.31 | 754.69 |
 | unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.199618 | 710.50 | 788.71 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.168332 | 723.17 | 786.20 |
 
 ## Weight decay search
 
@@ -312,6 +314,8 @@ um-lens-creative-relative0p03: accepted 2000/2000; skipped nonpositive blocks 10
 
 Timing seconds: direction=54.636, reference=14.182, candidates=17.375, auxiliary=1.741.
 
+| um-lens-long-control-0 | cooldown native | 0.1837499 | 20000 | 3.199618 | 0 | 788.71 |
+| um-lens-long-control-1 | cooldown native | 0.1837499 | 20000 | 3.168332 | 0 | 786.20 |
 | um-lens-main-control-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.568986 | 0 | 141.52 |
 | um-lens-main-control-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.554822 | 0 | 133.67 |
 | um-lens-main-control-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.586261 | 0 | 139.40 |
