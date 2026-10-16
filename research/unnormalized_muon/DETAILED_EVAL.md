@@ -247,3 +247,9 @@ um-lens-check-5-creative: accepted 64/64; skipped nonpositive blocks 57; median 
 
 Timing seconds: direction=5.960, reference=2.037, candidates=0.608, auxiliary=0.600.
 
+| um-lens-check-6-periodic | joint native | 0.1837499 | 64 | 6.490925 | 48 | 95.36 |
+
+um-lens-check-6-periodic: accepted 16/64; skipped nonpositive blocks 59; median actual eta 0.00428424; median gamma 0.000787229; median L 0.0075; median trials 0; max measured spectral ratio lambda*||W||op=0.366569. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=6.270, reference=1.728, candidates=0.259, auxiliary=0.606.
+
