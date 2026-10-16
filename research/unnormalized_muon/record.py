@@ -9,10 +9,12 @@ class Recorder:
         self.path=pathlib.Path(path);self.path.parent.mkdir(parents=True,exist_ok=True)
         self.file=self.path.open('w',buffering=65536);self.started=time.perf_counter()
         self.train_seconds=0.;self.steady_seconds=0.;self.validation_seconds=0.;self.checkpoint_seconds=0.
+        self.warming_up=False;self.warmup_updates=0;self.warmup_seconds=0.;self.warmup_extra_forwards=0
         self.active_seconds=0.;self.last_step_active=0.;self.contractions={};self.training_compile_seconds=0.
         self.time_budget=float(os.environ.get("RESEARCH_TIME_BUDGET","0"));self.reference_updates=int(os.environ.get("RESEARCH_REFERENCE_UPDATES","20000"))
         self.final={};self.validation_hash=None;self.exposure={};self.last_step=-1
     def emit(self,event,**kw):
+        if self.warming_up:return
         self.file.write(json.dumps(dict(event=event,**kw),allow_nan=False)+'\n')
         if event!='update' or kw.get('step',0)%25==0:self.file.flush()
     def initialize(self,model,opt,config,total_batch_size):
@@ -109,7 +111,7 @@ class Recorder:
             if a is not None and b is not None:intervals.append((a/1e6,b/1e6))
         compile_seconds=0.;end=-float('inf')
         for a,b in sorted(intervals):compile_seconds+=max(0.,b-max(a,end));end=max(end,b)
-        summary=dict(status='completed',training_active_seconds=self.active_seconds,training_compile_seconds=self.training_compile_seconds,time_budget=self.time_budget,time_overshoot=max(0.,self.active_seconds-self.time_budget) if self.time_budget else 0.,last_step_active_seconds=self.last_step_active,muon_contraction=self.contractions,updates=step,fresh_tokens=step*self.batch,fresh_microbatch_gradient_passes=step*self.batch//(self.config['device_batch_size']*self.config['max_seq_len']),training_seconds=self.train_seconds,
+        summary=dict(status='completed',warmup_seconds=self.warmup_seconds,warmup_gradient_evals=self.warmup_updates,warmup_extra_forwards=self.warmup_extra_forwards,training_active_seconds=self.active_seconds,training_compile_seconds=self.training_compile_seconds,time_budget=self.time_budget,time_overshoot=max(0.,self.active_seconds-self.time_budget) if self.time_budget else 0.,last_step_active_seconds=self.last_step_active,muon_contraction=self.contractions,updates=step,fresh_tokens=step*self.batch,fresh_microbatch_gradient_passes=step*self.batch//(self.config['device_batch_size']*self.config['max_seq_len']),training_seconds=self.train_seconds,
             steady_training_seconds=self.steady_seconds,steady_time_definition='native steps after first11, plus measured research logging',
             validation_seconds=self.validation_seconds,checkpoint_seconds=self.checkpoint_seconds,compile_seconds=compile_seconds,
             end_to_end_seconds=time.perf_counter()-self.started,peak_gpu_memory=torch.cuda.max_memory_allocated(),

@@ -62,6 +62,8 @@ def publish():
  if (DEST/'validation_vs_tokens.png').exists():paths.append('research/unnormalized_muon/validation_vs_tokens.png')
  from research.unnormalized_muon.analyze import generate
  paths+=generate()
+ from research.unnormalized_muon.lens_report import generate as lens_generate
+ paths+=lens_generate()
  subprocess.run(['git','add',*paths],cwd=REPO,check=True)
  if subprocess.run(['git','diff','--cached','--quiet'],cwd=REPO).returncode:
   subprocess.run(['git','commit','-m','Update live Muon experiment results'],cwd=REPO,check=True)

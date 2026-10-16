@@ -455,6 +455,14 @@ print0(f"Tokens / micro-batch / rank: {args.device_batch_size} x {args.max_seq_l
 print0(f"Tokens / micro-batch: {world_tokens_per_fwdbwd:,}")
 print0(f"Total batch size {total_batch_size:,} => gradient accumulation steps: {grad_accum_steps}")
 
+# Optional disposable warmup is charged to total job cost, then reset exactly.
+if recorder and int(os.environ.get("RESEARCH_WARMUP_UPDATES", "0")):
+    assert not resuming, "warmup reset currently supports fresh runs only"
+    from research.unnormalized_muon.warmup import warmup_training
+    fresh_loader = lambda: tokenizing_distributed_data_loader_with_state_bos_bestfit(tokenizer, args.device_batch_size, args.max_seq_len, split="train", device=device, resume_state_dict=None)
+    train_loader,x,y,dataloader_state_dict=warmup_training(model,orig_model,optimizer,recorder,
+        train_loader,x,y,dataloader_state_dict,fresh_loader,grad_accum_steps,int(os.environ["RESEARCH_WARMUP_UPDATES"]))
+
 # Go!
 while True:
     last_step = step == num_iterations or bool(research_time_budget and recorder.active_seconds >= research_time_budget) # loop runs num_iterations+1 times so that we can eval/save at the end
@@ -619,7 +627,7 @@ while True:
     ema_beta = 0.9 # EMA decay factor for some smoothing just for nicer logging
     smooth_train_loss = ema_beta * smooth_train_loss + (1 - ema_beta) * train_loss_f # EMA the training loss
     debiased_smooth_loss = smooth_train_loss / (1 - ema_beta**(step + 1)) # debias the EMA
-    pct_done = 100 * step / num_iterations
+    pct_done = 100 * (min(1.,recorder.active_seconds/research_time_budget) if research_time_budget else step / num_iterations)
     tok_per_sec = int(total_batch_size / dt)
     flops_per_sec = num_flops_per_token * total_batch_size / dt
     mfu = 100 * flops_per_sec / (gpu_peak_flops * ddp_world_size)
@@ -657,7 +665,7 @@ while True:
     # The garbage collector is sadly a little bit overactive and for some poorly understood reason,
     # it spends ~500ms scanning for cycles quite frequently, just to end up cleaning up very few tiny objects each time.
     # So we manually manage and help it out here
-    if first_step_of_run:
+    if first_step_of_run and not (recorder and getattr(recorder,"warmup_updates",0)):
         gc.collect() # manually collect a lot of garbage from setup
         gc.freeze() # immediately freeze all currently surviving objects and exclude them from GC
         gc.disable() # nuclear intervention here: disable GC entirely except:
