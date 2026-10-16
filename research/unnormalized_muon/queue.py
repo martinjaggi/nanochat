@@ -1,10 +1,11 @@
-"""Single locked queue: 1 B300/job, 3 outstanding jobs, 10 GPU-hours total."""
+"""Single locked queue: 1 B300/job, 3 outstanding jobs, 30 GPU-hours total."""
 import argparse,csv,fcntl,json,os,pathlib,shlex,subprocess,tarfile,time
 from research.unnormalized_muon.kube import Kube
 ROOT=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs')
 REPO=pathlib.Path(__file__).resolve().parents[2]
 HELPER='/mloscratch/homes/mljaggi/rcp-tools/rcp-runai'
 BASE='b2bdf9890e028965ee7f2e97acc02d72b3c663ec'
+GPU_HOUR_CAP=30
 FIELDS='run_id stage status git_commit config job_id GPU_model GPU_count runtime_limit charged_gpu_seconds output validation_loss bpb updates training_seconds process_seconds failure'.split()
 def cli(*a):return subprocess.check_output([HELPER,*a,'--project','mlo-mljaggi'],text=True,env=dict(os.environ,SUPPRESS_DEPRECATION_MESSAGE='true'))
 def jobs():
@@ -62,7 +63,7 @@ def reap():
 def submit(stage,name,seconds,config=None):
  s=load();j=jobs();assert name.startswith('um-') and len(name)<=55 and name not in s and name not in j
  assert len(set(j)|{n for n,v in s.items() if not v['recorded']})<3,'three-slot cap'
- assert sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())+seconds+30<=10*3600,'10 GPU-hour cap'
+ assert sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())+seconds+30<=GPU_HOUR_CAP*3600,f'{GPU_HOUR_CAP} GPU-hour cap'
  dirty=subprocess.check_output(['git','status','--porcelain'],cwd=REPO,text=True).splitlines()
  assert all(x[3:] in ['research/unnormalized_muon/STATUS.md','research/unnormalized_muon/EXPERIMENTS.csv'] for x in dirty),'commit code/config first'
  out=ROOT/name;out.mkdir(exist_ok=False);commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()
