@@ -19,12 +19,13 @@ CLI lambda = 0.28*(0.04/CLI_eta)*strength matches nominal eta*lambda exposure ac
 | Method | Decay | Strength | CLI LR | CLI WD | Updates | Val CE | Nominal Muon exposure range |
 |---|---|---:|---:|---:|---:|---:|---|
 | normalized | standard | 0.25 | 0.02 | 0.14 | 2000 | 3.576236 | 0.40773–0.81545 |
+| normalized | standard | 0.25 | 0.04 | 0.07 | 2000 | 3.561056 | 0.40773–0.81545 |
 
 ## FW gap-based step and line search
 
 Fixed radii R_i=max(1,radius_factor*initial spectral norm(W_i)). A certified spectral-safe approximate polar direction Q_i defines D_i=-R_i Q_i-W_i. One shared gamma=clip(b/(L*v),0,1), b=-sum<G_i,D_i>, v=sum||D_i||F^2. Current-gradient and momentum oracles are separately labelled. With an approximate or momentum oracle, b is a directional gap, not an exact FW optimality certificate. Nonpositive b skips all candidate forwards. No additional matrix decay is applied.
 
-Backtracking compares a same-path functional reference at gamma=0 with candidates on the entire current effective batch, using the same token weighting and preserved RNG. Auxiliary weights are frozen during checks and updated afterward. Same-batch decrease does not guarantee heldout improvement.
+Strict smoothness backtracking compares a same-path functional reference at gamma=0 with candidates on the entire current effective batch, using the same token weighting and preserved RNG. Auxiliary weights are frozen during checks and updated afterward. The separately labelled Armijo variant accepts f(candidate)<=f0-c*gamma*b with c=.01 and forbids measured increases; it does NOT certify the original quadratic smoothness bound. Same-batch decrease does not guarantee heldout improvement.
 
 | Run | Updates | Val CE | Accepted | Negative b | Extra batch forwards | FW sec | Max spectral ratio |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -36,7 +37,7 @@ Backtracking compares a same-path functional reference at gamma=0 with candidate
 
 ### um-check-fw-derivative-001
 
-Oracle: gradient; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 358. Extra diagnostic gradient queries: 3, diagnostic seconds: 2.061.
+Oracle: gradient; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 358. Extra diagnostic gradient queries: 3, diagnostic seconds: 2.061.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
@@ -53,7 +54,7 @@ Accepted steps with measured minibatch increase: 6; acceptance has relative BF16
 
 ### um-check-fw-gradient-001
 
-Oracle: gradient; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 394. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+Oracle: gradient; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 394. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
@@ -70,7 +71,7 @@ Accepted steps with measured minibatch increase: 11; acceptance has relative BF1
 
 ### um-check-fw-momentum-001
 
-Oracle: momentum; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 366. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 366. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
@@ -87,7 +88,7 @@ Accepted steps with measured minibatch increase: 14; acceptance has relative BF1
 
 ### um-clean-long-2-fw-pilot
 
-Oracle: momentum; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 5995. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+Oracle: momentum; acceptance: smoothness; compiled candidates: False; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 5995. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
 
 | Quantity | Min | P25 | Median | P75 | Max |
 |---|---:|---:|---:|---:|---:|
