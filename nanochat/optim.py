@@ -187,7 +187,7 @@ def muon_step_fused(
     final_scale = step_size * (v_norm / v_norm_new.clamp_min(1e-10))
     g = g * final_scale.to(g.dtype)
 
-    # Apply AFTER the norm-preserving NorMuon transform, so it cannot erase the scale.
+    # Apply after Frobenius renormalization and NorMuon, preserving native moment state.
     if UNNORMALIZED_MUON:
         g = g * dual_scale.to(g.dtype)
 
