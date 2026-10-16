@@ -49,3 +49,11 @@ def test_exact_gradient_oracle_gap_matches_nuclear_dual():
  L=2.;gamma=min(1.,b/(L*v))
  for candidate in [0.,max(0.,gamma-.01),min(1.,gamma+.01),1.]:
   assert -gamma*b+.5*L*gamma*gamma*v<=-candidate*b+.5*L*candidate*candidate*v+1e-12
+
+def test_armijo_safeguard_is_explicit_and_monotone():
+ # Approximate/BF16 gradient overstates observed slope by10x. The original
+ # quadratic certificate differs from a deliberately relaxed Armijo check.
+ def evaluate(gamma):return 1.-.1*gamma
+ gamma,L,trials,ok=backtrack(evaluate,f0=1.,b=1.,v=1.,L=10.,acceptance='armijo',armijo_c=.01,tolerance=0.)
+ assert ok and gamma==.1 and trials[0]['loss']<=1.-.01*gamma
+ assert not backtrack(lambda gamma:1.0000001,f0=1.,b=1.,v=1.,L=1.,acceptance='armijo',tolerance=1.)[3]

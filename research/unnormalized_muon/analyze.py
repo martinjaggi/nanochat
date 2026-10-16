@@ -30,7 +30,7 @@ def generate():
   rows.append(f'| {"unnormalized" if c["variant"] else "normalized"} | {c["decay_mode"]} | {c["wd_strength"]:g} | {c["matrix_lr"]:g} | {c["weight_decay"]:.7g} | {s["updates"]} | {s["validation"]["loss"]:.6f} | {min(ex):.5g}–{max(ex):.5g} |')
  rows+=['','## FW gap-based step and line search','',
  'Fixed radii R_i=max(1,radius_factor*initial spectral norm(W_i)). A certified spectral-safe approximate polar direction Q_i defines D_i=-R_i Q_i-W_i. One shared gamma=clip(b/(L*v),0,1), b=-sum<G_i,D_i>, v=sum||D_i||F^2. Current-gradient and momentum oracles are separately labelled. With an approximate or momentum oracle, b is a directional gap, not an exact FW optimality certificate. Nonpositive b skips all candidate forwards. No additional matrix decay is applied.','',
- 'Backtracking compares a same-path functional reference at gamma=0 with candidates on the entire current effective batch, using the same token weighting and preserved RNG. Auxiliary weights are frozen during checks and updated afterward. Same-batch decrease does not guarantee heldout improvement.','',
+ 'Strict smoothness backtracking compares a same-path functional reference at gamma=0 with candidates on the entire current effective batch, using the same token weighting and preserved RNG. Auxiliary weights are frozen during checks and updated afterward. The separately labelled Armijo variant accepts f(candidate)<=f0-c*gamma*b with c=.01 and forbids measured increases; it does NOT certify the original quadratic smoothness bound. Same-batch decrease does not guarantee heldout improvement.','',
  '| Run | Updates | Val CE | Accepted | Negative b | Extra batch forwards | FW sec | Max spectral ratio |','|---|---:|---:|---:|---:|---:|---:|---:|']
  for n,c,s,pts,vals in sorted(runs):
   if not c.get('fw'):continue
@@ -41,7 +41,7 @@ def generate():
   if not f:continue
   audit=[x for x in pts if x['event']=='fw_search_audit']
   fw=[x for x in pts if x['event']=='fw_update']
-  rows+=['',f'### {n}','',f'Oracle: {f["oracle"]}; radius factor: {f["radius_factor"]:g}. Search state/RNG audit: {bool(audit)}. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: {s["extra_microbatch_forward_evals"]}. Extra diagnostic gradient queries: {f.get("diagnostic_gradient_evals",0)}, diagnostic seconds: {f.get("diagnostic_seconds",0):.3f}.', '',
+  rows+=['',f'### {n}','',f'Oracle: {f["oracle"]}; acceptance: {f.get("acceptance","smoothness")}; compiled candidates: {f.get("compiled_candidates",False)}; radius factor: {f["radius_factor"]:g}. Search state/RNG audit: {bool(audit)}. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: {s["extra_microbatch_forward_evals"]}. Extra diagnostic gradient queries: {f.get("diagnostic_gradient_evals",0)}, diagnostic seconds: {f.get("diagnostic_seconds",0):.3f}.', '',
     '| Quantity | Min | P25 | Median | P75 | Max |','|---|---:|---:|---:|---:|---:|']
   for key,q in f['statistics'].items():rows.append('| '+key+' | '+' | '.join(f'{q[k]:.6g}' for k in ['min','p25','median','p75','max'])+' |')
   rows+=['', 'FW timing components (seconds): '+', '.join(f'{k}={v:.3f}' for k,v in f['component_seconds'].items())+'.',

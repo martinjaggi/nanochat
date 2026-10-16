@@ -1,0 +1,18 @@
+{
+  "clean": true,
+  "variant": false,
+  "fw": true,
+  "fw_oracle": "gradient",
+  "fw_radius_factor": 2.0,
+  "fw_L": 0.01,
+  "fw_compile_candidates": true,
+  "fw_acceptance": "armijo",
+  "fw_armijo_c": 0.01,
+  "matrix_lr": 0.02,
+  "updates": 64,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1800,
+  "decay_mode": "none",
+  "microbatch_size": 32
+}

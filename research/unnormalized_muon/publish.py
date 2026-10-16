@@ -15,7 +15,7 @@ def publish():
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
   if cfg.get('clean'):arm='Clean '+arm
   if cfg.get('decay_mode','none')!='none':arm+=f' WD:{cfg["decay_mode"]}({cfg.get("weight_decay",0):g})'
-  if cfg.get('fw'):arm+=f' {cfg.get("fw_oracle","momentum")} Rfactor{cfg.get("fw_radius_factor",2):g}'
+  if cfg.get('fw'):arm+=f' {cfg.get("fw_oracle","momentum")} Rfactor{cfg.get("fw_radius_factor",2):g} {cfg.get("fw_acceptance","smoothness")} {"compiled" if cfg.get("fw_compile_candidates") else "eager"}'
   label=str(path.parent.relative_to(ROOT));runs.append((label,arm,cfg,s,path))
  rows=['# Live unnormalized-Muon results','',
   'One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with different update budgets are not endpoint comparisons. Tuning uses the same fixed validation tokens; held-out scores appear only on final runs. Runtime includes compilation and overhead in process seconds.','',

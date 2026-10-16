@@ -10,15 +10,16 @@ def weighted_mean(losses,counts):
     return sum(loss*n for loss,n in zip(losses,counts))/sum(counts)
 
 
-def backtrack(evaluate, *, f0,b,v,L,max_trials=16,tolerance=1e-6):
+def backtrack(evaluate, *, f0,b,v,L,max_trials=16,tolerance=1e-6,acceptance="smoothness",armijo_c=.01):
     """Pure ray search. evaluate(gamma) must not mutate the live model/state."""
+    assert acceptance in {"smoothness","armijo"} and 0<armijo_c<1
     assert math.isfinite(L) and L>0 and math.isfinite(v) and v>=0 and math.isfinite(b) and math.isfinite(f0)
     if b<=0 or v==0:return 0.,L,[],False
     trials=[]
     for _ in range(max_trials):
         gamma=min(1.,b/(L*v));loss=float(evaluate(gamma))
-        bound=f0-gamma*b+.5*L*gamma*gamma*v
-        accepted=math.isfinite(loss) and loss<=bound+tolerance*max(1.,abs(f0))
+        bound=f0-gamma*b+.5*L*gamma*gamma*v if acceptance=="smoothness" else f0-armijo_c*gamma*b
+        accepted=math.isfinite(loss) and loss<=bound+tolerance*max(1.,abs(f0)) and (acceptance!="armijo" or loss<=f0)
         trials.append(dict(gamma=gamma,L=L,loss=loss,bound=bound,accepted=accepted))
         if accepted:return gamma,L,trials,True
         L*=2
@@ -55,6 +56,11 @@ class FWMuon:
     def __init__(self,inner,model,recorder,initial_L=.01,radius_factor=2.,oracle="momentum"):
         assert oracle in {"momentum","gradient"} and radius_factor>=1
         self.oracle=oracle;self.radius_factor=radius_factor;self.history=[]
+        self.acceptance=os.environ.get("RESEARCH_FW_ACCEPTANCE","smoothness")
+        self.armijo_c=float(os.environ.get("RESEARCH_FW_ARMIJO_C",".01"))
+        self.compiled_candidates=os.environ.get("RESEARCH_FW_COMPILE_CANDIDATES")=="1"
+        def candidate_forward(candidate,x,y):return functional_call(self.model,candidate,(x,y))
+        self.candidate_forward=torch.compile(candidate_forward,dynamic=False,fullgraph=True) if self.compiled_candidates else candidate_forward
         self.derivative_probes=os.environ.get("RESEARCH_FW_DERIVATIVE_PROBES")=="1"
         self.diagnostic_gradient_evals=0;self.diagnostic_seconds=0.
         self.component_seconds=dict(direction=0.,reference=0.,candidates=0.,auxiliary=0.)
@@ -67,7 +73,7 @@ class FWMuon:
             norm=float(torch.linalg.matrix_norm(p.detach().float(),ord=2))
             self.radii[n]=max(1.,radius_factor*norm)
         self.extra_forward_evals=0;self.extra_microbatch_forward_evals=0;self.line_seconds=0.;self.negative_steps=0
-        self.recorder.emit('fw_geometry',radii=self.radii,initial_L=initial_L,oracle=oracle,radius_factor=radius_factor,
+        self.recorder.emit('fw_geometry',radii=self.radii,initial_L=initial_L,oracle=oracle,radius_factor=radius_factor,acceptance=self.acceptance,armijo_c=self.armijo_c,compiled_candidates=self.compiled_candidates,
             gap_definition='b=-<fresh_gradient,D>; directional gap with approximate oracle, not an exact LMO certificate',
             certificate='FP64 Gram induced-infinity upper bound, safety1e-6',
             shape_scaling='none: fixed per-matrix radii define geometry',Muon_decay='none')
@@ -106,7 +112,7 @@ class FWMuon:
                 torch.cuda.set_rng_state(before_rng);torch.set_rng_state(after_cpu)
                 candidate={n:p+gamma*directions[n] for n,p in self.matrices}
                 count=sum(y.numel() for _,y in self.batch)
-                loss=weighted_mean([functional_call(self.model,candidate,(x,y)) for x,y in self.batch],
+                loss=weighted_mean([self.candidate_forward(candidate,x,y) for x,y in self.batch],
                     [y.numel() for _,y in self.batch])
                 self.extra_forward_evals+=1
                 self.extra_microbatch_forward_evals+=len(self.batch)
@@ -139,7 +145,7 @@ class FWMuon:
                 relative_gradient_error=float((error/norm.clamp_min(1e-30)).sqrt()),samples=samples,
                 diagnostic_gradient_evals=self.diagnostic_gradient_evals,diagnostic_seconds=self.diagnostic_seconds)
         candidate_start=time.perf_counter()
-        gamma,self.L,trials,accepted=backtrack(evaluate,f0=reference,b=b,v=v,L=max(self.L*.5,1e-16))
+        gamma,self.L,trials,accepted=backtrack(evaluate,f0=reference,b=b,v=v,L=max(self.L*.5,1e-16),acceptance=self.acceptance,armijo_c=self.armijo_c)
         torch.cuda.synchronize();candidate_seconds=time.perf_counter()-candidate_start
         if audit is not None:
             assert all(torch.equal(p,old) and (grad is None or torch.equal(p.grad,grad)) for p,old,grad in audit), 'FW search mutated live state'
@@ -172,7 +178,7 @@ class FWMuon:
         def quantiles(key):
             x=torch.tensor([h[key] for h in self.history],dtype=torch.float64)
             return dict(zip(['min','p25','median','p75','max'],x.quantile(torch.tensor([0.,.25,.5,.75,1.],dtype=torch.float64)).tolist()))
-        return dict(oracle=self.oracle,radius_factor=self.radius_factor,steps=len(self.history),
+        return dict(oracle=self.oracle,radius_factor=self.radius_factor,acceptance=self.acceptance,armijo_c=self.armijo_c,compiled_candidates=self.compiled_candidates,steps=len(self.history),
             accepted_steps=sum(h['accepted'] for h in self.history),negative_alignment_steps=self.negative_steps,
             component_seconds=self.component_seconds,diagnostic_gradient_evals=self.diagnostic_gradient_evals,diagnostic_seconds=self.diagnostic_seconds,statistics={k:quantiles(k) for k in ['gamma','L','b','v','trials','actual_decrease','predicted_decrease']})
     def state_dict(self):
