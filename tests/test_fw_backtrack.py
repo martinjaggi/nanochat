@@ -36,3 +36,16 @@ def test_accumulated_baseline_matches_token_weighted_candidates():
  assert fw.loss_before.item()==5.
  assert fw.loss_before.item()==weighted_mean([torch.tensor(2.),torch.tensor(6.)],[2,6]).item()
  assert fw.loss_before.item()!=fw.losses[-1].item()
+
+def test_exact_gradient_oracle_gap_matches_nuclear_dual():
+ torch.manual_seed(13)
+ b=0.;formula=0.;v=0.
+ for shape,R in [((3,4),2.),((4,3),3.)]:
+  grad=torch.randn(shape,dtype=torch.float64);w=spectral_safe(torch.randn(shape,dtype=torch.float64))*R
+  u,s,vh=torch.linalg.svd(grad,full_matrices=False);q=u@vh;d=-R*q-w
+  b+=float(-(grad*d).sum());formula+=float((grad*w).sum()+R*s.sum());v+=float(d.square().sum())
+ assert abs(b-formula)<1e-12 and b>=0 and v>0
+ # The quadratic ray upper bound is minimized by the shared gap-based step.
+ L=2.;gamma=min(1.,b/(L*v))
+ for candidate in [0.,max(0.,gamma-.01),min(1.,gamma+.01),1.]:
+  assert -gamma*b+.5*L*gamma*gamma*v<=-candidate*b+.5*L*candidate*candidate*v+1e-12

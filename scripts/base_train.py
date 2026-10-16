@@ -335,7 +335,7 @@ if resuming:
 
 if recorder and os.environ.get("RESEARCH_FW") == "1":
     from research.unnormalized_muon.fw import FWMuon
-    optimizer = FWMuon(optimizer, orig_model, recorder, initial_L=float(os.environ.get("RESEARCH_FW_L", ".01")))
+    optimizer = FWMuon(optimizer, orig_model, recorder, initial_L=float(os.environ.get("RESEARCH_FW_L", ".01")), radius_factor=float(os.environ.get("RESEARCH_FW_RADIUS_FACTOR", "2.")), oracle=os.environ.get("RESEARCH_FW_ORACLE", "momentum"))
     recorder.fw = optimizer
 
 # -----------------------------------------------------------------------------

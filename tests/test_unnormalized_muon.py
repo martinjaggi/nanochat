@@ -47,7 +47,7 @@ def test_fused_step_and_disabled_upstream_parity(monkeypatch,shape):
     assert bool(torch.isfinite(scale).all() & (scale>=0).all())
 
 def test_clean_geometry_removes_extra_transforms_and_decay(monkeypatch):
- monkeypatch.setattr(modified,'CLEAN_MUON',True)
+ monkeypatch.setattr(modified,'MUON_DECAY_MODE','none');monkeypatch.setattr(modified,'CLEAN_MUON',True)
  monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',True)
  grad=torch.tensor([[[10.,3.],[1.,1.]]]);mu=torch.tensor(.85)
  def call(scaled,decay):
@@ -64,3 +64,21 @@ def test_clean_geometry_removes_extra_transforms_and_decay(monkeypatch):
  scaled=call(True,0.)
  torch.testing.assert_close(scaled[0],p*scale)
  assert torch.equal(scaled[1],m) and torch.equal(scaled[2],v)
+
+@pytest.mark.parametrize('scaled',[False,True])
+@pytest.mark.parametrize('mode',['none','standard','cautious'])
+def test_clean_decay_rule_is_separate_from_direction(monkeypatch,scaled,mode):
+ monkeypatch.setattr(modified,'CLEAN_MUON',True)
+ monkeypatch.setattr(modified,'UNNORMALIZED_MUON',scaled)
+ monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',False)
+ torch.manual_seed(8);grad=torch.randn(2,4,3);initial=torch.randn_like(grad)
+ def call(rule):
+  monkeypatch.setattr(modified,'MUON_DECAY_MODE',rule)
+  p=initial.clone();m=torch.zeros_like(p);v=torch.ones(2,4,1)*.123
+  modified.muon_step_fused.__wrapped__(grad.clone(),p,m,v,torch.tensor(.85),torch.tensor(.01),torch.tensor(.3),torch.tensor(.9),5,-1)
+  assert torch.equal(v,torch.ones_like(v)*.123)
+  return p
+ no_decay=call('none');actual=call(mode);direction=(initial-no_decay)/.01
+ mask=(direction*initial>=0) if mode=='cautious' else 1
+ expected=no_decay if mode=='none' else no_decay-.01*.3*initial*mask
+ torch.testing.assert_close(actual,expected,rtol=2e-5,atol=2e-7)

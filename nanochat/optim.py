@@ -101,6 +101,8 @@ Some of the changes in nanochat implementation:
 # Opt-in experiment; the default path keeps the upstream optimizer unchanged.
 UNNORMALIZED_MUON = os.environ.get("NANOCHAT_UNNORMALIZED_MUON", "0") == "1"
 CLEAN_MUON = os.environ.get("NANOCHAT_CLEAN_MUON", "0") == "1"
+MUON_DECAY_MODE = os.environ.get("RESEARCH_MUON_DECAY", "none" if CLEAN_MUON else "cautious")
+assert MUON_DECAY_MODE in {"none", "standard", "cautious"}
 RECORD_DUAL_SCALE = os.environ.get("RESEARCH_DUAL_DIAGNOSTICS", "0") == "1"
 
 
@@ -202,11 +204,13 @@ def muon_step_fused(
     # Cautious weight decay + parameter update
     lr = lr_t.to(g.dtype)
     wd = wd_t.to(g.dtype)
-    if CLEAN_MUON:
-        stacked_params.sub_(lr * g)  # no Muon decay in the clean comparison
-    else:
+    if MUON_DECAY_MODE == "standard":
+        stacked_params.mul_(1 - lr * wd).sub_(lr * g)
+    elif MUON_DECAY_MODE == "cautious":
         mask = (g * stacked_params) >= 0
         stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
+    else:
+        stacked_params.sub_(lr * g)
     return (dual_scale, current_alignment) if compute_scale else None
 
 # -----------------------------------------------------------------------------

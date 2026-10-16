@@ -1,0 +1,12 @@
+{
+  "clean": true,
+  "variant": true,
+  "decay_mode": "standard",
+  "weight_decay": 0.0175,
+  "matrix_lr": 0.64,
+  "updates": 64,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1800,
+  "gpu_checks": true
+}

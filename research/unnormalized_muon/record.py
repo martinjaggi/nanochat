@@ -22,6 +22,8 @@ class Recorder:
         self.emit('manifest',base_commit='b2bdf9890e028965ee7f2e97acc02d72b3c663ec',
             git_commit=os.environ['RESEARCH_COMMIT'],seed=int(os.environ['RESEARCH_SEED']),
             variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',clean=os.environ.get('NANOCHAT_CLEAN_MUON')=='1',config=config,
+            decay_mode=os.environ.get('RESEARCH_MUON_DECAY','native'),
+            decay_exposure_definition='sum eta*shape*lambda; nominal upper exposure for cautious masked decay',
             initial_parameter_hash=initial.hexdigest(),model_parameters=sum(p.numel() for p in model.parameters()),
             GPU_model=torch.cuda.get_device_name(0),GPU_count=torch.cuda.device_count(),
             total_batch_size=total_batch_size,FP8=False,precision='native BF16 compute/embeddings; native FP32 matrices',
@@ -98,4 +100,5 @@ class Recorder:
             summary['extra_forward_evals']=self.fw.extra_forward_evals
             summary['extra_microbatch_forward_evals']=self.fw.extra_microbatch_forward_evals
             summary['fw_seconds']=self.fw.line_seconds
+            summary['fw_diagnostics']=self.fw.diagnostics()
         (self.path.parent/'summary.json').write_text(json.dumps(summary,indent=2));self.emit('summary',**summary);self.file.close()

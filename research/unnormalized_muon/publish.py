@@ -14,6 +14,8 @@ def publish():
    cfg=json.loads(p.read_text())
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
   if cfg.get('clean'):arm='Clean '+arm
+  if cfg.get('decay_mode','none')!='none':arm+=f' WD:{cfg["decay_mode"]}({cfg.get("weight_decay",0):g})'
+  if cfg.get('fw'):arm+=f' {cfg.get("fw_oracle","momentum")} Rfactor{cfg.get("fw_radius_factor",2):g}'
   label=str(path.parent.relative_to(ROOT));runs.append((label,arm,cfg,s,path))
  rows=['# Live unnormalized-Muon results','',
   'One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with different update budgets are not endpoint comparisons. Tuning uses the same fixed validation tokens; held-out scores appear only on final runs. Runtime includes compilation and overhead in process seconds.','',
@@ -25,8 +27,8 @@ def publish():
  state=json.loads((ROOT/'queue.json').read_text());charged=sum(v.get('gpu_seconds',v['seconds']+30) for v in state.values())/3600
  for review in ROOT.glob('um-*/review.json'):
   x=json.loads(review.read_text());rows+=['',f'Review of {review.parent.name}: {x["reason"]}']
- rows+=['',f'Conservative charged/reserved total: {charged:.4f} / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Three-slot central queue; one B300 per run.','',
-  'Current CLEAN comparison: no row equilibration, NorMuon, or Muon decay in either arm. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.','',
+ rows+=['',f'Conservative charged/reserved total: {charged:.4f} / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.','',
+  'CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.','',
   'FW is a separate fixed-spectral-ball method with shared mixing, same-batch backtracking, frozen auxiliary weights during checks, and no extra matrix decay. Its extra candidate forwards count toward wall time and are logged.']
  (DEST/'RESULTS.md').write_text('\n'.join(rows)+'\n')
  if runs:

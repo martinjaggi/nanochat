@@ -27,7 +27,7 @@ def test_compiled_update_and_default_regression(monkeypatch,shape):
     torch.testing.assert_close(c[3],a[3],rtol=0,atol=0)
 
 def test_clean_compiled_normalized_and_unnormalized(monkeypatch):
- monkeypatch.setattr(modified,'CLEAN_MUON',True);monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',True)
+ monkeypatch.setattr(modified,'MUON_DECAY_MODE','none');monkeypatch.setattr(modified,'CLEAN_MUON',True);monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',True)
  torch.manual_seed(23);g=torch.randn(2,64,128,device='cuda')*.01
  def call(scaled):
   monkeypatch.setattr(modified,'UNNORMALIZED_MUON',scaled)
@@ -38,3 +38,19 @@ def test_clean_compiled_normalized_and_unnormalized(monkeypatch):
  torch.testing.assert_close(b[0],a[0]*b[3][0],rtol=.01,atol=1e-5)
  assert torch.equal(a[1],b[1]) and torch.equal(a[2],b[2])
  assert torch.equal(a[2],torch.ones_like(a[2])*.123)
+
+@pytest.mark.parametrize('scaled',[False,True])
+@pytest.mark.parametrize('mode',['standard','cautious'])
+def test_compiled_clean_decay_rules(monkeypatch,scaled,mode):
+ monkeypatch.setattr(modified,'CLEAN_MUON',True);monkeypatch.setattr(modified,'UNNORMALIZED_MUON',scaled)
+ monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',False)
+ torch.manual_seed(8);g=torch.randn(2,64,128,device='cuda')*.01;p0=torch.randn_like(g)*.1
+ def call(rule):
+  monkeypatch.setattr(modified,'MUON_DECAY_MODE',rule)
+  p=p0.clone();m=torch.zeros_like(g);v=torch.ones(2,1,128,device='cuda')*.123
+  modified.muon_step_fused(g.clone(),p,m,v,torch.tensor(.85),torch.tensor(.01),torch.tensor(.3),torch.tensor(.9),5,-2)
+  assert torch.equal(v,torch.ones_like(v)*.123)
+  return p
+ p=call('none');actual=call(mode);direction=(p0-p)/.01
+ mask=(direction*p0>=0) if mode=='cautious' else 1
+ torch.testing.assert_close(actual,p-.003*p0*mask,rtol=.01,atol=2e-6)
