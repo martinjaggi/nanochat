@@ -200,3 +200,21 @@ Timing seconds: direction=6.588, reference=2.197, candidates=1.032, auxiliary=0.
 | um-gapwd-pilot-cosine-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.577361 | 0 | 142.48 |
 | um-gapwd-pilot-cosine-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.575844 | 0 | 135.71 |
 | um-gapwd-pilot-cosine-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.610093 | 0 | 136.39 |
+| um-gapwd-pilot-joint | joint uniform | 0.1837499 | 2000 | 4.149021 | 5999 | 254.05 |
+
+um-gapwd-pilot-joint: accepted 2000/2000; skipped nonpositive blocks 198; median actual eta 0.0861453; median gamma 0.0158292; median L 0.0025; median trials 2; max measured spectral ratio lambda*||W||op=0.710394. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=56.478, reference=15.382, candidates=27.426, auxiliary=2.070.
+
+| um-gapwd-pilot-joint-native | joint native | 0.1837499 | 2000 | 4.120519 | 5999 | 266.55 |
+
+um-gapwd-pilot-joint-native: accepted 2000/2000; skipped nonpositive blocks 235; median actual eta 0.0678755; median gamma 0.0124721; median L 0.0025; median trials 2; max measured spectral ratio lambda*||W||op=0.758705. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=64.083, reference=15.966, candidates=28.437, auxiliary=2.179.
+
+| um-gapwd-pilot-layer | layer uniform | 0.1837499 | 2000 | 4.186773 | 5999 | 269.44 |
+
+um-gapwd-pilot-layer: accepted 2000/2000; skipped nonpositive blocks 379; median actual eta 0.080241; median gamma 0.0147443; median L 0.0025; median trials 2; max measured spectral ratio lambda*||W||op=0.708825. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=64.952, reference=16.005, candidates=28.579, auxiliary=2.107.
+
