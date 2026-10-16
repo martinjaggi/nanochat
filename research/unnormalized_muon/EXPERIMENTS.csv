@@ -78,3 +78,56 @@ um-clean-long-0-2-constant-lr0p64,clean-long-0-2-constant-lr0.64,submitted,30d14
 um-clean-long-0-0-normalized-lr0p04,clean-long-0-0-normalized-lr0.04,completed,30d14c745be9066ec621c5315deed450d002a6ee,"{""clean"": true, ""variant"": false, ""matrix_schedule"": ""cooldown"", ""matrix_lr"": 0.04, ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""heldout"": false}",um-clean-long-0-0-normalized-lr0p04,NVIDIA B300 SXM6 AC,1,1800,879.8337047100067,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-clean-long-0-0-normalized-lr0p04,3.107198476791382,0.9420405869018698,20000,668.4546352094039,743.2151834620163,
 um-clean-long-0-1-cooldown-lr0p64,clean-long-0-1-cooldown-lr0.64,completed,30d14c745be9066ec621c5315deed450d002a6ee,"{""clean"": true, ""variant"": true, ""matrix_schedule"": ""cooldown"", ""matrix_lr"": 0.64, ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""heldout"": false}",um-clean-long-0-1-cooldown-lr0p64,NVIDIA B300 SXM6 AC,1,1800,879.0209534168243,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-clean-long-0-1-cooldown-lr0p64,3.1685283184051514,0.9606092551822389,20000,705.2140057184733,779.2840742687695,
 um-clean-long-0-2-constant-lr0p64,clean-long-0-2-constant-lr0.64,completed,30d14c745be9066ec621c5315deed450d002a6ee,"{""clean"": true, ""variant"": true, ""matrix_schedule"": ""constant"", ""matrix_lr"": 0.64, ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""heldout"": false}",um-clean-long-0-2-constant-lr0p64,NVIDIA B300 SXM6 AC,1,1800,878.9013478755951,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-clean-long-0-2-constant-lr0p64,3.2108163833618164,0.9734508790390043,20000,664.9997181058861,737.5161014730111,
+um-check-fw-gradient-001,check-fw-gradient-001,submitted,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,"{""clean"": true, ""variant"": false, ""fw"": true, ""fw_oracle"": ""gradient"", ""fw_radius_factor"": 2.0, ""fw_L"": 0.01, ""matrix_lr"": 0.02, ""updates"": 64, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""decay_mode"": ""none"", ""microbatch_size"": 16}",um-check-fw-gradient-001,,1,1800,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-check-fw-gradient-001,,,,,,
+um-check-fw-momentum-001,check-fw-momentum-001,submitted,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,"{""clean"": true, ""variant"": false, ""fw"": true, ""fw_oracle"": ""momentum"", ""fw_radius_factor"": 2.0, ""fw_L"": 0.01, ""matrix_lr"": 0.02, ""updates"": 64, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""decay_mode"": ""none"", ""microbatch_size"": 16}",um-check-fw-momentum-001,,1,1800,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-check-fw-momentum-001,,,,,,
+um-check-wd-001,check-wd-001,submitted,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,"{""clean"": true, ""variant"": true, ""decay_mode"": ""standard"", ""weight_decay"": 0.0175, ""matrix_lr"": 0.64, ""updates"": 64, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""gpu_checks"": true}",um-check-wd-001,,1,1800,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-check-wd-001,,,,,,
+um-clean-long-1-0-normalized-lr0p08,clean-long-1-0-normalized-lr0.08,submitted,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,"{""clean"": true, ""variant"": false, ""matrix_schedule"": ""cooldown"", ""matrix_lr"": 0.08, ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""heldout"": false}",um-clean-long-1-0-normalized-lr0p08,,1,1800,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-clean-long-1-0-normalized-lr0p08,,,,,,
+um-clean-long-1-1-cooldown-lr0p32,clean-long-1-1-cooldown-lr0.32,submitted,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,"{""clean"": true, ""variant"": true, ""matrix_schedule"": ""cooldown"", ""matrix_lr"": 0.32, ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""heldout"": false}",um-clean-long-1-1-cooldown-lr0p32,,1,1800,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-clean-long-1-1-cooldown-lr0p32,,,,,,
+um-clean-long-1-2-constant-lr0p32,clean-long-1-2-constant-lr0.32,submitted,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,"{""clean"": true, ""variant"": true, ""matrix_schedule"": ""constant"", ""matrix_lr"": 0.32, ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1800, ""heldout"": false}",um-clean-long-1-2-constant-lr0p32,,1,1800,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-clean-long-1-2-constant-lr0p32,,,,,,
+um-check-wd-001,check-wd-001,failed,0fb17c7c3215e3abc8b889f32ed4f28ad7bb9ff6,,um-check-wd-001,,1,1800,88.62041568756104,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-check-wd-001,,,,,,"_user_contexts:
+                # cap each user context to N chars for data retention purposes. N=256
+                # is chosen to be large enough to capture the most important info.
+                user_contexts_msg = {
+                    user_context()[:256] for user_context in recompile_user_contexts
+                }
+                metrics_context.set(""recompile_user_contexts"", user_contexts_msg)
+    
+            exceeded, limit_type = exceeds_recompile_limit(cache_size, compile_id)
+            if exceeded:
+    
+                def format_func_info(code: CodeType) -> str:
+                    return f""'{code.co_name}' ({code.co_filename}:{code.co_firstlineno})""
+    
+                # NS: Don't add period at the end of string, as it'll be added to URL
+                # rendering it incorrect
+                log.warning(
+                    ""torch._dynamo hit config.%s (%s)\n""
+                    ""   function: %s\n""
+                    ""   last reason: %s\n""
+                    'To log all recompilation reasons, use TORCH_LOGS=""recompiles"".\n'
+                    ""To diagnose recompilation issues, see %s"",
+                    limit_type,
+                    getattr(config, limit_type),
+                    format_func_info(code),
+                    recompile_reason,
+                    troubleshooting_url,
+                )
+                if config.fail_on_recompile_limit_hit:
+                    raise FailOnRecompileLimitHit(
+                        f""{limit_type} reached, because fail_on_recompile_limit_hit = True this is a HARD failure""
+                    )
+                elif one_graph:
+>                   raise FailOnRecompileLimitHit(
+                        f""{limit_type} reached with fullgraph=True. Excessive recompilations can degrade ""
+                        ""performance due to the compilation overhead of each recompilation. To monitor ""
+                        ""recompilations, enable TORCH_LOGS=recompiles. If recompilations are expected, consider ""
+                        ""increasing torch._dynamo.config.cache_size_limit to an appropriate value.""
+E                       torch._dynamo.exc.FailOnRecompileLimitHit: recompile_limit reached with fullgraph=True. Excessive recompilations can degrade performance due to the compilation overhead of each recompilation. To monitor recompilations, enable TORCH_LOGS=recompiles. If recompilations are expected, consider increasing torch._dynamo.config.cache_size_limit to an appropriate value.
+
+../../../nanochat-b300/.venv-b300/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py:1375: FailOnRecompileLimitHit
+=========================== short test summary info ============================
+FAILED tests/test_unnormalized_muon_gpu.py::test_compiled_clean_decay_rules[standard-True]
+FAILED tests/test_unnormalized_muon_gpu.py::test_compiled_clean_decay_rules[cautious-False]
+FAILED tests/test_unnormalized_muon_gpu.py::test_compiled_clean_decay_rules[cautious-True]
+3 failed, 4 passed in 58.25s
+"
