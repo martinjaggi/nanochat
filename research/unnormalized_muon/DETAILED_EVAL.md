@@ -35,6 +35,7 @@ Strict smoothness backtracking compares a same-path functional reference at gamm
 | Run | Updates | Val CE | Accepted | Negative b | Extra batch forwards | FW sec | Max spectral ratio |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | um-check-fw-compiled-armijo-001 | 64 | 6.504589 | 64 | 0 | 191 | 25.00 | 0.265840 |
+| um-check-fw-compiled-smoothness-001 | 64 | 6.400337 | 64 | 0 | 189 | 17.58 | 0.404534 |
 | um-check-fw-derivative-001 | 48 | 6.648578 | 48 | 0 | 179 | 23.38 | 0.499494 |
 | um-check-fw-gradient-001 | 64 | 6.488285 | 64 | 0 | 197 | 22.68 | 0.499329 |
 | um-check-fw-momentum-001 | 64 | 6.470441 | 58 | 6 | 183 | 22.14 | 0.499287 |
@@ -56,6 +57,24 @@ Oracle: gradient; acceptance: armijo; compiled candidates: True; radius factor: 
 | predicted_decrease | 2.39049e-05 | 0.0320206 | 0.142492 | 0.209192 | 0.665815 |
 
 FW timing components (seconds): direction=13.360, reference=8.758, candidates=0.940, auxiliary=0.608.
+Accepted steps with measured minibatch increase: 0; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
+
+### um-check-fw-compiled-smoothness-001
+
+Oracle: gradient; acceptance: smoothness; compiled candidates: True; radius factor: 2; gamma cap: 0.03; scheduled: True. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 189. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+
+| Quantity | Min | P25 | Median | P75 | Max |
+|---|---:|---:|---:|---:|---:|
+| gamma | 0.000749173 | 0.00688393 | 0.0118613 | 0.0157784 | 0.0246575 |
+| gamma_cap | 0.00075 | 0.00688393 | 0.0125536 | 0.0181875 | 0.03 |
+| L | 6.10352e-07 | 0.00125 | 0.0025 | 0.005 | 0.04 |
+| b | 0.0623487 | 1.44805 | 1.63643 | 1.98193 | 28.4146 |
+| v | 16261.8 | 24379.7 | 25283.1 | 26610.1 | 34487.8 |
+| trials | 1 | 1 | 2 | 2 | 9 |
+| actual_decrease | 4.57764e-05 | 0.00824916 | 0.0161965 | 0.0227016 | 0.337219 |
+| predicted_decrease | 2.38934e-05 | 0.00786625 | 0.0127518 | 0.0188245 | 0.317416 |
+
+FW timing components (seconds): direction=12.878, reference=2.125, candidates=0.878, auxiliary=0.430.
 Accepted steps with measured minibatch increase: 0; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
 
 ### um-check-fw-derivative-001
