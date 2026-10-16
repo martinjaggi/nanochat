@@ -76,7 +76,7 @@ all overhead. Product_t(1-lambda*eta_l,t) and sum eta_l*lambda are both logged;
 the product is represented in signed log space to handle zero/underflow.
 
 Use ONE submission queue, exactly ONE verified B300/job, max SIX outstanding.
-Hard total30 B300 GPU-hours includes all previous project runs and failures.
+Hard total50 B300 GPU-hours includes all previous project runs and failures.
 Do not exhaust the cap to rescue a negative result; failed prerequisites or
 budget guards halt later submissions and preserve/reap jobs. Private raw
 outputs stay under nanochat-unnormalized-muon-runs/um-lens-* outside Git.

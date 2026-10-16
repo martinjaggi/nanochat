@@ -115,7 +115,7 @@ def main():
  if competitive:
   fam=family(min(competitive,key=score)['c']);g=sorted([r for r in creative if family(r['c'])==fam],key=score)
   for rank,r in enumerate(g[:2]):configs[f'lens-long-creative-{rank}']=dict(r['c'],updates=20000,runtime_limit=5400,heldout=False)
- record(configs,'Promote at most10 fresh655M-token settings: control/reciprocal best2, best stable/cooled joint and layer, plus best2 from ONE competitive creative family. All full-horizon schedules restarted; no test-set tuning. Keep costs within30GPUh total.')
+ record(configs,'Promote at most10 fresh655M-token settings: control/reciprocal best2, best stable/cooled joint and layer, plus best2 from ONE competitive creative family. All full-horizon schedules restarted; no test-set tuning. Keep costs within50GPUh total.')
  stage('lens-long-')
  long=[r for r in rows() if r['name'].startswith('um-lens-long-')];selected={}
  for fam in ['control','reciprocal']:
@@ -146,5 +146,5 @@ if __name__=='__main__':
  try:main()
  except Exception:
   subprocess.run([sys.executable,'-m','research.unnormalized_muon.queue','watch'],cwd=REPO)
-  record({},'FW-lens v2 controller stopped at a failed prerequisite or30GPUh budget guard; no further stages submitted. Remaining jobs preserved/reaped. Inspect private lens-campaign.log before resuming; incomplete comparisons are not final rankings.')
+  record({},'FW-lens v2 controller stopped at a failed prerequisite or50GPUh budget guard; no further stages submitted. Remaining jobs preserved/reaped. Inspect private lens-campaign.log before resuming; incomplete comparisons are not final rankings.')
   raise

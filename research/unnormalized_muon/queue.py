@@ -1,11 +1,11 @@
-"""Single locked queue: 1 B300/job, 6 outstanding jobs, 30 GPU-hours total."""
+"""Single locked queue: 1 B300/job, 6 outstanding jobs, 50 GPU-hours total."""
 import argparse,csv,fcntl,json,os,pathlib,shlex,subprocess,tarfile,time
 from research.unnormalized_muon.kube import Kube
 ROOT=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs')
 REPO=pathlib.Path(__file__).resolve().parents[2]
 HELPER='/mloscratch/homes/mljaggi/rcp-tools/rcp-runai'
 BASE='b2bdf9890e028965ee7f2e97acc02d72b3c663ec'
-GPU_HOUR_CAP=30
+GPU_HOUR_CAP=50
 MAX_OUTSTANDING=6
 FIELDS='run_id stage status git_commit config job_id GPU_model GPU_count runtime_limit charged_gpu_seconds output validation_loss bpb updates training_seconds process_seconds failure'.split()
 def cli(*a):return subprocess.check_output([HELPER,*a,'--project','mlo-mljaggi'],text=True,env=dict(os.environ,SUPPRESS_DEPRECATION_MESSAGE='true'))

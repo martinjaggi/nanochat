@@ -13,7 +13,7 @@ def rows():
 def score(r):return r['s']['validation']['loss']
 
 def stage(prefix):
- print('STAGE',prefix,'one B300/job; maximum6; aggregate30GPUh incl prior runs',flush=True)
+ print('STAGE',prefix,'one B300/job; maximum6; aggregate50GPUh incl prior runs',flush=True)
  subprocess.run([sys.executable,'-m','research.unnormalized_muon.queue','sweep','--prefix',prefix],cwd=REPO,check=True)
 
 def record(configs,note):
