@@ -218,3 +218,6 @@ um-gapwd-pilot-layer: accepted 2000/2000; skipped nonpositive blocks 379; median
 
 Timing seconds: direction=64.952, reference=16.005, candidates=28.579, auxiliary=2.107.
 
+| um-gapwd-pilot-reciprocal-lr0p02 | fw_reciprocal native | 0.1837499 | 2000 | 3.622123 | 0 | 144.58 |
+| um-gapwd-pilot-reciprocal-lr0p04 | fw_reciprocal native | 0.1837499 | 2000 | 3.625030 | 0 | 138.08 |
+| um-gapwd-pilot-reciprocal-lr0p08 | fw_reciprocal native | 0.1837499 | 2000 | 3.627100 | 0 | 138.60 |
