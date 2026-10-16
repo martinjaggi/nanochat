@@ -43,6 +43,8 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-refine-joint-stable-1 | joint-stable | 2000 updates | 0 | 3.727101 | — | 176.259 | 6001 | 40.371 | 262.87 |
 | um-lens-refine-layer-cooldown-0 | layer-cooldown | 2000 updates | 0 | 3.617586 | — | 158.738 | 4000 | 31.476 | 227.00 |
 | um-lens-refine-layer-cooldown-1 | layer-cooldown | 2000 updates | 0 | 3.554595 | — | 159.333 | 4000 | 30.112 | 222.00 |
+| um-lens-refine-layer-stable-1 | layer-stable | 2000 updates | 0 | 3.733664 | — | 152.883 | 4000 | 39.778 | 236.90 |
+| um-lens-refine-reciprocal-0 | reciprocal | 2000 updates | 0 | 3.639452 | — | 64.039 | 0 | 25.945 | 120.04 |
 
 ## Adaptive diagnostics and contraction
 
@@ -74,5 +76,6 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-refine-joint-stable-1 | 2000/2000 | 0 | 0.01 | 0.0018375 | 0.01 | 2 | -3.642 to -3.642 | 0.361899 |
 | um-lens-refine-layer-cooldown-0 | 2000/2000 | 0 | 0.0018953 | 0.00034826 | 1e-16 | 1 | -0.6265 to -0.6088 | 0.305577 |
 | um-lens-refine-layer-cooldown-1 | 2000/2000 | 0 | 0.0075885 | 0.0013944 | 1e-16 | 1 | -2.507 to -2.476 | 0.397119 |
+| um-lens-refine-layer-stable-1 | 2000/2000 | 0 | 0.01 | 0.0018375 | 1e-16 | 1 | -3.643 to -3.604 | 0.375865 |
 
 Curvature values in Armijo variants parameterize proposals; their acceptance is NOT a certificate of the quadratic upper model. Final spectral ratios are lambda*||W_l||op/c_l; native approximate NS output is not certified to have unit spectral norm. Initial/final iterate feasibility alone does not certify oracle accuracy. Cold two-second clock checks intentionally permit one-update overshoot; do not use them as quality endpoints.

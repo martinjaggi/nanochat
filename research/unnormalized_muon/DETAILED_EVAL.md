@@ -392,3 +392,4 @@ um-lens-refine-layer-cooldown-1: accepted 2000/2000; skipped nonpositive blocks 
 
 Timing seconds: direction=56.742, reference=14.521, candidates=14.085, auxiliary=1.897.
 
+| um-lens-refine-reciprocal-0 | fw_reciprocal native | 0.1837499 | 2000 | 3.639452 | 0 | 120.04 |
