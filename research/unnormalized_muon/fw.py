@@ -81,7 +81,11 @@ class FWMuon:
                 return float(loss)
             finally:
                 torch.cuda.set_rng_state(before_rng);torch.set_rng_state(after_cpu)
-        gamma,self.L,trials,accepted=backtrack(evaluate,f0=float(self.loss_before),b=b,v=v,L=self.L)
+        # Match reference and candidate execution paths; compiled/eager BF16 loss
+        # differences must not masquerade as curvature at a vanishing step.
+        reference=evaluate(0.) if b>0 and v>0 else float(self.loss_before)
+        fresh_reference_delta=reference-float(self.loss_before)
+        gamma,self.L,trials,accepted=backtrack(evaluate,f0=reference,b=b,v=v,L=max(self.L*.5,1e-16))
         if b<=0:self.negative_steps+=1
         if accepted:
             for n,p in self.matrices:p.add_(directions[n],alpha=gamma)
@@ -93,7 +97,7 @@ class FWMuon:
         finally:self.inner.param_groups=original
         torch.cuda.synchronize();elapsed=time.perf_counter()-start;self.line_seconds+=elapsed
         self.recorder.emit('fw_update',step=self.step_index,gamma=gamma,L=self.L,b=b,v=v,
-            accepted=accepted,trials=trials,extra_forward_evals=self.extra_forward_evals,
+            accepted=accepted,trials=trials,fresh_vs_functional_reference_delta=fresh_reference_delta,extra_forward_evals=self.extra_forward_evals,
             total_fw_direction_and_search_seconds=self.line_seconds,negative_steps=self.negative_steps)
         self.step_index+=1;self.batch=[]
     def state_dict(self):

@@ -1,0 +1,11 @@
+{
+  "variant": false,
+  "fw": true,
+  "fw_L": 0.01,
+  "gpu_checks": false,
+  "matrix_lr": 0.02,
+  "updates": 64,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1800
+}

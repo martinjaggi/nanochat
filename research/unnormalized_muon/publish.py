@@ -22,6 +22,8 @@ def publish():
   held=s.get('heldout');hv=f'{held["loss"]:.6f}' if held else '—'
   rows.append(f'| {name} | {arm} | {s["updates"]} | {c["seed"]} | {c["matrix_lr"]:g} | {s["validation"]["loss"]:.6f} | {s["validation"]["bpb"]:.6f} | {hv} | {s.get("process_seconds",s["end_to_end_seconds"]):.2f} |')
  state=json.loads((ROOT/'queue.json').read_text());charged=sum(v.get('gpu_seconds',v['seconds']+30) for v in state.values())/3600
+ for review in ROOT.glob('um-*/review.json'):
+  x=json.loads(review.read_text());rows+=['',f'Review of {review.parent.name}: {x["reason"]}']
  rows+=['',f'Conservative charged/reserved total: {charged:.4f} / 10 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Three-slot central queue; one B300 per run.','',
   'Core modification: per-matrix nonnegative FP32 inner product of the native Nesterov input with its NS/Frobenius direction. Multiply the native NorMuon direction afterward, then apply native decoupled cautious decay separately. Shape scaling occurs once outside the scalar. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.','',
   'FW is a separate fixed-spectral-ball method with shared mixing, same-batch backtracking, frozen auxiliary weights during checks, and no extra matrix decay. Its extra candidate forwards count toward wall time and are logged.']

@@ -42,7 +42,8 @@ def reap():
   v['gpu_seconds']=elapsed # conservatively includes queueing, startup and cleanup delay
   summaries=list(out.glob('**/summary.json'));done=status in ['Succeeded','Completed'] and bool(summaries)
   for p in summaries:
-   x=json.loads(p.read_text());record(run_id=name+(':'+p.parent.name if p.parent!=out else ''),stage=v['stage'],status=x['status'],git_commit=v['commit'],config=x.get('config'),job_id=name,GPU_model='NVIDIA B300 SXM6 AC',GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(p.parent),validation_loss=x['validation']['loss'],bpb=x['validation']['bpb'],updates=x['updates'],training_seconds=x['training_seconds'],process_seconds=x.get('process_seconds'))
+   review_path=out/'review.json';review=json.loads(review_path.read_text()) if review_path.exists() else {}
+   x=json.loads(p.read_text());record(run_id=name+(':'+p.parent.name if p.parent!=out else ''),stage=v['stage'],status='diagnostic_invalid' if review.get('valid_for_method_comparison') is False else x['status'],failure=review.get('reason',''),git_commit=v['commit'],config=x.get('config'),job_id=name,GPU_model='NVIDIA B300 SXM6 AC',GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(p.parent),validation_loss=x['validation']['loss'],bpb=x['validation']['bpb'],updates=x['updates'],training_seconds=x['training_seconds'],process_seconds=x.get('process_seconds'))
   if not done:
    p=out/'run.log';reason=p.read_text()[-3000:] if p.exists() else status
    record(run_id=name,stage=v['stage'],status='failed',git_commit=v['commit'],job_id=name,GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(out),failure=reason)
