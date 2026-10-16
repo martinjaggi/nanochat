@@ -221,3 +221,28 @@ Timing seconds: direction=64.952, reference=16.005, candidates=28.579, auxiliary
 | um-gapwd-pilot-reciprocal-lr0p02 | fw_reciprocal native | 0.1837499 | 2000 | 3.622123 | 0 | 144.58 |
 | um-gapwd-pilot-reciprocal-lr0p04 | fw_reciprocal native | 0.1837499 | 2000 | 3.625030 | 0 | 138.08 |
 | um-gapwd-pilot-reciprocal-lr0p08 | fw_reciprocal native | 0.1837499 | 2000 | 3.627100 | 0 | 138.60 |
+| um-lens-check-1-joint | joint native | 0.1837499 | 64 | 6.423715 | 191 | 94.79 |
+
+um-lens-check-1-joint: accepted 64/64; skipped nonpositive blocks 53; median actual eta 0.00955982; median gamma 0.00175661; median L 0.005; median trials 1; max measured spectral ratio lambda*||W||op=0.379967. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=6.893, reference=2.163, candidates=1.007, auxiliary=0.729.
+
+| um-lens-check-2-layer | layer native | 0.1837499 | 64 | 6.410152 | 133 | 91.23 |
+
+um-lens-check-2-layer: accepted 64/64; skipped nonpositive blocks 53; median actual eta 0.015; median gamma 0.00275625; median L 2.79397e-11; median trials 1; max measured spectral ratio lambda*||W||op=0.40221. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=6.358, reference=2.128, candidates=0.566, auxiliary=0.640.
+
+| um-lens-check-3-time-control | cooldown native | 0.1837499 | 1 | 10.394322 | 0 | 79.20 |
+| um-lens-check-4-time-layer | layer native | 0.1837499 | 1 | 10.394308 | 2 | 83.55 |
+
+um-lens-check-4-time-layer: accepted 1/1; skipped nonpositive blocks 36; median actual eta 0; median gamma 0; median L 0.005; median trials 1; max measured spectral ratio lambda*||W||op=0.368177. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=4.543, reference=1.568, candidates=0.012, auxiliary=0.608.
+
+| um-lens-check-5-creative | layer native | 0.1837499 | 64 | 6.337770 | 128 | 96.43 |
+
+um-lens-check-5-creative: accepted 64/64; skipped nonpositive blocks 57; median actual eta 0.011606; median gamma 0.00213259; median L 1.74623e-12; median trials 1; max measured spectral ratio lambda*||W||op=0.379675. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=5.960, reference=2.037, candidates=0.608, auxiliary=0.600.
+
