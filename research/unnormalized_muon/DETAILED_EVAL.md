@@ -34,11 +34,29 @@ Strict smoothness backtracking compares a same-path functional reference at gamm
 
 | Run | Updates | Val CE | Accepted | Negative b | Extra batch forwards | FW sec | Max spectral ratio |
 |---|---:|---:|---:|---:|---:|---:|---:|
+| um-check-fw-compiled-armijo-001 | 64 | 6.504589 | 64 | 0 | 191 | 25.00 | 0.265840 |
 | um-check-fw-derivative-001 | 48 | 6.648578 | 48 | 0 | 179 | 23.38 | 0.499494 |
 | um-check-fw-gradient-001 | 64 | 6.488285 | 64 | 0 | 197 | 22.68 | 0.499329 |
 | um-check-fw-momentum-001 | 64 | 6.470441 | 58 | 6 | 183 | 22.14 | 0.499287 |
 | um-clean-fw-accumcheck-001 | 16 | 9.061382 | — | — | 63 | 15.85 | 0.499600 |
 | um-clean-long-2-fw-pilot | 2000 | 4.185817 | 1996 | 4 | 5995 | 233.55 | 0.586020 |
+
+### um-check-fw-compiled-armijo-001
+
+Oracle: gradient; acceptance: armijo; compiled candidates: True; radius factor: 2; gamma cap: 1; scheduled: False. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 191. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+
+| Quantity | Min | P25 | Median | P75 | Max |
+|---|---:|---:|---:|---:|---:|
+| gamma | 0.000746914 | 0.032649 | 0.0501182 | 0.0638361 | 1 |
+| L | 1.95313e-05 | 0.0025 | 0.005 | 0.01 | 0.02 |
+| b | 0.0623487 | 1.48228 | 5.98677 | 7.32819 | 11.8296 |
+| v | 13429.4 | 18778.2 | 20606.1 | 22511.4 | 34606.8 |
+| trials | 1 | 1 | 2 | 2.25 | 6 |
+| actual_decrease | 4.57764e-05 | 0.0162783 | 0.0394645 | 0.107543 | 0.259679 |
+| predicted_decrease | 2.39049e-05 | 0.0320206 | 0.142492 | 0.209192 | 0.665815 |
+
+FW timing components (seconds): direction=13.360, reference=8.758, candidates=0.940, auxiliary=0.608.
+Accepted steps with measured minibatch increase: 0; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
 
 ### um-check-fw-derivative-001
 
