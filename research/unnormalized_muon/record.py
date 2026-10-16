@@ -26,7 +26,7 @@ class Recorder:
             GPU_model=torch.cuda.get_device_name(0),GPU_count=torch.cuda.device_count(),
             total_batch_size=total_batch_size,FP8=False,precision='native BF16 compute/embeddings; native FP32 matrices',
             optimizer_groups=[dict(kind=g['kind'],lr=g['lr'],weight_decay=g['weight_decay'],
-                names=[self.names[id(p)] for p in g['params']]) for g in opt.param_groups])
+                names=[self.names[id(p)] for p in g['params']],shapes=[list(p.shape) for p in g['params']]) for g in opt.param_groups])
     def evaluate(self,model,batches,steps,token_bytes,step,label='tuning'):
         torch.cuda.synchronize();start=time.perf_counter();owner=self
         total=torch.zeros((),device='cuda');count=0;digest=hashlib.sha256()
@@ -74,6 +74,8 @@ class Recorder:
                 fields['scale_min']=float(flat.min());fields['scale_median']=float(flat.median());fields['scale_max']=float(flat.max())
                 rank=torch.cat([torch.full_like(s.flatten(),min(g['params'][0].shape)) for g,s in zip((g for g in opt.param_groups if g['kind']=='muon'),scales)])
                 fields['scale_weighted_rms']=float((torch.sum(rank*flat.square())/rank.sum()).sqrt())
+                update_weight=torch.cat([torch.full_like(s.flatten(),min(g['params'][0].shape)*max(1.,g['params'][0].shape[-2]/g['params'][0].shape[-1])) for g,s in zip((g for g in opt.param_groups if g['kind']=='muon'),scales)])
+                fields['scale_update_weighted_rms']=float((torch.sum(update_weight*flat.square())/update_weight.sum()).sqrt())
         self.emit('update',step=step,loss=loss,seconds=dt,training_seconds=self.train_seconds,steady_training_seconds=self.steady_seconds,
             group_lrs=[g['lr'] for g in opt.param_groups],decay_exposure=self.exposure,data_state=loader_state,**fields)
         logging=time.perf_counter()-start;self.train_seconds+=logging

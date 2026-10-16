@@ -26,7 +26,7 @@ def publish():
  for review in ROOT.glob('um-*/review.json'):
   x=json.loads(review.read_text());rows+=['',f'Review of {review.parent.name}: {x["reason"]}']
  rows+=['',f'Conservative charged/reserved total: {charged:.4f} / 10 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Three-slot central queue; one B300 per run.','',
-  'Core modification: per-matrix nonnegative FP32 inner product of the native Nesterov input with its NS/Frobenius direction. Multiply the native NorMuon direction afterward, then apply native decoupled cautious decay separately. Shape scaling occurs once outside the scalar. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.','',
+  'Current CLEAN comparison: no row equilibration, NorMuon, or Muon decay in either arm. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.','',
   'FW is a separate fixed-spectral-ball method with shared mixing, same-batch backtracking, frozen auxiliary weights during checks, and no extra matrix decay. Its extra candidate forwards count toward wall time and are logged.']
  (DEST/'RESULTS.md').write_text('\n'.join(rows)+'\n')
  if runs:

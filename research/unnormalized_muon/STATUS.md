@@ -1,5 +1,7 @@
 # Unnormalized Muon
 
+Current protocol: CLEAN normalized versus CLEAN unnormalized Muon (no row equilibration, NorMuon, or Muon decay), on the public B300 nanochat base. Legacy production-pipeline trials below are historical. A matching accumulated FW baseline is fixed and unit-tested; clean calibration and a two-microbatch GPU check are running. Live results/plots: [RESULTS.md](RESULTS.md).
+
 Base: martinjaggi/nanochat master b2bdf9890e028965ee7f2e97acc02d72b3c663ec (clean B300 support over Karpathy 92d63d4). Independent checkout, branch unnormalized-muon. Transport campaign is paused; its preserved work was pushed to martinjaggi/nanochat-b300:storm-muon at66df87a.
 
 Optimizer change (opt-in NANOCHAT_UNNORMALIZED_MUON=1): keep native momentum/Nesterov. Let G be the tensor entering NS, before row equilibration. Compute U with the existing row equilibration, five Polar Express iterations, and Frobenius renormalization. Compute one scalar per matrix s=max(0,sum(G.float()*U.float())). Preserve native NorMuon state and transform, then multiply its direction by s, before applying the existing cautious decoupled decay. Neither scalar/vector/embedding AdamW groups nor weight decay are multiplied by s. Applying s after Frobenius renormalization is essential: inserting it before that normalization would erase its amplitude. Applying it after NorMuon additionally keeps the native second-moment state unchanged.
