@@ -4,6 +4,8 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 | Run | Method | Updates | Seed | CLI matrix LR | Val CE | Val BPB | Heldout CE | Process sec |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
+| um-check-fw-gradient-001 | Clean FW backtracking gradient Rfactor2 | 64 | 0 | 0.02 | 6.488285 | 1.966192 | — | 110.84 |
+| um-check-fw-momentum-001 | Clean FW backtracking momentum Rfactor2 | 64 | 0 | 0.02 | 6.470441 | 1.960795 | — | 110.11 |
 | um-clean-calibration-001 | Clean Native cooldown | 256 | 0 | 0.02 | 5.270988 | 1.597709 | — | 86.86 |
 | um-clean-fw-accumcheck-001 | Clean FW backtracking momentum Rfactor2 | 16 | 0 | 0.02 | 9.061382 | 2.745550 | — | 124.31 |
 | um-clean-grid-00-0-normalized-lr0p005 | Clean Native cooldown | 2000 | 0 | 0.005 | 3.756841 | 1.138807 | — | 157.45 |
@@ -47,7 +49,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 5.5045 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 5.0775 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
