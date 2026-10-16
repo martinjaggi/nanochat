@@ -392,4 +392,16 @@ um-lens-refine-layer-cooldown-1: accepted 2000/2000; skipped nonpositive blocks 
 
 Timing seconds: direction=56.742, reference=14.521, candidates=14.085, auxiliary=1.897.
 
+| um-lens-refine-layer-stable-0 | layer native | 0.1837499 | 2000 | 3.648631 | 4000 | 239.27 |
+
+um-lens-refine-layer-stable-0: accepted 2000/2000; skipped nonpositive blocks 176; median actual eta 0.0025; median gamma 0.000459375; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.286501. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=54.514, reference=14.300, candidates=13.885, auxiliary=1.736.
+
+| um-lens-refine-layer-stable-1 | layer native | 0.1837499 | 2000 | 3.733664 | 4000 | 236.90 |
+
+um-lens-refine-layer-stable-1: accepted 2000/2000; skipped nonpositive blocks 86; median actual eta 0.01; median gamma 0.0018375; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.375865. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=52.040, reference=14.468, candidates=14.006, auxiliary=1.846.
+
 | um-lens-refine-reciprocal-0 | fw_reciprocal native | 0.1837499 | 2000 | 3.639452 | 0 | 120.04 |
