@@ -425,6 +425,10 @@ def get_muon_momentum(it):
 # Weight decay scheduler for Muon optimizer (cosine decay to zero over the course of training)
 def get_weight_decay(it):
     if os.environ.get("RESEARCH_FIXED_WD", ""):
+        if os.environ.get("RESEARCH_WD_SCHEDULE")=="fw_mixing_reciprocal":
+            from research.unnormalized_muon.fresh_math import mixture_wd
+            assert not research_time_budget and not os.environ.get("RESEARCH_GAP_WD"), "WD schedule pilot uses token clock and native Muon only"
+            return mixture_wd(it,args.matrix_lr*batch_lr_scale*get_lr_multiplier(it),args.matrix_lr*batch_lr_scale,weight_decay_scaled,num_iterations)
         return weight_decay_scaled
     return weight_decay_scaled * 0.5 * (1 + math.cos(math.pi * it / num_iterations))
 
@@ -526,6 +530,16 @@ while True:
                 sample, _ = engine.generate_batch(tokens, num_samples=1, max_tokens=16, temperature=0)
             print0(tokenizer.decode(sample[0]))
         model.train()
+
+    if recorder and step in {int(v) for v in os.environ.get("RESEARCH_BRANCH_STEPS", "").split(",") if v}:
+        from research.unnormalized_muon.fresh_state import save_branch
+        torch.cuda.synchronize();branch_start=time.perf_counter()
+        save_branch(recorder.path.parent/"research_checkpoints"/f"branch-{step:06d}.pt",
+            orig_model,optimizer,step=step,x=x,y=y,cursor=dataloader_state_dict,
+            config=user_config,model_config=model_config_kwargs)
+        torch.cuda.synchronize();seconds=time.perf_counter()-branch_start
+        recorder.checkpoint_seconds+=seconds;recorder.emit("research_branch_checkpoint",step=step,seconds=seconds,
+            prefetch_saved=True,named_momentum=True,rng_saved=True,exact_loader_replay=True)
 
     # save checkpoint: at the end of the run, or every save_every steps, except at the first step or the resume step
     if last_step or (step > 0 and step != args.resume_from_step and args.save_every > 0 and step % args.save_every == 0):

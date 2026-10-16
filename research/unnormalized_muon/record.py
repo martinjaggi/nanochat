@@ -27,7 +27,7 @@ class Recorder:
         self.emit('manifest',base_commit='b2bdf9890e028965ee7f2e97acc02d72b3c663ec',
             git_commit=os.environ['RESEARCH_COMMIT'],seed=int(os.environ['RESEARCH_SEED']),
             variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',clean=os.environ.get('NANOCHAT_CLEAN_MUON')=='1',config=config,
-            geometry=os.environ.get('RESEARCH_MUON_GEOMETRY','legacy'),time_budget=self.time_budget,reference_updates=self.reference_updates,decay_mode=os.environ.get('RESEARCH_MUON_DECAY','native'),fixed_wd=os.environ.get('RESEARCH_FIXED_WD',''),gap_scope=os.environ.get('RESEARCH_GAP_WD',''),gap_shape=os.environ.get('RESEARCH_GAP_SHAPE','uniform'),
+            wd_schedule=os.environ.get('RESEARCH_WD_SCHEDULE','fixed'),geometry=os.environ.get('RESEARCH_MUON_GEOMETRY','legacy'),time_budget=self.time_budget,reference_updates=self.reference_updates,decay_mode=os.environ.get('RESEARCH_MUON_DECAY','native'),fixed_wd=os.environ.get('RESEARCH_FIXED_WD',''),gap_scope=os.environ.get('RESEARCH_GAP_WD',''),gap_shape=os.environ.get('RESEARCH_GAP_SHAPE','uniform'),
             decay_exposure_definition='sum eta*shape*lambda; nominal upper exposure for cautious masked decay',
             initial_parameter_hash=initial.hexdigest(),model_parameters=sum(p.numel() for p in model.parameters()),
             GPU_model=torch.cuda.get_device_name(0),GPU_count=torch.cuda.device_count(),
@@ -94,7 +94,7 @@ class Recorder:
                 update_weight=torch.cat([torch.full_like(s.flatten(),min(g['params'][0].shape)*max(1.,g['params'][0].shape[-2]/g['params'][0].shape[-1])) for g,s in zip((g for g in opt.param_groups if g['kind']=='muon'),scales)])
                 fields['scale_update_weighted_rms']=float((torch.sum(update_weight*flat.square())/update_weight.sum()).sqrt())
         self.emit('update',step=step,loss=loss,seconds=dt,training_active_seconds=self.active_seconds,step_compile_seconds=compiled,training_seconds=self.train_seconds,steady_training_seconds=self.steady_seconds,
-            group_lrs=[g['lr'] for g in opt.param_groups],decay_exposure=self.exposure,data_state=loader_state,**fields)
+            group_lrs=[g['lr'] for g in opt.param_groups],group_weight_decays=[g['weight_decay'] for g in opt.param_groups],decay_exposure=self.exposure,data_state=loader_state,**fields)
         logging=time.perf_counter()-start;self.train_seconds+=logging
         if step>10:self.steady_seconds+=logging
     def finish_iteration(self,wall_end):
