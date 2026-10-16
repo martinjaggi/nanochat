@@ -8,7 +8,7 @@ def main():
  for n in ['base_data_climbmix','tokenizer']:
   target=ROOT/'assets'/n;link=store/n
   if not link.exists():link.symlink_to(target,target_is_directory=True)
- env=dict(os.environ,NANOCHAT_BASE_DIR=str(store),NANOCHAT_UNNORMALIZED_MUON=str(int(cfg['variant'])),RESEARCH_LOG=str(out/'metrics.jsonl'),RESEARCH_SEED=str(cfg['seed']),RESEARCH_COMMIT=os.environ['RESEARCH_COMMIT'],RESEARCH_HELDOUT=str(int(cfg.get('heldout',False))),RESEARCH_MATRIX_SCHEDULE=cfg.get('matrix_schedule','cooldown'))
+ env=dict(os.environ,NANOCHAT_BASE_DIR=str(store),NANOCHAT_UNNORMALIZED_MUON=str(int(cfg['variant'])),RESEARCH_LOG=str(out/'metrics.jsonl'),RESEARCH_SEED=str(cfg['seed']),RESEARCH_COMMIT=os.environ['RESEARCH_COMMIT'],RESEARCH_HELDOUT=str(int(cfg.get('heldout',False))),RESEARCH_MATRIX_SCHEDULE=cfg.get('matrix_schedule','cooldown'),RESEARCH_FW=str(int(cfg.get('fw',False))),RESEARCH_FW_L=str(cfg.get('fw_L',.01)))
  flags=dict(depth=cfg.get('depth',8),max_seq_len=1024,device_batch_size=32,total_batch_size=32768,
   num_iterations=cfg['updates'],matrix_lr=cfg['matrix_lr'],weight_decay=cfg.get('weight_decay',.28),warmup_steps=40,
   eval_every=max(1,cfg['updates']//4),eval_tokens=262144,core_metric_every=-1,sample_every=-1,model_tag='d8',run='dummy')

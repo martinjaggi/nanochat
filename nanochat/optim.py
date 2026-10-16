@@ -137,6 +137,8 @@ def muon_step_fused(
     Some of the constants are 0-D CPU tensors to avoid recompilation when values change.
     """
 
+    raw_input = stacked_grads.clone() if UNNORMALIZED_MUON else None
+
     # Nesterov momentum
     momentum = momentum_t.to(stacked_grads.dtype)
     momentum_buffer.lerp_(stacked_grads, 1 - momentum)
@@ -173,6 +175,7 @@ def muon_step_fused(
     g = g * (target_norm / current_norm).to(g.dtype)
 
     dual_scale = nonnegative_dual_scale(ns_input, g) if UNNORMALIZED_MUON else None
+    current_alignment = (raw_input.float() * g.float()).sum(dim=(-2, -1), keepdim=True) if UNNORMALIZED_MUON else None
 
     # Variance reduction
     beta2 = beta2_t.to(g.dtype)
@@ -196,7 +199,7 @@ def muon_step_fused(
     wd = wd_t.to(g.dtype)
     mask = (g * stacked_params) >= 0
     stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
-    return dual_scale
+    return (dual_scale, current_alignment) if UNNORMALIZED_MUON else None
 
 # -----------------------------------------------------------------------------
 
@@ -418,7 +421,8 @@ class MuonAdamW(torch.optim.Optimizer):
                 group["ns_steps"], red_dim,
             )
             if UNNORMALIZED_MUON:
-                self.last_dual_scales.append(dual_scale.detach())
+                self.last_dual_scales.append(dual_scale[0].detach())
+                self.last_current_alignments.append(dual_scale[1].detach())
 
         if info['stacked_grads'] is None:
             # Single rank: no gather needed, the updated stack maps directly onto the params
@@ -458,6 +462,7 @@ class MuonAdamW(torch.optim.Optimizer):
 
         if UNNORMALIZED_MUON:
             self.last_dual_scales = []
+            self.last_current_alignments = []
 
         # Phase 1: launch all async reduce ops
         reduce_infos: list[dict] = []

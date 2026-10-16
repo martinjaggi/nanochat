@@ -36,9 +36,12 @@ def test_fused_step_and_disabled_upstream_parity(monkeypatch,shape):
     def capture(g,u):
         expected=grad.lerp(m.lerp(grad,.15),.85)
         torch.testing.assert_close(g,expected)
-        captured.append(original(g,u));return captured[-1]
+        captured.append(original(g,u));
+        capture.expected_alignment=(grad*u).sum(dim=(-2,-1),keepdim=True)
+        return captured[-1]
     monkeypatch.setattr(modified,'nonnegative_dual_scale',capture)
-    scale=modified.muon_step_fused.__wrapped__(*c)
+    scale,alignment=modified.muon_step_fused.__wrapped__(*c)
+    torch.testing.assert_close(alignment,capture.expected_alignment)
     torch.testing.assert_close(c[1],a[1]*scale)
     assert torch.equal(c[2],a[2]) and torch.equal(c[3],a[3])
     assert bool(torch.isfinite(scale).all() & (scale>=0).all())

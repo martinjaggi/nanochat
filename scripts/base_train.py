@@ -333,6 +333,11 @@ if resuming:
     optimizer.load_state_dict(optimizer_data)
     del optimizer_data
 
+if recorder and os.environ.get("RESEARCH_FW") == "1":
+    from research.unnormalized_muon.fw import FWMuon
+    optimizer = FWMuon(optimizer, orig_model, recorder, initial_L=float(os.environ.get("RESEARCH_FW_L", ".01")))
+    recorder.fw = optimizer
+
 # -----------------------------------------------------------------------------
 # GradScaler for fp16 training (bf16/fp32 don't need it — bf16 has the same exponent range as fp32)
 scaler = torch.amp.GradScaler() if COMPUTE_DTYPE == torch.float16 else None
@@ -527,7 +532,11 @@ while True:
     synchronize()
     t0 = time.time()
     for micro_step in range(grad_accum_steps):
+        if hasattr(optimizer, "set_batch"):
+            optimizer.set_batch(x, y)
         loss = model(x, y)
+        if hasattr(optimizer, "set_loss"):
+            optimizer.set_loss(loss)
         train_loss = loss.detach() # for logging
         loss = loss / grad_accum_steps # each .backward() is a grad sum => normalize loss here
         if scaler is not None:
@@ -545,7 +554,7 @@ while True:
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "constant":
                 group["lr"] = group["initial_lr"] * min(1.0, (step + 1) / max(1, args.warmup_steps))
             group["momentum"] = muon_momentum
-            group["weight_decay"] = muon_weight_decay
+            group["weight_decay"] = 0.0 if os.environ.get("RESEARCH_FW") == "1" else muon_weight_decay
     if scaler is not None:
         scaler.unscale_(optimizer)
         # In distributed training, all ranks must agree on whether to skip the step.

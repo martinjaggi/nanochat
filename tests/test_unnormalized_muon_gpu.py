@@ -17,7 +17,8 @@ def test_compiled_update_and_default_regression(monkeypatch,shape):
     base.muon_step_fused(*a);modified.muon_step_fused(*b)
     for i in [0,1,2,3]:torch.testing.assert_close(a[i],b[i],rtol=0,atol=0)
     c=args();monkeypatch.setattr(modified,'UNNORMALIZED_MUON',True)
-    scale=modified.muon_step_fused(*c)
+    scale,alignment=modified.muon_step_fused(*c)
+    assert bool(torch.isfinite(alignment).all())
     assert scale.shape==(shape[0],1,1) and scale.dtype==torch.float32
     assert bool(((scale>=0)&torch.isfinite(scale)).all())
     # Additional reduction may change compiler fusion; compare against unchanged direction.
