@@ -185,3 +185,15 @@ um-gapwd-first-layer-001: accepted 64/64; skipped nonpositive blocks 49; median 
 Timing seconds: direction=6.513, reference=7.844, candidates=1.032, auxiliary=0.411.
 
 | um-gapwd-first-reciprocal-001 | fw_reciprocal native | 0.1837499 | 64 | 6.374067 | 0 | 77.77 |
+| um-gapwd-joint-native-001 | joint native | 0.1837499 | 64 | 6.369767 | 191 | 94.57 |
+
+um-gapwd-joint-native-001: accepted 64/64; skipped nonpositive blocks 39; median actual eta 0.0117936; median gamma 0.00216708; median L 0.005; median trials 2; max measured spectral ratio lambda*||W||op=0.389638. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=6.301, reference=2.449, candidates=1.028, auxiliary=0.556.
+
+| um-gapwd-joint-uniform-001 | joint uniform | 0.1837499 | 64 | 6.390594 | 191 | 95.12 |
+
+um-gapwd-joint-uniform-001: accepted 64/64; skipped nonpositive blocks 37; median actual eta 0.0125746; median gamma 0.00231058; median L 0.005; median trials 2; max measured spectral ratio lambda*||W||op=0.432438. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=6.588, reference=2.197, candidates=1.032, auxiliary=0.523.
+
