@@ -25,3 +25,16 @@ def test_compiled_update_and_default_regression(monkeypatch,shape):
     torch.testing.assert_close(c[1],a[1]*scale,rtol=.01,atol=2e-5)
     torch.testing.assert_close(c[2],a[2],rtol=0,atol=0)
     torch.testing.assert_close(c[3],a[3],rtol=0,atol=0)
+
+def test_clean_compiled_normalized_and_unnormalized(monkeypatch):
+ monkeypatch.setattr(modified,'CLEAN_MUON',True);monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',True)
+ torch.manual_seed(23);g=torch.randn(2,64,128,device='cuda')*.01
+ def call(scaled):
+  monkeypatch.setattr(modified,'UNNORMALIZED_MUON',scaled)
+  p=torch.zeros_like(g);m=torch.zeros_like(g);v=torch.ones(2,1,128,device='cuda')*.123
+  s=modified.muon_step_fused(g.clone(),p,m,v,torch.tensor(.85),torch.tensor(.01),torch.tensor(100.),torch.tensor(.9),5,-2)
+  return p,m,v,s
+ a=call(False);b=call(True)
+ torch.testing.assert_close(b[0],a[0]*b[3][0],rtol=.01,atol=1e-5)
+ assert torch.equal(a[1],b[1]) and torch.equal(a[2],b[2])
+ assert torch.equal(a[2],torch.ones_like(a[2])*.123)

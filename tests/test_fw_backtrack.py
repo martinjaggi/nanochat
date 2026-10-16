@@ -23,3 +23,16 @@ def test_spectral_certificate_and_shared_mixing_feasibility():
   for gamma in [0.,.2,.8,1.]:
    candidate=(1-gamma)*w+gamma*(-q)
    assert torch.linalg.matrix_norm(candidate,ord=2)<=1+1e-12
+
+def test_accumulated_baseline_matches_token_weighted_candidates():
+ from research.unnormalized_muon.fw import FWMuon,weighted_mean
+ # Exercise the actual set_loss path: unequal token counts expose accidental
+ # averaging of means, while distinct losses expose retaining only the last.
+ fw=FWMuon.__new__(FWMuon);fw.batch=[];fw.losses=[];fw.loss_counts=[]
+ buffer=torch.tensor(2.)
+ fw.set_batch(torch.zeros(1,2),torch.zeros(1,2));fw.set_loss(buffer)
+ buffer.fill_(6.)  # a compiled backend may reuse its scalar output storage
+ fw.set_batch(torch.zeros(1,6),torch.zeros(1,6));fw.set_loss(buffer)
+ assert fw.loss_before.item()==5.
+ assert fw.loss_before.item()==weighted_mean([torch.tensor(2.),torch.tensor(6.)],[2,6]).item()
+ assert fw.loss_before.item()!=fw.losses[-1].item()

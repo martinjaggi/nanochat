@@ -13,6 +13,7 @@ def publish():
    if not p.exists():continue
    cfg=json.loads(p.read_text())
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
+  if cfg.get('clean'):arm='Clean '+arm
   label=str(path.parent.relative_to(ROOT));runs.append((label,arm,cfg,s,path))
  rows=['# Live unnormalized-Muon results','',
   'One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with different update budgets are not endpoint comparisons. Tuning uses the same fixed validation tokens; held-out scores appear only on final runs. Runtime includes compilation and overhead in process seconds.','',

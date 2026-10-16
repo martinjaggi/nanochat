@@ -19,7 +19,7 @@ def save(s):(ROOT/'queue.json').write_text(json.dumps(s,indent=2))
 def record(**row):
  p=REPO/'research/unnormalized_muon/EXPERIMENTS.csv';exists=p.exists()
  with p.open('a',newline='') as f:
-  w=csv.DictWriter(f,fieldnames=FIELDS,extrasaction='ignore')
+  w=csv.DictWriter(f,fieldnames=FIELDS,extrasaction='ignore',lineterminator='\n')
   if not exists:w.writeheader()
   w.writerow({k:json.dumps(v) if isinstance(v,(dict,list)) else v for k,v in row.items()})
 def reap():

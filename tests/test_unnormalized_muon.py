@@ -45,3 +45,22 @@ def test_fused_step_and_disabled_upstream_parity(monkeypatch,shape):
     torch.testing.assert_close(c[1],a[1]*scale)
     assert torch.equal(c[2],a[2]) and torch.equal(c[3],a[3])
     assert bool(torch.isfinite(scale).all() & (scale>=0).all())
+
+def test_clean_geometry_removes_extra_transforms_and_decay(monkeypatch):
+ monkeypatch.setattr(modified,'CLEAN_MUON',True)
+ monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',True)
+ grad=torch.tensor([[[10.,3.],[1.,1.]]]);mu=torch.tensor(.85)
+ def call(scaled,decay):
+  monkeypatch.setattr(modified,'UNNORMALIZED_MUON',scaled)
+  p=torch.zeros_like(grad);m=torch.zeros_like(p);v=torch.ones(1,2,1)*.123
+  result=modified.muon_step_fused.__wrapped__(grad.clone(),p,m,v,mu,torch.tensor(.01),torch.tensor(decay),torch.tensor(.9),5,-1)
+  return p,m,v,result
+ p,m,v,(scale,_)=call(False,0.)
+ other=call(False,100.)
+ assert torch.equal(p,other[0]) and torch.equal(v,torch.ones_like(v)*.123)
+ # Without row equilibration/NorMuon the normalized direction approximates polar(M).
+ M=grad*.2775;u,_,vh=torch.linalg.svd(M,full_matrices=False)
+ torch.testing.assert_close(-p/.01,u@vh,rtol=.02,atol=.02)
+ scaled=call(True,0.)
+ torch.testing.assert_close(scaled[0],p*scale)
+ assert torch.equal(scaled[1],m) and torch.equal(scaled[2],v)

@@ -21,7 +21,7 @@ class Recorder:
             initial.update(n.encode());initial.update(p.detach().cpu().reshape(-1).view(torch.uint8).numpy().tobytes())
         self.emit('manifest',base_commit='b2bdf9890e028965ee7f2e97acc02d72b3c663ec',
             git_commit=os.environ['RESEARCH_COMMIT'],seed=int(os.environ['RESEARCH_SEED']),
-            variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',config=config,
+            variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',clean=os.environ.get('NANOCHAT_CLEAN_MUON')=='1',config=config,
             initial_parameter_hash=initial.hexdigest(),model_parameters=sum(p.numel() for p in model.parameters()),
             GPU_model=torch.cuda.get_device_name(0),GPU_count=torch.cuda.device_count(),
             total_batch_size=total_batch_size,FP8=False,precision='native BF16 compute/embeddings; native FP32 matrices',
@@ -70,6 +70,7 @@ class Recorder:
                 align=torch.cat([s.flatten() for s in opt.last_current_alignments])
                 fields['current_gradient_alignments']=align.cpu().tolist()
                 fields['negative_alignment_fraction']=float((align<0).float().mean())
+                fields['scale_mean']=float(flat.mean())
                 fields['scale_min']=float(flat.min());fields['scale_median']=float(flat.median());fields['scale_max']=float(flat.max())
                 rank=torch.cat([torch.full_like(s.flatten(),min(g['params'][0].shape)) for g,s in zip((g for g in opt.param_groups if g['kind']=='muon'),scales)])
                 fields['scale_weighted_rms']=float((torch.sum(rank*flat.square())/rank.sum()).sqrt())
@@ -85,7 +86,7 @@ class Recorder:
             if a is not None and b is not None:intervals.append((a/1e6,b/1e6))
         compile_seconds=0.;end=-float('inf')
         for a,b in sorted(intervals):compile_seconds+=max(0.,b-max(a,end));end=max(end,b)
-        summary=dict(status='completed',updates=step,fresh_tokens=step*self.batch,training_seconds=self.train_seconds,
+        summary=dict(status='completed',updates=step,fresh_tokens=step*self.batch,fresh_microbatch_gradient_passes=step*self.batch//(self.config['device_batch_size']*self.config['max_seq_len']),training_seconds=self.train_seconds,
             steady_training_seconds=self.steady_seconds,steady_time_definition='native steps after first11, plus measured research logging',
             validation_seconds=self.validation_seconds,checkpoint_seconds=self.checkpoint_seconds,compile_seconds=compile_seconds,
             end_to_end_seconds=time.perf_counter()-self.started,peak_gpu_memory=torch.cuda.max_memory_allocated(),
@@ -93,5 +94,6 @@ class Recorder:
         if hasattr(self,'fw'):
             summary['fw_feasibility']=self.fw.feasibility()
             summary['extra_forward_evals']=self.fw.extra_forward_evals
+            summary['extra_microbatch_forward_evals']=self.fw.extra_microbatch_forward_evals
             summary['fw_seconds']=self.fw.line_seconds
         (self.path.parent/'summary.json').write_text(json.dumps(summary,indent=2));self.emit('summary',**summary);self.file.close()

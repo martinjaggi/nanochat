@@ -1,0 +1,11 @@
+{
+  "variant": false,
+  "clean": true,
+  "record_dual_scale": true,
+  "gpu_checks": true,
+  "matrix_lr": 0.02,
+  "updates": 256,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1800
+}

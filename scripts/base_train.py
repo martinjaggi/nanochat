@@ -531,6 +531,7 @@ while True:
     # evaluate the gradient
     synchronize()
     t0 = time.time()
+    accumulated_train_loss = 0.0 if recorder else None
     for micro_step in range(grad_accum_steps):
         if hasattr(optimizer, "set_batch"):
             optimizer.set_batch(x, y)
@@ -538,6 +539,8 @@ while True:
         if hasattr(optimizer, "set_loss"):
             optimizer.set_loss(loss)
         train_loss = loss.detach() # for logging
+        if recorder:
+            accumulated_train_loss = accumulated_train_loss + train_loss / grad_accum_steps
         loss = loss / grad_accum_steps # each .backward() is a grad sum => normalize loss here
         if scaler is not None:
             scaler.scale(loss).backward()
@@ -568,6 +571,8 @@ while True:
     else:
         optimizer.step()
     model.zero_grad(set_to_none=True)
+    if recorder:
+        train_loss = accumulated_train_loss
     train_loss_f = train_loss.item() # .item() is a CPU-GPU sync point
     synchronize()
     t1 = time.time()

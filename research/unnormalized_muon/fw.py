@@ -1,7 +1,13 @@
 """Explicit fixed-spectral-ball FW; separate from the production Muon change."""
 import math,time,torch
 from torch.func import functional_call
-from nanochat.optim import polar_express_coeffs
+from nanochat.optim import polar_express_coeffs, CLEAN_MUON
+
+
+def weighted_mean(losses,counts):
+    """Same token weights for fresh accumulated loss and every candidate loss."""
+    assert len(losses)==len(counts) and len(losses)>0 and sum(counts)>0
+    return sum(loss*n for loss,n in zip(losses,counts))/sum(counts)
 
 
 def backtrack(evaluate, *, f0,b,v,L,max_trials=16,tolerance=1e-6):
@@ -30,9 +36,10 @@ def spectral_safe(direction):
 @torch.no_grad()
 def polar_direction(g):
     x=g.bfloat16()
-    target=x.float().norm()/math.sqrt(x.shape[-2])
-    row_norm=x.float().norm(dim=-1,keepdim=True).clamp_min(1e-6)
-    x=x*(target/row_norm).to(x.dtype)
+    if not CLEAN_MUON:
+        target=x.float().norm()/math.sqrt(x.shape[-2])
+        row_norm=x.float().norm(dim=-1,keepdim=True).clamp_min(1e-6)
+        x=x*(target/row_norm).to(x.dtype)
     x=x/(x.norm()*1.01+1e-6)
     for a,b,c in polar_express_coeffs:
         if x.shape[-2]>x.shape[-1]:
@@ -47,19 +54,24 @@ class FWMuon:
     """Native AdamW plus one shared FW step; auxiliary weights frozen in search."""
     def __init__(self,inner,model,recorder,initial_L=.01,radius_factor=2.):
         self.inner=inner;self.model=model;self.recorder=recorder
-        self.param_groups=inner.param_groups;self.L=initial_L;self.batch=[];self.step_index=0
+        self.param_groups=inner.param_groups;self.L=initial_L;self.batch=[];self.losses=[];self.loss_counts=[];self.step_index=0
         names={id(p):n for n,p in model.named_parameters()}
         self.matrices=[(names[id(p)],p) for g in self.param_groups if g['kind']=='muon' for p in g['params']]
         self.m={n:torch.zeros_like(p) for n,p in self.matrices};self.radii={}
         for n,p in self.matrices:
             norm=float(torch.linalg.matrix_norm(p.detach().float(),ord=2))
             self.radii[n]=max(1.,radius_factor*norm)
-        self.extra_forward_evals=0;self.line_seconds=0.;self.negative_steps=0
+        self.extra_forward_evals=0;self.extra_microbatch_forward_evals=0;self.line_seconds=0.;self.negative_steps=0
         self.recorder.emit('fw_geometry',radii=self.radii,initial_L=initial_L,
             certificate='FP64 Gram induced-infinity upper bound, safety1e-6',
             shape_scaling='none: fixed per-matrix radii define geometry',Muon_decay='none')
     def set_batch(self,x,y):self.batch.append((x.clone(),y.clone()))
-    def set_loss(self,loss):self.loss_before=loss.detach()
+    def set_loss(self,loss):
+        self.losses.append(loss.detach().clone())
+        self.loss_counts.append(self.batch[-1][1].numel())
+    @property
+    def loss_before(self):
+        return weighted_mean(self.losses,self.loss_counts)
     @torch.no_grad()
     def step(self):
         torch.cuda.synchronize();start=time.perf_counter();directions={}
@@ -76,8 +88,10 @@ class FWMuon:
                 torch.cuda.set_rng_state(before_rng);torch.set_rng_state(after_cpu)
                 candidate={n:p+gamma*directions[n] for n,p in self.matrices}
                 count=sum(y.numel() for _,y in self.batch)
-                loss=sum(functional_call(self.model,candidate,(x,y))*y.numel()/count for x,y in self.batch)
+                loss=weighted_mean([functional_call(self.model,candidate,(x,y)) for x,y in self.batch],
+                    [y.numel() for _,y in self.batch])
                 self.extra_forward_evals+=1
+                self.extra_microbatch_forward_evals+=len(self.batch)
                 return float(loss)
             finally:
                 torch.cuda.set_rng_state(before_rng);torch.set_rng_state(after_cpu)
@@ -97,9 +111,9 @@ class FWMuon:
         finally:self.inner.param_groups=original
         torch.cuda.synchronize();elapsed=time.perf_counter()-start;self.line_seconds+=elapsed
         self.recorder.emit('fw_update',step=self.step_index,gamma=gamma,L=self.L,b=b,v=v,
-            accepted=accepted,trials=trials,fresh_vs_functional_reference_delta=fresh_reference_delta,extra_forward_evals=self.extra_forward_evals,
+            accepted=accepted,trials=trials,accumulation_microbatches=len(self.batch),accumulated_fresh_loss=float(self.loss_before),reference_loss=reference,extra_microbatch_forward_evals=self.extra_microbatch_forward_evals,fresh_vs_functional_reference_delta=fresh_reference_delta,extra_forward_evals=self.extra_forward_evals,
             total_fw_direction_and_search_seconds=self.line_seconds,negative_steps=self.negative_steps)
-        self.step_index+=1;self.batch=[]
+        self.step_index+=1;self.batch=[];self.losses=[];self.loss_counts=[]
     def state_dict(self):
         return dict(inner=self.inner.state_dict(),fw=dict(m=self.m,radii=self.radii,L=self.L,
             steps=self.step_index,extra_forward_evals=self.extra_forward_evals,line_seconds=self.line_seconds))

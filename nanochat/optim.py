@@ -100,6 +100,8 @@ Some of the changes in nanochat implementation:
 
 # Opt-in experiment; the default path keeps the upstream optimizer unchanged.
 UNNORMALIZED_MUON = os.environ.get("NANOCHAT_UNNORMALIZED_MUON", "0") == "1"
+CLEAN_MUON = os.environ.get("NANOCHAT_CLEAN_MUON", "0") == "1"
+RECORD_DUAL_SCALE = os.environ.get("RESEARCH_DUAL_DIAGNOSTICS", "0") == "1"
 
 
 def nonnegative_dual_scale(gradient, direction):
@@ -137,22 +139,24 @@ def muon_step_fused(
     Some of the constants are 0-D CPU tensors to avoid recompilation when values change.
     """
 
-    raw_input = stacked_grads.clone() if UNNORMALIZED_MUON else None
+    compute_scale = UNNORMALIZED_MUON or RECORD_DUAL_SCALE
+    raw_input = stacked_grads.clone() if compute_scale else None
 
     # Nesterov momentum
     momentum = momentum_t.to(stacked_grads.dtype)
     momentum_buffer.lerp_(stacked_grads, 1 - momentum)
     g = stacked_grads.lerp_(momentum_buffer, momentum)
 
-    ns_input = g if UNNORMALIZED_MUON else None
+    ns_input = g if compute_scale else None
 
     # Cast to bf16 for speed when available; skip cast otherwise (fp16 is unstable here due to limited exponent range)
     X = g.bfloat16() if COMPUTE_DTYPE == torch.bfloat16 else g
 
-    # MuonEq row equilibration: rescale each row to the mean row norm so the spectrum entering orthogonalization is better conditioned
-    target = X.float().norm(dim=(-2, -1), keepdim=True) / (X.size(-2) ** 0.5)
-    row_norm = X.float().norm(dim=-1, keepdim=True).clamp_min(1e-6)
-    X = X * (target / row_norm).to(X.dtype)
+    if not CLEAN_MUON:
+        # MuonEq row equilibration: rescale each row to the mean row norm so the spectrum entering orthogonalization is better conditioned
+        target = X.float().norm(dim=(-2, -1), keepdim=True) / (X.size(-2) ** 0.5)
+        row_norm = X.float().norm(dim=-1, keepdim=True).clamp_min(1e-6)
+        X = X * (target / row_norm).to(X.dtype)
 
     # Polar Express orthogonalization: replace each update with the nearest orthogonal matrix
     X = X / (X.norm(dim=(-2, -1), keepdim=True) * 1.01 + 1e-6)
@@ -174,21 +178,22 @@ def muon_step_fused(
     current_norm = g.float().norm(dim=(-2, -1), keepdim=True).clamp_min(1e-6)
     g = g * (target_norm / current_norm).to(g.dtype)
 
-    dual_scale = nonnegative_dual_scale(ns_input, g) if UNNORMALIZED_MUON else None
-    current_alignment = (raw_input.float() * g.float()).sum(dim=(-2, -1), keepdim=True) if UNNORMALIZED_MUON else None
+    dual_scale = nonnegative_dual_scale(ns_input, g) if compute_scale else None
+    current_alignment = (raw_input.float() * g.float()).sum(dim=(-2, -1), keepdim=True) if compute_scale else None
 
-    # Variance reduction
-    beta2 = beta2_t.to(g.dtype)
-    v_mean = g.float().square().mean(dim=red_dim, keepdim=True)
-    red_dim_size = g.size(red_dim)
-    v_norm_sq = v_mean.sum(dim=(-2, -1), keepdim=True) * red_dim_size
-    v_norm = v_norm_sq.sqrt()
-    second_momentum_buffer.lerp_(v_mean.to(dtype=second_momentum_buffer.dtype), 1 - beta2)
-    step_size = second_momentum_buffer.clamp_min(1e-10).rsqrt()
-    scaled_sq_sum = (v_mean * red_dim_size) * step_size.float().square()
-    v_norm_new = scaled_sq_sum.sum(dim=(-2, -1), keepdim=True).sqrt()
-    final_scale = step_size * (v_norm / v_norm_new.clamp_min(1e-10))
-    g = g * final_scale.to(g.dtype)
+    if not CLEAN_MUON:
+        # Variance reduction
+        beta2 = beta2_t.to(g.dtype)
+        v_mean = g.float().square().mean(dim=red_dim, keepdim=True)
+        red_dim_size = g.size(red_dim)
+        v_norm_sq = v_mean.sum(dim=(-2, -1), keepdim=True) * red_dim_size
+        v_norm = v_norm_sq.sqrt()
+        second_momentum_buffer.lerp_(v_mean.to(dtype=second_momentum_buffer.dtype), 1 - beta2)
+        step_size = second_momentum_buffer.clamp_min(1e-10).rsqrt()
+        scaled_sq_sum = (v_mean * red_dim_size) * step_size.float().square()
+        v_norm_new = scaled_sq_sum.sum(dim=(-2, -1), keepdim=True).sqrt()
+        final_scale = step_size * (v_norm / v_norm_new.clamp_min(1e-10))
+        g = g * final_scale.to(g.dtype)
 
     # Apply after Frobenius renormalization and NorMuon, preserving native moment state.
     if UNNORMALIZED_MUON:
@@ -197,9 +202,12 @@ def muon_step_fused(
     # Cautious weight decay + parameter update
     lr = lr_t.to(g.dtype)
     wd = wd_t.to(g.dtype)
-    mask = (g * stacked_params) >= 0
-    stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
-    return (dual_scale, current_alignment) if UNNORMALIZED_MUON else None
+    if CLEAN_MUON:
+        stacked_params.sub_(lr * g)  # no Muon decay in the clean comparison
+    else:
+        mask = (g * stacked_params) >= 0
+        stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
+    return (dual_scale, current_alignment) if compute_scale else None
 
 # -----------------------------------------------------------------------------
 
@@ -420,7 +428,7 @@ class MuonAdamW(torch.optim.Optimizer):
                 self._muon_momentum_t, self._muon_lr_t, self._muon_wd_t, self._muon_beta2_t,
                 group["ns_steps"], red_dim,
             )
-            if UNNORMALIZED_MUON:
+            if UNNORMALIZED_MUON or RECORD_DUAL_SCALE:
                 self.last_dual_scales.append(dual_scale[0].detach())
                 self.last_current_alignments.append(dual_scale[1].detach())
 
@@ -460,7 +468,7 @@ class MuonAdamW(torch.optim.Optimizer):
             rank = 0
             world_size = 1
 
-        if UNNORMALIZED_MUON:
+        if UNNORMALIZED_MUON or RECORD_DUAL_SCALE:
             self.last_dual_scales = []
             self.last_current_alignments = []
 
