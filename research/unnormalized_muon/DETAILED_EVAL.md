@@ -323,5 +323,17 @@ um-lens-main-layer-stable-cap0p005: accepted 2000/2000; skipped nonpositive bloc
 
 Timing seconds: direction=71.458, reference=14.916, candidates=14.601, auxiliary=1.790.
 
+| um-lens-main-layer-stable-cap0p02 | layer native | 0.1837499 | 2000 | 3.843672 | 4004 | 226.67 |
+
+um-lens-main-layer-stable-cap0p02: accepted 2000/2000; skipped nonpositive blocks 111; median actual eta 0.02; median gamma 0.003675; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.460939. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=54.553, reference=14.339, candidates=14.183, auxiliary=1.862.
+
+| um-lens-main-layer-stable-cap0p08 | layer native | 0.1837499 | 2000 | 4.177053 | 4064 | 223.52 |
+
+um-lens-main-layer-stable-cap0p08: accepted 2000/2000; skipped nonpositive blocks 282; median actual eta 0.08; median gamma 0.0147; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.790492. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=55.587, reference=14.607, candidates=14.695, auxiliary=1.890.
+
 | um-lens-main-reciprocal-lr0p02 | fw_reciprocal native | 0.1837499 | 2000 | 3.609994 | 0 | 123.51 |
 | um-lens-main-reciprocal-lr0p04 | fw_reciprocal native | 0.1837499 | 2000 | 3.610242 | 0 | 116.29 |

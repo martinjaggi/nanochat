@@ -30,6 +30,8 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-main-layer-cooldown-cap0p02 | layer-cooldown | 2000 updates | 0 | 3.586478 | — | 162.107 | 4006 | 32.671 | 230.84 |
 | um-lens-main-layer-cooldown-cap0p08 | layer-cooldown | 2000 updates | 0 | 3.775003 | — | 161.803 | 4065 | 40.630 | 254.49 |
 | um-lens-main-layer-stable-cap0p005 | layer-stable | 2000 updates | 0 | 3.653949 | — | 178.828 | 4000 | 33.361 | 251.43 |
+| um-lens-main-layer-stable-cap0p02 | layer-stable | 2000 updates | 0 | 3.843672 | — | 157.288 | 4004 | 31.804 | 226.67 |
+| um-lens-main-layer-stable-cap0p08 | layer-stable | 2000 updates | 0 | 4.177053 | — | 159.261 | 4064 | 31.763 | 223.52 |
 | um-lens-main-reciprocal-lr0p02 | reciprocal | 2000 updates | 0 | 3.609994 | — | 67.004 | 0 | 26.860 | 123.51 |
 | um-lens-main-reciprocal-lr0p04 | reciprocal | 2000 updates | 0 | 3.610242 | — | 65.990 | 0 | 23.884 | 116.29 |
 
@@ -55,5 +57,7 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-main-layer-cooldown-cap0p02 | 2000/2000 | 0 | 0.015118 | 0.002778 | 1e-16 | 1 | -5.01 to -4.851 | 0.420678 |
 | um-lens-main-layer-cooldown-cap0p08 | 2000/2000 | 0 | 0.058428 | 0.010736 | 1e-16 | 1 | -19.79 to -18.76 | 0.404548 |
 | um-lens-main-layer-stable-cap0p005 | 2000/2000 | 0 | 0.005 | 0.00091875 | 1e-16 | 1 | -1.82 to -1.8 | 0.305951 |
+| um-lens-main-layer-stable-cap0p02 | 2000/2000 | 0 | 0.02 | 0.003675 | 1e-16 | 1 | -7.286 to -7.098 | 0.460939 |
+| um-lens-main-layer-stable-cap0p08 | 2000/2000 | 0 | 0.08 | 0.0147 | 1e-16 | 1 | -28.98 to -27.8 | 0.790492 |
 
 Curvature values in Armijo variants parameterize proposals; their acceptance is NOT a certificate of the quadratic upper model. Final spectral ratios are lambda*||W_l||op/c_l; native approximate NS output is not certified to have unit spectral norm. Initial/final iterate feasibility alone does not certify oracle accuracy. Cold two-second clock checks intentionally permit one-update overshoot; do not use them as quality endpoints.
