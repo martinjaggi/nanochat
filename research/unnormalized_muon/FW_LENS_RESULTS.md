@@ -17,6 +17,12 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-check-6-periodic | joint | 64 updates | 0 | 6.490925 | — | 14.250 | 48 | 0.000 | 95.36 |
 | um-lens-check-7-warm-time-control | cooldown | 5.000s | 0 | 6.041687 | — | 5.034 | 0 | 34.360 | 81.78 |
 | um-lens-check-8-warm-time-layer | layer | 5.000s | 0 | 6.365249 | — | 5.016 | 100 | 31.631 | 85.49 |
+| um-lens-creative-ema0p5 | layer-ema | 2000 updates | 0 | 3.555660 | — | 177.247 | 4000 | 33.839 | 247.79 |
+| um-lens-creative-ema0p9 | layer-ema | 2000 updates | 0 | 3.558717 | — | 165.360 | 4000 | 31.419 | 229.92 |
+| um-lens-creative-periodic2 | joint-periodic | 2000 updates | 0 | 3.554936 | — | 151.717 | 3001 | 43.345 | 243.89 |
+| um-lens-creative-periodic4 | joint-periodic | 2000 updates | 0 | 3.556331 | — | 142.721 | 1501 | 43.339 | 235.46 |
+| um-lens-creative-relative0p01 | layer-relative | 2000 updates | 0 | 3.568293 | — | 171.388 | 4000 | 43.342 | 263.55 |
+| um-lens-creative-relative0p03 | layer-relative | 2000 updates | 0 | 3.553957 | — | 158.188 | 4000 | 43.444 | 249.47 |
 | um-lens-main-control-lr0p02 | control | 2000 updates | 0 | 3.568986 | — | 71.320 | 0 | 31.621 | 141.52 |
 | um-lens-main-control-lr0p04 | control | 2000 updates | 0 | 3.554822 | — | 65.063 | 0 | 30.883 | 133.67 |
 | um-lens-main-control-lr0p08 | control | 2000 updates | 0 | 3.586261 | — | 71.566 | 0 | 31.026 | 139.40 |
@@ -67,6 +73,12 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-check-5-creative | 64/64 | 0 | 0.011606 | 0.0021326 | 1.7462e-12 | 1 | -0.1297 to -0.09009 | 0.379675 |
 | um-lens-check-6-periodic | 16/64 | 48 | 0.0042842 | 0.00078723 | 0.0075 | 0 | -0.06363 to -0.06363 | 0.366569 |
 | um-lens-check-8-warm-time-layer | 50/50 | 0 | 0.02 | 0.003675 | 2.2352e-10 | 1 | -0.179 to -0.1481 | 0.537713 |
+| um-lens-creative-ema0p5 | 2000/2000 | 0 | 0.0075738 | 0.0013917 | 1e-16 | 1 | -2.506 to -2.438 | 0.405719 |
+| um-lens-creative-ema0p9 | 2000/2000 | 0 | 0.0074569 | 0.0013702 | 1e-16 | 1 | -2.491 to -2.298 | 0.410554 |
+| um-lens-creative-periodic2 | 1000/2000 | 1000 | 0.0075921 | 0.0013951 | 0.01 | 0.5 | -2.507 to -2.507 | 0.389011 |
+| um-lens-creative-periodic4 | 500/2000 | 1500 | 0.0075775 | 0.0013924 | 0.01 | 0 | -2.506 to -2.506 | 0.391067 |
+| um-lens-creative-relative0p01 | 2000/2000 | 0 | 0.0055887 | 0.0010269 | 1e-16 | 1 | -2.303 to -1.682 | 0.381307 |
+| um-lens-creative-relative0p03 | 2000/2000 | 0 | 0.0075885 | 0.0013944 | 1e-16 | 1 | -2.507 to -2.467 | 0.39891 |
 | um-lens-main-joint-cooldown-cap0p005 | 2000/2000 | 0 | 0.0037961 | 0.00069753 | 0.02 | 2 | -1.251 to -1.251 | 0.331184 |
 | um-lens-main-joint-cooldown-cap0p02 | 2000/2000 | 0 | 0.014877 | 0.0027337 | 0.01 | 2 | -4.967 to -4.967 | 0.424789 |
 | um-lens-main-joint-cooldown-cap0p08 | 2000/2000 | 0 | 0.038481 | 0.0070708 | 0.005 | 2 | -14.06 to -14.06 | 0.444955 |

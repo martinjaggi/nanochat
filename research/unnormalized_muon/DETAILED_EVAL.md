@@ -276,6 +276,42 @@ um-lens-check-8-warm-time-layer: accepted 50/50; skipped nonpositive blocks 70; 
 
 Timing seconds: direction=1.317, reference=0.399, candidates=0.395, auxiliary=0.041.
 
+| um-lens-creative-ema0p5 | layer native | 0.1837499 | 2000 | 3.555660 | 4000 | 247.79 |
+
+um-lens-creative-ema0p5: accepted 2000/2000; skipped nonpositive blocks 90; median actual eta 0.00757385; median gamma 0.00139169; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.405719. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=58.611, reference=15.033, candidates=14.694, auxiliary=1.983.
+
+| um-lens-creative-ema0p9 | layer native | 0.1837499 | 2000 | 3.558717 | 4000 | 229.92 |
+
+um-lens-creative-ema0p9: accepted 2000/2000; skipped nonpositive blocks 226; median actual eta 0.00745692; median gamma 0.00137021; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.410554. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=57.344, reference=14.477, candidates=14.332, auxiliary=1.791.
+
+| um-lens-creative-periodic2 | joint native | 0.1837499 | 2000 | 3.554936 | 3001 | 243.89 |
+
+um-lens-creative-periodic2: accepted 1000/2000; skipped nonpositive blocks 100; median actual eta 0.00759212; median gamma 0.00139505; median L 0.01; median trials 0.5; max measured spectral ratio lambda*||W||op=0.389011. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=53.072, reference=7.217, candidates=13.954, auxiliary=1.784.
+
+| um-lens-creative-periodic4 | joint native | 0.1837499 | 2000 | 3.556331 | 1501 | 235.46 |
+
+um-lens-creative-periodic4: accepted 500/2000; skipped nonpositive blocks 90; median actual eta 0.0075775; median gamma 0.00139236; median L 0.01; median trials 0; max measured spectral ratio lambda*||W||op=0.391067. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=53.416, reference=3.742, candidates=7.040, auxiliary=1.803.
+
+| um-lens-creative-relative0p01 | layer native | 0.1837499 | 2000 | 3.568293 | 4000 | 263.55 |
+
+um-lens-creative-relative0p01: accepted 2000/2000; skipped nonpositive blocks 98; median actual eta 0.00558868; median gamma 0.00102692; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.381307. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=59.462, reference=14.180, candidates=17.665, auxiliary=1.646.
+
+| um-lens-creative-relative0p03 | layer native | 0.1837499 | 2000 | 3.553957 | 4000 | 249.47 |
+
+um-lens-creative-relative0p03: accepted 2000/2000; skipped nonpositive blocks 100; median actual eta 0.00758846; median gamma 0.00139438; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.39891. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=54.636, reference=14.182, candidates=17.375, auxiliary=1.741.
+
 | um-lens-main-control-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.568986 | 0 | 141.52 |
 | um-lens-main-control-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.554822 | 0 | 133.67 |
 | um-lens-main-control-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.586261 | 0 | 139.40 |
