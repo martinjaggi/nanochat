@@ -23,7 +23,7 @@ def record(**row):
   if not exists:w.writeheader()
   w.writerow({k:json.dumps(v) if isinstance(v,(dict,list)) else v for k,v in row.items()})
 def reap():
- s=load();j=jobs();k=Kube()
+ s=load();j=jobs();k=Kube();changed=False
  objects={o['metadata']['name']:o for o in k.request('GET','/apis/run.ai/v1/namespaces/'+k.namespace+'/runaijobs')['items']}
  for name,v in s.items():
   if v['recorded']:continue
@@ -51,8 +51,12 @@ def reap():
    if name not in jobs():break
    time.sleep(1)
   assert name not in jobs(),'cleanup still pending'
+  changed=True
   v['recorded']=True;v['status']='completed' if done else 'failed'
  k.close();save(s)
+ if changed:
+  from research.unnormalized_muon.publish import publish
+  publish()
  print('QUEUE',jobs(),'charged/reserved GPUh',sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())/3600,flush=True)
 def submit(stage,name,seconds,config=None):
  s=load();j=jobs();assert name.startswith('um-') and len(name)<=55 and name not in s and name not in j

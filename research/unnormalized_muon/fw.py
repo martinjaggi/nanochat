@@ -52,7 +52,7 @@ class FWMuon:
         self.matrices=[(names[id(p)],p) for g in self.param_groups if g['kind']=='muon' for p in g['params']]
         self.m={n:torch.zeros_like(p) for n,p in self.matrices};self.radii={}
         for n,p in self.matrices:
-            norm=float(torch.linalg.matrix_norm(p.float(),ord=2))
+            norm=float(torch.linalg.matrix_norm(p.detach().float(),ord=2))
             self.radii[n]=max(1.,radius_factor*norm)
         self.extra_forward_evals=0;self.line_seconds=0.;self.negative_steps=0
         self.recorder.emit('fw_geometry',radii=self.radii,initial_L=initial_L,
@@ -100,6 +100,6 @@ class FWMuon:
         return dict(inner=self.inner.state_dict(),fw=dict(m=self.m,radii=self.radii,L=self.L,
             steps=self.step_index,extra_forward_evals=self.extra_forward_evals,line_seconds=self.line_seconds))
     def feasibility(self):
-        ratios={n:float(torch.linalg.matrix_norm(p.float(),ord=2))/self.radii[n] for n,p in self.matrices}
+        ratios={n:float(torch.linalg.matrix_norm(p.detach().float(),ord=2))/self.radii[n] for n,p in self.matrices}
         assert max(ratios.values())<=1+1e-5,'FW spectral ball violated'
         return ratios
