@@ -123,10 +123,13 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-wd-grid-1-1-unnorm-lr0p32 | Clean Unnormalized cooldown WD:cautious(0.035) | 2000 | 0 | 0.32 | 3.654365 | 1.107747 | — | 158.83 |
 | um-wd-grid-1-1-unnorm-lr0p64 | Clean Unnormalized cooldown WD:cautious(0.0175) | 2000 | 0 | 0.64 | 3.650276 | 1.106549 | — | 142.00 |
 | um-wd-grid-1-1-unnorm-lr1p28 | Clean Unnormalized cooldown WD:cautious(0.00875) | 2000 | 0 | 1.28 | 3.684556 | 1.116968 | — | 145.98 |
+| um-wd-grid-2-0-norm-lr0p02 | Clean Native cooldown WD:standard(2.24) | 2000 | 0 | 0.02 | 3.657069 | 1.108646 | — | 135.74 |
+| um-wd-grid-2-0-norm-lr0p04 | Clean Native cooldown WD:standard(1.12) | 2000 | 0 | 0.04 | 3.646872 | 1.105549 | — | 119.10 |
+| um-wd-grid-2-0-norm-lr0p08 | Clean Native cooldown WD:standard(0.56) | 2000 | 0 | 0.08 | 3.641740 | 1.104011 | — | 114.78 |
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 9.0597 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 8.9337 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
