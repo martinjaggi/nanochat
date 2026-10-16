@@ -41,6 +41,9 @@ CLI lambda = 0.28*(0.04/CLI_eta)*strength matches nominal eta*lambda exposure ac
 | unnormalized | standard | 1 | 0.16 | 0.07 | 2000 | 3.742638 | 1.6309–3.2618 |
 | unnormalized | standard | 1 | 0.32 | 0.035 | 2000 | 3.670908 | 1.6309–3.2618 |
 | unnormalized | standard | 1 | 0.64 | 0.0175 | 2000 | 3.657862 | 1.6309–3.2618 |
+| unnormalized | standard | 1 | 1.28 | 0.00875 | 2000 | 3.692790 | 1.6309–3.2618 |
+| normalized | cautious | 1 | 0.02 | 0.56 | 2000 | 3.569451 | 1.6309–3.2618 |
+| normalized | cautious | 1 | 0.04 | 0.28 | 2000 | 3.555677 | 1.6309–3.2618 |
 
 ## FW gap-based step and line search
 
