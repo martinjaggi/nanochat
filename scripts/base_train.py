@@ -311,6 +311,9 @@ if batch_ratio != 1.0:
 # λ = λ_ref · √(B/B_ref) · (D_ref/D)
 # Note that these papers study AdamW, *not* Muon. We are blindly following AdamW theory for scaling hoping it ~works for Muon too.
 weight_decay_scaled = args.weight_decay * math.sqrt(total_batch_size / B_REF) * (D_REF / target_tokens)
+if os.environ.get("RESEARCH_FIXED_WD", ""):
+    weight_decay_scaled = float(os.environ["RESEARCH_FIXED_WD"])
+    assert weight_decay_scaled > 0
 if weight_decay_scaled != args.weight_decay:
     print0(f"Scaling weight decay from {args.weight_decay:.6f} to {weight_decay_scaled:.6f} for depth {args.depth}")
 
@@ -328,6 +331,14 @@ optimizer = model.setup_optimizer(
 
 if recorder:
     recorder.initialize(orig_model, optimizer, user_config, total_batch_size)
+
+if recorder and os.environ.get("RESEARCH_GAP_WD"):
+    from research.unnormalized_muon.gap_wd import GapWD
+    assert os.environ.get("RESEARCH_MUON_DECAY") == "standard" and os.environ.get("RESEARCH_FIXED_WD"), "gap ray requires fixed standard WD"
+    optimizer = GapWD(optimizer, orig_model, recorder, decay=weight_decay_scaled,
+        scope=os.environ["RESEARCH_GAP_WD"], shape_policy=os.environ.get("RESEARCH_GAP_SHAPE", "uniform"),
+        initial_L=float(os.environ.get("RESEARCH_GAP_L", ".01")), safe_oracle=os.environ.get("RESEARCH_GAP_SAFE") == "1")
+    recorder.gap_wd = optimizer
 
 if resuming:
     optimizer.load_state_dict(optimizer_data)
@@ -402,6 +413,8 @@ def get_muon_momentum(it):
 
 # Weight decay scheduler for Muon optimizer (cosine decay to zero over the course of training)
 def get_weight_decay(it):
+    if os.environ.get("RESEARCH_FIXED_WD", ""):
+        return weight_decay_scaled
     return weight_decay_scaled * 0.5 * (1 + math.cos(math.pi * it / num_iterations))
 
 # -----------------------------------------------------------------------------
@@ -556,6 +569,14 @@ while True:
         if group['kind'] == 'muon':
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "constant":
                 group["lr"] = group["initial_lr"] * min(1.0, (step + 1) / max(1, args.warmup_steps))
+            if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "fw_reciprocal":
+                from research.unnormalized_muon.gap_wd import reciprocal_eta
+                assert os.environ.get("RESEARCH_FIXED_WD"), "reciprocal FW schedule requires fixed WD"
+                c = max(1.0, group['params'][0].shape[-2] / group['params'][0].shape[-1]) ** .5
+                if step < args.warmup_steps:
+                    group['lr'] = group['initial_lr'] * (step + 1) / max(1, args.warmup_steps)
+                else:
+                    group['lr'] = reciprocal_eta(group['initial_lr'] * c, weight_decay_scaled, step - args.warmup_steps) / c
             group["momentum"] = muon_momentum
             group["weight_decay"] = 0.0 if os.environ.get("RESEARCH_FW") == "1" else muon_weight_decay
     if scaler is not None:

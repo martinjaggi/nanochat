@@ -36,7 +36,7 @@ def spectral_safe(direction):
 
 
 @torch.no_grad()
-def polar_direction(g):
+def polar_direction(g,safe=True):
     x=g.bfloat16()
     if not CLEAN_MUON:
         target=x.float().norm()/math.sqrt(x.shape[-2])
@@ -49,7 +49,7 @@ def polar_direction(g):
         else:
             a0=x@x.mT;z=b*a0+c*(a0@a0);x=a*x+z@x
     x=x.float();x=x*(math.sqrt(min(x.shape))/x.norm().clamp_min(1e-6))
-    return spectral_safe(x)
+    return spectral_safe(x) if safe else x
 
 
 class FWMuon:

@@ -46,6 +46,18 @@ def generate():
   for key,q in f['statistics'].items():rows.append('| '+key+' | '+' | '.join(f'{q[k]:.6g}' for k in ['min','p25','median','p75','max'])+' |')
   rows+=['', 'FW timing components (seconds): '+', '.join(f'{k}={v:.3f}' for k,v in f['component_seconds'].items())+'.',
    f'Accepted steps with measured minibatch increase: {sum(x["accepted"] and x["actual_decrease"]<0 for x in fw)}; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.']
+ rows+=['','## Fixed ordinary WD: per-layer and joint gap LR','',
+  'This subtopic holds the actual unmasked decay coefficient lambda fixed. P_i=Q_i+lambda W_i includes shrinkage. Native Nesterov/five NS/Frobenius are retained; row equilibration and NorMuon remain off. Native finite NS is approximate: spectral ratios are measured without claiming the exact spectral-ball theorem. Optional certified directions are separately labelled.', '',
+  'Per-layer LR uses eta_i=min(1/lambda,[<G_i,P_i>]_+/(L||P_i||F^2)), proposed simultaneously and accepted using the complete-loss summed quadratic bound. One shared backtracked Frobenius L accounts for cross-layer changes; no52-way independent forward search. Joint-uniform shares one actual eta. Joint-native instead searches c_i P_i, clips outer eta at1/(lambda max c_i), and records actual eta_i=c_i eta; it is not a single common FW mixing coefficient.', '',
+  'The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after40 warmup updates, with native actual eta_i0=CLI_LR*.25*c_i. This corresponds to gamma_i=2/(t+2/(lambda eta_i0)). Auxiliary schedules and native momentum are held consistent, so convex FW guarantees do not apply directly to this stochastic hybrid optimizer.', '',
+  '| Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |', '|---|---|---:|---:|---:|---:|---:|']
+ for n,c,s,pts,vals in sorted(runs):
+  if 'fixed_wd' not in c:continue
+  mode=c.get('gap_scope',c.get('matrix_schedule','cooldown'))+' '+c.get('gap_shape','native')
+  rows.append(f'| {n} | {mode} | {c["fixed_wd"]:.7g} | {s["updates"]} | {s["validation"]["loss"]:.6f} | {s.get("extra_forward_evals",0)} | {s.get("process_seconds",0):.2f} |')
+  g=s.get('gap_diagnostics')
+  if g:
+   rows+=['',f'{n}: accepted {g["accepted_steps"]}/{g["steps"]}; skipped nonpositive blocks {g["skipped_blocks"]}; median actual eta {g["actual_eta_quantiles"]["median"]:.6g}; median gamma {g["gamma_quantiles"]["median"]:.6g}; median L {g["L_quantiles"]["median"]:.6g}; median trials {g["trial_quantiles"]["median"]:.3g}; max measured spectral ratio lambda*||W||op={max(s["gap_feasibility"].values()):.6g}. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.', '', 'Timing seconds: '+', '.join(f'{k}={v:.3f}' for k,v in g['components'].items())+'.','']
  (DEST/'DETAILED_EVAL.md').write_text('\n'.join(rows)+'\n')
  import matplotlib
  matplotlib.use('Agg')
@@ -71,5 +83,17 @@ def generate():
   for ax in axs.flat:ax.set_yscale('symlog',linthresh=1e-6)
   axs[0,0].legend(fontsize=6)
   fig.tight_layout();fig.savefig(DEST/'fw_diagnostics.png',dpi=140);plt.close(fig)
- return ['research/unnormalized_muon/'+name for name in ['DETAILED_EVAL.md','long_comparison.png','fw_diagnostics.png'] if (DEST/name).exists()]
+ gap_runs=[x for x in runs if 'fixed_wd' in x[1]]
+ if gap_runs:
+  fig,axs=plt.subplots(1,2,figsize=(11,4))
+  for n,c,s,pts,vals in gap_runs:
+   if s['updates']<512:continue
+   label=n.removeprefix('um-');vs=[x for x in vals if x['step']>0]
+   axs[0].plot([x['step']*32768/1e6 for x in vs],[x['loss'] for x in vs],'.-',label=label)
+   axs[1].plot([x['training_seconds'] for x in vs],[x['loss'] for x in vs],'.-',label=label)
+  axs[0].set_xlabel('Fresh tokens (millions)');axs[1].set_xlabel('Measured training seconds')
+  for ax in axs:ax.set_ylabel('Validation CE');ax.grid(alpha=.2)
+  if axs[0].lines:axs[0].legend(fontsize=6)
+  fig.tight_layout();fig.savefig(DEST/'gap_wd_comparison.png',dpi=140);plt.close(fig)
+ return ['research/unnormalized_muon/'+name for name in ['DETAILED_EVAL.md','long_comparison.png','fw_diagnostics.png','gap_wd_comparison.png'] if (DEST/name).exists()]
 if __name__=='__main__':generate()

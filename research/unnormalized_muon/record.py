@@ -22,7 +22,7 @@ class Recorder:
         self.emit('manifest',base_commit='b2bdf9890e028965ee7f2e97acc02d72b3c663ec',
             git_commit=os.environ['RESEARCH_COMMIT'],seed=int(os.environ['RESEARCH_SEED']),
             variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',clean=os.environ.get('NANOCHAT_CLEAN_MUON')=='1',config=config,
-            decay_mode=os.environ.get('RESEARCH_MUON_DECAY','native'),
+            decay_mode=os.environ.get('RESEARCH_MUON_DECAY','native'),fixed_wd=os.environ.get('RESEARCH_FIXED_WD',''),gap_scope=os.environ.get('RESEARCH_GAP_WD',''),gap_shape=os.environ.get('RESEARCH_GAP_SHAPE','uniform'),
             decay_exposure_definition='sum eta*shape*lambda; nominal upper exposure for cautious masked decay',
             initial_parameter_hash=initial.hexdigest(),model_parameters=sum(p.numel() for p in model.parameters()),
             GPU_model=torch.cuda.get_device_name(0),GPU_count=torch.cuda.device_count(),
@@ -59,7 +59,11 @@ class Recorder:
         if step>10:self.steady_seconds+=dt
         for i,g in enumerate(opt.param_groups):
             p=g['params'][0];shape=max(1.,p.shape[-2]/p.shape[-1])**.5 if g['kind']=='muon' else 1.
+            if g['kind']=='muon' and hasattr(opt,'decay_exposure_by_parameter'):
+                continue
             self.exposure[str(i)]+=g['lr']*shape*g['weight_decay']
+        if hasattr(opt,'decay_exposure_by_parameter'):
+            self.exposure.update({'actual_muon:'+k:v for k,v in opt.decay_exposure_by_parameter.items()})
         fields={}
         if step%25==0:
             assert all(bool(torch.isfinite(p).all()) for p in self.model.parameters()),'nonfinite parameters'
@@ -95,6 +99,12 @@ class Recorder:
             validation_seconds=self.validation_seconds,checkpoint_seconds=self.checkpoint_seconds,compile_seconds=compile_seconds,
             end_to_end_seconds=time.perf_counter()-self.started,peak_gpu_memory=torch.cuda.max_memory_allocated(),
             validation=self.final,heldout=getattr(self,'heldout',None),decay_exposure=self.exposure)
+        if hasattr(self,'gap_wd'):
+            summary['gap_diagnostics']=self.gap_wd.diagnostics()
+            summary['gap_feasibility']=self.gap_wd.feasibility()
+            summary['extra_forward_evals']=self.gap_wd.extra_forward_evals
+            summary['extra_microbatch_forward_evals']=self.gap_wd.extra_microbatch_forward_evals
+            summary['gap_seconds']=self.gap_wd.line_seconds
         if hasattr(self,'fw'):
             summary['fw_feasibility']=self.fw.feasibility()
             summary['extra_forward_evals']=self.fw.extra_forward_evals

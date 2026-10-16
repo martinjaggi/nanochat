@@ -13,7 +13,10 @@ def publish():
    if not p.exists():continue
    cfg=json.loads(p.read_text())
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
+  if cfg.get('gap_scope'):arm=f'GapWD {cfg["gap_scope"]} {cfg.get("gap_shape","uniform")}'
+  elif cfg.get('matrix_schedule')=='fw_reciprocal':arm='Muon shifted reciprocal'
   if cfg.get('clean'):arm='Clean '+arm
+  if cfg.get('fixed_wd'):arm+=f' fixed_lambda={cfg["fixed_wd"]:.6g}'
   if cfg.get('decay_mode','none')!='none':arm+=f' WD:{cfg["decay_mode"]}({cfg.get("weight_decay",0):g})'
   if cfg.get('fw'):arm+=f' {cfg.get("fw_oracle","momentum")} Rfactor{cfg.get("fw_radius_factor",2):g} {cfg.get("fw_acceptance","smoothness")} {"compiled" if cfg.get("fw_compile_candidates") else "eager"}'
   label=str(path.parent.relative_to(ROOT));runs.append((label,arm,cfg,s,path))
