@@ -117,3 +117,5 @@ Verification after follow-up integration: full CPU analytic/regression suite40/4
 Creative controlled screening: layer LR proposal EMA beta{.5,.9}; relative update norm cap{.01,.03}; joint cached-curvature checks every{2,4}. Six candidates restart at identical seed0; unchecked steps have NO loss probes or acceptance claim.
 
 Promote at most10 fresh655M-token settings: control/reciprocal best2, best stable/cooled joint and layer, plus best2 from ONE competitive creative family. All full-horizon schedules restarted; no test-set tuning. Keep costs within50GPUh total.
+
+Freeze best v2 settings using seed0 tuning. Three NEW paired seeds10/11/12 for tuned control and strongest gap comparison(s); reciprocal only if competitive. Reserved heldout used only now. All attempts and actual cost retained.
