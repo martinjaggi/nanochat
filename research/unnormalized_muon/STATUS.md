@@ -107,3 +107,5 @@ Refine best LR/cap for ALL six families; factor-two boundary checks or geometric
 FW-lens v2 controller stopped at a failed prerequisite or50GPUh budget guard; no further stages submitted. Remaining jobs preserved/reaped. Inspect private lens-campaign.log before resuming; incomplete comparisons are not final rankings.
 
 Current campaign resume: curvature-startup job name had uppercase L, rejected before allocation (0GPU seconds). Lowercase scheduler name independently of immutable config name; preserve rejected archive/ledger entry. Resume existing refinement configs without recomputing them from partial results. All prior running jobs completed/reaped.
+
+FW-lens v2 hardware prerequisites passed. Screen18 configurations at65.5M tokens: tuned ordinary-WD control and shifted reciprocal; joint quadratic and layer Armijo share caps{.005,.02,.08}, stable versus cooldown. All trials recorded; no heldout selection.
