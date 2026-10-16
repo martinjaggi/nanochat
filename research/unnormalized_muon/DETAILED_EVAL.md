@@ -197,3 +197,6 @@ um-gapwd-joint-uniform-001: accepted 64/64; skipped nonpositive blocks 37; media
 
 Timing seconds: direction=6.588, reference=2.197, candidates=1.032, auxiliary=0.523.
 
+| um-gapwd-pilot-cosine-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.577361 | 0 | 142.48 |
+| um-gapwd-pilot-cosine-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.575844 | 0 | 135.71 |
+| um-gapwd-pilot-cosine-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.610093 | 0 | 136.39 |
