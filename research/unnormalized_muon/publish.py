@@ -46,6 +46,8 @@ def publish():
   fig.tight_layout();fig.savefig(DEST/'validation_vs_tokens.png',dpi=140);plt.close(fig)
  paths=['research/unnormalized_muon/EXPERIMENTS.csv','research/unnormalized_muon/STATUS.md','research/unnormalized_muon/RESULTS.md']
  if (DEST/'validation_vs_tokens.png').exists():paths.append('research/unnormalized_muon/validation_vs_tokens.png')
+ from research.unnormalized_muon.analyze import generate
+ paths+=generate()
  subprocess.run(['git','add',*paths],cwd=REPO,check=True)
  if subprocess.run(['git','diff','--cached','--quiet'],cwd=REPO).returncode:
   subprocess.run(['git','commit','-m','Update live Muon experiment results'],cwd=REPO,check=True)

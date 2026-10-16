@@ -1,0 +1,13 @@
+{
+  "clean": true,
+  "variant": true,
+  "decay_mode": "standard",
+  "wd_strength": 0.25,
+  "weight_decay": 0.00875,
+  "matrix_lr": 0.32,
+  "matrix_schedule": "cooldown",
+  "updates": 2000,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 900
+}

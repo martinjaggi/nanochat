@@ -3,6 +3,14 @@ import pytest,torch
 import nanochat.optim as modified
 pytestmark=pytest.mark.skipif(not torch.cuda.is_available(),reason='scheduled B300 only')
 
+@pytest.fixture(autouse=True)
+def isolate_compiler_variants():
+    # Each test deliberately changes static algorithm flags. Production jobs
+    # keep them fixed, so isolate test cases instead of raising training limits.
+    torch._dynamo.reset()
+    yield
+    torch._dynamo.reset()
+
 @pytest.mark.parametrize('shape',[(2,64,128),(2,128,64)])
 def test_compiled_update_and_default_regression(monkeypatch,shape):
     assert torch.cuda.device_count()==1 and 'B300' in torch.cuda.get_device_name(0)
