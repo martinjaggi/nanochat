@@ -1,0 +1,16 @@
+{
+  "clean": true,
+  "variant": false,
+  "fw": true,
+  "fw_oracle": "gradient",
+  "fw_radius_factor": 2.0,
+  "fw_L": 0.01,
+  "fw_derivative_probes": true,
+  "matrix_lr": 0.02,
+  "updates": 48,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1200,
+  "decay_mode": "none",
+  "microbatch_size": 16
+}

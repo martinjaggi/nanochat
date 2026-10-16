@@ -1,5 +1,5 @@
 """Explicit fixed-spectral-ball FW; separate from the production Muon change."""
-import math,time,torch
+import math,time,torch,os
 from torch.func import functional_call
 from nanochat.optim import polar_express_coeffs, CLEAN_MUON
 
@@ -55,6 +55,8 @@ class FWMuon:
     def __init__(self,inner,model,recorder,initial_L=.01,radius_factor=2.,oracle="momentum"):
         assert oracle in {"momentum","gradient"} and radius_factor>=1
         self.oracle=oracle;self.radius_factor=radius_factor;self.history=[]
+        self.derivative_probes=os.environ.get("RESEARCH_FW_DERIVATIVE_PROBES")=="1"
+        self.diagnostic_gradient_evals=0;self.diagnostic_seconds=0.
         self.component_seconds=dict(direction=0.,reference=0.,candidates=0.,auxiliary=0.)
         self.inner=inner;self.model=model;self.recorder=recorder
         self.param_groups=inner.param_groups;self.L=initial_L;self.batch=[];self.losses=[];self.loss_counts=[];self.step_index=0
@@ -117,6 +119,25 @@ class FWMuon:
         reference=evaluate(0.) if b>0 and v>0 else float(self.loss_before)
         torch.cuda.synchronize();reference_seconds=time.perf_counter()-reference_start
         fresh_reference_delta=reference-float(self.loss_before)
+        if self.derivative_probes and self.step_index in [0,16,32]:
+            torch.cuda.synchronize();probe_start=time.perf_counter()
+            # Explicit extra gradient query, never writes live .grad buffers.
+            with torch.enable_grad():
+                probe_loss=weighted_mean([self.model(x,y) for x,y in self.batch],[y.numel() for _,y in self.batch])
+                gs=torch.autograd.grad(probe_loss,[p for _,p in self.matrices],allow_unused=True)
+            self.diagnostic_gradient_evals+=1
+            eager_gap=float(-sum((g.double()*directions[n].double()).sum() for (n,p),g in zip(self.matrices,gs) if g is not None))
+            error=sum((g.double()-p.grad.double()).square().sum() for (n,p),g in zip(self.matrices,gs) if g is not None)
+            norm=sum(p.grad.double().square().sum() for _,p in self.matrices)
+            samples=[]
+            for probe_gamma in [1e-6,1e-5,1e-4,1e-3,1e-2]:
+                plus=evaluate(probe_gamma);minus=evaluate(-probe_gamma)
+                samples.append(dict(gamma=probe_gamma,plus_loss=plus,minus_loss=minus,central_gap=(minus-plus)/(2*probe_gamma)))
+            torch.cuda.set_rng_state(before_rng);torch.set_rng_state(after_cpu)
+            torch.cuda.synchronize();self.diagnostic_seconds+=time.perf_counter()-probe_start
+            self.recorder.emit('fw_derivative_probe',step=self.step_index,fresh_gap=b,eager_gap=eager_gap,
+                relative_gradient_error=float((error/norm.clamp_min(1e-30)).sqrt()),samples=samples,
+                diagnostic_gradient_evals=self.diagnostic_gradient_evals,diagnostic_seconds=self.diagnostic_seconds)
         candidate_start=time.perf_counter()
         gamma,self.L,trials,accepted=backtrack(evaluate,f0=reference,b=b,v=v,L=max(self.L*.5,1e-16))
         torch.cuda.synchronize();candidate_seconds=time.perf_counter()-candidate_start
@@ -153,7 +174,7 @@ class FWMuon:
             return dict(zip(['min','p25','median','p75','max'],x.quantile(torch.tensor([0.,.25,.5,.75,1.],dtype=torch.float64)).tolist()))
         return dict(oracle=self.oracle,radius_factor=self.radius_factor,steps=len(self.history),
             accepted_steps=sum(h['accepted'] for h in self.history),negative_alignment_steps=self.negative_steps,
-            component_seconds=self.component_seconds,statistics={k:quantiles(k) for k in ['gamma','L','b','v','trials','actual_decrease','predicted_decrease']})
+            component_seconds=self.component_seconds,diagnostic_gradient_evals=self.diagnostic_gradient_evals,diagnostic_seconds=self.diagnostic_seconds,statistics={k:quantiles(k) for k in ['gamma','L','b','v','trials','actual_decrease','predicted_decrease']})
     def state_dict(self):
         return dict(inner=self.inner.state_dict(),fw=dict(m=self.m,radii=self.radii,L=self.L,
             steps=self.step_index,extra_forward_evals=self.extra_forward_evals,line_seconds=self.line_seconds))

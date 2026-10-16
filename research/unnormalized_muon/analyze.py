@@ -41,7 +41,7 @@ def generate():
   if not f:continue
   audit=[x for x in pts if x['event']=='fw_search_audit']
   fw=[x for x in pts if x['event']=='fw_update']
-  rows+=['',f'### {n}','',f'Oracle: {f["oracle"]}; radius factor: {f["radius_factor"]:g}. Search state/RNG audit: {bool(audit)}. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: {s["extra_microbatch_forward_evals"]}.', '',
+  rows+=['',f'### {n}','',f'Oracle: {f["oracle"]}; radius factor: {f["radius_factor"]:g}. Search state/RNG audit: {bool(audit)}. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: {s["extra_microbatch_forward_evals"]}. Extra diagnostic gradient queries: {f.get("diagnostic_gradient_evals",0)}, diagnostic seconds: {f.get("diagnostic_seconds",0):.3f}.', '',
     '| Quantity | Min | P25 | Median | P75 | Max |','|---|---:|---:|---:|---:|---:|']
   for key,q in f['statistics'].items():rows.append('| '+key+' | '+' | '.join(f'{q[k]:.6g}' for k in ['min','p25','median','p75','max'])+' |')
   rows+=['', 'FW timing components (seconds): '+', '.join(f'{k}={v:.3f}' for k,v in f['component_seconds'].items())+'.',
