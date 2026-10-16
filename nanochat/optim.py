@@ -101,6 +101,8 @@ Some of the changes in nanochat implementation:
 # Opt-in experiment; the default path keeps the upstream optimizer unchanged.
 UNNORMALIZED_MUON = os.environ.get("NANOCHAT_UNNORMALIZED_MUON", "0") == "1"
 CLEAN_MUON = os.environ.get("NANOCHAT_CLEAN_MUON", "0") == "1"
+MUON_GEOMETRY = os.environ.get("RESEARCH_MUON_GEOMETRY", "legacy")
+assert MUON_GEOMETRY in {"legacy", "q_scaled"}
 MUON_DECAY_MODE = os.environ.get("RESEARCH_MUON_DECAY", "none" if CLEAN_MUON else "cautious")
 assert MUON_DECAY_MODE in {"none", "standard", "cautious"}
 RECORD_DUAL_SCALE = os.environ.get("RESEARCH_DUAL_DIAGNOSTICS", "0") == "1"
@@ -425,7 +427,7 @@ class MuonAdamW(torch.optim.Optimizer):
             self._muon_momentum_t.fill_(group["momentum"])
             self._muon_beta2_t.fill_(group["beta2"])
             self._muon_lr_t.fill_(group["lr"] * max(1.0, shape[-2] / shape[-1])**0.5)
-            self._muon_wd_t.fill_(group["weight_decay"])
+            self._muon_wd_t.fill_(group["weight_decay"] / (max(1.0, shape[-2] / shape[-1])**0.5 if MUON_GEOMETRY == "q_scaled" else 1.0))
             dual_scale = muon_step_fused(
                 grad_chunk[:num_owned], stacked_owned,
                 state["momentum_buffer"][:num_owned], state["second_momentum_buffer"][:num_owned],

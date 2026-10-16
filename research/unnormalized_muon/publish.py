@@ -16,6 +16,9 @@ def publish():
   if cfg.get('gap_scope'):arm=f'GapWD {cfg["gap_scope"]} {cfg.get("gap_shape","uniform")}'
   elif cfg.get('matrix_schedule')=='fw_reciprocal':arm='Muon shifted reciprocal'
   if cfg.get('clean'):arm='Clean '+arm
+  if cfg.get('protocol_version')==2:arm+=' v2 c-in-Q'
+  if cfg.get('gap_scope'):arm+=f' {cfg.get("gap_acceptance","quadratic")} cap{cfg.get("gap_eta_cap",0):g}/{cfg.get("gap_cap_schedule","none")}'
+  if cfg.get('time_budget'):arm+=f' time{cfg["time_budget"]:.1f}s'
   if cfg.get('fixed_wd'):arm+=f' fixed_lambda={cfg["fixed_wd"]:.6g}'
   if cfg.get('decay_mode','none')!='none':arm+=f' WD:{cfg["decay_mode"]}({cfg.get("weight_decay",0):g})'
   if cfg.get('fw'):arm+=f' {cfg.get("fw_oracle","momentum")} Rfactor{cfg.get("fw_radius_factor",2):g} {cfg.get("fw_acceptance","smoothness")} {"compiled" if cfg.get("fw_compile_candidates") else "eager"}'
@@ -45,7 +48,7 @@ def publish():
   for r in eligible:
    name,arm,c,s,p=r
    if s['updates']!=longest:continue
-   key=(bool(c.get('fw')),bool(c.get('clean')),c['variant'],c.get('matrix_schedule','cooldown'),c.get('decay_mode','none'),bool(c.get('fixed_wd')),c.get('gap_scope'),c.get('gap_shape'))
+   key=(bool(c.get('fw')),bool(c.get('clean')),c['variant'],c.get('matrix_schedule','cooldown'),c.get('decay_mode','none'),bool(c.get('fixed_wd')),c.get('gap_scope'),c.get('gap_shape'),c.get('protocol_version'),c.get('gap_acceptance'),c.get('gap_cap_schedule'),c.get('gap_proposal_beta'),c.get('gap_relative_cap'),c.get('gap_probe_every'))
    if key not in chosen or s['validation']['loss']<chosen[key][3]['validation']['loss']:chosen[key]=r
   ax.set_title(f'Seed0 tuning: best LR per method at {longest:,} updates')
   for name,arm,c,s,p in chosen.values():

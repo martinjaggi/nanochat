@@ -62,3 +62,16 @@ def test_compiled_clean_decay_rules(monkeypatch,scaled,mode):
  p=call('none');actual=call(mode);direction=(p0-p)/.01
  mask=(direction*p0>=0) if mode=='cautious' else 1
  torch.testing.assert_close(actual,p-.003*p0*mask,rtol=.01,atol=2e-6)
+
+@pytest.mark.parametrize('shape',[(64,128),(128,64)])
+def test_compiled_actual_q_scaled_geometry(monkeypatch,shape):
+ monkeypatch.setattr(modified,'CLEAN_MUON',True);monkeypatch.setattr(modified,'MUON_DECAY_MODE','standard')
+ monkeypatch.setattr(modified,'UNNORMALIZED_MUON',False);monkeypatch.setattr(modified,'RECORD_DUAL_SCALE',False)
+ torch.manual_seed(6);initial=torch.randn(shape,device='cuda')*.1;grad=torch.randn_like(initial)*.01
+ def run(geometry):
+  monkeypatch.setattr(modified,'MUON_GEOMETRY',geometry)
+  p=torch.nn.Parameter(initial.clone());p.grad=grad.clone()
+  opt=modified.MuonAdamW([dict(params=[p],kind='muon',lr=.01,momentum=.85,ns_steps=5,beta2=.9,weight_decay=.2)])
+  opt.step();return p.detach()
+ legacy=run('legacy');inside=run('q_scaled');c=max(1.,shape[0]/shape[1])**.5
+ torch.testing.assert_close(inside,legacy+.01*.2*(c-1)*initial,rtol=2e-5,atol=3e-7)

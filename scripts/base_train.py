@@ -386,8 +386,17 @@ print0(f"Total number of training tokens: {total_tokens:,}")
 print0(f"Tokens : Scaling params ratio: {total_batch_size * num_iterations / num_scaling_params:.2f}") # e.g. Chinchilla was ~20
 print0(f"Total training FLOPs estimate: {num_flops_per_token * total_tokens:e}")
 
+research_time_budget = float(os.environ.get("RESEARCH_TIME_BUDGET", "0"))
+research_reference_updates = int(os.environ.get("RESEARCH_REFERENCE_UPDATES", str(num_iterations))) if research_time_budget else num_iterations
+next_time_eval = research_time_budget / 4 if research_time_budget else 0.
+
 # Learning rate schedule (linear warmup, constant, linear warmdown)
 def get_lr_multiplier(it):
+    if research_time_budget:
+        from research.unnormalized_muon.protocol_math import budget_multiplier
+        return budget_multiplier(recorder.active_seconds/research_time_budget,
+            warmup_fraction=args.warmup_steps/research_reference_updates,
+            warmdown_fraction=args.warmdown_ratio, final=args.final_lr_frac, reference_updates=research_reference_updates)
     warmup_iters = args.warmup_steps
     warmdown_iters = round(args.warmdown_ratio * num_iterations)
     if it < warmup_iters:
@@ -400,8 +409,10 @@ def get_lr_multiplier(it):
 
 # Momentum scheduler for Muon optimizer (warms up to 0.97, warms down to 0.90 during LR warmdown)
 def get_muon_momentum(it):
-    warmdown_iters = round(args.warmdown_ratio * num_iterations)
-    warmdown_start = num_iterations - warmdown_iters
+    horizon = research_reference_updates if research_time_budget else num_iterations
+    if research_time_budget:it=min(1.,recorder.active_seconds/research_time_budget)*horizon
+    warmdown_iters = round(args.warmdown_ratio * horizon)
+    warmdown_start = horizon - warmdown_iters
     if it < 400:
         frac = it / 400
         return (1 - frac) * 0.85 + frac * 0.97
@@ -446,11 +457,13 @@ print0(f"Total batch size {total_batch_size:,} => gradient accumulation steps: {
 
 # Go!
 while True:
-    last_step = step == num_iterations # loop runs num_iterations+1 times so that we can eval/save at the end
+    last_step = step == num_iterations or bool(research_time_budget and recorder.active_seconds >= research_time_budget) # loop runs num_iterations+1 times so that we can eval/save at the end
     flops_so_far = num_flops_per_token * total_batch_size * step
 
     # once in a while: evaluate the val bpb (all ranks participate)
-    if args.eval_every > 0 and (last_step or step % args.eval_every == 0):
+    if args.eval_every > 0 and (last_step or (step==0 or recorder.active_seconds>=next_time_eval if research_time_budget else step % args.eval_every == 0)):
+        if research_time_budget:
+            while next_time_eval<=recorder.active_seconds:next_time_eval+=research_time_budget/4
         model.eval()
         val_loader = build_val_loader()
         eval_steps = args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size)
@@ -572,7 +585,7 @@ while True:
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "fw_reciprocal":
                 from research.unnormalized_muon.gap_wd import reciprocal_eta
                 assert os.environ.get("RESEARCH_FIXED_WD"), "reciprocal FW schedule requires fixed WD"
-                c = max(1.0, group['params'][0].shape[-2] / group['params'][0].shape[-1]) ** .5
+                c = (1.0 if os.environ.get('RESEARCH_MUON_GEOMETRY') == 'q_scaled' else max(1.0, group['params'][0].shape[-2] / group['params'][0].shape[-1]) ** .5)
                 if step < args.warmup_steps:
                     group['lr'] = group['initial_lr'] * (step + 1) / max(1, args.warmup_steps)
                 else:
@@ -599,7 +612,7 @@ while True:
     t1 = time.time()
     dt = t1 - t0
     if recorder:
-        recorder.update(step, train_loss_f, dt, optimizer, dataloader_state_dict)
+        recorder.update(step, train_loss_f, dt, optimizer, dataloader_state_dict, wall_start=t0)
     # -------------------------------------------------------------------------
 
     # logging (CPU action only)
@@ -650,6 +663,8 @@ while True:
         gc.disable() # nuclear intervention here: disable GC entirely except:
     elif step % 5000 == 0: # every 5000 steps...
         gc.collect() # manually collect, just to be safe for very, very long runs
+    if recorder:
+        recorder.finish_iteration(t1)
 
 # print a few more stats
 print0(f"Peak memory usage: {get_max_memory() / 1024 / 1024:.2f}MiB")
