@@ -34,6 +34,7 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-main-layer-stable-cap0p08 | layer-stable | 2000 updates | 0 | 4.177053 | — | 159.261 | 4064 | 31.763 | 223.52 |
 | um-lens-main-reciprocal-lr0p02 | reciprocal | 2000 updates | 0 | 3.609994 | — | 67.004 | 0 | 26.860 | 123.51 |
 | um-lens-main-reciprocal-lr0p04 | reciprocal | 2000 updates | 0 | 3.610242 | — | 65.990 | 0 | 23.884 | 116.29 |
+| um-lens-main-reciprocal-lr0p08 | reciprocal | 2000 updates | 0 | 3.617905 | — | 65.564 | 0 | 40.199 | 149.97 |
 
 ## Adaptive diagnostics and contraction
 

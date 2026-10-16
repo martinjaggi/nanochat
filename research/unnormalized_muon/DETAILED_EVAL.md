@@ -337,3 +337,4 @@ Timing seconds: direction=55.587, reference=14.607, candidates=14.695, auxiliary
 
 | um-lens-main-reciprocal-lr0p02 | fw_reciprocal native | 0.1837499 | 2000 | 3.609994 | 0 | 123.51 |
 | um-lens-main-reciprocal-lr0p04 | fw_reciprocal native | 0.1837499 | 2000 | 3.610242 | 0 | 116.29 |
+| um-lens-main-reciprocal-lr0p08 | fw_reciprocal native | 0.1837499 | 2000 | 3.617905 | 0 | 149.97 |
