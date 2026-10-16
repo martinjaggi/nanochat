@@ -50,10 +50,16 @@ def reap():
    p=out/'run.log';reason=p.read_text()[-3000:] if p.exists() else status
    record(run_id=name,stage=v['stage'],status='failed',git_commit=v['commit'],job_id=name,GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(out),failure=reason)
   if name in jobs():cli('delete','job',name)
-  for _ in range(20):
-   if name not in jobs():break
+  # CLI list can cache a deleted job for a minute. Check authoritative
+  # objects and pods as well; a stale list must not invalidate completed work.
+  removed=False
+  for _ in range(120):
+   if name not in jobs():removed=True;break
+   live=k.request('GET','/apis/run.ai/v1/namespaces/'+k.namespace+'/runaijobs')['items']
+   pods=k.request('GET','/api/v1/namespaces/'+k.namespace+'/pods')['items']
+   if not any(o['metadata']['name']==name for o in live) and not any(o['metadata']['name'].startswith(name+'-') for o in pods):removed=True;break
    time.sleep(1)
-  assert name not in jobs(),'cleanup still pending'
+  assert removed,'cleanup still pending'
   changed=True
   v['recorded']=True;v['status']='completed' if done else 'failed'
  k.close();save(s)
