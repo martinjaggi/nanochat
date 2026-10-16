@@ -168,3 +168,11 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 
 | Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |
 |---|---|---:|---:|---:|---:|---:|
+| um-gapwd-first-cosine-001 | cooldown native | 0.1837499 | 64 | 6.415227 | 0 | 76.24 |
+| um-gapwd-first-layer-001 | layer uniform | 0.1837499 | 64 | 6.463019 | 193 | 91.78 |
+
+um-gapwd-first-layer-001: accepted 64/64; skipped nonpositive blocks 49; median actual eta 0.00378804; median gamma 0.000696053; median L 0.02; median trials 2; max measured spectral ratio lambda*||W||op=0.414108. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=6.513, reference=7.844, candidates=1.032, auxiliary=0.411.
+
+| um-gapwd-first-reciprocal-001 | fw_reciprocal native | 0.1837499 | 64 | 6.374067 | 0 | 77.77 |
