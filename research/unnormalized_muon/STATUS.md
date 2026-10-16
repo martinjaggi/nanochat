@@ -103,3 +103,5 @@ User raised the hard PROJECT TOTAL budget to50 B300 GPU-hours, including all ear
 FW-lens v2 hardware prerequisites passed. Screen18 configurations at65.5M tokens: tuned ordinary-WD control and shifted reciprocal; joint quadratic and layer Armijo share caps{.005,.02,.08}, stable versus cooldown. All trials recorded; no heldout selection.
 
 Refine best LR/cap for ALL six families; factor-two boundary checks or geometric midpoints, plus matched initial-curvature sensitivity for all four adaptive families. Same2000-update budget.
+
+FW-lens v2 controller stopped at a failed prerequisite or50GPUh budget guard; no further stages submitted. Remaining jobs preserved/reaped. Inspect private lens-campaign.log before resuming; incomplete comparisons are not final rankings.
