@@ -18,6 +18,10 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.04 | 20000 | 3.207725 | 1751.45 | 1837.54 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.200458 | 1844.61 | 1931.00 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.319987 | 1781.19 | 1867.68 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.197616 | 1730.24 | 1828.08 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.321643 | 1734.89 | 1813.94 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.155148 | 710.04 | 770.45 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.155272 | 706.85 | 762.24 |
 
 ## Weight decay search
 
@@ -344,6 +348,20 @@ um-lens-long-joint-stable: accepted 19996/20000; skipped nonpositive blocks 725;
 
 Timing seconds: direction=539.257, reference=145.317, candidates=284.106, auxiliary=18.299.
 
+| um-lens-long-layer-cooldown | layer native | 0.1837499 | 20000 | 3.197616 | 40000 | 1828.08 |
+
+um-lens-long-layer-cooldown: accepted 20000/20000; skipped nonpositive blocks 416; median actual eta 0.00778065; median gamma 0.00142969; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.301371. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=610.972, reference=149.920, candidates=145.930, auxiliary=18.931.
+
+| um-lens-long-layer-stable | layer native | 0.1837499 | 20000 | 3.321643 | 40000 | 1813.94 |
+
+um-lens-long-layer-stable: accepted 20000/20000; skipped nonpositive blocks 720; median actual eta 0.0025; median gamma 0.000459375; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.286561. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=629.681, reference=150.001, candidates=147.010, auxiliary=18.681.
+
+| um-lens-long-reciprocal-0 | fw_reciprocal native | 0.1837499 | 20000 | 3.155148 | 0 | 770.45 |
+| um-lens-long-reciprocal-1 | fw_reciprocal native | 0.1837499 | 20000 | 3.155272 | 0 | 762.24 |
 | um-lens-main-control-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.568986 | 0 | 141.52 |
 | um-lens-main-control-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.554822 | 0 | 133.67 |
 | um-lens-main-control-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.586261 | 0 | 139.40 |

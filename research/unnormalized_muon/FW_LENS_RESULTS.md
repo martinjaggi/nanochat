@@ -29,6 +29,10 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-long-creative-1 | layer-relative | 20000 updates | 0 | 3.207725 | — | 1754.781 | 40000 | 37.338 | 1837.54 |
 | um-lens-long-joint-cooldown | joint-cooldown | 20000 updates | 0 | 3.200458 | — | 1848.045 | 60004 | 37.306 | 1931.00 |
 | um-lens-long-joint-stable | joint-stable | 20000 updates | 0 | 3.319987 | — | 1784.904 | 59997 | 37.519 | 1867.68 |
+| um-lens-long-layer-cooldown | layer-cooldown | 20000 updates | 0 | 3.197616 | — | 1734.180 | 40000 | 40.173 | 1828.08 |
+| um-lens-long-layer-stable | layer-stable | 20000 updates | 0 | 3.321643 | — | 1739.162 | 40000 | 33.896 | 1813.94 |
+| um-lens-long-reciprocal-0 | reciprocal | 20000 updates | 0 | 3.155148 | — | 713.568 | 0 | 25.885 | 770.45 |
+| um-lens-long-reciprocal-1 | reciprocal | 20000 updates | 0 | 3.155272 | — | 710.093 | 0 | 24.827 | 762.24 |
 | um-lens-main-control-lr0p02 | control | 2000 updates | 0 | 3.568986 | — | 71.320 | 0 | 31.621 | 141.52 |
 | um-lens-main-control-lr0p04 | control | 2000 updates | 0 | 3.554822 | — | 65.063 | 0 | 30.883 | 133.67 |
 | um-lens-main-control-lr0p08 | control | 2000 updates | 0 | 3.586261 | — | 71.566 | 0 | 31.026 | 139.40 |
@@ -89,6 +93,8 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-long-creative-1 | 20000/20000 | 0 | 0.0067442 | 0.0012393 | 1e-16 | 1 | -24.86 to -19.56 | 0.305307 |
 | um-lens-long-joint-cooldown | 20000/20000 | 0 | 0.0077839 | 0.0014303 | 0.02 | 2 | -25.39 to -25.39 | 0.287582 |
 | um-lens-long-joint-stable | 19996/20000 | 0 | 0.0025 | 0.00045937 | 0.04 | 2 | -9.179 to -9.179 | 0.285411 |
+| um-lens-long-layer-cooldown | 20000/20000 | 0 | 0.0077807 | 0.0014297 | 1e-16 | 1 | -25.39 to -25.02 | 0.301371 |
+| um-lens-long-layer-stable | 20000/20000 | 0 | 0.0025 | 0.00045937 | 1e-16 | 1 | -9.181 to -9.04 | 0.286561 |
 | um-lens-main-joint-cooldown-cap0p005 | 2000/2000 | 0 | 0.0037961 | 0.00069753 | 0.02 | 2 | -1.251 to -1.251 | 0.331184 |
 | um-lens-main-joint-cooldown-cap0p02 | 2000/2000 | 0 | 0.014877 | 0.0027337 | 0.01 | 2 | -4.967 to -4.967 | 0.424789 |
 | um-lens-main-joint-cooldown-cap0p08 | 2000/2000 | 0 | 0.038481 | 0.0070708 | 0.005 | 2 | -14.06 to -14.06 | 0.444955 |
