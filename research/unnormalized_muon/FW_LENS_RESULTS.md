@@ -20,6 +20,9 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-confirm-control-s10 | control | 20000 updates | 10 | 3.167631 | 3.114569 | 661.345 | 0 | 33.696 | 741.10 |
 | um-lens-confirm-control-s11 | control | 20000 updates | 11 | 3.164999 | 3.110158 | 686.883 | 0 | 25.427 | 745.36 |
 | um-lens-confirm-control-s12 | control | 20000 updates | 12 | 3.169816 | 3.114145 | 678.993 | 0 | 23.899 | 733.38 |
+| um-lens-confirm-joint-s10 | joint-cooldown | 20000 updates | 10 | 3.198918 | 3.144965 | 1847.886 | 60004 | 38.446 | 1934.59 |
+| um-lens-confirm-joint-s11 | joint-cooldown | 20000 updates | 11 | 3.201077 | 3.144870 | 1895.864 | 60004 | 38.133 | 1981.90 |
+| um-lens-confirm-joint-s12 | joint-cooldown | 20000 updates | 12 | 3.206757 | 3.150027 | 1940.676 | 60004 | 38.451 | 2028.32 |
 | um-lens-creative-ema0p5 | layer-ema | 2000 updates | 0 | 3.555660 | — | 177.247 | 4000 | 33.839 | 247.79 |
 | um-lens-creative-ema0p9 | layer-ema | 2000 updates | 0 | 3.558717 | — | 165.360 | 4000 | 31.419 | 229.92 |
 | um-lens-creative-periodic2 | joint-periodic | 2000 updates | 0 | 3.554936 | — | 151.717 | 3001 | 43.345 | 243.89 |
@@ -86,6 +89,9 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-check-5-creative | 64/64 | 0 | 0.011606 | 0.0021326 | 1.7462e-12 | 1 | -0.1297 to -0.09009 | 0.379675 |
 | um-lens-check-6-periodic | 16/64 | 48 | 0.0042842 | 0.00078723 | 0.0075 | 0 | -0.06363 to -0.06363 | 0.366569 |
 | um-lens-check-8-warm-time-layer | 50/50 | 0 | 0.02 | 0.003675 | 2.2352e-10 | 1 | -0.179 to -0.1481 | 0.537713 |
+| um-lens-confirm-joint-s10 | 20000/20000 | 0 | 0.0077854 | 0.0014306 | 0.02 | 2 | -25.39 to -25.39 | 0.298774 |
+| um-lens-confirm-joint-s11 | 20000/20000 | 0 | 0.0077854 | 0.0014306 | 0.02 | 2 | -25.39 to -25.39 | 0.26652 |
+| um-lens-confirm-joint-s12 | 20000/20000 | 0 | 0.0077854 | 0.0014306 | 0.02 | 2 | -25.39 to -25.39 | 0.307328 |
 | um-lens-creative-ema0p5 | 2000/2000 | 0 | 0.0075738 | 0.0013917 | 1e-16 | 1 | -2.506 to -2.438 | 0.405719 |
 | um-lens-creative-ema0p9 | 2000/2000 | 0 | 0.0074569 | 0.0013702 | 1e-16 | 1 | -2.491 to -2.298 | 0.410554 |
 | um-lens-creative-periodic2 | 1000/2000 | 1000 | 0.0075921 | 0.0013951 | 0.01 | 0.5 | -2.507 to -2.507 | 0.389011 |
