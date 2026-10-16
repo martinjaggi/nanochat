@@ -263,3 +263,15 @@ Timing seconds: direction=1.317, reference=0.399, candidates=0.395, auxiliary=0.
 | um-lens-main-control-lr0p02 | cooldown native | 0.1837499 | 2000 | 3.568986 | 0 | 141.52 |
 | um-lens-main-control-lr0p04 | cooldown native | 0.1837499 | 2000 | 3.554822 | 0 | 133.67 |
 | um-lens-main-control-lr0p08 | cooldown native | 0.1837499 | 2000 | 3.586261 | 0 | 139.40 |
+| um-lens-main-joint-cooldown-cap0p005 | joint native | 0.1837499 | 2000 | 3.559877 | 6000 | 252.91 |
+
+um-lens-main-joint-cooldown-cap0p005: accepted 2000/2000; skipped nonpositive blocks 207; median actual eta 0.00379606; median gamma 0.000697525; median L 0.02; median trials 2; max measured spectral ratio lambda*||W||op=0.331184. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=55.921, reference=14.497, candidates=28.220, auxiliary=1.887.
+
+| um-lens-main-joint-cooldown-cap0p02 | joint native | 0.1837499 | 2000 | 3.583797 | 6000 | 251.66 |
+
+um-lens-main-joint-cooldown-cap0p02: accepted 2000/2000; skipped nonpositive blocks 78; median actual eta 0.0148773; median gamma 0.0027337; median L 0.01; median trials 2; max measured spectral ratio lambda*||W||op=0.424789. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=55.577, reference=14.677, candidates=28.621, auxiliary=1.908.
+
