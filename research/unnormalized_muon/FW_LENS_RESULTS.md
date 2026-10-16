@@ -17,6 +17,9 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-check-6-periodic | joint | 64 updates | 0 | 6.490925 | — | 14.250 | 48 | 0.000 | 95.36 |
 | um-lens-check-7-warm-time-control | cooldown | 5.000s | 0 | 6.041687 | — | 5.034 | 0 | 34.360 | 81.78 |
 | um-lens-check-8-warm-time-layer | layer | 5.000s | 0 | 6.365249 | — | 5.016 | 100 | 31.631 | 85.49 |
+| um-lens-confirm-control-s10 | control | 20000 updates | 10 | 3.167631 | 3.114569 | 661.345 | 0 | 33.696 | 741.10 |
+| um-lens-confirm-control-s11 | control | 20000 updates | 11 | 3.164999 | 3.110158 | 686.883 | 0 | 25.427 | 745.36 |
+| um-lens-confirm-control-s12 | control | 20000 updates | 12 | 3.169816 | 3.114145 | 678.993 | 0 | 23.899 | 733.38 |
 | um-lens-creative-ema0p5 | layer-ema | 2000 updates | 0 | 3.555660 | — | 177.247 | 4000 | 33.839 | 247.79 |
 | um-lens-creative-ema0p9 | layer-ema | 2000 updates | 0 | 3.558717 | — | 165.360 | 4000 | 31.419 | 229.92 |
 | um-lens-creative-periodic2 | joint-periodic | 2000 updates | 0 | 3.554936 | — | 151.717 | 3001 | 43.345 | 243.89 |

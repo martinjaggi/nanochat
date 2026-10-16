@@ -12,6 +12,9 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD none 0 | 0.08 | 20000 | 3.112453 | 680.91 | 755.24 |
 | unnormalized cooldown WD none 0 | 0.32 | 20000 | 3.168984 | 681.31 | 754.69 |
 | unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.167631 | 658.92 | 741.10 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.164999 | 684.42 | 745.36 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.169816 | 676.02 | 733.38 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199618 | 710.50 | 788.71 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.168332 | 723.17 | 786.20 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199090 | 1763.98 | 1834.23 |
@@ -286,6 +289,9 @@ um-lens-check-8-warm-time-layer: accepted 50/50; skipped nonpositive blocks 70; 
 
 Timing seconds: direction=1.317, reference=0.399, candidates=0.395, auxiliary=0.041.
 
+| um-lens-confirm-control-s10 | cooldown native | 0.1837499 | 20000 | 3.167631 | 0 | 741.10 |
+| um-lens-confirm-control-s11 | cooldown native | 0.1837499 | 20000 | 3.164999 | 0 | 745.36 |
+| um-lens-confirm-control-s12 | cooldown native | 0.1837499 | 20000 | 3.169816 | 0 | 733.38 |
 | um-lens-creative-ema0p5 | layer native | 0.1837499 | 2000 | 3.555660 | 4000 | 247.79 |
 
 um-lens-creative-ema0p5: accepted 2000/2000; skipped nonpositive blocks 90; median actual eta 0.00757385; median gamma 0.00139169; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.405719. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
