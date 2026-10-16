@@ -73,6 +73,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-lens-main-joint-cooldown-cap0p005 | Clean GapWD joint uniform v2 c-in-Q quadratic cap0.005/cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.559877 | 1.079192 | — | 252.91 |
 | um-lens-main-joint-cooldown-cap0p02 | Clean GapWD joint uniform v2 c-in-Q quadratic cap0.02/cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.583797 | 1.086460 | — | 251.66 |
 | um-lens-main-joint-cooldown-cap0p08 | Clean GapWD joint uniform v2 c-in-Q quadratic cap0.08/cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.782362 | 1.146569 | — | 274.88 |
+| um-lens-main-joint-stable-cap0p005 | Clean GapWD joint uniform v2 c-in-Q quadratic cap0.005/stable fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.652983 | 1.107410 | — | 256.79 |
 | um-screen-00-0-native-lr0p005 | Native cooldown | 2000 | 0 | 0.005 | 3.734536 | 1.132046 | — | 145.49 |
 | um-screen-00-1-scaled-lr0p0002 | Unnormalized cooldown | 2000 | 0 | 0.0002 | 4.818060 | 1.460343 | — | 153.42 |
 | um-screen-00-2-constant-lr0p0002 | Unnormalized constant | 2000 | 0 | 0.0002 | 4.581043 | 1.388601 | — | 151.98 |
@@ -112,7 +113,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 9.6482 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 9.7280 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 

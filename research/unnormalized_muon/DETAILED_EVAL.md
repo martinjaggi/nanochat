@@ -281,3 +281,21 @@ um-lens-main-joint-cooldown-cap0p08: accepted 2000/2000; skipped nonpositive blo
 
 Timing seconds: direction=60.204, reference=14.729, candidates=28.415, auxiliary=1.871.
 
+| um-lens-main-joint-stable-cap0p005 | joint native | 0.1837499 | 2000 | 3.652983 | 5997 | 256.79 |
+
+um-lens-main-joint-stable-cap0p005: accepted 1997/2000; skipped nonpositive blocks 193; median actual eta 0.005; median gamma 0.000918749; median L 0.02; median trials 2; max measured spectral ratio lambda*||W||op=0.305381. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=54.880, reference=14.718, candidates=28.253, auxiliary=1.893.
+
+| um-lens-main-joint-stable-cap0p02 | joint native | 0.1837499 | 2000 | 3.850446 | 6001 | 249.81 |
+
+um-lens-main-joint-stable-cap0p02: accepted 2000/2000; skipped nonpositive blocks 78; median actual eta 0.02; median gamma 0.003675; median L 0.01; median trials 2; max measured spectral ratio lambda*||W||op=0.455097. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=60.891, reference=14.582, candidates=28.241, auxiliary=1.806.
+
+| um-lens-main-joint-stable-cap0p08 | joint native | 0.1837499 | 2000 | 4.107661 | 5999 | 0.00 |
+
+um-lens-main-joint-stable-cap0p08: accepted 2000/2000; skipped nonpositive blocks 368; median actual eta 0.0572021; median gamma 0.0105109; median L 0.0025; median trials 2; max measured spectral ratio lambda*||W||op=0.780575. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=61.373, reference=14.545, candidates=28.102, auxiliary=1.799.
+

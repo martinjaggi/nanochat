@@ -23,6 +23,9 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-main-joint-cooldown-cap0p005 | joint-cooldown | 2000 updates | 0 | 3.559877 | — | 179.120 | 6000 | 30.768 | 252.91 |
 | um-lens-main-joint-cooldown-cap0p02 | joint-cooldown | 2000 updates | 0 | 3.583797 | — | 177.306 | 6000 | 31.193 | 251.66 |
 | um-lens-main-joint-cooldown-cap0p08 | joint-cooldown | 2000 updates | 0 | 3.782362 | — | 185.210 | 5999 | 40.958 | 274.88 |
+| um-lens-main-joint-stable-cap0p005 | joint-stable | 2000 updates | 0 | 3.652983 | — | 185.804 | 5997 | 33.556 | 256.79 |
+| um-lens-main-joint-stable-cap0p02 | joint-stable | 2000 updates | 0 | 3.850446 | — | 180.007 | 6001 | 34.063 | 249.81 |
+| um-lens-main-joint-stable-cap0p08 | joint-stable | 2000 updates | 0 | 4.107661 | — | 181.760 | 5999 | 31.234 | 246.74 |
 
 ## Adaptive diagnostics and contraction
 
@@ -39,5 +42,8 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-main-joint-cooldown-cap0p005 | 2000/2000 | 0 | 0.0037961 | 0.00069753 | 0.02 | 2 | -1.251 to -1.251 | 0.331184 |
 | um-lens-main-joint-cooldown-cap0p02 | 2000/2000 | 0 | 0.014877 | 0.0027337 | 0.01 | 2 | -4.967 to -4.967 | 0.424789 |
 | um-lens-main-joint-cooldown-cap0p08 | 2000/2000 | 0 | 0.038481 | 0.0070708 | 0.005 | 2 | -14.06 to -14.06 | 0.444955 |
+| um-lens-main-joint-stable-cap0p005 | 1997/2000 | 0 | 0.005 | 0.00091875 | 0.02 | 2 | -1.817 to -1.817 | 0.305381 |
+| um-lens-main-joint-stable-cap0p02 | 2000/2000 | 0 | 0.02 | 0.003675 | 0.01 | 2 | -7.221 to -7.221 | 0.455097 |
+| um-lens-main-joint-stable-cap0p08 | 2000/2000 | 0 | 0.057202 | 0.010511 | 0.0025 | 2 | -20.46 to -20.46 | 0.780575 |
 
 Curvature values in Armijo variants parameterize proposals; their acceptance is NOT a certificate of the quadratic upper model. Final spectral ratios are lambda*||W_l||op/c_l; native approximate NS output is not certified to have unit spectral norm. Initial/final iterate feasibility alone does not certify oracle accuracy. Cold two-second clock checks intentionally permit one-update overshoot; do not use them as quality endpoints.
