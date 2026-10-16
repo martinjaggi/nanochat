@@ -1,0 +1,91 @@
+"""Single locked queue: 1 B300/job, 3 outstanding jobs, 10 GPU-hours total."""
+import argparse,csv,fcntl,json,os,pathlib,shlex,subprocess,tarfile,time
+from research.unnormalized_muon.kube import Kube
+ROOT=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs')
+REPO=pathlib.Path(__file__).resolve().parents[2]
+HELPER='/mloscratch/homes/mljaggi/rcp-tools/rcp-runai'
+BASE='b2bdf9890e028965ee7f2e97acc02d72b3c663ec'
+FIELDS='run_id stage status git_commit config job_id GPU_model GPU_count runtime_limit charged_gpu_seconds output validation_loss bpb updates training_seconds process_seconds failure'.split()
+def cli(*a):return subprocess.check_output([HELPER,*a,'--project','mlo-mljaggi'],text=True,env=dict(os.environ,SUPPRESS_DEPRECATION_MESSAGE='true'))
+def jobs():
+ rows={}
+ for l in cli('list').splitlines():
+  x=l.split()
+  if x and x[0].startswith('um-'):rows[x[0]]=x[1]
+ return rows
+def load():
+ p=ROOT/'queue.json';return json.loads(p.read_text()) if p.exists() else {}
+def save(s):(ROOT/'queue.json').write_text(json.dumps(s,indent=2))
+def record(**row):
+ p=REPO/'research/unnormalized_muon/EXPERIMENTS.csv';exists=p.exists()
+ with p.open('a',newline='') as f:
+  w=csv.DictWriter(f,fieldnames=FIELDS,extrasaction='ignore')
+  if not exists:w.writeheader()
+  w.writerow({k:json.dumps(v) if isinstance(v,(dict,list)) else v for k,v in row.items()})
+def reap():
+ s=load();j=jobs();k=Kube()
+ objects={o['metadata']['name']:o for o in k.request('GET','/apis/run.ai/v1/namespaces/'+k.namespace+'/runaijobs')['items']}
+ for name,v in s.items():
+  if v['recorded']:continue
+  status=j.get(name,'missing');obj=objects.get(name);out=ROOT/name
+  if status=='missing' and time.time()-v['submitted']<120:continue
+  if obj:
+   import datetime
+   st=obj.get('status',{}).get('startTime')
+   if st:
+    started=datetime.datetime.fromisoformat(st.replace('Z','+00:00')).timestamp()
+    if time.time()-started>v['seconds']+60 and status not in ['Succeeded','Completed','Failed']:
+     cli('delete','job',name);status='controller_timeout'
+  if status not in ['Succeeded','Completed','Failed','missing','controller_timeout']:continue
+  if obj:(out/'scheduler-final.json').write_text(json.dumps(obj,indent=2))
+  elapsed=time.time()-v['submitted']
+  v['gpu_seconds']=elapsed # conservatively includes queueing, startup and cleanup delay
+  summaries=list(out.glob('**/summary.json'));done=status in ['Succeeded','Completed'] and bool(summaries)
+  for p in summaries:
+   x=json.loads(p.read_text());record(run_id=name+(':'+p.parent.name if p.parent!=out else ''),stage=v['stage'],status=x['status'],git_commit=v['commit'],config=x.get('config'),job_id=name,GPU_model='NVIDIA B300 SXM6 AC',GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(p.parent),validation_loss=x['validation']['loss'],bpb=x['validation']['bpb'],updates=x['updates'],training_seconds=x['training_seconds'],process_seconds=x.get('process_seconds'))
+  if not done:
+   p=out/'run.log';reason=p.read_text()[-3000:] if p.exists() else status
+   record(run_id=name,stage=v['stage'],status='failed',git_commit=v['commit'],job_id=name,GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(out),failure=reason)
+  if name in jobs():cli('delete','job',name)
+  for _ in range(20):
+   if name not in jobs():break
+   time.sleep(1)
+  assert name not in jobs(),'cleanup still pending'
+  v['recorded']=True;v['status']='completed' if done else 'failed'
+ k.close();save(s)
+ print('QUEUE',jobs(),'charged/reserved GPUh',sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())/3600,flush=True)
+def submit(stage,name,seconds,config=None):
+ s=load();j=jobs();assert name.startswith('um-') and len(name)<=55 and name not in s and name not in j
+ assert len(set(j)|{n for n,v in s.items() if not v['recorded']})<3,'three-slot cap'
+ assert sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())+seconds+30<=10*3600,'10 GPU-hour cap'
+ dirty=subprocess.check_output(['git','status','--porcelain'],cwd=REPO,text=True).splitlines()
+ assert all(x[3:] in ['research/unnormalized_muon/STATUS.md','research/unnormalized_muon/EXPERIMENTS.csv'] for x in dirty),'commit code/config first'
+ out=ROOT/name;out.mkdir(exist_ok=False);commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()
+ for label,ref in [('source',commit),('base',BASE)]:
+  dst=out/label;dst.mkdir();p=out/(label+'.tar')
+  with p.open('wb') as f:subprocess.run(['git','archive',ref],cwd=REPO,stdout=f,check=True)
+  with tarfile.open(p) as tar:tar.extractall(dst,filter='data')
+  p.unlink()
+ if config:(out/'config.json').write_text(json.dumps(config,indent=2))
+ command=[HELPER,'submit','--name',name,'--project','mlo-mljaggi','--image','ic-registry.epfl.ch/mlo/mlo-base:uv1','--gpu','1','--node-pools','b300','--cpu','12','--memory','96G','--existing-pvc','claimname=mlo-scratch,path=/mloscratch','--pod-running-timeout','10m','--run-as-uid','177449','--run-as-gid','83070','--backoff-limit','0','--environment',f'RESEARCH_COMMIT={commit}','--command','--','timeout','--signal=TERM','--kill-after=30s',str(seconds)+'s','bash',str(out/'source/research/unnormalized_muon/job.sh'),str(out)]
+ print('EXACT COMMAND:',shlex.join(command),flush=True);print('ONE B300; limit',seconds,'seconds; output',out,flush=True)
+ (out/'submission.json').write_text(json.dumps(dict(command=command,commit=commit,config=config),indent=2))
+ subprocess.run(command,check=True,env=dict(os.environ,SUPPRESS_DEPRECATION_MESSAGE='true'))
+ s[name]=dict(stage=stage,commit=commit,seconds=seconds,submitted=time.time(),recorded=False);save(s)
+ record(run_id=name,stage=stage,status='submitted',git_commit=commit,config=config,job_id=name,GPU_count=1,runtime_limit=seconds,output=str(out))
+def main():
+ p=argparse.ArgumentParser();p.add_argument('action',choices=['submit','reap','status','watch','sweep']);p.add_argument('--name');p.add_argument('--stage',default='smoke');p.add_argument('--seconds',type=int,default=1800);p.add_argument('--prefix');a=p.parse_args()
+ while True:
+  with (ROOT/'queue.lock').open('w') as lock:
+   fcntl.flock(lock,fcntl.LOCK_EX)
+   if a.action=='submit':submit(a.stage,a.name,a.seconds);return
+   if a.action=='status':print(jobs());return
+   reap()
+   if a.action=='sweep':
+    s=load();known={v['stage'] for v in s.values()};pending=[p for p in sorted((REPO/'research/unnormalized_muon/configs').glob(a.prefix+'*.json')) if p.stem not in known]
+    while pending and len(jobs())<3:
+     p=pending.pop(0);cfg=json.loads(p.read_text());submit(p.stem,'um-'+p.stem.replace('.','p'),cfg.get('runtime_limit',1800),cfg)
+   else:pending=[]
+   if a.action=='reap' or (not jobs() and not pending):return
+  time.sleep(20)
+if __name__=='__main__':main()

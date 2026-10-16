@@ -9,6 +9,7 @@ Adapted from: https://github.com/KellerJordan/modded-nanogpt
 Further contributions from @karpathy and @chrisjmccormick.
 """
 
+import os
 import torch
 import torch.distributed as dist
 from torch import Tensor
@@ -97,6 +98,15 @@ Some of the changes in nanochat implementation:
 - Makes no assumptions about model architecture (e.g. that attention weights are fused into QKVO format)
 """
 
+# Opt-in experiment; the default path keeps the upstream optimizer unchanged.
+UNNORMALIZED_MUON = os.environ.get("NANOCHAT_UNNORMALIZED_MUON", "0") == "1"
+
+
+def nonnegative_dual_scale(gradient, direction):
+    """One FP32 Frobenius inner product per matrix, never negative."""
+    return (gradient.float() * direction.float()).sum(dim=(-2, -1), keepdim=True).clamp_min(0)
+
+
 # Coefficients for Polar Express (computed for num_iters=5, safety_factor=2e-2, cushion=2)
 # From https://arxiv.org/pdf/2505.16932
 polar_express_coeffs = [
@@ -132,6 +142,8 @@ def muon_step_fused(
     momentum_buffer.lerp_(stacked_grads, 1 - momentum)
     g = stacked_grads.lerp_(momentum_buffer, momentum)
 
+    ns_input = g if UNNORMALIZED_MUON else None
+
     # Cast to bf16 for speed when available; skip cast otherwise (fp16 is unstable here due to limited exponent range)
     X = g.bfloat16() if COMPUTE_DTYPE == torch.bfloat16 else g
 
@@ -160,6 +172,8 @@ def muon_step_fused(
     current_norm = g.float().norm(dim=(-2, -1), keepdim=True).clamp_min(1e-6)
     g = g * (target_norm / current_norm).to(g.dtype)
 
+    dual_scale = nonnegative_dual_scale(ns_input, g) if UNNORMALIZED_MUON else None
+
     # Variance reduction
     beta2 = beta2_t.to(g.dtype)
     v_mean = g.float().square().mean(dim=red_dim, keepdim=True)
@@ -173,11 +187,16 @@ def muon_step_fused(
     final_scale = step_size * (v_norm / v_norm_new.clamp_min(1e-10))
     g = g * final_scale.to(g.dtype)
 
+    # Apply AFTER the norm-preserving NorMuon transform, so it cannot erase the scale.
+    if UNNORMALIZED_MUON:
+        g = g * dual_scale.to(g.dtype)
+
     # Cautious weight decay + parameter update
     lr = lr_t.to(g.dtype)
     wd = wd_t.to(g.dtype)
     mask = (g * stacked_params) >= 0
     stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
+    return dual_scale
 
 # -----------------------------------------------------------------------------
 
@@ -392,12 +411,14 @@ class MuonAdamW(torch.optim.Optimizer):
             self._muon_beta2_t.fill_(group["beta2"])
             self._muon_lr_t.fill_(group["lr"] * max(1.0, shape[-2] / shape[-1])**0.5)
             self._muon_wd_t.fill_(group["weight_decay"])
-            muon_step_fused(
+            dual_scale = muon_step_fused(
                 grad_chunk[:num_owned], stacked_owned,
                 state["momentum_buffer"][:num_owned], state["second_momentum_buffer"][:num_owned],
                 self._muon_momentum_t, self._muon_lr_t, self._muon_wd_t, self._muon_beta2_t,
                 group["ns_steps"], red_dim,
             )
+            if UNNORMALIZED_MUON:
+                self.last_dual_scales.append(dual_scale.detach())
 
         if info['stacked_grads'] is None:
             # Single rank: no gather needed, the updated stack maps directly onto the params
@@ -434,6 +455,9 @@ class MuonAdamW(torch.optim.Optimizer):
         else:
             rank = 0
             world_size = 1
+
+        if UNNORMALIZED_MUON:
+            self.last_dual_scales = []
 
         # Phase 1: launch all async reduce ops
         reduce_infos: list[dict] = []

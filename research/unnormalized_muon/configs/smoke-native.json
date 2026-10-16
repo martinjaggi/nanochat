@@ -1,0 +1,7 @@
+{
+  "variant": false,
+  "matrix_lr": 0.02,
+  "updates": 64,
+  "seed": 42,
+  "depth": 8
+}

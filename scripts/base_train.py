@@ -79,11 +79,20 @@ parser.add_argument("--save-every", type=int, default=-1, help="save checkpoints
 parser.add_argument("--model-tag", type=str, default=None, help="override model tag for checkpoint directory name")
 args = parser.parse_args()
 user_config = vars(args).copy()  # for logging
+# Optional experiment metrics; ordinary entry-point behavior is unchanged.
+recorder = None
+if os.environ.get("RESEARCH_LOG"):
+    from research.unnormalized_muon.record import Recorder
+    recorder = Recorder(os.environ["RESEARCH_LOG"])
 # -----------------------------------------------------------------------------
 # Compute init and wandb logging
 
 device_type = autodetect_device_type() if args.device_type == "" else args.device_type
 ddp, ddp_rank, ddp_local_rank, ddp_world_size, device = compute_init(device_type)
+if recorder:
+    seed = int(os.environ.get("RESEARCH_SEED", "42"))
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
 master_process = ddp_rank == 0 # this process will do logging, checkpointing etc.
 synchronize = torch.cuda.synchronize if device_type == "cuda" else lambda: None
 get_max_memory = torch.cuda.max_memory_allocated if device_type == "cuda" else lambda: 0
@@ -317,6 +326,9 @@ optimizer = model.setup_optimizer(
     weight_decay=weight_decay_scaled,
 )
 
+if recorder:
+    recorder.initialize(orig_model, optimizer, user_config, total_batch_size)
+
 if resuming:
     optimizer.load_state_dict(optimizer_data)
     del optimizer_data
@@ -425,7 +437,8 @@ while True:
         val_loader = build_val_loader()
         eval_steps = args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size)
         with disable_fp8(model):
-            val_bpb = evaluate_bpb(model, val_loader, eval_steps, token_bytes)
+            val_bpb = (recorder.evaluate(model, val_loader, eval_steps, token_bytes, step) if recorder else
+                       evaluate_bpb(model, val_loader, eval_steps, token_bytes))
         print0(f"Step {step:05d} | Validation bpb: {val_bpb:.6f}")
         if val_bpb < min_val_bpb:
             min_val_bpb = val_bpb
@@ -477,6 +490,7 @@ while True:
 
     # save checkpoint: at the end of the run, or every save_every steps, except at the first step or the resume step
     if last_step or (step > 0 and step != args.resume_from_step and args.save_every > 0 and step % args.save_every == 0):
+        checkpoint_started = time.perf_counter()
         save_checkpoint(
             checkpoint_dir,
             step,
@@ -499,6 +513,9 @@ while True:
             },
             rank=ddp_rank,
         )
+
+        if recorder:
+            recorder.checkpoint_seconds += time.perf_counter() - checkpoint_started
 
     # termination conditions (TODO: possibly also add loss explosions etc.)
     if last_step:
@@ -544,6 +561,8 @@ while True:
     synchronize()
     t1 = time.time()
     dt = t1 - t0
+    if recorder:
+        recorder.update(step, train_loss_f, dt, optimizer, dataloader_state_dict)
     # -------------------------------------------------------------------------
 
     # logging (CPU action only)
@@ -600,6 +619,15 @@ print0(f"Peak memory usage: {get_max_memory() / 1024 / 1024:.2f}MiB")
 print0(f"Total training time: {total_training_time/60:.2f}m")
 if val_bpb is not None:
     print0(f"Minimum validation bpb: {min_val_bpb:.6f}")
+
+if recorder:
+    if os.environ.get("RESEARCH_HELDOUT") == "1":
+        model.eval()
+        heldout_loader = build_val_loader()
+        for _ in range(args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size)):
+            next(heldout_loader)
+        recorder.evaluate(model, heldout_loader, args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size), token_bytes, step, label="heldout")
+    recorder.finish(step)
 
 # cleanup
 wandb_run.finish() # wandb run finish
