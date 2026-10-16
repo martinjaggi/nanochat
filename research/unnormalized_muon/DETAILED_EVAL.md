@@ -18,6 +18,7 @@ CLI lambda = 0.28*(0.04/CLI_eta)*strength matches nominal eta*lambda exposure ac
 
 | Method | Decay | Strength | CLI LR | CLI WD | Updates | Val CE | Nominal Muon exposure range |
 |---|---|---:|---:|---:|---:|---:|---|
+| normalized | standard | 0.25 | 0.02 | 0.14 | 2000 | 3.576236 | 0.40773–0.81545 |
 
 ## FW gap-based step and line search
 
@@ -31,6 +32,7 @@ Backtracking compares a same-path functional reference at gamma=0 with candidate
 | um-check-fw-gradient-001 | 64 | 6.488285 | 64 | 0 | 197 | 22.68 | 0.499329 |
 | um-check-fw-momentum-001 | 64 | 6.470441 | 58 | 6 | 183 | 22.14 | 0.499287 |
 | um-clean-fw-accumcheck-001 | 16 | 9.061382 | — | — | 63 | 15.85 | 0.499600 |
+| um-clean-long-2-fw-pilot | 2000 | 4.185817 | 1996 | 4 | 5995 | 233.55 | 0.586020 |
 
 ### um-check-fw-derivative-001
 
@@ -82,3 +84,20 @@ Oracle: momentum; radius factor: 2. Search state/RNG audit: True. Each extra for
 
 FW timing components (seconds): direction=13.131, reference=4.248, candidates=2.713, auxiliary=0.699.
 Accepted steps with measured minibatch increase: 14; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
+
+### um-clean-long-2-fw-pilot
+
+Oracle: momentum; radius factor: 2. Search state/RNG audit: True. Each extra forward evaluates the entire effective batch; actual microbatch-forward count: 5995. Extra diagnostic gradient queries: 0, diagnostic seconds: 0.000.
+
+| Quantity | Min | P25 | Median | P75 | Max |
+|---|---:|---:|---:|---:|---:|
+| gamma | 0 | 0.019065 | 0.0284537 | 0.045194 | 0.185085 |
+| L | 0.000625 | 0.01 | 0.02 | 0.04 | 20971.5 |
+| b | -0.623421 | 8.85879 | 13.5343 | 19.285 | 98.3482 |
+| v | 15277 | 21450.2 | 24840.4 | 26273 | 39826.5 |
+| trials | 0 | 1 | 2 | 3 | 7 |
+| actual_decrease | -4.76837e-06 | 0.244338 | 0.286635 | 0.319971 | 0.439672 |
+| predicted_decrease | 0 | 0.174015 | 0.218605 | 0.267067 | 0.419033 |
+
+FW timing components (seconds): direction=104.832, reference=43.252, candidates=80.372, auxiliary=2.291.
+Accepted steps with measured minibatch increase: 62; acceptance has relative BF16-path numerical slack 1e-6. Reference/candidate forwards and all line-search retries are included in training time and total process time.
