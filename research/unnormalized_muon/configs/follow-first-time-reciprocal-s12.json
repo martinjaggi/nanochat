@@ -1,0 +1,21 @@
+{
+  "protocol_version": 4,
+  "clean": true,
+  "variant": false,
+  "decay_mode": "standard",
+  "fixed_wd": 0.1837498798375862,
+  "gap_geometry": "q_scaled",
+  "matrix_lr": 0.02,
+  "matrix_schedule": "fw_reciprocal",
+  "updates": 20000,
+  "seed": 12,
+  "depth": 8,
+  "runtime_limit": 1579,
+  "warmup_updates": 3,
+  "follow_arm": "reciprocal",
+  "heldout": true,
+  "heldout_block": 1,
+  "time_budget": 678.9930202960968,
+  "reference_updates": 20000,
+  "max_updates": 200000
+}

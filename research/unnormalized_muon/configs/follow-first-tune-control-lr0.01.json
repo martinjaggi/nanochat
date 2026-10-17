@@ -1,0 +1,17 @@
+{
+  "protocol_version": 4,
+  "clean": true,
+  "variant": false,
+  "decay_mode": "standard",
+  "fixed_wd": 0.1837498798375862,
+  "gap_geometry": "q_scaled",
+  "matrix_lr": 0.01,
+  "matrix_schedule": "cooldown",
+  "updates": 20000,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 2400,
+  "warmup_updates": 3,
+  "follow_arm": "control",
+  "heldout": false
+}
