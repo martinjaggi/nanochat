@@ -308,6 +308,7 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 | um-earlyalloc-confirm-early-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.088452 | 0 | 794.05 |
 | um-earlyalloc-confirm-early-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.086768 | 0 | 770.47 |
 | um-earlyalloc-confirm-early-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.097495 | 0 | 758.31 |
+| um-earlyalloc-confirm-history-check-002 | early_reciprocal native | 0.04593747 | 128 | 5.910295 | 0 | 61.07 |
 | um-earlyalloc-confirm-matched-s70 | early_reciprocal native | 0.05512714 | 20000 | 3.091825 | 0 | 747.43 |
 | um-earlyalloc-confirm-matched-s71 | early_reciprocal native | 0.05512714 | 20000 | 3.087015 | 0 | 743.56 |
 | um-earlyalloc-confirm-matched-s72 | early_reciprocal native | 0.05512714 | 20000 | 3.091281 | 0 | 779.60 |
