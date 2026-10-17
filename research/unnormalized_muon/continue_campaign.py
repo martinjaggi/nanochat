@@ -69,6 +69,11 @@ def confirm_and_time(horizon,seeds,block):
             cfg[f'{tag}-{arm}-s{seed}']=c
     register(cfg,f'Fresh paired seeds{seeds}, {horizon} updates; freeze both LRs using seed0 development scores only. NEW disjoint heldout block{block}; prior blocks are not used to select settings. One B300/run, maximum6,50GPUh total.')
     stage(tag+'-');groups=paired(tag,seeds)
+    ds=[groups['reciprocal'][seed]['heldout']['loss']-groups['control'][seed]['heldout']['loss'] for seed in seeds]
+    if all(d>.003 for d in ds):
+        record({},f'Predeclared follow-up futility rule: all three NEW paired reciprocal losses exceed tuned control by>.003CE; stop this losing family before additional equal-time/scale-up GPU work. Already completed original-frozen equal-time result remains reported against its weaker control. New paired deltas{ds}.')
+        from research.unnormalized_muon.publish import publish
+        publish();return groups
     H=statistics.median(s['training_active_seconds'] for s in groups['control'].values());cfg={};tag=f'follow-time{horizon}'
     for arm in settings:
         for seed in seeds:

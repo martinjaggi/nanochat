@@ -187,3 +187,5 @@ Fair terminal-step control: reciprocal+cooldown seed0 CE3.096101 versus original
 Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pending baseline LR.005 with6 WD probes at SAME LR,20k updates. Fixed lambda multiples{0,.25,.5,2}, shifted reciprocal mixing lambda_t=gamma_t/eta_t, and matched-final-product static WD. Reuse pending reference lambda1. One central queue/one B300/job/max6/50GPUh total. WD0 is unconstrained, no finite-radius FW claim.
 
 Fill four available slots with ordinary Muon terminal-LR controls, peak CLI{.005,.01}, matrix final factors{.01,.25},20k updates, seed0. AdamW and momentum schedules remain identical; fixed ordinary lambda. OneB300 each, runtime1200s, exact commands and persistent paths follow. No extra model-gradient passes.
+
+Before any NEW seeds20/21/22 are submitted/observed, add plain-reciprocal futility rule: if ALL3 paired heldout deltas exceed+.003CE, stop further equal-time reruns of that failed family and scale-up. Preserve all losses and old weaker-control equal-time result. This prioritizes promising cooled/WD variants within finite3h window without post-hoc endpoint claims.
