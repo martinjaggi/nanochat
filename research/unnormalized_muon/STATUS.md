@@ -119,3 +119,5 @@ Creative controlled screening: layer LR proposal EMA beta{.5,.9}; relative updat
 Promote at most10 fresh655M-token settings: control/reciprocal best2, best stable/cooled joint and layer, plus best2 from ONE competitive creative family. All full-horizon schedules restarted; no test-set tuning. Keep costs within50GPUh total.
 
 Freeze best v2 settings using seed0 tuning. Three NEW paired seeds10/11/12 for tuned control and strongest gap comparison(s); reciprocal only if competitive. Reserved heldout used only now. All attempts and actual cost retained.
+
+Explicit equal-training-time reruns: H=678.993020s, median three control confirmation active times. Rerun control and strongest gap on same3 seeds; time-clock LR/caps/auxiliary schedules, finish one started update and report overshoot. Include compile/eval/checkpoint/job costs separately.

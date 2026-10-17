@@ -1,0 +1,21 @@
+{
+  "protocol_version": 2,
+  "clean": true,
+  "variant": false,
+  "decay_mode": "standard",
+  "fixed_wd": 0.1837498798375862,
+  "gap_geometry": "q_scaled",
+  "matrix_lr": 0.028284271247461905,
+  "matrix_schedule": "cooldown",
+  "updates": 20000,
+  "seed": 10,
+  "depth": 8,
+  "runtime_limit": 1579,
+  "warmup_updates": 3,
+  "lens_family": "control",
+  "heldout": true,
+  "lens_arm": "control",
+  "time_budget": 678.9930202960968,
+  "reference_updates": 20000,
+  "max_updates": 200000
+}
