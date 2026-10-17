@@ -7,7 +7,7 @@ sys.path.insert(0,'/mloscratch/homes/mljaggi/nanochat-unnormalized-muon')
 from research.unnormalized_muon.events import read_events
 R=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs')
 O=pathlib.Path('/tmp/muon-window-audit');O.mkdir(exist_ok=True)
-names={'um-follow-first-tune-control-lr0p01':'Tuned cooldown', 'um-follow-mid-reciprocal-high':'Plain reciprocal', 'um-window-schedule-lr0p02-f0p05':'Reciprocal + cooldown', 'um-window-first-wd-mixing':'Changing WD, LR .005', 'um-window-first-wd-static-product':'Static matched WD, LR .005'}
+names={'um-window-joint-terminal-lr0p01-f0p01':'Cooldown final .01, CLI .01', 'um-follow-first-tune-control-lr0p01':'Cooldown final .05, CLI .01', 'um-follow-mid-reciprocal-high':'Reciprocal, CLI .0283', 'um-window-schedule-lr0p02-f0p05':'Reciprocal + cooldown, CLI .02', 'um-window-first-wd-mixing':'Changing WD, LR .005', 'um-window-first-wd-static-product':'Static matched WD, LR .005'}
 fig,axs=plt.subplots(2,2,figsize=(12,8));records=[]
 for n,label in names.items():
  p=R/n
@@ -24,7 +24,7 @@ for n,label in names.items():
  axs[1,0].plot([x['step'] for x in sample],[x['group_lrs'][a] for x in sample],label=label)
  axs[1,1].plot([x['step'] for x in sample],[x['group_lrs'][a]*x['group_weight_decays'][a] for x in sample],label=label)
  records.append(dict(run=n,label=label,ce=s['validation']['loss'],final_eta=u[-1]['group_lrs'][a],final_wd=u[-1]['group_weight_decays'][a],log_contraction=logp,active_seconds=s['training_active_seconds'],tokens=s['fresh_tokens']))
-for ax,x,y in zip(axs.flat,['Update-data tokens (millions)','Training-active seconds','Completed updates','Completed updates'],['Validation CE (nats/token)','Validation CE (nats/token)','Actual matrix LR','Per-step contraction gamma']):
+for ax,x,y in zip(axs.flat,['Update-data tokens (millions)','Training-active seconds','Optimizer update index','Optimizer update index'],['Validation CE (nats/token)','Validation CE (nats/token)','Actual matrix LR','Per-step contraction gamma']):
  ax.set_xlabel(x);ax.set_ylabel(y);ax.grid(alpha=.2)
 axs[0,0].set_ylim(3.07,3.6);axs[0,1].set_ylim(3.07,3.6);axs[1,0].set_yscale('log');axs[1,1].set_yscale('log');axs[0,0].legend(fontsize=8)
 fig.suptitle('Seed-0 development diagnostics; different WD/LR settings are labelled')
