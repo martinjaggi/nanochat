@@ -241,3 +241,5 @@ Continue after completed gap/fresh-data campaign,21.22GPUh charged. Respect fail
 Matched factor-two long-horizon boundary rule round0, both prescribed schedules. Seed0 only,20000 updates; no heldout selection.
 
 Refine both long-horizon schedule families with geometric midpoints adjacent to their seed0 best rates. Restart every candidate for the full655M-token horizon.
+
+Fresh paired seeds[20, 21, 22], 20000 updates; freeze both LRs using seed0 development scores only. NEW disjoint heldout block2; prior blocks are not used to select settings. One B300/run, maximum6,50GPUh total.
