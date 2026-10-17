@@ -1,0 +1,12 @@
+{
+  "control": {
+    "tuning_run": "um-follow-first-tune-control-lr0p01",
+    "matrix_lr": 0.01,
+    "validation_loss": 3.1120874881744385
+  },
+  "reciprocal": {
+    "tuning_run": "um-follow-mid-reciprocal-high",
+    "matrix_lr": 0.0282842712474619,
+    "validation_loss": 3.1527726650238037
+  }
+}
