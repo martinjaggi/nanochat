@@ -179,3 +179,5 @@ Use an available queue slot for compiled cap/sign regression and64-update integr
 Cap/sign check001:9 native GPU tests and8 cap/sign CPU/GPU tests passed, but training import failed because startup guard referenced two flags before definition. No training updates ran. Preserve failed attempt/cost; move guard after all definitions, add opt-in subprocess-import regression, retry in unique check002 before long cap/sign jobs.
 
 Retry cap/sign integration after explicit opt-in import regression passes. Previous B300 arithmetic checks passed; unique run002 repeats checks and64updates, oneB300,1200s maximum. Failure001 stays in ledger.
+
+Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pending baseline LR.005 with6 WD probes at SAME LR,20k updates. Fixed lambda multiples{0,.25,.5,2}, shifted reciprocal mixing lambda_t=gamma_t/eta_t, and matched-final-product static WD. Reuse pending reference lambda1. One central queue/one B300/job/max6/50GPUh total. WD0 is unconstrained, no finite-radius FW claim.
