@@ -427,8 +427,10 @@ def get_weight_decay(it):
     if os.environ.get("RESEARCH_FIXED_WD", ""):
         if os.environ.get("RESEARCH_WD_SCHEDULE")=="fw_mixing_reciprocal":
             from research.unnormalized_muon.fresh_math import mixture_wd
-            assert not research_time_budget and not os.environ.get("RESEARCH_GAP_WD"), "WD schedule pilot uses token clock and native Muon only"
-            return mixture_wd(it,args.matrix_lr*batch_lr_scale*get_lr_multiplier(it),args.matrix_lr*batch_lr_scale,weight_decay_scaled,num_iterations)
+            assert not os.environ.get("RESEARCH_GAP_WD"), "WD schedule pilot uses native Muon only"
+            wd_clock=min(1.,recorder.active_seconds/research_time_budget)*research_reference_updates if research_time_budget else it
+            wd_horizon=research_reference_updates if research_time_budget else num_iterations
+            return mixture_wd(wd_clock,args.matrix_lr*batch_lr_scale*get_lr_multiplier(it),args.matrix_lr*batch_lr_scale,weight_decay_scaled,wd_horizon)
         return weight_decay_scaled
     return weight_decay_scaled * 0.5 * (1 + math.cos(math.pi * it / num_iterations))
 

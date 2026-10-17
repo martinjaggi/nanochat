@@ -16,9 +16,9 @@ def base(lr,wd,**kw):
     c=config('control',lr);c.update(protocol_version=5,fixed_wd=wd,runtime_limit=1200,window_family='fixed');c.update(kw);return c
 
 
-def paired_report(prefix,seeds):
+def paired_report(prefix,seeds,filename="WINDOW_PAIRED.md"):
     rows=['# Three-hour WD/schedule comparison','',
-        'Focused seed0 tuning first, then settings frozen for NEW paired seeds40/41/42 and previously unused heldout block4. Fixed standard WD and a changing-radius reciprocal-mixing WD hypothesis are separately labelled. Same native direction and auxiliary rules; one B300/run. Three seeds are limited evidence.','',
+        f'Focused seed0 tuning first, then settings frozen for NEW paired seeds{seeds}; matched heldout block recorded in each config. Fixed standard WD and a changing-radius reciprocal-mixing WD hypothesis are separately labelled. Same native direction and auxiliary rules; one B300/run. Three seeds are limited evidence.','',
         '| Arm | Seed | Heldout CE | Delta vs reference | Updates | Active sec | Process sec |','|---|---:|---:|---:|---:|---:|---:|']
     ds=[]
     for seed in seeds:
@@ -30,7 +30,7 @@ def paired_report(prefix,seeds):
             d=s['heldout']['loss']-a['heldout']['loss'];rows.append(f'| {arm} | {seed} | {s["heldout"]["loss"]:.6f} | {d:+.6f} | {s["updates"]} | {s["training_active_seconds"]:.3f} | {s["process_seconds"]:.2f} |')
         ds.append(b['heldout']['loss']-a['heldout']['loss'])
     rows+=['',f'Candidate paired heldout deltas mean {statistics.mean(ds):+.6f}; sample SD {statistics.stdev(ds):.6f}; n=3.']
-    p=D/'WINDOW_PAIRED.md';p.write_text('\n'.join(rows)+'\n');subprocess.run(['git','add',str(p.relative_to(REPO))],cwd=REPO,check=True)
+    p=D/filename;p.write_text('\n'.join(rows)+'\n');subprocess.run(['git','add',str(p.relative_to(REPO))],cwd=REPO,check=True)
     subprocess.run(['git','commit','-m','Report new paired WD/schedule confirmation'],cwd=REPO,check=True)
     from research.unnormalized_muon.gap_wd_campaign import push
     push();return ds
@@ -80,6 +80,15 @@ def main():
             c=dict(c,seed=seed,heldout=True,heldout_block=4);cfg[f'window-confirm-{arm}-s{seed}']=c
     register(cfg,'Freeze best WD hypothesis and tuned original-lambda reference before NEW paired seeds40/41/42 and NEW heldout block4. Same20k tokens/update/auxiliary streams; all selection used seed0 development. OneB300/run, six slots, runtime1200s.')
     stage('window-confirm-');ds=paired_report('window-confirm',[40,41,42])
+    # Independent equal-time endpoints precede any larger-horizon promotion.
+    if left()>1100:
+        H=statistics.median(json.loads((ROOT/f'um-window-confirm-reference-s{seed}/summary.json').read_text())['training_active_seconds'] for seed in [40,41,42]);cfg={}
+        for seed in [40,41,42]:
+            for arm,c in [('reference',base(reference['c']['matrix_lr'],LAM)),('candidate',chosen)]:
+                cc=dict(c,seed=seed,heldout=True,heldout_block=4,time_budget=H,reference_updates=20000,max_updates=200000,runtime_limit=math.ceil(H+240))
+                cfg[f'window-time-{arm}-s{seed}']=cc
+        register(cfg,f'Independent WD equal-time confirmation H={H:.9f}s, median matched reference active times. LR, WD, momentum and auxiliary schedules all use shared active-time progress; seeds40/41/42, fixed heldout block4. Finish last update and report overshoot. No token-clock prefix comparison.')
+        stage('window-time-');paired_report('window-time',[40,41,42],filename='WINDOW_EQUAL_TIME.md')
     if left()>1800 and all(x<0 for x in ds) and statistics.mean(ds)<-.003:
         cfg={}
         for arm,c in [('reference',base(reference['c']['matrix_lr'],LAM)),('candidate',chosen)]:
@@ -88,6 +97,18 @@ def main():
                 cfg[f'window-long-{arm}-x{factor:g}']=cc
         register(cfg,'New WD paired win survives all3 seeds with mean<-.003CE: tune both reference/candidate at fresh40k-update/1.31B-token horizon, three peak LRs EACH. Only launch if time remains; seed0 development, no final-heldout tuning.')
         stage('window-long-')
+        if left()>1800:
+            winners={}
+            for arm in ['reference','candidate']:
+                rows=[]
+                for p in ROOT.glob(f'um-window-long-{arm}-*/summary.json'):
+                    ss=json.loads(p.read_text());rows.append((ss['validation']['loss'],ss['config']))
+                winners[arm]=min(rows,key=lambda z:z[0])[1]
+            cfg={}
+            for seed in [60,61,62]:
+                for arm,c in winners.items():cfg[f'window-longconfirm-{arm}-s{seed}']=dict(c,seed=seed,heldout=True,heldout_block=5)
+            register(cfg,'Freeze40k WD/reference peak settings from seed0 before NEW paired seeds60/61/62 and previously unused final heldout block5. Full1.31B-token schedules; only start if enough of the three-hour window remains.')
+            stage('window-longconfirm-');paired_report('window-longconfirm',[60,61,62],filename='WINDOW_LONG_PAIRED.md')
     publish_status('paired confirmation complete; audit and report until work-window deadline')
 
 if __name__=='__main__':
