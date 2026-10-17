@@ -260,14 +260,17 @@ def main():
     register(cfg,'Freeze '+comparison_kind+' before NEW paired seeds40/41/42 and NEW heldout block4. Same20k tokens/update/auxiliary streams; all selection used seed0 development. OneB300/run, six slots, runtime1200s.')
     stage('window-confirm-');ds=paired_report('window-confirm',[40,41,42])
     # Independent equal-time endpoints precede any larger-horizon promotion.
-    if left()>1100:
-        H=statistics.median(json.loads((ROOT/f'um-window-confirm-reference-s{seed}/summary.json').read_text())['training_active_seconds'] for seed in [40,41,42]);cfg={}
+    H=statistics.median(json.loads((ROOT/f'um-window-confirm-reference-s{seed}/summary.json').read_text())['training_active_seconds'] for seed in [40,41,42])
+    if left()>H+180:
+        cfg={}
         for seed in [40,41,42]:
             for arm,c in [('reference',dict(reference_config)),('candidate',chosen)]:
                 cc=dict(c,seed=seed,heldout=True,heldout_block=4,time_budget=H,reference_updates=20000,max_updates=200000,runtime_limit=math.ceil(H+240))
                 cfg[f'window-time-{arm}-s{seed}']=cc
         register(cfg,f'Independent WD equal-time confirmation H={H:.9f}s, median matched reference active times. LR, WD, momentum and auxiliary schedules all use shared active-time progress; seeds40/41/42, fixed heldout block4. Finish last update and report overshoot. No token-clock prefix comparison.')
         stage('window-time-');paired_report('window-time',[40,41,42],filename='WINDOW_EQUAL_TIME.md')
+    else:
+        record({},f'New paired token comparison completed; independent equal-time group needs measured H={H:.3f}s plus180s startup/evaluation/cleanup/group-submission headroom, but only{left():.1f}s remain. Do not launch a partial time group or claim equal-time superiority.')
     if left()>1800 and all(x<0 for x in ds) and statistics.mean(ds)<-.003:
         cfg={}
         for arm,c in [('reference',dict(reference_config)),('candidate',chosen)]:
