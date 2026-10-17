@@ -4,6 +4,7 @@ Requested window17 October2026,07:48:18–10:48:18UTC. One locked submission que
 
 | Run | Updates | Seed | CLI LR | Reference lambda | WD rule | Matrix schedule | Validation CE | Heldout CE | Active sec | Process sec |
 |---|---:|---:|---:|---:|---|---|---:|---:|---:|---:|
+| um-window-cap-check-002 | 64 | 0 | 0.01 | 0.18375 | fixed | cooldown cap/sign | 6.438628 | — | 2.595 | 61.30 |
 | um-window-first-wd-mixing | 20000 | 0 | 0.005 | 0.18375 | fw_mixing_reciprocal | cooldown | 3.105714 | — | 672.405 | 728.95 |
 | um-window-first-wd-static-product | 20000 | 0 | 0.005 | 0.138371 | fixed | cooldown | 3.103214 | — | 696.460 | 770.97 |
 | um-window-first-wd-x0 | 20000 | 0 | 0.005 | 0 | fixed | cooldown | 3.133004 | — | 724.601 | 798.92 |
