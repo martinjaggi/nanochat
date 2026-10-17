@@ -11,6 +11,7 @@ Requested window17 October2026,07:48:18–10:48:18UTC. One locked submission que
 | um-window-first-wd-x0p25 | 20000 | 0 | 0.005 | 0.0459375 | fixed | cooldown | 3.116976 | — | 693.217 | 767.80 |
 | um-window-first-wd-x0p5 | 20000 | 0 | 0.005 | 0.0918749 | fixed | cooldown | 3.104900 | — | 720.153 | 794.45 |
 | um-window-first-wd-x2 | 20000 | 0 | 0.005 | 0.3675 | fixed | cooldown | 3.135778 | — | 716.690 | 772.24 |
+| um-window-joint-terminal-lr0p005-f0p01 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown_refined | 3.120314 | — | 677.357 | 734.57 |
 | um-window-schedule-lr0p02-f0p05 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096101 | — | 638.844 | 711.40 |
 | um-window-schedule-lr0p02-f0p25 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.101839 | — | 638.613 | 711.22 |
 | um-window-schedule-lr0p04-f0p05 | 20000 | 0 | 0.04 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096862 | — | 721.605 | 780.16 |
