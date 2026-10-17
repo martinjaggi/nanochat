@@ -1,6 +1,6 @@
 # Early reciprocal allocation results
 
-Updated 2026-10-17T12:26:34.390257+00:00. Two-hour research window11:53–13:53UTC,17October2026. Exactly one verified B300/run, six-slot central queue,50B300-hour project-total cap.
+Updated 2026-10-17T12:54:08.915241+00:00. Two-hour research window11:53–13:53UTC,17October2026. Exactly one verified B300/run, six-slot central queue,50B300-hour project-total cap.
 
 This is a new WD-independent schedule, distinct from the earlier WD-coupled reciprocal curve multiplied by cooldown. Baseline actual eta .005, fixed ordinary WD .04593746995939655; 40-update warmup, join at7000, original late65% cooldown unchanged to nominal .00005. Full20k updates/655.36M tokens per token-matched run. [Protocol](EARLY_ALLOCATION_PROTOCOL.md).
 
@@ -48,25 +48,42 @@ Frozen seed0-only selection:
 |---|---|---:|---:|---:|---:|
 | 70 | baseline | 3.132268906 | +0.000000000 | 725.066 | 20000 |
 | 70 | early | 3.128401756 | -0.003867149 | 739.097 | 20000 |
+| 70 | matched | 3.133392572 | +0.001123667 | 688.329 | 20000 |
+| 70 | neutral | 3.128061533 | -0.004207373 | 730.148 | 20000 |
 | 71 | baseline | 3.126216650 | +0.000000000 | 743.643 | 20000 |
 | 71 | early | 3.128731966 | +0.002515316 | 714.832 | 20000 |
+| 71 | matched | 3.127413750 | +0.001197100 | 683.594 | 20000 |
+| 71 | neutral | 3.128008127 | +0.001791477 | 641.967 | 20000 |
 | 72 | baseline | 3.132172585 | +0.000000000 | 722.159 | 20000 |
 | 72 | early | 3.138991833 | +0.006819248 | 701.115 | 20000 |
+| 72 | matched | 3.133921146 | +0.001748562 | 703.406 | 20000 |
+| 72 | neutral | 3.139013052 | +0.006840467 | 659.319 | 20000 |
 
 early minus baseline: mean **+0.001822 CE**, sample SD **0.005377**, n=3.
+
+matched minus baseline: mean **+0.001356 CE**, sample SD **0.000342**, n=3.
+
+neutral minus baseline: mean **+0.001475 CE**, sample SD **0.005531**, n=3.
+
+Final-contraction-controlled early minus matched: mean **+0.000466 CE**, sample SD **0.005085**.
+
+Final-contraction-controlled neutral minus baseline: mean **+0.001475 CE**, sample SD **0.005531**.
 
 ## Limits and accounting
 
 Matching final contraction does not match decay history. Both fixed-WD early-allocation and matched-contraction comparisons are required to separate explanations. Auxiliary LRs/WD and momentum are matched. Per-run schedules/logs/checkpoints and hardware assertions are preserved outside Git. Three paired seeds provide limited evidence. Development and heldout blocks are distinct; block6 is used only after settings freeze. Token-clock time curves are descriptive and are not equal-time endpoints.
 
-Conservative recorded request-hours 39.138516; outstanding reserved hours 2.050000. Includes prior and failed work; queued/startup/cleanup request time upper-bounds GPU occupancy.
+Conservative recorded request-hours 41.788996; outstanding reserved hours 1.883333. Includes prior and failed work; queued/startup/cleanup request time upper-bounds GPU occupancy.
 
 ## Predeclared near-tied1.5x confirmation
 
 | Seed | Heldout CE | Delta vs original baseline | Active seconds | Contraction product |
 |---|---:|---:|---:|---:|
+| 70 | 3.130945206 | -0.001323700 | 652.872 | 0.031427187 |
+| 71 | 3.127163172 | +0.000946522 | 688.761 | 0.031427187 |
+| 72 | 3.137712240 | +0.005539656 | 691.419 | 0.031427187 |
 
-0/3 paired endpoints completed; do not treat an incomplete group as confirmation.
+Mean paired delta **+0.001721 CE**, sample SD **0.003497**, n=3.
 
 ## 1.5x final-contraction-matched control
 
