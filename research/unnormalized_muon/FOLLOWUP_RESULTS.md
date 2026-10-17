@@ -8,6 +8,7 @@ First complete the missing reciprocal equal-time endpoints on the ORIGINAL froze
 
 | Run | Updates | Schedule | Peak CLI LR | Seed | Val CE | Heldout CE | Heldout block | Active sec | Process sec | Overshoot sec |
 |---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| um-follow-edge0-control-lr0p005 | 20000 | cooldown | 0.005 | 0 | 3.119279 | — | — | 664.297 | 719.39 | 0.00000 |
 | um-follow-first-time-reciprocal-s10 | 20740 | fw_reciprocal | 0.02 | 10 | 3.154321 | 3.095921 | 1 | 679.004 | 733.36 | 0.01138 |
 | um-follow-first-time-reciprocal-s11 | 20007 | fw_reciprocal | 0.02 | 11 | 3.156209 | 3.099467 | 1 | 678.997 | 734.10 | 0.00371 |
 | um-follow-first-time-reciprocal-s12 | 18127 | fw_reciprocal | 0.02 | 12 | 3.161711 | 3.105612 | 1 | 679.006 | 750.97 | 0.01322 |
