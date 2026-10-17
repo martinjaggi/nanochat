@@ -12,6 +12,7 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-cap-tune-x0p5 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown cap/sign | 3.121832 | — | 682.636 | 739.60 |
 | um-window-cap-tune-x1 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown cap/sign | 3.114210 | — | 724.767 | 776.59 |
 | um-window-cap-tune-x2 | 20000 | 0 | 0.02 | 0.18375 | fixed | cooldown cap/sign | 3.142147 | — | 707.363 | 779.55 |
+| um-window-confirm-candidate-s40 | 20000 | 40 | 0.02 | 0.0459375 | fixed | cooldown_refined | 3.087717 | 3.168677 | 718.942 | 775.31 |
 | um-window-confirm-candidate-s41 | 20000 | 41 | 0.02 | 0.0459375 | fixed | cooldown_refined | 3.086025 | 3.172236 | 681.483 | 734.51 |
 | um-window-confirm-candidate-s42 | 20000 | 42 | 0.02 | 0.0459375 | fixed | cooldown_refined | 3.088866 | 3.171032 | 600.632 | 673.18 |
 | um-window-confirm-reference-s40 | 20000 | 40 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.103223 | 3.185633 | 653.259 | 725.89 |
