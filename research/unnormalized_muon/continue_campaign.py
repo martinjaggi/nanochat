@@ -111,7 +111,7 @@ def main():
         for side,j in [('low',i-1),('high',i+1)]:
             if 0<=j<len(values):cfg[f'follow-mid-{arm}-{side}']=config(arm,math.sqrt(values[i]*values[j]))
     register(cfg,'Refine both long-horizon schedule families with geometric midpoints adjacent to their seed0 best rates. Restart every candidate for the full655M-token horizon.')
-    stage('follow-mid-');groups=confirm_and_time(20000,[20,21,22],2)
+    stage('follow-mid-,window-schedule-');groups=confirm_and_time(20000,[20,21,22],2)
     deltas=[groups['reciprocal'][s]['heldout']['loss']-groups['control'][s]['heldout']['loss'] for s in [20,21,22]]
     if not(all(x<0 for x in deltas) and statistics.mean(deltas)<-.003):
         record({},'Follow-up completed: reciprocal failed preregistered scale-up gate (all3 paired improvements and mean<-.003 CE) after fair long-horizon LR tuning. Stop scale-up; preserve negative/ambiguous results. Remaining budget is not a spending target. See FOLLOWUP_RESULTS.md.');return

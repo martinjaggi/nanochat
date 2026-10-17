@@ -49,9 +49,31 @@ def main():
     cfg['window-first-wd-static-product']=base(.005,matched_static_wd(.00125,LAM,20000))
     register(cfg,'Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pending baseline LR.005 with6 WD probes at SAME LR,20k updates. Fixed lambda multiples{0,.25,.5,2}, shifted reciprocal mixing lambda_t=gamma_t/eta_t, and matched-final-product static WD. Reuse pending reference lambda1. One central queue/one B300/job/max6/50GPUh total. WD0 is unconstrained, no finite-radius FW claim.')
     stage('follow-edge0-,window-first-')
+    cfg={}
+    for lr in [.02,.04]:
+        for final in [.05,.25]:
+            c=base(lr,LAM);c.update(matrix_schedule='fw_reciprocal_cooldown',reciprocal_final_factor=final,window_family='reciprocal-cooled')
+            cfg[f'window-schedule-lr{lr:g}-f{final:g}']=c
+    register(cfg,'NEW targeted schedule hypothesis from terminal-step audit: plain reciprocal ends near.00049, tuned cooldown control near.000125. Test reciprocal PLUS common65% terminal cooldown with final factors{.05,.25}, peak LRs{.02,.04}, fixed ordinary lambda. Native momentum/auxiliary schedule matched, no extra gradient queries. Quarter factor approximately matches the stronger baseline terminal LR. Not an online controller or exact-theorem claim.')
     publish_status('finish fair long-horizon schedule/LR comparison')
     subprocess.run([sys.executable,'-u','-m','research.unnormalized_muon.continue_campaign'],cwd=REPO,check=True)
     if left()<1500:return
+    # Equal boundary rule for both terminal factors, full20k budgets.
+    for round_index in range(2):
+        cfg={}
+        for final in [.05,.25]:
+            rr=[]
+            for p in ROOT.glob('um-window-*/summary.json'):
+                ss=json.loads(p.read_text());cc=ss.get('config',{})
+                if cc.get('matrix_schedule')=='fw_reciprocal_cooldown' and cc.get('reciprocal_final_factor')==final and cc.get('seed')==0:rr.append((ss['validation']['loss'],cc))
+            best=min(rr,key=lambda x:x[0])[1];vals=[c['matrix_lr'] for _,c in rr];lr=best['matrix_lr']
+            new=lr/2 if lr==min(vals) else lr*2 if lr==max(vals) else None
+            if new is not None:
+                c=dict(best,matrix_lr=new);cfg[f'window-schedule-edge{round_index}-f{final:g}']=c
+        if not cfg:break
+        register(cfg,f'Fair factor-two peak-LR boundary expansion round{round_index} for BOTH reciprocal terminal-cooldown factors; seed0, full20k schedule. No heldout selection.')
+        stage(f'window-schedule-edge{round_index}-')
+        if left()<1500:return
     # Joint LR/WD screen around the improved baseline, including zero-WD's
     # previously competitive larger LR. This is not an online-controller grid.
     selected=json.loads((D/'FOLLOWUP_SELECTION_20000.json').read_text());peak=selected['control']['matrix_lr']

@@ -15,7 +15,7 @@ def publish():
    cfg=json.loads(p.read_text())
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
   if cfg.get('gap_scope'):arm=f'GapWD {cfg["gap_scope"]} {cfg.get("gap_shape","uniform")}'
-  elif cfg.get('matrix_schedule')=='fw_reciprocal':arm='Muon shifted reciprocal'
+  elif cfg.get('matrix_schedule','').startswith('fw_reciprocal'):arm='Muon shifted reciprocal'+(f' +cooldown{cfg.get("reciprocal_final_factor",.25):g}' if cfg.get('matrix_schedule')=='fw_reciprocal_cooldown' else '')
   if cfg.get('clean'):arm='Clean '+arm
   if cfg.get('protocol_version')==2:arm+=' v2 c-in-Q'
   if cfg.get('gap_scope'):arm+=f' {cfg.get("gap_acceptance","quadratic")} cap{cfg.get("gap_eta_cap",0):g}/{cfg.get("gap_cap_schedule","none")}'

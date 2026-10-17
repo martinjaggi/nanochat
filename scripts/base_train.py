@@ -606,13 +606,18 @@ while True:
         if group['kind'] == 'muon':
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "constant":
                 group["lr"] = group["initial_lr"] * min(1.0, (step + 1) / max(1, args.warmup_steps))
-            if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "fw_reciprocal":
+            if os.environ.get("RESEARCH_MATRIX_SCHEDULE") in {"fw_reciprocal", "fw_reciprocal_cooldown"}:
                 from research.unnormalized_muon.protocol_math import reciprocal_schedule
                 assert os.environ.get("RESEARCH_FIXED_WD"), "reciprocal FW schedule requires fixed WD"
                 c = (1.0 if os.environ.get('RESEARCH_MUON_GEOMETRY') == 'q_scaled' else max(1.0, group['params'][0].shape[-2] / group['params'][0].shape[-1]) ** .5)
                 group['lr'] = reciprocal_schedule(group['initial_lr']*c,weight_decay_scaled,step,args.warmup_steps,
                     time_progress=recorder.active_seconds/research_time_budget if research_time_budget else None,
                     reference_updates=research_reference_updates)/c
+                if os.environ.get("RESEARCH_MATRIX_SCHEDULE")=="fw_reciprocal_cooldown":
+                    from research.unnormalized_muon.cooldown_schedule import reciprocal_cooldown
+                    group['lr']=reciprocal_cooldown(group['initial_lr']*c,weight_decay_scaled,step,
+                        horizon=research_reference_updates,warmup=args.warmup_steps,final=float(os.environ.get("RESEARCH_RECIPROCAL_FINAL", ".25")),
+                        time_progress=recorder.active_seconds/research_time_budget if research_time_budget else None)/c
             group["momentum"] = muon_momentum
             group["weight_decay"] = 0.0 if os.environ.get("RESEARCH_FW") == "1" else muon_weight_decay
     if scaler is not None:
