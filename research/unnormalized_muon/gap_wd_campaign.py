@@ -30,7 +30,7 @@ def record(configs,note):
  push()
 
 def push():
- subprocess.run(['git','push','origin','HEAD:unnormalized-muon'],cwd=REPO,check=True,env=dict(os.environ,GIT_SSH_COMMAND='ssh -o BatchMode=yes -o UserKnownHostsFile=/tmp/nanochat-github-known-hosts'))
+ subprocess.run(['git','push','origin','HEAD:unnormalized-muon'],cwd=REPO,check=True,env=dict(os.environ,GIT_SSH_COMMAND='ssh -o BatchMode=yes -o UserKnownHostsFile=/mloscratch/homes/mljaggi/rcp-tools/github-known-hosts'))
 
 def check(name):
  matches=[r for r in rows() if r['name']==name];assert len(matches)==1,name+' not completed'

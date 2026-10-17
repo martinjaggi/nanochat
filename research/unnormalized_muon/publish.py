@@ -71,5 +71,5 @@ def publish():
  subprocess.run(['git','add',*paths],cwd=REPO,check=True)
  if subprocess.run(['git','diff','--cached','--quiet'],cwd=REPO).returncode:
   subprocess.run(['git','commit','-m','Update live Muon experiment results'],cwd=REPO,check=True)
- subprocess.run(['git','push','origin','HEAD:unnormalized-muon'],cwd=REPO,check=True,env=dict(os.environ,GIT_SSH_COMMAND='ssh -o BatchMode=yes -o UserKnownHostsFile=/tmp/nanochat-github-known-hosts'))
+ subprocess.run(['git','push','origin','HEAD:unnormalized-muon'],cwd=REPO,check=True,env=dict(os.environ,GIT_SSH_COMMAND='ssh -o BatchMode=yes -o UserKnownHostsFile=/mloscratch/homes/mljaggi/rcp-tools/github-known-hosts'))
 if __name__=='__main__':publish()
