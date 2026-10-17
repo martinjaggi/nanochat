@@ -41,3 +41,16 @@ def early_reciprocal(eta_join,step,*,peak_multiplier=1.,horizon=20000,warmup=40,
     if clock<warmup:return baseline*peak_multiplier
     length=join-warmup
     return eta_join*peak_multiplier/(1+(clock-warmup)*(peak_multiplier-1)/length)
+
+
+def history_matched_early_wd(reference,step,*,peak_multiplier=2.,horizon=20000,warmup=40,final=.01,time_progress=None):
+    """Diagnostic: retain baseline gamma_t while reallocating directional LR.
+
+    This changes lambda_t/the implied domain and is not a fixed-WD FW arm.
+    Only the early phase changes: lambda_t=reference*eta_base/eta_early.
+    """
+    assert reference>=0
+    kw=dict(horizon=horizon,warmup=warmup,final=final,time_progress=time_progress)
+    baseline=matrix_cooldown(1.,step,**kw)
+    early=early_reciprocal(1.,step,peak_multiplier=peak_multiplier,**kw)
+    return reference*baseline/early

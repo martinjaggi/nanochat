@@ -425,6 +425,13 @@ def get_muon_momentum(it):
 # Weight decay scheduler for Muon optimizer (cosine decay to zero over the course of training)
 def get_weight_decay(it):
     if os.environ.get("RESEARCH_FIXED_WD", ""):
+        if os.environ.get("RESEARCH_WD_SCHEDULE")=="early_history_matched":
+            from research.unnormalized_muon.cooldown_schedule import history_matched_early_wd
+            return history_matched_early_wd(weight_decay_scaled,it,
+                peak_multiplier=float(os.environ.get("RESEARCH_EARLY_PEAK", "1")),
+                horizon=research_reference_updates,warmup=args.warmup_steps,
+                final=float(os.environ.get("RESEARCH_MATRIX_FINAL", ".01")),
+                time_progress=recorder.active_seconds/research_time_budget if research_time_budget else None)
         if os.environ.get("RESEARCH_WD_SCHEDULE")=="cosine_radius":
             from research.unnormalized_muon.cooldown_schedule import cosine_wd
             return cosine_wd(weight_decay_scaled,it,horizon=research_reference_updates,
