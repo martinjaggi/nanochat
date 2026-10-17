@@ -7,8 +7,8 @@ from research.unnormalized_muon.events import read_events
 def main():
     report();p=D/'EARLY_ALLOCATION_RESULTS.md';lines=[]
     for title,arm,prefix,control in [
-        ('Predeclared near-tied1.5x confirmation','mid','earlyalloc-secondary-mid','baseline'),
-        ('1.5x final-contraction-matched control','midmatched','earlyalloc-secondary-midmatched','baseline'),
+        ('Predeclared near-tied1.5x confirmation','mid','earlyalloc-confirm-mid','baseline'),
+        ('1.5x final-contraction-matched control','midmatched','earlyalloc-confirm-midmatched','baseline'),
         ('2x with complete contraction history matched','history','earlyalloc-history','baseline')]:
         lines+=['',f'## {title}','','| Seed | Heldout CE | Delta vs original baseline | Active seconds | Contraction product |','|---|---:|---:|---:|---:|'];ds=[];ss={}
         for seed in [70,71,72]:
@@ -27,12 +27,12 @@ def main():
         if arm=='mid' and len(ss)==3:
             pairs=[]
             for seed in [70,71,72]:
-                x=ROOT/f'um-earlyalloc-secondary-midmatched-s{seed}'/'summary.json'
+                x=ROOT/f'um-earlyalloc-confirm-midmatched-s{seed}'/'summary.json'
                 if x.exists():
                     c=json.loads(x.read_text());pairs.append(ss[seed]['heldout']['loss']-c['heldout']['loss'])
                     assert all(abs(a['log_abs']-b['log_abs'])<1e-8 for a,b in zip(ss[seed]['muon_contraction'].values(),c['muon_contraction'].values()))
             if len(pairs)==3:lines+=['',f'1.5x minus its final-contraction-matched baseline: mean **{statistics.mean(pairs):+.6f} CE**, sample SD **{statistics.stdev(pairs):.6f}**.']
-    check=ROOT/'um-earlyalloc-history-check-001'/'summary.json'
+    check=ROOT/'um-earlyalloc-confirm-history-check-001'/'summary.json'
     if check.exists():
         s=json.loads(check.read_text());lines+=['','History-matched64-update B300 integration job: '+s['status']+'. Actual per-update gamma is audited before full diagnostic runs.']
     lines+=['','The1.5x secondary arm and history-matched diagnostic were committed before any fresh heldout endpoints. They are reported alongside the primary2x selection, not chosen after test-set inspection. History matching deliberately varies WD/the implied domain; it is a diagnostic of LR allocation, not a fixed-WD FW method.']
