@@ -33,21 +33,39 @@ def record(**row):
   w=csv.DictWriter(f,fieldnames=FIELDS,extrasaction='ignore',lineterminator='\n')
   if not exists:w.writeheader()
   w.writerow({k:json.dumps(v) if isinstance(v,(dict,list)) else v for k,v in row.items()})
+def allocation_start(pods,previous=None,now=None):
+ import datetime
+ starts=[]
+ for pod in pods:
+  if not pod.get('spec',{}).get('nodeName'):continue
+  values=[pod.get('status',{}).get('startTime')]+[c.get('lastTransitionTime') for c in pod.get('status',{}).get('conditions',[]) if c.get('type')=='PodScheduled' and c.get('status')=='True']
+  timestamps=[datetime.datetime.fromisoformat(t.replace('Z','+00:00')).timestamp() for t in values if t]
+  starts.append(min(timestamps) if timestamps else (time.time() if now is None else now)-30)
+ if previous is not None:starts.append(previous)
+ return min(starts) if starts else None
+
+def delete_request(name,k,obj):
+ if obj is not None:return cli('delete','job',name)
+ parent=training_workloads(k).get(name)
+ if parent:
+  return k.request('DELETE','/apis/run.ai/v2alpha1/namespaces/'+k.namespace+'/trainingworkloads/'+name,json=dict(apiVersion='v1',kind='DeleteOptions',propagationPolicy='Foreground',preconditions=dict(uid=parent['metadata']['uid'])))
+
 def reap():
  s=load();j=jobs();k=Kube();changed=False
  objects={o['metadata']['name']:o for o in k.request('GET','/apis/run.ai/v1/namespaces/'+k.namespace+'/runaijobs')['items']}
+ pods_now=k.request('GET','/api/v1/namespaces/'+k.namespace+'/pods')['items']
  for name,v in s.items():
   if v['recorded']:continue
   status=j.get(name,'missing');obj=objects.get(name);out=ROOT/name
   if status=='missing' and time.time()-v['submitted']<120:continue
-  if obj:
-   import datetime
-   st=obj.get('status',{}).get('startTime')
-   if st:
-    started=datetime.datetime.fromisoformat(st.replace('Z','+00:00')).timestamp()
-    if time.time()-started>v['seconds']+60 and status not in ['Succeeded','Completed','Failed']:
-     cli('delete','job',name);status='controller_timeout'
-  if status not in ['Succeeded','Completed','Failed','missing','controller_timeout']:continue
+  deleted=False
+  assigned=allocation_start([p for p in pods_now if p['metadata']['name'].startswith(name+'-')],v.get('allocation_start'))
+  if assigned is not None:v['allocation_start']=assigned
+  if assigned is not None and time.time()-assigned>v['seconds']+60 and status not in ['Succeeded','Completed','Failed']:
+   delete_request(name,k,obj);status='controller_timeout';deleted=True
+  elif assigned is None and time.time()-v['submitted']>3600 and status not in ['Succeeded','Completed','Failed']:
+   delete_request(name,k,obj);status='pending_timeout';deleted=True
+  if status not in ['Succeeded','Completed','Failed','missing','controller_timeout','pending_timeout']:continue
   if obj:(out/'scheduler-final.json').write_text(json.dumps(obj,indent=2))
   elapsed=time.time()-v['submitted']
   v['gpu_seconds']=elapsed # conservatively includes queueing, startup and cleanup delay
@@ -58,7 +76,7 @@ def reap():
   if not done:
    p=out/'run.log';reason=p.read_text()[-3000:] if p.exists() else status
    record(run_id=name,stage=v['stage'],status='failed',git_commit=v['commit'],job_id=name,GPU_count=1,runtime_limit=v['seconds'],charged_gpu_seconds=elapsed,output=str(out),failure=reason)
-  if name in jobs():cli('delete','job',name)
+  if not deleted and name in jobs():delete_request(name,k,obj)
   # CLI list can cache a deleted job for a minute. Check authoritative
   # objects and pods as well; a stale list must not invalidate completed work.
   removed=False
