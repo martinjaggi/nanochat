@@ -49,6 +49,9 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-follow-first-tune-control-lr0p01 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.112087 | 0.943514 | — | 777.47 |
 | um-follow-first-tune-control-lr0p02 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.02 | 3.142251 | 0.952650 | — | 767.69 |
 | um-follow-first-tune-reciprocal-lr0p01 | Clean Muon shifted reciprocal fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.156622 | 0.957022 | — | 744.07 |
+| um-follow-mid-control-high | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.0141421 | 3.122182 | 0.946575 | — | 738.56 |
+| um-follow-mid-reciprocal-high | Clean Muon shifted reciprocal fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.0282843 | 3.152773 | 0.955841 | — | 721.58 |
+| um-follow-mid-reciprocal-low | Clean Muon shifted reciprocal fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.0141421 | 3.152943 | 0.955902 | — | 727.28 |
 | um-fresh-diagnosis-001 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.557051 | 1.078327 | — | 340.47 |
 | um-fresh-wd-mixing | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.555051 | 1.077723 | — | 149.73 |
 | um-fresh-wd-static-product | Clean Native cooldown fixed_lambda=0.153864 WD:standard(0) | 2000 | 0 | 0.04 | 3.553682 | 1.077298 | — | 123.04 |
@@ -206,10 +209,12 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-window-first-wd-x0p25 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.005 | 3.116976 | 0.945011 | — | 767.80 |
 | um-window-first-wd-x0p5 | Clean Native cooldown fixed_lambda=0.0918749 WD:standard(0) | 20000 | 0 | 0.005 | 3.104900 | 0.941332 | — | 794.45 |
 | um-window-first-wd-x2 | Clean Native cooldown fixed_lambda=0.3675 WD:standard(0) | 20000 | 0 | 0.005 | 3.135778 | 0.950699 | — | 772.24 |
+| um-window-schedule-lr0p02-f0p05 | Clean Muon shifted reciprocal +cooldown0.05 fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.02 | 3.096101 | 0.938674 | — | 711.40 |
+| um-window-schedule-lr0p02-f0p25 | Clean Muon shifted reciprocal +cooldown0.25 fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.02 | 3.101839 | 0.940430 | — | 711.22 |
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 24.3281 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 27.4354 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 

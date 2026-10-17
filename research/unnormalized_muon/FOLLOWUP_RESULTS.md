@@ -15,6 +15,9 @@ First complete the missing reciprocal equal-time endpoints on the ORIGINAL froze
 | um-follow-first-tune-control-lr0p01 | 20000 | cooldown | 0.01 | 0 | 3.112087 | — | — | 706.571 | 777.47 | 0.00000 |
 | um-follow-first-tune-control-lr0p02 | 20000 | cooldown | 0.02 | 0 | 3.142251 | — | — | 696.905 | 767.69 | 0.00000 |
 | um-follow-first-tune-reciprocal-lr0p01 | 20000 | fw_reciprocal | 0.01 | 0 | 3.156622 | — | — | 673.476 | 744.07 | 0.00000 |
+| um-follow-mid-control-high | 20000 | cooldown | 0.0141421 | 0 | 3.122182 | — | — | 682.008 | 738.56 | 0.00000 |
+| um-follow-mid-reciprocal-high | 20000 | fw_reciprocal | 0.0282843 | 0 | 3.152773 | — | — | 649.252 | 721.58 | 0.00000 |
+| um-follow-mid-reciprocal-low | 20000 | fw_reciprocal | 0.0141421 | 0 | 3.152943 | — | — | 655.222 | 727.28 | 0.00000 |
 
 ## Paired held-out endpoints
 
