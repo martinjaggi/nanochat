@@ -143,3 +143,5 @@ Continue after completed gap/fresh-data campaign,21.22GPUh charged. Respect fail
 User authorized continuous work for3h starting2026-10-17 07:48:18UTC (until10:48:18UTC), same50B300 GPUh total/six-job cap. Found CPU publisher re-reading full historical tensor diagnostics and stalling next submissions. Stream only required events and regenerate historical reports only when their inputs change. Preserve completed plots/results; no training math changed. Restart only CPU controllers, reaping completed jobs before resuming.
 
 Continue after completed gap/fresh-data campaign,21.22GPUh charged. Respect failed fresh gate: NO further online-controller sweep. First six jobs: missing reciprocal equal-time seeds10/11/12 at frozen LR.02 and H=678.993s, plus seed0 655M-token control LRs{.01,.02} and reciprocal.01. Long control optimum was at its tested lower edge. Six-slot queue,1verified B300/job,50GPUh PROJECT TOTAL.
+
+Matched factor-two long-horizon boundary rule round0, both prescribed schedules. Seed0 only,20000 updates; no heldout selection.
