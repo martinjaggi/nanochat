@@ -52,6 +52,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-earlyalloc-confirm-early-s71 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.086768 | 0.935854 | 3.128732 | 770.47 |
 | um-earlyalloc-confirm-early-s72 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.097495 | 0.939100 | 3.138992 | 758.31 |
 | um-earlyalloc-confirm-early-s80 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.090832 | 0.937032 | 3.130208 | 759.04 |
+| um-earlyalloc-confirm-early-s81 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.090599 | 0.937002 | 3.131149 | 753.52 |
 | um-earlyalloc-confirm-history-check-002 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 128 | 0 | 0.02 | 5.910295 | 1.791403 | — | 61.07 |
 | um-earlyalloc-confirm-matched-s70 | Clean Native cooldown fixed_lambda=0.0551271 WD:standard(0) | 20000 | 70 | 0.02 | 3.091825 | 0.937357 | 3.133393 | 747.43 |
 | um-earlyalloc-confirm-matched-s71 | Clean Native cooldown fixed_lambda=0.0551271 WD:standard(0) | 20000 | 71 | 0.02 | 3.087015 | 0.935905 | 3.127414 | 743.56 |
@@ -59,6 +60,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-earlyalloc-confirm-mid-s70 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.088300 | 0.936291 | 3.130945 | 714.18 |
 | um-earlyalloc-confirm-mid-s71 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.085330 | 0.935397 | 3.127163 | 769.38 |
 | um-earlyalloc-confirm-mid-s72 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.098647 | 0.939434 | 3.137712 | 771.85 |
+| um-earlyalloc-confirm-mid-s81 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.090870 | 0.937089 | 3.133066 | 717.19 |
 | um-earlyalloc-confirm-neutral-s70 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 70 | 0.02 | 3.087880 | 0.936181 | 3.128062 | 806.59 |
 | um-earlyalloc-confirm-neutral-s71 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 71 | 0.02 | 3.086275 | 0.935689 | 3.128008 | 700.68 |
 | um-earlyalloc-confirm-neutral-s72 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 72 | 0.02 | 3.098150 | 0.939295 | 3.139013 | 712.74 |
@@ -285,7 +287,7 @@ Review of um-fw-diagnostic-001: Compiled training f0 compared against functional
 
 Review of um-earlyalloc-confirm-history-check-001: Invalid short check: horizon64 gives cooldown join22 before warmup40. Non-time runs intentionally ignore reference_updates override. early_reciprocal asserts warmup<join on first measured step. Fix check002 horizon128/join45 and fail-fast launcher validation; full20k arms unaffected.
 
-Conservative charged/reserved total: 43.7393 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 43.9560 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
