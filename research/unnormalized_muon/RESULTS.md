@@ -283,7 +283,7 @@ Review of um-fw-diagnostic-001: Compiled training f0 compared against functional
 
 Review of um-earlyalloc-confirm-history-check-001: Invalid short check: horizon64 gives cooldown join22 before warmup40. Non-time runs intentionally ignore reference_updates override. early_reciprocal asserts warmup<join on first measured step. Fix check002 horizon128/join45 and fail-fast launcher validation; full20k arms unaffected.
 
-Conservative charged/reserved total: 42.4778 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 42.8140 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
