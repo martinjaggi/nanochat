@@ -2,7 +2,7 @@
 
 Requested window17 October2026,07:48:18–10:48:18UTC. One locked submission queue,one actual B300/job,max6 jobs,50B300 GPUh PROJECT TOTAL including earlier runs. No new online-controller grid: prior fresh-data promotion gate failed. First compare WD at the same LR as the pending .005 reference; later tune LR/WD interaction using only seed0 development data. Static WD0 is unconstrained; changing reciprocal-mixing WD changes the radius and retains native momentum, so it is not a fixed-domain stochastic FW theorem test.
 
-**Best completed seed-0 development endpoint so far: 3.092627CE**, `um-window-joint-mixing-x2`. This is a tuning result, not a new-seed or equal-time claim.
+**Best completed seed-0 development endpoint so far: 3.089540CE**, `um-window-static-terminal-f0p01`. This is a tuning result, not a new-seed or equal-time claim.
 
 Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE_AUDIT.md), [exact saved-weight norms](WINDOW_WEIGHT_AUDIT.md), [layer-search saturation](GAP_SATURATION_AUDIT.md), [plain reciprocal follow-up](FOLLOWUP_RESULTS.md).
 
@@ -37,12 +37,15 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-joint-wd0p753041-x1 | 20000 | 0 | 0.01 | 0.138371 | fixed | cooldown | 3.106556 | — | 694.328 | 750.51 |
 | um-window-joint-wd0p753041-x2 | 20000 | 0 | 0.02 | 0.138371 | fixed | cooldown | 3.125062 | — | 720.187 | 772.65 |
 | um-window-joint-zero-lr0p04 | 20000 | 0 | 0.04 | 0 | fixed | cooldown | 3.107898 | — | 728.677 | 787.70 |
+| um-window-mixing-lr-edge | 20000 | 0 | 0.04 | 0.18375 | fw_mixing_reciprocal | cooldown | 3.097083 | — | 696.151 | 773.43 |
 | um-window-schedule-edge0-f0p05 | 20000 | 0 | 0.01 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.105950 | — | 716.757 | 789.58 |
 | um-window-schedule-edge0-f0p25 | 20000 | 0 | 0.08 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.104520 | — | 705.623 | 778.27 |
 | um-window-schedule-lr0p02-f0p05 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096101 | — | 638.844 | 711.40 |
 | um-window-schedule-lr0p02-f0p25 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.101839 | — | 638.613 | 711.22 |
 | um-window-schedule-lr0p04-f0p05 | 20000 | 0 | 0.04 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096862 | — | 721.605 | 780.16 |
 | um-window-schedule-lr0p04-f0p25 | 20000 | 0 | 0.04 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.100892 | — | 643.475 | 714.25 |
+| um-window-static-lr-edge | 20000 | 0 | 0.04 | 0.0459375 | fixed | cooldown | 3.106810 | — | 709.487 | 787.45 |
+| um-window-static-terminal-f0p01 | 20000 | 0 | 0.02 | 0.0459375 | fixed | cooldown_refined | 3.089540 | — | 694.791 | 772.89 |
 | um-window-terminal-edge-lr0p0025-f0p25 | 20000 | 0 | 0.0025 | 0.18375 | fixed | cooldown_refined | 3.147864 | — | 732.953 | 785.67 |
 | um-window-terminal-edge-lr0p02-f0p01 | 20000 | 0 | 0.02 | 0.18375 | fixed | cooldown_refined | 3.127284 | — | 739.787 | 797.67 |
 
