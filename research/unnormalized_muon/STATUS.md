@@ -129,3 +129,5 @@ After existing FW-lens campaign: ONE B300 frozen diagnosis,1800s limit, checkpoi
 Frozen fresh-data gate FAILED: stop online-controller expansion; retain negative diagnosis and cheap-rule evidence.
 
 Separate two-run WD hypothesis screen after diagnosis; reuse exact CLI.04 static-WD reference. Preserve shifted reciprocal FW mixing gamma through scheduled gradient-LR cooldown via lambda_t=gamma_t/eta_t (CHANGING radius); compare fixed lambda matching final log contraction. Native momentum unchanged, no fixed-ball stochastic FW theorem claim. One B300/job,900s,50GPUh total guard. No broad schedule grid.
+
+Report-inspired diagnosis and narrow WD-mixing pilot completed. Inspect FRESH_DIAGNOSIS.md and frozen plots. Positive online gate requires implementation/review of matched same/fresh-fit controller next; negative gate halts that expansion. No final-heldout tuning or automatic broad sweep.
