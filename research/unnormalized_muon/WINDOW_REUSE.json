@@ -1,0 +1,113 @@
+{
+  "window-joint-wd0-x0.5": {
+    "source_run": "um-window-first-wd-x0",
+    "source_commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "config": {
+      "protocol_version": 5,
+      "clean": true,
+      "variant": false,
+      "decay_mode": "standard",
+      "fixed_wd": 0.0,
+      "gap_geometry": "q_scaled",
+      "matrix_lr": 0.005,
+      "matrix_schedule": "cooldown",
+      "updates": 20000,
+      "seed": 0,
+      "depth": 8,
+      "runtime_limit": 1200,
+      "warmup_updates": 3,
+      "follow_arm": "control",
+      "heldout": false,
+      "window_family": "fixed"
+    }
+  },
+  "window-joint-wd0.25-x0.5": {
+    "source_run": "um-window-first-wd-x0p25",
+    "source_commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "config": {
+      "protocol_version": 5,
+      "clean": true,
+      "variant": false,
+      "decay_mode": "standard",
+      "fixed_wd": 0.04593746995939655,
+      "gap_geometry": "q_scaled",
+      "matrix_lr": 0.005,
+      "matrix_schedule": "cooldown",
+      "updates": 20000,
+      "seed": 0,
+      "depth": 8,
+      "runtime_limit": 1200,
+      "warmup_updates": 3,
+      "follow_arm": "control",
+      "heldout": false,
+      "window_family": "fixed"
+    }
+  },
+  "window-joint-wd0.5-x0.5": {
+    "source_run": "um-window-first-wd-x0p5",
+    "source_commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "config": {
+      "protocol_version": 5,
+      "clean": true,
+      "variant": false,
+      "decay_mode": "standard",
+      "fixed_wd": 0.0918749399187931,
+      "gap_geometry": "q_scaled",
+      "matrix_lr": 0.005,
+      "matrix_schedule": "cooldown",
+      "updates": 20000,
+      "seed": 0,
+      "depth": 8,
+      "runtime_limit": 1200,
+      "warmup_updates": 3,
+      "follow_arm": "control",
+      "heldout": false,
+      "window_family": "fixed"
+    }
+  },
+  "window-joint-wd0.753041-x0.5": {
+    "source_run": "um-window-first-wd-static-product",
+    "source_commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "config": {
+      "protocol_version": 5,
+      "clean": true,
+      "variant": false,
+      "decay_mode": "standard",
+      "fixed_wd": 0.13837120932522418,
+      "gap_geometry": "q_scaled",
+      "matrix_lr": 0.005,
+      "matrix_schedule": "cooldown",
+      "updates": 20000,
+      "seed": 0,
+      "depth": 8,
+      "runtime_limit": 1200,
+      "warmup_updates": 3,
+      "follow_arm": "control",
+      "heldout": false,
+      "window_family": "fixed"
+    }
+  },
+  "window-joint-mixing-x0.5": {
+    "source_run": "um-window-first-wd-mixing",
+    "source_commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "config": {
+      "protocol_version": 5,
+      "clean": true,
+      "variant": false,
+      "decay_mode": "standard",
+      "fixed_wd": 0.1837498798375862,
+      "gap_geometry": "q_scaled",
+      "matrix_lr": 0.005,
+      "matrix_schedule": "cooldown",
+      "updates": 20000,
+      "seed": 0,
+      "depth": 8,
+      "runtime_limit": 1200,
+      "warmup_updates": 3,
+      "follow_arm": "control",
+      "heldout": false,
+      "window_family": "mixing",
+      "wd_schedule": "fw_mixing_reciprocal"
+    }
+  }
+}
