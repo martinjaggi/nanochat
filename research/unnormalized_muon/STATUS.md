@@ -199,3 +199,5 @@ Matrix-only terminal controls completed: bestCLI.01/final.01 CE3.104185, improvi
 Use two freed slots for ordinary terminal-control LR edge checks, CLI.02/final.01 and CLI.0025/final.25, full20k,seed0. Preserve original AdamW/momentum clocks; fixed standard matrix WD. OneB300 each,1200s fail-safe; exactly six total outstanding after submission.
 
 Verified exact full-config reuse for five prospective joint-WD runs atCLI.005 (lambda0,.25,.5,first-best-static,changing-WD). Record mapping/source commits in WINDOW_REUSE.json; do not submit duplicate jobs, synthesize endpoints, or double-count cost. Full horizon, seed, schedules, precision, microbatch, auxiliary settings and all config fields match.
+
+Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pending baseline LR.005 with6 WD probes at SAME LR,20k updates. Fixed lambda multiples{0,.25,.5,2}, shifted reciprocal mixing lambda_t=gamma_t/eta_t, and matched-final-product static WD. Reuse pending reference lambda1. One central queue/one B300/job/max6/50GPUh total. WD0 is unconstrained, no finite-radius FW claim.
