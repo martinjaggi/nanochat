@@ -117,6 +117,10 @@ def main():
             lr=peak*factor;cfg[f'window-joint-wd{x:g}-x{factor:g}']=base(lr,LAM*x)
     cfg['window-joint-zero-lr0.04']=base(.04,0.)
     for factor in [.5,1.,2.]:cfg[f'window-joint-mixing-x{factor:g}']=base(peak*factor,LAM,wd_schedule='fw_mixing_reciprocal',window_family='mixing')
+    for lr in [peak/2,peak]:
+        for final in [.01,.25]:
+            c=base(lr,LAM);c.update(matrix_schedule='cooldown_refined',matrix_final_factor=final,window_family='terminal-control')
+            cfg[f'window-joint-terminal-lr{lr:g}-f{final:g}']=c
     register(cfg,'Remaining work-window stage: joint LR/WD interaction around newly tuned baseline. Static lambda{0,.25,.5} times reference PLUS the first screen best static coefficient if distinct, across peak LR{half,best,double}; include zero-WD LR.04 because earlier long zero-WD runs preferred larger LR. Give changing-radius mixing WD the SAME3 LR candidates. Full20k schedules; seed0 development only, no final-heldout selection.')
     stage('window-joint-')
     if left()<1500:return
@@ -124,15 +128,21 @@ def main():
     for p in ROOT.glob('um-window-*/summary.json'):
         s=json.loads(p.read_text());c=s.get('config',{})
         if s.get('status')=='completed' and s.get('updates')==20000 and not c.get('time_budget') and c.get('seed')==0:candidates.append((s['validation']['loss'],c,p.parent.name))
-    best=min(candidates,key=lambda x:x[0]);reference=min(tuning('control',20000),key=lambda r:r['s']['validation']['loss'])
+    def pure_control(c):
+        return (not c.get('cap_sign') and c.get('fixed_wd')==LAM and c.get('wd_schedule','fixed')=='fixed'
+                and c.get('matrix_schedule') in {'cooldown','cooldown_refined'})
+    controls=tuning('control',20000)+[dict(name=n,c=c,s=json.loads((ROOT/n/'summary.json').read_text())) for loss,c,n in candidates if pure_control(c)]
+    reference=min(controls,key=lambda r:r['s']['validation']['loss']);reference_config=dict(reference['c'])
+    variants=[x for x in candidates if not pure_control(x[1])]
+    best=min(variants,key=lambda x:x[0])
     if best[0]>=reference['s']['validation']['loss']-.001:
         record({},'Work-window WD screen found no >.001 CE gain over tuned reference; no large confirmation sweep justified. Keep exact losses and costs, continue audit/report work until requested deadline.');return
-    chosen=dict(best[1]);frozen=D/'WINDOW_SELECTION.json';frozen.write_text(json.dumps(dict(candidate=chosen,candidate_run=best[2],reference_run=reference['name'],reference_lr=reference['c']['matrix_lr']),indent=2)+'\n')
+    chosen=dict(best[1]);frozen=D/'WINDOW_SELECTION.json';frozen.write_text(json.dumps(dict(candidate=chosen,candidate_run=best[2],reference_run=reference['name'],reference_lr=reference['c']['matrix_lr'],reference_config=reference_config),indent=2)+'\n')
     subprocess.run(['git','add',str(frozen.relative_to(REPO))],cwd=REPO,check=True);subprocess.run(['git','commit','-m','Freeze seed0-only WD candidate before new paired seeds'],cwd=REPO,check=True)
     from research.unnormalized_muon.gap_wd_campaign import push
     push();cfg={}
     for seed in [40,41,42]:
-        for arm,c in [('reference',base(reference['c']['matrix_lr'],LAM)),('candidate',chosen)]:
+        for arm,c in [('reference',dict(reference_config)),('candidate',chosen)]:
             c=dict(c,seed=seed,heldout=True,heldout_block=4);cfg[f'window-confirm-{arm}-s{seed}']=c
     register(cfg,'Freeze best WD hypothesis and tuned original-lambda reference before NEW paired seeds40/41/42 and NEW heldout block4. Same20k tokens/update/auxiliary streams; all selection used seed0 development. OneB300/run, six slots, runtime1200s.')
     stage('window-confirm-');ds=paired_report('window-confirm',[40,41,42])
@@ -140,14 +150,14 @@ def main():
     if left()>1100:
         H=statistics.median(json.loads((ROOT/f'um-window-confirm-reference-s{seed}/summary.json').read_text())['training_active_seconds'] for seed in [40,41,42]);cfg={}
         for seed in [40,41,42]:
-            for arm,c in [('reference',base(reference['c']['matrix_lr'],LAM)),('candidate',chosen)]:
+            for arm,c in [('reference',dict(reference_config)),('candidate',chosen)]:
                 cc=dict(c,seed=seed,heldout=True,heldout_block=4,time_budget=H,reference_updates=20000,max_updates=200000,runtime_limit=math.ceil(H+240))
                 cfg[f'window-time-{arm}-s{seed}']=cc
         register(cfg,f'Independent WD equal-time confirmation H={H:.9f}s, median matched reference active times. LR, WD, momentum and auxiliary schedules all use shared active-time progress; seeds40/41/42, fixed heldout block4. Finish last update and report overshoot. No token-clock prefix comparison.')
         stage('window-time-');paired_report('window-time',[40,41,42],filename='WINDOW_EQUAL_TIME.md')
     if left()>1800 and all(x<0 for x in ds) and statistics.mean(ds)<-.003:
         cfg={}
-        for arm,c in [('reference',base(reference['c']['matrix_lr'],LAM)),('candidate',chosen)]:
+        for arm,c in [('reference',dict(reference_config)),('candidate',chosen)]:
             for factor in [.5,1.,2.]:
                 cc=dict(c,matrix_lr=c['matrix_lr']*factor,updates=40000,runtime_limit=2200)
                 cfg[f'window-long-{arm}-x{factor:g}']=cc
