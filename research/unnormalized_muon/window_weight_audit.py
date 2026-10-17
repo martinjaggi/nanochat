@@ -19,8 +19,8 @@ with torch.no_grad():
     gen=torch.Generator().manual_seed(42);v=torch.randn(w.shape[-1],generator=gen);v/=v.norm()
     for _ in range(50):
      u=w@v;u/=u.norm().clamp_min(1e-30);v=w.T@u;v/=v.norm().clamp_min(1e-30)
-    power=float((w@v).norm());frob=float(w.norm())
-    rows.append(dict(name=n,frobenius=frob,spectral_lower_estimate=power,nominal_radius=c/lam if lam else None,spectral_lower_over_radius=power*lam/c,final_wd=last['group_weight_decays'][group_index],spectral_lower_over_final_radius=power*last['group_weight_decays'][group_index]/c))
-  allrows.append(dict(run=name,validation=s['validation']['loss'],global_matrix_frobenius=math.sqrt(sum(x['frobenius']**2 for x in rows)),max_spectral_lower_over_reference_radius=max(x['spectral_lower_over_radius'] for x in rows),max_spectral_lower_over_final_radius=max(x['spectral_lower_over_final_radius'] for x in rows),matrices=rows))
-  print(name,allrows[-1]['global_matrix_frobenius'],allrows[-1]['max_spectral_lower_over_reference_radius'],flush=True)
+    power=float((w@v).norm());frob=float(w.norm());exact=float(torch.linalg.matrix_norm(w.double(),ord=2))
+    rows.append(dict(name=n,spectral_svd=exact,spectral_svd_over_final_radius=exact*last['group_weight_decays'][group_index]/c,frobenius=frob,spectral_lower_estimate=power,nominal_radius=c/lam if lam else None,spectral_lower_over_radius=power*lam/c,final_wd=last['group_weight_decays'][group_index],spectral_lower_over_final_radius=power*last['group_weight_decays'][group_index]/c))
+  allrows.append(dict(run=name,validation=s['validation']['loss'],global_matrix_frobenius=math.sqrt(sum(x['frobenius']**2 for x in rows)),max_spectral_lower_over_reference_radius=max(x['spectral_lower_over_radius'] for x in rows),max_spectral_svd_over_final_radius=max(x['spectral_svd_over_final_radius'] for x in rows),max_spectral_lower_over_final_radius=max(x['spectral_lower_over_final_radius'] for x in rows),matrices=rows))
+  print(name,allrows[-1]['global_matrix_frobenius'],allrows[-1]['max_spectral_svd_over_final_radius'],flush=True)
 (out/'weights.json').write_text(json.dumps(allrows,indent=2)+'\n')

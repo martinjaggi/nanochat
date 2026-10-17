@@ -4,10 +4,13 @@
     "validation": 3.1120874881744385,
     "global_matrix_frobenius": 43.41419615913991,
     "max_spectral_lower_over_reference_radius": 0.25143115246009196,
+    "max_spectral_svd_over_final_radius": 0.25143116388491554,
     "max_spectral_lower_over_final_radius": 0.25143115246009196,
     "matrices": [
       {
         "name": "transformer.h.1.attn.ve_gate.weight",
+        "spectral_svd": 0.9731260407759864,
+        "spectral_svd_over_final_radius": 0.1788117930594135,
         "frobenius": 1.075978398323059,
         "spectral_lower_estimate": 0.9731259942054749,
         "nominal_radius": 5.442180429635574,
@@ -17,6 +20,8 @@
       },
       {
         "name": "transformer.h.3.attn.ve_gate.weight",
+        "spectral_svd": 1.2767365276025109,
+        "spectral_svd_over_final_radius": 0.23460018353121842,
         "frobenius": 1.5091310739517212,
         "spectral_lower_estimate": 1.2767364978790283,
         "nominal_radius": 5.442180429635574,
@@ -26,6 +31,8 @@
       },
       {
         "name": "transformer.h.5.attn.ve_gate.weight",
+        "spectral_svd": 0.9353475374839736,
+        "spectral_svd_over_final_radius": 0.1718699976190623,
         "frobenius": 1.0845333337783813,
         "spectral_lower_estimate": 0.9353475570678711,
         "nominal_radius": 5.442180429635574,
@@ -35,6 +42,8 @@
       },
       {
         "name": "transformer.h.7.attn.ve_gate.weight",
+        "spectral_svd": 0.7604022132132819,
+        "spectral_svd_over_final_radius": 0.13972381530617517,
         "frobenius": 0.93932044506073,
         "spectral_lower_estimate": 0.7604021430015564,
         "nominal_radius": 5.442180429635574,
@@ -44,6 +53,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_q.weight",
+        "spectral_svd": 0.8082289515113079,
+        "spectral_svd_over_final_radius": 0.1485119727214611,
         "frobenius": 4.451645374298096,
         "spectral_lower_estimate": 0.8082289695739746,
         "nominal_radius": 5.442180429635574,
@@ -53,6 +64,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_k.weight",
+        "spectral_svd": 1.368333759494982,
+        "spectral_svd_over_final_radius": 0.25143116388491554,
         "frobenius": 4.342622756958008,
         "spectral_lower_estimate": 1.3683336973190308,
         "nominal_radius": 5.442180429635574,
@@ -62,6 +75,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_v.weight",
+        "spectral_svd": 0.45021337348538937,
+        "spectral_svd_over_final_radius": 0.08272665327921461,
         "frobenius": 3.879232168197632,
         "spectral_lower_estimate": 0.4502098560333252,
         "nominal_radius": 5.442180429635574,
@@ -71,6 +86,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_proj.weight",
+        "spectral_svd": 0.4464585687673479,
+        "spectral_svd_over_final_radius": 0.08203670836346089,
         "frobenius": 3.9675397872924805,
         "spectral_lower_estimate": 0.44645851850509644,
         "nominal_radius": 5.442180429635574,
@@ -80,6 +97,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_q.weight",
+        "spectral_svd": 0.5116055543079685,
+        "spectral_svd_over_final_radius": 0.09400745912833089,
         "frobenius": 4.786084175109863,
         "spectral_lower_estimate": 0.5116055011749268,
         "nominal_radius": 5.442180429635574,
@@ -89,6 +108,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_k.weight",
+        "spectral_svd": 0.6586064122188853,
+        "spectral_svd_over_final_radius": 0.12101884910548394,
         "frobenius": 4.540218353271484,
         "spectral_lower_estimate": 0.6586064696311951,
         "nominal_radius": 5.442180429635574,
@@ -98,6 +119,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_v.weight",
+        "spectral_svd": 0.40016971660889067,
+        "spectral_svd_over_final_radius": 0.07353113734152458,
         "frobenius": 3.843822479248047,
         "spectral_lower_estimate": 0.39955925941467285,
         "nominal_radius": 5.442180429635574,
@@ -107,6 +130,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_proj.weight",
+        "spectral_svd": 0.34491062870153216,
+        "spectral_svd_over_final_radius": 0.06337728657861284,
         "frobenius": 4.057156085968018,
         "spectral_lower_estimate": 0.3436000645160675,
         "nominal_radius": 5.442180429635574,
@@ -116,6 +141,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_q.weight",
+        "spectral_svd": 0.5626277913053237,
+        "spectral_svd_over_final_radius": 0.10338278904563976,
         "frobenius": 4.512237548828125,
         "spectral_lower_estimate": 0.5626277923583984,
         "nominal_radius": 5.442180429635574,
@@ -125,6 +152,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_k.weight",
+        "spectral_svd": 0.6996936641662286,
+        "spectral_svd_over_final_radius": 0.1285686267136649,
         "frobenius": 4.320776462554932,
         "spectral_lower_estimate": 0.6996936798095703,
         "nominal_radius": 5.442180429635574,
@@ -134,6 +163,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_v.weight",
+        "spectral_svd": 0.39419163953392533,
+        "spectral_svd_over_final_radius": 0.07243266639733988,
         "frobenius": 3.787012815475464,
         "spectral_lower_estimate": 0.38700827956199646,
         "nominal_radius": 5.442180429635574,
@@ -143,6 +174,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_proj.weight",
+        "spectral_svd": 0.34872107403685004,
+        "spectral_svd_over_final_radius": 0.0640774554511052,
         "frobenius": 3.7635209560394287,
         "spectral_lower_estimate": 0.3467830717563629,
         "nominal_radius": 5.442180429635574,
@@ -152,6 +185,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_q.weight",
+        "spectral_svd": 0.5662317597073846,
+        "spectral_svd_over_final_radius": 0.1040450178064569,
         "frobenius": 4.337844371795654,
         "spectral_lower_estimate": 0.5662317872047424,
         "nominal_radius": 5.442180429635574,
@@ -161,6 +196,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_k.weight",
+        "spectral_svd": 0.6059801836489075,
+        "spectral_svd_over_final_radius": 0.11134878592944517,
         "frobenius": 4.408634185791016,
         "spectral_lower_estimate": 0.6059801578521729,
         "nominal_radius": 5.442180429635574,
@@ -170,6 +207,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_v.weight",
+        "spectral_svd": 0.49442330324189476,
+        "spectral_svd_over_final_radius": 0.09085022255960061,
         "frobenius": 4.224888801574707,
         "spectral_lower_estimate": 0.4944232404232025,
         "nominal_radius": 5.442180429635574,
@@ -179,6 +218,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_proj.weight",
+        "spectral_svd": 0.35320086453860794,
+        "spectral_svd_over_final_radius": 0.06490061641750076,
         "frobenius": 4.097101211547852,
         "spectral_lower_estimate": 0.3531995415687561,
         "nominal_radius": 5.442180429635574,
@@ -188,6 +229,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_q.weight",
+        "spectral_svd": 0.668405277481325,
+        "spectral_svd_over_final_radius": 0.12281938942000194,
         "frobenius": 4.364102840423584,
         "spectral_lower_estimate": 0.668405294418335,
         "nominal_radius": 5.442180429635574,
@@ -197,6 +240,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_k.weight",
+        "spectral_svd": 0.8290764147621915,
+        "spectral_svd_over_final_radius": 0.15234269158872946,
         "frobenius": 4.19677209854126,
         "spectral_lower_estimate": 0.8290764093399048,
         "nominal_radius": 5.442180429635574,
@@ -206,6 +251,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_v.weight",
+        "spectral_svd": 0.42014682210433413,
+        "spectral_svd_over_final_radius": 0.07720192807581511,
         "frobenius": 4.043200969696045,
         "spectral_lower_estimate": 0.42014533281326294,
         "nominal_radius": 5.442180429635574,
@@ -215,6 +262,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_proj.weight",
+        "spectral_svd": 0.3685979242591539,
+        "spectral_svd_over_final_radius": 0.06772982429100323,
         "frobenius": 3.9379591941833496,
         "spectral_lower_estimate": 0.3685964345932007,
         "nominal_radius": 5.442180429635574,
@@ -224,6 +273,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_q.weight",
+        "spectral_svd": 0.5980136697281883,
+        "spectral_svd_over_final_radius": 0.10988493995378855,
         "frobenius": 4.445291042327881,
         "spectral_lower_estimate": 0.5980136394500732,
         "nominal_radius": 5.442180429635574,
@@ -233,6 +284,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_k.weight",
+        "spectral_svd": 0.6234539946634142,
+        "spectral_svd_over_final_radius": 0.11455959660366546,
         "frobenius": 4.483161926269531,
         "spectral_lower_estimate": 0.6234539747238159,
         "nominal_radius": 5.442180429635574,
@@ -242,6 +295,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_v.weight",
+        "spectral_svd": 0.4957112753714883,
+        "spectral_svd_over_final_radius": 0.09108688728364758,
         "frobenius": 4.127996921539307,
         "spectral_lower_estimate": 0.49571123719215393,
         "nominal_radius": 5.442180429635574,
@@ -251,6 +306,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_proj.weight",
+        "spectral_svd": 0.31859020689029155,
+        "spectral_svd_over_final_radius": 0.0585409122335228,
         "frobenius": 4.075737953186035,
         "spectral_lower_estimate": 0.31491783261299133,
         "nominal_radius": 5.442180429635574,
@@ -260,6 +317,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_q.weight",
+        "spectral_svd": 0.6577561595351503,
+        "spectral_svd_over_final_radius": 0.12086261527701606,
         "frobenius": 4.352355480194092,
         "spectral_lower_estimate": 0.6577562093734741,
         "nominal_radius": 5.442180429635574,
@@ -269,6 +328,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_k.weight",
+        "spectral_svd": 0.7191990371999023,
+        "spectral_svd_over_final_radius": 0.13215273666478974,
         "frobenius": 4.3858723640441895,
         "spectral_lower_estimate": 0.719199001789093,
         "nominal_radius": 5.442180429635574,
@@ -278,6 +339,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_v.weight",
+        "spectral_svd": 0.3912921681704789,
+        "spectral_svd_over_final_radius": 0.07189988888271406,
         "frobenius": 4.037504196166992,
         "spectral_lower_estimate": 0.39045101404190063,
         "nominal_radius": 5.442180429635574,
@@ -287,6 +350,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_proj.weight",
+        "spectral_svd": 0.371780418653036,
+        "spectral_svd_over_final_radius": 0.06831460725346286,
         "frobenius": 3.5318140983581543,
         "spectral_lower_estimate": 0.3695940375328064,
         "nominal_radius": 5.442180429635574,
@@ -296,6 +361,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_q.weight",
+        "spectral_svd": 0.7177449029040993,
+        "spectral_svd_over_final_radius": 0.13188553966266822,
         "frobenius": 3.9623939990997314,
         "spectral_lower_estimate": 0.7177448868751526,
         "nominal_radius": 5.442180429635574,
@@ -305,6 +372,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_k.weight",
+        "spectral_svd": 0.7023222224947808,
+        "spectral_svd_over_final_radius": 0.12905162399068246,
         "frobenius": 4.302638053894043,
         "spectral_lower_estimate": 0.702322244644165,
         "nominal_radius": 5.442180429635574,
@@ -314,6 +383,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_v.weight",
+        "spectral_svd": 0.7085911161727035,
+        "spectral_svd_over_final_radius": 0.13020353245071536,
         "frobenius": 4.3347554206848145,
         "spectral_lower_estimate": 0.7085911631584167,
         "nominal_radius": 5.442180429635574,
@@ -323,6 +394,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_proj.weight",
+        "spectral_svd": 0.2684636471665785,
+        "spectral_svd_over_final_radius": 0.049330162907618935,
         "frobenius": 2.989932060241699,
         "spectral_lower_estimate": 0.2684636116027832,
         "nominal_radius": 5.442180429635574,
@@ -332,6 +405,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_proj.weight",
+        "spectral_svd": 0.587546038864272,
+        "spectral_svd_over_final_radius": 0.10796151404035974,
         "frobenius": 5.2111616134643555,
         "spectral_lower_estimate": 0.5875459909439087,
         "nominal_radius": 5.442180429635574,
@@ -341,6 +416,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_proj.weight",
+        "spectral_svd": 0.6105785093143322,
+        "spectral_svd_over_final_radius": 0.11219372771792105,
         "frobenius": 5.437285900115967,
         "spectral_lower_estimate": 0.6105785369873047,
         "nominal_radius": 5.442180429635574,
@@ -350,6 +427,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_proj.weight",
+        "spectral_svd": 0.6273332101745039,
+        "spectral_svd_over_final_radius": 0.11527240198769231,
         "frobenius": 5.562582015991211,
         "spectral_lower_estimate": 0.6273332834243774,
         "nominal_radius": 5.442180429635574,
@@ -359,6 +438,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_proj.weight",
+        "spectral_svd": 0.5516780215077394,
+        "spectral_svd_over_final_radius": 0.10137077016108441,
         "frobenius": 5.431517124176025,
         "spectral_lower_estimate": 0.5516780018806458,
         "nominal_radius": 5.442180429635574,
@@ -368,6 +449,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_proj.weight",
+        "spectral_svd": 0.590342702887133,
+        "spectral_svd_over_final_radius": 0.10847540071850653,
         "frobenius": 5.650627136230469,
         "spectral_lower_estimate": 0.5903427004814148,
         "nominal_radius": 5.442180429635574,
@@ -377,6 +460,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_proj.weight",
+        "spectral_svd": 0.5960011689777194,
+        "spectral_svd_over_final_radius": 0.10951514318271684,
         "frobenius": 5.714554786682129,
         "spectral_lower_estimate": 0.5960012078285217,
         "nominal_radius": 5.442180429635574,
@@ -386,6 +471,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_proj.weight",
+        "spectral_svd": 0.5395098253985822,
+        "spectral_svd_over_final_radius": 0.09913486558818659,
         "frobenius": 5.739286422729492,
         "spectral_lower_estimate": 0.5395098328590393,
         "nominal_radius": 5.442180429635574,
@@ -395,6 +482,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_proj.weight",
+        "spectral_svd": 0.5886078786250315,
+        "spectral_svd_over_final_radius": 0.10815662696880605,
         "frobenius": 5.799108505249023,
         "spectral_lower_estimate": 0.5886077880859375,
         "nominal_radius": 5.442180429635574,
@@ -404,6 +493,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_fc.weight",
+        "spectral_svd": 1.1072580169129116,
+        "spectral_svd_over_final_radius": 0.10172926377847574,
         "frobenius": 10.933897972106934,
         "spectral_lower_estimate": 1.1072580814361572,
         "nominal_radius": 10.884360859271148,
@@ -413,6 +504,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_fc.weight",
+        "spectral_svd": 0.9518995846251807,
+        "spectral_svd_over_final_radius": 0.08745571714616258,
         "frobenius": 11.77435302734375,
         "spectral_lower_estimate": 0.9518453478813171,
         "nominal_radius": 10.884360859271148,
@@ -422,6 +515,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_fc.weight",
+        "spectral_svd": 0.9617591940576614,
+        "spectral_svd_over_final_radius": 0.08836156817039452,
         "frobenius": 11.930977821350098,
         "spectral_lower_estimate": 0.9612168073654175,
         "nominal_radius": 10.884360859271148,
@@ -431,6 +526,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_fc.weight",
+        "spectral_svd": 1.0395204670846927,
+        "spectral_svd_over_final_radius": 0.09550588045776189,
         "frobenius": 11.729280471801758,
         "spectral_lower_estimate": 1.0395203828811646,
         "nominal_radius": 10.884360859271148,
@@ -440,6 +537,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_fc.weight",
+        "spectral_svd": 1.0449101976993491,
+        "spectral_svd_over_final_radius": 0.09600106163416192,
         "frobenius": 11.720626831054688,
         "spectral_lower_estimate": 1.04489266872406,
         "nominal_radius": 10.884360859271148,
@@ -449,6 +548,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_fc.weight",
+        "spectral_svd": 1.101188067529854,
+        "spectral_svd_over_final_radius": 0.10117158754359722,
         "frobenius": 12.222972869873047,
         "spectral_lower_estimate": 1.1011768579483032,
         "nominal_radius": 10.884360859271148,
@@ -458,6 +559,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_fc.weight",
+        "spectral_svd": 1.1238887650879084,
+        "spectral_svd_over_final_radius": 0.10325721276785815,
         "frobenius": 11.873298645019531,
         "spectral_lower_estimate": 1.1238887310028076,
         "nominal_radius": 10.884360859271148,
@@ -467,6 +570,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_fc.weight",
+        "spectral_svd": 1.2048599949236274,
+        "spectral_svd_over_final_radius": 0.11069643964416563,
         "frobenius": 10.466814994812012,
         "spectral_lower_estimate": 1.204859972000122,
         "nominal_radius": 10.884360859271148,
@@ -481,10 +586,13 @@
     "validation": 3.1527726650238037,
     "global_matrix_frobenius": 39.81213159194739,
     "max_spectral_lower_over_reference_radius": 0.2230278851434642,
+    "max_spectral_svd_over_final_radius": 0.2230278706128324,
     "max_spectral_lower_over_final_radius": 0.2230278851434642,
     "matrices": [
       {
         "name": "transformer.h.1.attn.ve_gate.weight",
+        "spectral_svd": 1.0571077606460786,
+        "spectral_svd_over_final_radius": 0.19424342399409678,
         "frobenius": 1.1646974086761475,
         "spectral_lower_estimate": 1.057107925415039,
         "nominal_radius": 5.442180429635574,
@@ -494,6 +602,8 @@
       },
       {
         "name": "transformer.h.3.attn.ve_gate.weight",
+        "spectral_svd": 1.1948568100662627,
+        "spectral_svd_over_final_radius": 0.2195547952727973,
         "frobenius": 1.4223788976669312,
         "spectral_lower_estimate": 1.1948570013046265,
         "nominal_radius": 5.442180429635574,
@@ -503,6 +613,8 @@
       },
       {
         "name": "transformer.h.5.attn.ve_gate.weight",
+        "spectral_svd": 0.9487578082856455,
+        "spectral_svd_over_final_radius": 0.174334133267459,
         "frobenius": 1.0843545198440552,
         "spectral_lower_estimate": 0.9487578272819519,
         "nominal_radius": 5.442180429635574,
@@ -512,6 +624,8 @@
       },
       {
         "name": "transformer.h.7.attn.ve_gate.weight",
+        "spectral_svd": 0.7458749444304481,
+        "spectral_svd_over_final_radius": 0.13705443141296111,
         "frobenius": 0.9336034655570984,
         "spectral_lower_estimate": 0.7458750009536743,
         "nominal_radius": 5.442180429635574,
@@ -521,6 +635,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_q.weight",
+        "spectral_svd": 0.8046244861901982,
+        "spectral_svd_over_final_radius": 0.14784965265182845,
         "frobenius": 4.043022632598877,
         "spectral_lower_estimate": 0.8046245574951172,
         "nominal_radius": 5.442180429635574,
@@ -530,6 +646,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_k.weight",
+        "spectral_svd": 1.2137579127124516,
+        "spectral_svd_over_final_radius": 0.2230278706128324,
         "frobenius": 3.965045928955078,
         "spectral_lower_estimate": 1.2137579917907715,
         "nominal_radius": 5.442180429635574,
@@ -539,6 +657,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_v.weight",
+        "spectral_svd": 0.40180696546282874,
+        "spectral_svd_over_final_radius": 0.07383198162169993,
         "frobenius": 3.622319221496582,
         "spectral_lower_estimate": 0.4018024206161499,
         "nominal_radius": 5.442180429635574,
@@ -548,6 +668,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_proj.weight",
+        "spectral_svd": 0.420202848553295,
+        "spectral_svd_over_final_radius": 0.07721222292907938,
         "frobenius": 3.638193130493164,
         "spectral_lower_estimate": 0.4202028512954712,
         "nominal_radius": 5.442180429635574,
@@ -557,6 +679,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_q.weight",
+        "spectral_svd": 0.48314806740617294,
+        "spectral_svd_over_final_radius": 0.08877839932964628,
         "frobenius": 4.337569236755371,
         "spectral_lower_estimate": 0.48314806818962097,
         "nominal_radius": 5.442180429635574,
@@ -566,6 +690,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_k.weight",
+        "spectral_svd": 0.620950979537853,
+        "spectral_svd_over_final_radius": 0.11409966787511194,
         "frobenius": 4.09431266784668,
         "spectral_lower_estimate": 0.6209509968757629,
         "nominal_radius": 5.442180429635574,
@@ -575,6 +701,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_v.weight",
+        "spectral_svd": 0.37331297620191806,
+        "spectral_svd_over_final_radius": 0.06859621451891412,
         "frobenius": 3.608552932739258,
         "spectral_lower_estimate": 0.3731096684932709,
         "nominal_radius": 5.442180429635574,
@@ -584,6 +712,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_proj.weight",
+        "spectral_svd": 0.30703034681659686,
+        "spectral_svd_over_final_radius": 0.05641678933404209,
         "frobenius": 3.712547540664673,
         "spectral_lower_estimate": 0.30495086312294006,
         "nominal_radius": 5.442180429635574,
@@ -593,6 +723,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_q.weight",
+        "spectral_svd": 0.5205166614373082,
+        "spectral_svd_over_final_radius": 0.09564487399256692,
         "frobenius": 4.059393405914307,
         "spectral_lower_estimate": 0.5205166339874268,
         "nominal_radius": 5.442180429635574,
@@ -602,6 +734,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_k.weight",
+        "spectral_svd": 0.6847123541360094,
+        "spectral_svd_over_final_radius": 0.1258158127958025,
         "frobenius": 3.9035730361938477,
         "spectral_lower_estimate": 0.6847123503684998,
         "nominal_radius": 5.442180429635574,
@@ -611,6 +745,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_v.weight",
+        "spectral_svd": 0.3509455361890962,
+        "spectral_svd_over_final_radius": 0.06448620010428369,
         "frobenius": 3.5180823802948,
         "spectral_lower_estimate": 0.34961333870887756,
         "nominal_radius": 5.442180429635574,
@@ -620,6 +756,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_proj.weight",
+        "spectral_svd": 0.3194334904184911,
+        "spectral_svd_over_final_radius": 0.05869586548049849,
         "frobenius": 3.4943435192108154,
         "spectral_lower_estimate": 0.3194201588630676,
         "nominal_radius": 5.442180429635574,
@@ -629,6 +767,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_q.weight",
+        "spectral_svd": 0.47243585388226816,
+        "spectral_svd_over_final_radius": 0.08681003138183421,
         "frobenius": 3.907315254211426,
         "spectral_lower_estimate": 0.4724358320236206,
         "nominal_radius": 5.442180429635574,
@@ -638,6 +778,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_k.weight",
+        "spectral_svd": 0.5432871009331321,
+        "spectral_svd_over_final_radius": 0.0998289395137736,
         "frobenius": 3.9733943939208984,
         "spectral_lower_estimate": 0.5432871580123901,
         "nominal_radius": 5.442180429635574,
@@ -647,6 +789,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_v.weight",
+        "spectral_svd": 0.41775238409239457,
+        "spectral_svd_over_final_radius": 0.07676195037884266,
         "frobenius": 3.8737125396728516,
         "spectral_lower_estimate": 0.4177427887916565,
         "nominal_radius": 5.442180429635574,
@@ -656,6 +800,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_proj.weight",
+        "spectral_svd": 0.3154362221166391,
+        "spectral_svd_over_final_radius": 0.05796136791035458,
         "frobenius": 3.714460849761963,
         "spectral_lower_estimate": 0.315429151058197,
         "nominal_radius": 5.442180429635574,
@@ -665,6 +811,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_q.weight",
+        "spectral_svd": 0.6123740401301108,
+        "spectral_svd_over_final_radius": 0.11252365628956504,
         "frobenius": 3.985781192779541,
         "spectral_lower_estimate": 0.6123740077018738,
         "nominal_radius": 5.442180429635574,
@@ -674,6 +822,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_k.weight",
+        "spectral_svd": 0.7500851793363233,
+        "spectral_svd_over_final_radius": 0.13782806157100372,
         "frobenius": 3.8583433628082275,
         "spectral_lower_estimate": 0.750085175037384,
         "nominal_radius": 5.442180429635574,
@@ -683,6 +833,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_v.weight",
+        "spectral_svd": 0.3942623846688283,
+        "spectral_svd_over_final_radius": 0.07244566580737738,
         "frobenius": 3.8668839931488037,
         "spectral_lower_estimate": 0.39424407482147217,
         "nominal_radius": 5.442180429635574,
@@ -692,6 +844,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_proj.weight",
+        "spectral_svd": 0.3775972192776035,
+        "spectral_svd_over_final_radius": 0.06938344366926633,
         "frobenius": 3.7297723293304443,
         "spectral_lower_estimate": 0.37759652733802795,
         "nominal_radius": 5.442180429635574,
@@ -701,6 +855,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_q.weight",
+        "spectral_svd": 0.5516156461038851,
+        "spectral_svd_over_final_radius": 0.10135930868812137,
         "frobenius": 4.0206170082092285,
         "spectral_lower_estimate": 0.5516155958175659,
         "nominal_radius": 5.442180429635574,
@@ -710,6 +866,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_k.weight",
+        "spectral_svd": 0.5462205735627014,
+        "spectral_svd_over_final_radius": 0.10036796475696379,
         "frobenius": 4.074691295623779,
         "spectral_lower_estimate": 0.546220600605011,
         "nominal_radius": 5.442180429635574,
@@ -719,6 +877,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_v.weight",
+        "spectral_svd": 0.47822761128611474,
+        "spectral_svd_over_final_radius": 0.08787426610883947,
         "frobenius": 3.776386022567749,
         "spectral_lower_estimate": 0.4782275855541229,
         "nominal_radius": 5.442180429635574,
@@ -728,6 +888,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_proj.weight",
+        "spectral_svd": 0.2803350307274273,
+        "spectral_svd_over_final_radius": 0.051511528210430806,
         "frobenius": 3.54008412361145,
         "spectral_lower_estimate": 0.2781957983970642,
         "nominal_radius": 5.442180429635574,
@@ -737,6 +899,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_q.weight",
+        "spectral_svd": 0.6290404161556724,
+        "spectral_svd_over_final_radius": 0.11558610088159002,
         "frobenius": 3.9733729362487793,
         "spectral_lower_estimate": 0.6290404200553894,
         "nominal_radius": 5.442180429635574,
@@ -746,6 +910,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_k.weight",
+        "spectral_svd": 0.6506788052764052,
+        "spectral_svd_over_final_radius": 0.1195621522824036,
         "frobenius": 3.9905033111572266,
         "spectral_lower_estimate": 0.6506787538528442,
         "nominal_radius": 5.442180429635574,
@@ -755,6 +921,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_v.weight",
+        "spectral_svd": 0.3869604423452127,
+        "spectral_svd_over_final_radius": 0.07110393478283204,
         "frobenius": 3.5809264183044434,
         "spectral_lower_estimate": 0.3869604170322418,
         "nominal_radius": 5.442180429635574,
@@ -764,6 +932,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_proj.weight",
+        "spectral_svd": 0.3374009094399689,
+        "spectral_svd_over_final_radius": 0.06199737656668659,
         "frobenius": 3.120704174041748,
         "spectral_lower_estimate": 0.3374009132385254,
         "nominal_radius": 5.442180429635574,
@@ -773,6 +943,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_q.weight",
+        "spectral_svd": 0.6620045446052161,
+        "spectral_svd_over_final_radius": 0.12164325552314442,
         "frobenius": 3.64897084236145,
         "spectral_lower_estimate": 0.6620045900344849,
         "nominal_radius": 5.442180429635574,
@@ -782,6 +954,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_k.weight",
+        "spectral_svd": 0.6452115259013985,
+        "spectral_svd_over_final_radius": 0.11855754035420761,
         "frobenius": 3.934154987335205,
         "spectral_lower_estimate": 0.6452115178108215,
         "nominal_radius": 5.442180429635574,
@@ -791,6 +965,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_v.weight",
+        "spectral_svd": 0.5741331641755748,
+        "spectral_svd_over_final_radius": 0.10549689992803502,
         "frobenius": 4.045997142791748,
         "spectral_lower_estimate": 0.574133038520813,
         "nominal_radius": 5.442180429635574,
@@ -800,6 +976,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_proj.weight",
+        "spectral_svd": 0.24232302605565353,
+        "spectral_svd_over_final_radius": 0.044526826919606605,
         "frobenius": 2.682081460952759,
         "spectral_lower_estimate": 0.24218334257602692,
         "nominal_radius": 5.442180429635574,
@@ -809,6 +987,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_proj.weight",
+        "spectral_svd": 0.5419140359402135,
+        "spectral_svd_over_final_radius": 0.0995766389863156,
         "frobenius": 4.75882625579834,
         "spectral_lower_estimate": 0.5419140458106995,
         "nominal_radius": 5.442180429635574,
@@ -818,6 +998,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_proj.weight",
+        "spectral_svd": 0.5837069735374818,
+        "spectral_svd_over_final_radius": 0.10725608624787339,
         "frobenius": 4.918615818023682,
         "spectral_lower_estimate": 0.5837069749832153,
         "nominal_radius": 5.442180429635574,
@@ -827,6 +1009,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_proj.weight",
+        "spectral_svd": 0.5988967070406991,
+        "spectral_svd_over_final_radius": 0.11004719795385452,
         "frobenius": 5.0882954597473145,
         "spectral_lower_estimate": 0.5988966822624207,
         "nominal_radius": 5.442180429635574,
@@ -836,6 +1020,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_proj.weight",
+        "spectral_svd": 0.500206481620112,
+        "spectral_svd_over_final_radius": 0.09191288089167736,
         "frobenius": 5.001615047454834,
         "spectral_lower_estimate": 0.5002062320709229,
         "nominal_radius": 5.442180429635574,
@@ -845,6 +1031,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_proj.weight",
+        "spectral_svd": 0.5247823412494084,
+        "spectral_svd_over_final_radius": 0.09642869214546594,
         "frobenius": 5.14778470993042,
         "spectral_lower_estimate": 0.5247822999954224,
         "nominal_radius": 5.442180429635574,
@@ -854,6 +1042,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_proj.weight",
+        "spectral_svd": 0.5548939709549408,
+        "spectral_svd_over_final_radius": 0.1019617004855714,
         "frobenius": 5.206982612609863,
         "spectral_lower_estimate": 0.5548940300941467,
         "nominal_radius": 5.442180429635574,
@@ -863,6 +1053,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_proj.weight",
+        "spectral_svd": 0.4955760034146164,
+        "spectral_svd_over_final_radius": 0.09106203107782697,
         "frobenius": 5.270766258239746,
         "spectral_lower_estimate": 0.4955693781375885,
         "nominal_radius": 5.442180429635574,
@@ -872,6 +1064,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_proj.weight",
+        "spectral_svd": 0.5181306164380026,
+        "spectral_svd_over_final_radius": 0.09520643851065745,
         "frobenius": 5.293705940246582,
         "spectral_lower_estimate": 0.5181281566619873,
         "nominal_radius": 5.442180429635574,
@@ -881,6 +1075,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_fc.weight",
+        "spectral_svd": 1.0032106624828627,
+        "spectral_svd_over_final_radius": 0.09216991934150563,
         "frobenius": 10.185529708862305,
         "spectral_lower_estimate": 1.0032105445861816,
         "nominal_radius": 10.884360859271148,
@@ -890,6 +1086,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_fc.weight",
+        "spectral_svd": 0.8709484981679905,
+        "spectral_svd_over_final_radius": 0.08001834094154721,
         "frobenius": 10.796537399291992,
         "spectral_lower_estimate": 0.8691107630729675,
         "nominal_radius": 10.884360859271148,
@@ -899,6 +1097,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_fc.weight",
+        "spectral_svd": 0.9456281144964409,
+        "spectral_svd_over_final_radius": 0.08687952620488211,
         "frobenius": 10.98363208770752,
         "spectral_lower_estimate": 0.9455925822257996,
         "nominal_radius": 10.884360859271148,
@@ -908,6 +1108,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_fc.weight",
+        "spectral_svd": 0.9532083642435567,
+        "spectral_svd_over_final_radius": 0.08757596119496783,
         "frobenius": 10.837263107299805,
         "spectral_lower_estimate": 0.953208327293396,
         "nominal_radius": 10.884360859271148,
@@ -917,6 +1119,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_fc.weight",
+        "spectral_svd": 1.0043198117106005,
+        "spectral_svd_over_final_radius": 0.09227182236016501,
         "frobenius": 10.682732582092285,
         "spectral_lower_estimate": 1.0043195486068726,
         "nominal_radius": 10.884360859271148,
@@ -926,6 +1130,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_fc.weight",
+        "spectral_svd": 0.9761103599143072,
+        "spectral_svd_over_final_radius": 0.08968008067123848,
         "frobenius": 11.105486869812012,
         "spectral_lower_estimate": 0.9575691819190979,
         "nominal_radius": 10.884360859271148,
@@ -935,6 +1141,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_fc.weight",
+        "spectral_svd": 1.063771403112022,
+        "spectral_svd_over_final_radius": 0.09773393374824725,
         "frobenius": 10.952157974243164,
         "spectral_lower_estimate": 1.063771367073059,
         "nominal_radius": 10.884360859271148,
@@ -944,6 +1152,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_fc.weight",
+        "spectral_svd": 1.1312272970007498,
+        "spectral_svd_over_final_radius": 0.1039314399464426,
         "frobenius": 9.685991287231445,
         "spectral_lower_estimate": 1.1312272548675537,
         "nominal_radius": 10.884360859271148,
@@ -958,10 +1168,13 @@
     "validation": 3.0961005687713623,
     "global_matrix_frobenius": 49.390173410801076,
     "max_spectral_lower_over_reference_radius": 0.2514667475856165,
+    "max_spectral_svd_over_final_radius": 0.2514667331025788,
     "max_spectral_lower_over_final_radius": 0.2514667475856165,
     "matrices": [
       {
         "name": "transformer.h.1.attn.ve_gate.weight",
+        "spectral_svd": 1.1474581510443957,
+        "spectral_svd_over_final_radius": 0.21084529737306656,
         "frobenius": 1.2952529191970825,
         "spectral_lower_estimate": 1.1474580764770508,
         "nominal_radius": 5.442180429635574,
@@ -971,6 +1184,8 @@
       },
       {
         "name": "transformer.h.3.attn.ve_gate.weight",
+        "spectral_svd": 1.3685273335952464,
+        "spectral_svd_over_final_radius": 0.2514667331025788,
         "frobenius": 1.577134370803833,
         "spectral_lower_estimate": 1.3685274124145508,
         "nominal_radius": 5.442180429635574,
@@ -980,6 +1195,8 @@
       },
       {
         "name": "transformer.h.5.attn.ve_gate.weight",
+        "spectral_svd": 0.9657461864949649,
+        "spectral_svd_over_final_radius": 0.1774557457220569,
         "frobenius": 1.1140673160552979,
         "spectral_lower_estimate": 0.9657462239265442,
         "nominal_radius": 5.442180429635574,
@@ -989,6 +1206,8 @@
       },
       {
         "name": "transformer.h.7.attn.ve_gate.weight",
+        "spectral_svd": 0.8413814687225306,
+        "spectral_svd_over_final_radius": 0.15460374377533678,
         "frobenius": 1.0479785203933716,
         "spectral_lower_estimate": 0.8413814902305603,
         "nominal_radius": 5.442180429635574,
@@ -998,6 +1217,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_q.weight",
+        "spectral_svd": 0.99720209954582,
+        "spectral_svd_over_final_radius": 0.1832357659653331,
         "frobenius": 5.001645565032959,
         "spectral_lower_estimate": 0.9972020387649536,
         "nominal_radius": 5.442180429635574,
@@ -1007,6 +1228,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_k.weight",
+        "spectral_svd": 1.3580499837736792,
+        "spectral_svd_over_final_radius": 0.24954152133184945,
         "frobenius": 4.878724098205566,
         "spectral_lower_estimate": 1.358049988746643,
         "nominal_radius": 5.442180429635574,
@@ -1016,6 +1239,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_v.weight",
+        "spectral_svd": 0.5020262011993563,
+        "spectral_svd_over_final_radius": 0.09224725414570159,
         "frobenius": 4.596768379211426,
         "spectral_lower_estimate": 0.5018447041511536,
         "nominal_radius": 5.442180429635574,
@@ -1025,6 +1250,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_proj.weight",
+        "spectral_svd": 0.5360133274003993,
+        "spectral_svd_over_final_radius": 0.09849238450116812,
         "frobenius": 4.765934944152832,
         "spectral_lower_estimate": 0.5360132455825806,
         "nominal_radius": 5.442180429635574,
@@ -1034,6 +1261,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_q.weight",
+        "spectral_svd": 0.6323010191158663,
+        "spectral_svd_over_final_radius": 0.11618523628372374,
         "frobenius": 5.494970798492432,
         "spectral_lower_estimate": 0.6323010921478271,
         "nominal_radius": 5.442180429635574,
@@ -1043,6 +1272,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_k.weight",
+        "spectral_svd": 0.7788233525327838,
+        "spectral_svd_over_final_radius": 0.14310869744260504,
         "frobenius": 5.203088760375977,
         "spectral_lower_estimate": 0.7788233757019043,
         "nominal_radius": 5.442180429635574,
@@ -1052,6 +1283,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_v.weight",
+        "spectral_svd": 0.5281676075362963,
+        "spectral_svd_over_final_radius": 0.09705073441889983,
         "frobenius": 4.9184417724609375,
         "spectral_lower_estimate": 0.5281676054000854,
         "nominal_radius": 5.442180429635574,
@@ -1061,6 +1294,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_proj.weight",
+        "spectral_svd": 0.4093980059234955,
+        "spectral_svd_over_final_radius": 0.0752268343941897,
         "frobenius": 4.992488384246826,
         "spectral_lower_estimate": 0.40889590978622437,
         "nominal_radius": 5.442180429635574,
@@ -1070,6 +1305,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_q.weight",
+        "spectral_svd": 0.6732933131281809,
+        "spectral_svd_over_final_radius": 0.12371756538275352,
         "frobenius": 5.212881088256836,
         "spectral_lower_estimate": 0.6732932925224304,
         "nominal_radius": 5.442180429635574,
@@ -1079,6 +1316,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_k.weight",
+        "spectral_svd": 0.9201472566895462,
+        "spectral_svd_over_final_radius": 0.1690769478495887,
         "frobenius": 4.946303844451904,
         "spectral_lower_estimate": 0.9201472401618958,
         "nominal_radius": 5.442180429635574,
@@ -1088,6 +1327,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_v.weight",
+        "spectral_svd": 0.46990843946046407,
+        "spectral_svd_over_final_radius": 0.08634561928552792,
         "frobenius": 4.72104549407959,
         "spectral_lower_estimate": 0.46988922357559204,
         "nominal_radius": 5.442180429635574,
@@ -1097,6 +1338,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_proj.weight",
+        "spectral_svd": 0.42599975942596613,
+        "spectral_svd_over_final_radius": 0.07827740460536191,
         "frobenius": 4.652889728546143,
         "spectral_lower_estimate": 0.42467790842056274,
         "nominal_radius": 5.442180429635574,
@@ -1106,6 +1349,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_q.weight",
+        "spectral_svd": 0.5794841867797591,
+        "spectral_svd_over_final_radius": 0.10648014968856209,
         "frobenius": 4.92708158493042,
         "spectral_lower_estimate": 0.579484224319458,
         "nominal_radius": 5.442180429635574,
@@ -1115,6 +1360,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_k.weight",
+        "spectral_svd": 0.6633109129227487,
+        "spectral_svd_over_final_radius": 0.12188330054451467,
         "frobenius": 5.0338239669799805,
         "spectral_lower_estimate": 0.6633108854293823,
         "nominal_radius": 5.442180429635574,
@@ -1124,6 +1371,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_v.weight",
+        "spectral_svd": 0.5521870140700839,
+        "spectral_svd_over_final_radius": 0.10146429748325343,
         "frobenius": 5.167766571044922,
         "spectral_lower_estimate": 0.5521866679191589,
         "nominal_radius": 5.442180429635574,
@@ -1133,6 +1382,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_proj.weight",
+        "spectral_svd": 0.4151731253163712,
+        "spectral_svd_over_final_radius": 0.07628801188867833,
         "frobenius": 4.989826202392578,
         "spectral_lower_estimate": 0.4066978991031647,
         "nominal_radius": 5.442180429635574,
@@ -1142,6 +1393,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_q.weight",
+        "spectral_svd": 0.7799926883879552,
+        "spectral_svd_over_final_radius": 0.14332356276548258,
         "frobenius": 5.021820545196533,
         "spectral_lower_estimate": 0.7799926400184631,
         "nominal_radius": 5.442180429635574,
@@ -1151,6 +1404,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_k.weight",
+        "spectral_svd": 0.959508994865432,
+        "spectral_svd_over_final_radius": 0.17630966250960622,
         "frobenius": 4.863816738128662,
         "spectral_lower_estimate": 0.959509015083313,
         "nominal_radius": 5.442180429635574,
@@ -1160,6 +1415,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_v.weight",
+        "spectral_svd": 0.5326602584896882,
+        "spectral_svd_over_final_radius": 0.09787625849173781,
         "frobenius": 5.192470073699951,
         "spectral_lower_estimate": 0.5326589941978455,
         "nominal_radius": 5.442180429635574,
@@ -1169,6 +1426,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_proj.weight",
+        "spectral_svd": 0.4886327094467005,
+        "spectral_svd_over_final_radius": 0.08978620164554539,
         "frobenius": 4.969310760498047,
         "spectral_lower_estimate": 0.4886321425437927,
         "nominal_radius": 5.442180429635574,
@@ -1178,6 +1437,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_q.weight",
+        "spectral_svd": 0.686709486990181,
+        "spectral_svd_over_final_radius": 0.12618278571777622,
         "frobenius": 5.072945594787598,
         "spectral_lower_estimate": 0.686709463596344,
         "nominal_radius": 5.442180429635574,
@@ -1187,6 +1448,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_k.weight",
+        "spectral_svd": 0.6532109228601096,
+        "spectral_svd_over_final_radius": 0.12002742858414393,
         "frobenius": 5.161210536956787,
         "spectral_lower_estimate": 0.6532108187675476,
         "nominal_radius": 5.442180429635574,
@@ -1196,6 +1459,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_v.weight",
+        "spectral_svd": 0.6592937725974809,
+        "spectral_svd_over_final_radius": 0.121145151492456,
         "frobenius": 5.1746039390563965,
         "spectral_lower_estimate": 0.659293532371521,
         "nominal_radius": 5.442180429635574,
@@ -1205,6 +1470,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_proj.weight",
+        "spectral_svd": 0.39107692924666526,
+        "spectral_svd_over_final_radius": 0.07186033875632694,
         "frobenius": 4.76160192489624,
         "spectral_lower_estimate": 0.38865581154823303,
         "nominal_radius": 5.442180429635574,
@@ -1214,6 +1481,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_q.weight",
+        "spectral_svd": 0.8066332871874751,
+        "spectral_svd_over_final_radius": 0.1482187695936957,
         "frobenius": 5.007349491119385,
         "spectral_lower_estimate": 0.8066334128379822,
         "nominal_radius": 5.442180429635574,
@@ -1223,6 +1492,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_k.weight",
+        "spectral_svd": 0.8215694006946463,
+        "spectral_svd_over_final_radius": 0.15096327865587897,
         "frobenius": 5.025331974029541,
         "spectral_lower_estimate": 0.8215693831443787,
         "nominal_radius": 5.442180429635574,
@@ -1232,6 +1503,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_v.weight",
+        "spectral_svd": 0.5184119678069645,
+        "spectral_svd_over_final_radius": 0.09525813679089634,
         "frobenius": 4.755594730377197,
         "spectral_lower_estimate": 0.5184119939804077,
         "nominal_radius": 5.442180429635574,
@@ -1241,6 +1514,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_proj.weight",
+        "spectral_svd": 0.43885048086890266,
+        "spectral_svd_over_final_radius": 0.08063872312632779,
         "frobenius": 4.144952297210693,
         "spectral_lower_estimate": 0.43884414434432983,
         "nominal_radius": 5.442180429635574,
@@ -1250,6 +1525,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_q.weight",
+        "spectral_svd": 0.8576912773540298,
+        "spectral_svd_over_final_radius": 0.1576006691515488,
         "frobenius": 4.630778789520264,
         "spectral_lower_estimate": 0.8576912879943848,
         "nominal_radius": 5.442180429635574,
@@ -1259,6 +1536,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_k.weight",
+        "spectral_svd": 0.798474487981578,
+        "spectral_svd_over_final_radius": 0.14671959121999315,
         "frobenius": 4.9351983070373535,
         "spectral_lower_estimate": 0.7984744906425476,
         "nominal_radius": 5.442180429635574,
@@ -1268,6 +1547,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_v.weight",
+        "spectral_svd": 0.8006117556132862,
+        "spectral_svd_over_final_radius": 0.14711231389050028,
         "frobenius": 5.4205780029296875,
         "spectral_lower_estimate": 0.8006117343902588,
         "nominal_radius": 5.442180429635574,
@@ -1277,6 +1558,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_proj.weight",
+        "spectral_svd": 0.3517126200351374,
+        "spectral_svd_over_final_radius": 0.06462715166881912,
         "frobenius": 3.9782233238220215,
         "spectral_lower_estimate": 0.35167554020881653,
         "nominal_radius": 5.442180429635574,
@@ -1286,6 +1569,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_proj.weight",
+        "spectral_svd": 0.6646806480493539,
+        "spectral_svd_over_final_radius": 0.1221349892094377,
         "frobenius": 5.806768417358398,
         "spectral_lower_estimate": 0.6646806597709656,
         "nominal_radius": 5.442180429635574,
@@ -1295,6 +1580,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_proj.weight",
+        "spectral_svd": 0.7051787919803791,
+        "spectral_svd_over_final_radius": 0.12957651829040887,
         "frobenius": 6.08866024017334,
         "spectral_lower_estimate": 0.7051787972450256,
         "nominal_radius": 5.442180429635574,
@@ -1304,6 +1591,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_proj.weight",
+        "spectral_svd": 0.745004047700752,
+        "spectral_svd_over_final_radius": 0.13689440424352853,
         "frobenius": 6.2926106452941895,
         "spectral_lower_estimate": 0.7450039982795715,
         "nominal_radius": 5.442180429635574,
@@ -1313,6 +1602,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_proj.weight",
+        "spectral_svd": 0.6275273110037187,
+        "spectral_svd_over_final_radius": 0.1153080679917369,
         "frobenius": 6.120970249176025,
         "spectral_lower_estimate": 0.6275272965431213,
         "nominal_radius": 5.442180429635574,
@@ -1322,6 +1613,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_proj.weight",
+        "spectral_svd": 0.6431897390534709,
+        "spectral_svd_over_final_radius": 0.11818603726384369,
         "frobenius": 6.278456211090088,
         "spectral_lower_estimate": 0.6431896090507507,
         "nominal_radius": 5.442180429635574,
@@ -1331,6 +1624,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_proj.weight",
+        "spectral_svd": 0.7176220165121301,
+        "spectral_svd_over_final_radius": 0.1318629593029102,
         "frobenius": 6.383371353149414,
         "spectral_lower_estimate": 0.7176219820976257,
         "nominal_radius": 5.442180429635574,
@@ -1340,6 +1635,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_proj.weight",
+        "spectral_svd": 0.6190710628056939,
+        "spectral_svd_over_final_radius": 0.11375423340147303,
         "frobenius": 6.489862442016602,
         "spectral_lower_estimate": 0.6190661191940308,
         "nominal_radius": 5.442180429635574,
@@ -1349,6 +1646,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_proj.weight",
+        "spectral_svd": 0.6783959770257326,
+        "spectral_svd_over_final_radius": 0.12465517926078026,
         "frobenius": 6.4679741859436035,
         "spectral_lower_estimate": 0.6766444444656372,
         "nominal_radius": 5.442180429635574,
@@ -1358,6 +1657,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_fc.weight",
+        "spectral_svd": 1.1804659562902053,
+        "spectral_svd_over_final_radius": 0.10845523881034326,
         "frobenius": 12.265946388244629,
         "spectral_lower_estimate": 1.1804661750793457,
         "nominal_radius": 10.884360859271148,
@@ -1367,6 +1668,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_fc.weight",
+        "spectral_svd": 1.0876433975541022,
+        "spectral_svd_over_final_radius": 0.09992717180335514,
         "frobenius": 13.102215766906738,
         "spectral_lower_estimate": 1.0876433849334717,
         "nominal_radius": 10.884360859271148,
@@ -1376,6 +1679,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_fc.weight",
+        "spectral_svd": 1.1654505179037522,
+        "spectral_svd_over_final_radius": 0.10707569631073353,
         "frobenius": 13.359275817871094,
         "spectral_lower_estimate": 1.164216160774231,
         "nominal_radius": 10.884360859271148,
@@ -1385,6 +1690,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_fc.weight",
+        "spectral_svd": 1.191685119067696,
+        "spectral_svd_over_final_radius": 0.10948599871646437,
         "frobenius": 13.162237167358398,
         "spectral_lower_estimate": 1.1916850805282593,
         "nominal_radius": 10.884360859271148,
@@ -1394,6 +1701,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_fc.weight",
+        "spectral_svd": 1.2372271880894066,
+        "spectral_svd_over_final_radius": 0.11367017357161156,
         "frobenius": 12.904348373413086,
         "spectral_lower_estimate": 1.2372273206710815,
         "nominal_radius": 10.884360859271148,
@@ -1403,6 +1712,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_fc.weight",
+        "spectral_svd": 1.1747877491696974,
+        "spectral_svd_over_final_radius": 0.10793355387230012,
         "frobenius": 13.376688003540039,
         "spectral_lower_estimate": 1.1718595027923584,
         "nominal_radius": 10.884360859271148,
@@ -1412,6 +1723,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_fc.weight",
+        "spectral_svd": 1.326047381698828,
+        "spectral_svd_over_final_radius": 0.12183052352305274,
         "frobenius": 13.391298294067383,
         "spectral_lower_estimate": 1.3260475397109985,
         "nominal_radius": 10.884360859271148,
@@ -1421,6 +1734,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_fc.weight",
+        "spectral_svd": 1.3867580062581912,
+        "spectral_svd_over_final_radius": 0.12740830850687662,
         "frobenius": 11.956635475158691,
         "spectral_lower_estimate": 1.3867578506469727,
         "nominal_radius": 10.884360859271148,
@@ -1435,10 +1750,13 @@
     "validation": 3.1057138442993164,
     "global_matrix_frobenius": 50.4306118200004,
     "max_spectral_lower_over_reference_radius": 0.24672913494941837,
+    "max_spectral_svd_over_final_radius": 1.4966994013527115,
     "max_spectral_lower_over_final_radius": 1.4966993697704438,
     "matrices": [
       {
         "name": "transformer.h.1.attn.ve_gate.weight",
+        "spectral_svd": 1.0875500637061448,
+        "spectral_svd_over_final_radius": 1.2122451678210986,
         "frobenius": 1.2528032064437866,
         "spectral_lower_estimate": 1.0875500440597534,
         "nominal_radius": 5.442180429635574,
@@ -1448,6 +1766,8 @@
       },
       {
         "name": "transformer.h.3.attn.ve_gate.weight",
+        "spectral_svd": 1.175116813614882,
+        "spectral_svd_over_final_radius": 1.309852048627045,
         "frobenius": 1.405877947807312,
         "spectral_lower_estimate": 1.1751168966293335,
         "nominal_radius": 5.442180429635574,
@@ -1457,6 +1777,8 @@
       },
       {
         "name": "transformer.h.5.attn.ve_gate.weight",
+        "spectral_svd": 0.8771402924604143,
+        "spectral_svd_over_final_radius": 0.9777104673349802,
         "frobenius": 1.0341622829437256,
         "spectral_lower_estimate": 0.8771402835845947,
         "nominal_radius": 5.442180429635574,
@@ -1466,6 +1788,8 @@
       },
       {
         "name": "transformer.h.7.attn.ve_gate.weight",
+        "spectral_svd": 0.8615390249438032,
+        "spectral_svd_over_final_radius": 0.9603204070609309,
         "frobenius": 1.010335922241211,
         "spectral_lower_estimate": 0.8615390062332153,
         "nominal_radius": 5.442180429635574,
@@ -1475,6 +1799,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_q.weight",
+        "spectral_svd": 1.0467576757526114,
+        "spectral_svd_over_final_radius": 1.1667756516757564,
         "frobenius": 5.449446201324463,
         "spectral_lower_estimate": 1.046757698059082,
         "nominal_radius": 5.442180429635574,
@@ -1484,6 +1810,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_k.weight",
+        "spectral_svd": 1.3427444979762617,
+        "spectral_svd_over_final_radius": 1.4966994013527115,
         "frobenius": 5.321420669555664,
         "spectral_lower_estimate": 1.3427444696426392,
         "nominal_radius": 5.442180429635574,
@@ -1493,6 +1821,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_v.weight",
+        "spectral_svd": 0.5141259016622097,
+        "spectral_svd_over_final_radius": 0.5730739767673627,
         "frobenius": 4.7249674797058105,
         "spectral_lower_estimate": 0.5138559937477112,
         "nominal_radius": 5.442180429635574,
@@ -1502,6 +1832,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_proj.weight",
+        "spectral_svd": 0.5903535925971043,
+        "spectral_svd_over_final_radius": 0.6580416974027543,
         "frobenius": 4.713613986968994,
         "spectral_lower_estimate": 0.5903535485267639,
         "nominal_radius": 5.442180429635574,
@@ -1511,6 +1843,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_q.weight",
+        "spectral_svd": 0.681394647330319,
+        "spectral_svd_over_final_radius": 0.7595212360067776,
         "frobenius": 5.963305473327637,
         "spectral_lower_estimate": 0.681394636631012,
         "nominal_radius": 5.442180429635574,
@@ -1520,6 +1854,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_k.weight",
+        "spectral_svd": 0.8129217852042007,
+        "spectral_svd_over_final_radius": 0.9061288659871423,
         "frobenius": 5.643058776855469,
         "spectral_lower_estimate": 0.8129218220710754,
         "nominal_radius": 5.442180429635574,
@@ -1529,6 +1865,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_v.weight",
+        "spectral_svd": 0.5074875510346714,
+        "spectral_svd_over_final_radius": 0.565674493526001,
         "frobenius": 5.0334062576293945,
         "spectral_lower_estimate": 0.5074861645698547,
         "nominal_radius": 5.442180429635574,
@@ -1538,6 +1876,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_proj.weight",
+        "spectral_svd": 0.3910567106056266,
+        "spectral_svd_over_final_radius": 0.4358940554517537,
         "frobenius": 4.938082218170166,
         "spectral_lower_estimate": 0.3871983587741852,
         "nominal_radius": 5.442180429635574,
@@ -1547,6 +1887,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_q.weight",
+        "spectral_svd": 0.7634828991119594,
+        "spectral_svd_over_final_radius": 0.8510214711481946,
         "frobenius": 5.487184047698975,
         "spectral_lower_estimate": 0.7634828686714172,
         "nominal_radius": 5.442180429635574,
@@ -1556,6 +1898,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_k.weight",
+        "spectral_svd": 0.9174225613411683,
+        "spectral_svd_over_final_radius": 1.022611375742962,
         "frobenius": 5.317248344421387,
         "spectral_lower_estimate": 0.9174225330352783,
         "nominal_radius": 5.442180429635574,
@@ -1565,6 +1909,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_v.weight",
+        "spectral_svd": 0.563761357682781,
+        "spectral_svd_over_final_radius": 0.6284004796305837,
         "frobenius": 5.251260280609131,
         "spectral_lower_estimate": 0.5633665919303894,
         "nominal_radius": 5.442180429635574,
@@ -1574,6 +1920,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_proj.weight",
+        "spectral_svd": 0.4493880374885043,
+        "spectral_svd_over_final_radius": 0.50091347065494,
         "frobenius": 4.880071640014648,
         "spectral_lower_estimate": 0.44873011112213135,
         "nominal_radius": 5.442180429635574,
@@ -1583,6 +1931,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_q.weight",
+        "spectral_svd": 0.6630244299272939,
+        "spectral_svd_over_final_radius": 0.7390447466737244,
         "frobenius": 5.223968982696533,
         "spectral_lower_estimate": 0.6630244255065918,
         "nominal_radius": 5.442180429635574,
@@ -1592,6 +1942,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_k.weight",
+        "spectral_svd": 0.7025971032613636,
+        "spectral_svd_over_final_radius": 0.7831546995190315,
         "frobenius": 5.453526020050049,
         "spectral_lower_estimate": 0.7025970816612244,
         "nominal_radius": 5.442180429635574,
@@ -1601,6 +1953,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_v.weight",
+        "spectral_svd": 0.7158049611472058,
+        "spectral_svd_over_final_radius": 0.7978769292661544,
         "frobenius": 5.819759845733643,
         "spectral_lower_estimate": 0.715804934501648,
         "nominal_radius": 5.442180429635574,
@@ -1610,6 +1964,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_proj.weight",
+        "spectral_svd": 0.4506859776344701,
+        "spectral_svd_over_final_radius": 0.5023602285767832,
         "frobenius": 5.396787166595459,
         "spectral_lower_estimate": 0.45063072443008423,
         "nominal_radius": 5.442180429635574,
@@ -1619,6 +1975,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_q.weight",
+        "spectral_svd": 0.8274918779570616,
+        "spectral_svd_over_final_radius": 0.9223695202096895,
         "frobenius": 5.397929668426514,
         "spectral_lower_estimate": 0.827491819858551,
         "nominal_radius": 5.442180429635574,
@@ -1628,6 +1986,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_k.weight",
+        "spectral_svd": 0.9011382089430621,
+        "spectral_svd_over_final_radius": 1.0044599102017544,
         "frobenius": 5.277247428894043,
         "spectral_lower_estimate": 0.9011382460594177,
         "nominal_radius": 5.442180429635574,
@@ -1637,6 +1997,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_v.weight",
+        "spectral_svd": 0.5652311592600334,
+        "spectral_svd_over_final_radius": 0.6300388040803182,
         "frobenius": 5.659191608428955,
         "spectral_lower_estimate": 0.5652294754981995,
         "nominal_radius": 5.442180429635574,
@@ -1646,6 +2008,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_proj.weight",
+        "spectral_svd": 0.5095819736480107,
+        "spectral_svd_over_final_radius": 0.5680090561150036,
         "frobenius": 5.070132255554199,
         "spectral_lower_estimate": 0.5090500712394714,
         "nominal_radius": 5.442180429635574,
@@ -1655,6 +2019,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_q.weight",
+        "spectral_svd": 0.7736106992269411,
+        "spectral_svd_over_final_radius": 0.8623104932905002,
         "frobenius": 5.425871849060059,
         "spectral_lower_estimate": 0.7736107110977173,
         "nominal_radius": 5.442180429635574,
@@ -1664,6 +2030,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_k.weight",
+        "spectral_svd": 0.7330308642118843,
+        "spectral_svd_over_final_radius": 0.8170779007417568,
         "frobenius": 5.541536331176758,
         "spectral_lower_estimate": 0.7330307960510254,
         "nominal_radius": 5.442180429635574,
@@ -1673,6 +2041,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_v.weight",
+        "spectral_svd": 0.7155498778769689,
+        "spectral_svd_over_final_radius": 0.7975925989423779,
         "frobenius": 5.417679786682129,
         "spectral_lower_estimate": 0.7155498266220093,
         "nominal_radius": 5.442180429635574,
@@ -1682,6 +2052,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_proj.weight",
+        "spectral_svd": 0.3790900503688841,
+        "spectral_svd_over_final_radius": 0.4225553352115905,
         "frobenius": 4.746140003204346,
         "spectral_lower_estimate": 0.37805914878845215,
         "nominal_radius": 5.442180429635574,
@@ -1691,6 +2063,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_q.weight",
+        "spectral_svd": 0.8545523156925083,
+        "spectral_svd_over_final_radius": 0.9525326234806601,
         "frobenius": 5.376183032989502,
         "spectral_lower_estimate": 0.8545522689819336,
         "nominal_radius": 5.442180429635574,
@@ -1700,6 +2074,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_k.weight",
+        "spectral_svd": 0.8927707661542684,
+        "spectral_svd_over_final_radius": 0.9951330824756192,
         "frobenius": 5.437685012817383,
         "spectral_lower_estimate": 0.8927707672119141,
         "nominal_radius": 5.442180429635574,
@@ -1709,6 +2085,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_v.weight",
+        "spectral_svd": 0.5181102983407158,
+        "spectral_svd_over_final_radius": 0.5775152119632317,
         "frobenius": 5.0956501960754395,
         "spectral_lower_estimate": 0.5181102752685547,
         "nominal_radius": 5.442180429635574,
@@ -1718,6 +2096,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_proj.weight",
+        "spectral_svd": 0.4519461414821611,
+        "spectral_svd_over_final_radius": 0.5037648788876117,
         "frobenius": 4.327984809875488,
         "spectral_lower_estimate": 0.451937735080719,
         "nominal_radius": 5.442180429635574,
@@ -1727,6 +2107,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_q.weight",
+        "spectral_svd": 0.9380574343884353,
+        "spectral_svd_over_final_radius": 1.045612179085207,
         "frobenius": 4.88186502456665,
         "spectral_lower_estimate": 0.9380574822425842,
         "nominal_radius": 5.442180429635574,
@@ -1736,6 +2118,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_k.weight",
+        "spectral_svd": 0.886753921999662,
+        "spectral_svd_over_final_radius": 0.9884263657042567,
         "frobenius": 5.201203346252441,
         "spectral_lower_estimate": 0.8867539763450623,
         "nominal_radius": 5.442180429635574,
@@ -1745,6 +2129,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_v.weight",
+        "spectral_svd": 0.737865149944265,
+        "spectral_svd_over_final_radius": 0.8224664706242081,
         "frobenius": 5.417436599731445,
         "spectral_lower_estimate": 0.7378641366958618,
         "nominal_radius": 5.442180429635574,
@@ -1754,6 +2140,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_proj.weight",
+        "spectral_svd": 0.3677580860562312,
+        "spectral_svd_over_final_radius": 0.40992408315398743,
         "frobenius": 3.791973352432251,
         "spectral_lower_estimate": 0.3677580654621124,
         "nominal_radius": 5.442180429635574,
@@ -1763,6 +2151,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_proj.weight",
+        "spectral_svd": 0.566053337287526,
+        "spectral_svd_over_final_radius": 0.6309552504805144,
         "frobenius": 5.876479625701904,
         "spectral_lower_estimate": 0.5660533308982849,
         "nominal_radius": 5.442180429635574,
@@ -1772,6 +2162,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_proj.weight",
+        "spectral_svd": 0.7011679130647932,
+        "spectral_svd_over_final_radius": 0.7815616428244407,
         "frobenius": 6.2523884773254395,
         "spectral_lower_estimate": 0.7011679410934448,
         "nominal_radius": 5.442180429635574,
@@ -1781,6 +2173,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_proj.weight",
+        "spectral_svd": 0.7120542086890685,
+        "spectral_svd_over_final_radius": 0.7936961272094883,
         "frobenius": 6.312288284301758,
         "spectral_lower_estimate": 0.7120543122291565,
         "nominal_radius": 5.442180429635574,
@@ -1790,6 +2184,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_proj.weight",
+        "spectral_svd": 0.6092032672756854,
+        "spectral_svd_over_final_radius": 0.6790526170897434,
         "frobenius": 6.173565864562988,
         "spectral_lower_estimate": 0.6092032194137573,
         "nominal_radius": 5.442180429635574,
@@ -1799,6 +2195,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_proj.weight",
+        "spectral_svd": 0.6396566702163596,
+        "spectral_svd_over_final_radius": 0.712997712392056,
         "frobenius": 6.341807842254639,
         "spectral_lower_estimate": 0.639656662940979,
         "nominal_radius": 5.442180429635574,
@@ -1808,6 +2206,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_proj.weight",
+        "spectral_svd": 0.6894363298432877,
+        "spectral_svd_over_final_radius": 0.7684849527981471,
         "frobenius": 6.415807723999023,
         "spectral_lower_estimate": 0.6894363164901733,
         "nominal_radius": 5.442180429635574,
@@ -1817,6 +2217,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_proj.weight",
+        "spectral_svd": 0.5941836063881548,
+        "spectral_svd_over_final_radius": 0.6623108486499779,
         "frobenius": 6.5477681159973145,
         "spectral_lower_estimate": 0.5941835045814514,
         "nominal_radius": 5.442180429635574,
@@ -1826,6 +2228,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_proj.weight",
+        "spectral_svd": 0.6681139968060935,
+        "spectral_svd_over_final_radius": 0.7447178674440011,
         "frobenius": 6.381041049957275,
         "spectral_lower_estimate": 0.6681138873100281,
         "nominal_radius": 5.442180429635574,
@@ -1835,6 +2239,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_fc.weight",
+        "spectral_svd": 1.1462033345886424,
+        "spectral_svd_over_final_radius": 0.6388117200602491,
         "frobenius": 12.106945037841797,
         "spectral_lower_estimate": 1.1462032794952393,
         "nominal_radius": 10.884360859271148,
@@ -1844,6 +2250,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_fc.weight",
+        "spectral_svd": 1.1269267449884572,
+        "spectral_svd_over_final_radius": 0.6280683283881169,
         "frobenius": 13.412774085998535,
         "spectral_lower_estimate": 1.126920223236084,
         "nominal_radius": 10.884360859271148,
@@ -1853,6 +2261,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_fc.weight",
+        "spectral_svd": 1.1453987281883318,
+        "spectral_svd_over_final_radius": 0.6383632900277728,
         "frobenius": 13.452186584472656,
         "spectral_lower_estimate": 1.1453951597213745,
         "nominal_radius": 10.884360859271148,
@@ -1862,6 +2272,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_fc.weight",
+        "spectral_svd": 1.1187875735137534,
+        "spectral_svd_over_final_radius": 0.6235321366211587,
         "frobenius": 13.035689353942871,
         "spectral_lower_estimate": 1.1183077096939087,
         "nominal_radius": 10.884360859271148,
@@ -1871,6 +2283,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_fc.weight",
+        "spectral_svd": 1.2707482588634582,
+        "spectral_svd_over_final_radius": 0.7082241488151539,
         "frobenius": 13.244444847106934,
         "spectral_lower_estimate": 1.2707483768463135,
         "nominal_radius": 10.884360859271148,
@@ -1880,6 +2294,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_fc.weight",
+        "spectral_svd": 1.2685985479349067,
+        "spectral_svd_over_final_radius": 0.707026053770008,
         "frobenius": 13.318411827087402,
         "spectral_lower_estimate": 1.2685980796813965,
         "nominal_radius": 10.884360859271148,
@@ -1889,6 +2305,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_fc.weight",
+        "spectral_svd": 1.1971862073834096,
+        "spectral_svd_over_final_radius": 0.6672259251849676,
         "frobenius": 13.412079811096191,
         "spectral_lower_estimate": 1.1971861124038696,
         "nominal_radius": 10.884360859271148,
@@ -1898,6 +2316,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_fc.weight",
+        "spectral_svd": 1.3828672887875992,
+        "spectral_svd_over_final_radius": 0.7707112732161937,
         "frobenius": 11.704533576965332,
         "spectral_lower_estimate": 1.3828673362731934,
         "nominal_radius": 10.884360859271148,
@@ -1912,10 +2332,13 @@
     "validation": 3.1032142639160156,
     "global_matrix_frobenius": 54.91964663214968,
     "max_spectral_lower_over_reference_radius": 0.22237125838755992,
+    "max_spectral_svd_over_final_radius": 0.2223712540446433,
     "max_spectral_lower_over_final_radius": 0.22237125838755992,
     "matrices": [
       {
         "name": "transformer.h.1.attn.ve_gate.weight",
+        "spectral_svd": 1.1547512779989668,
+        "spectral_svd_over_final_radius": 0.15978433080656518,
         "frobenius": 1.3453149795532227,
         "spectral_lower_estimate": 1.1547513008117676,
         "nominal_radius": 7.226936910333893,
@@ -1925,6 +2348,8 @@
       },
       {
         "name": "transformer.h.3.attn.ve_gate.weight",
+        "spectral_svd": 1.2296806851763586,
+        "spectral_svd_over_final_radius": 0.170152403491723,
         "frobenius": 1.4982577562332153,
         "spectral_lower_estimate": 1.2296807765960693,
         "nominal_radius": 7.226936910333893,
@@ -1934,6 +2359,8 @@
       },
       {
         "name": "transformer.h.5.attn.ve_gate.weight",
+        "spectral_svd": 0.9176806064543302,
+        "spectral_svd_over_final_radius": 0.1269805752893908,
         "frobenius": 1.0778440237045288,
         "spectral_lower_estimate": 0.9176806807518005,
         "nominal_radius": 7.226936910333893,
@@ -1943,6 +2370,8 @@
       },
       {
         "name": "transformer.h.7.attn.ve_gate.weight",
+        "spectral_svd": 0.9388091462998577,
+        "spectral_svd_over_final_radius": 0.12990415689909263,
         "frobenius": 1.1031179428100586,
         "spectral_lower_estimate": 0.9388091564178467,
         "nominal_radius": 7.226936910333893,
@@ -1952,6 +2381,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_q.weight",
+        "spectral_svd": 1.1947047826493478,
+        "spectral_svd_over_final_radius": 0.16531274556181935,
         "frobenius": 5.896464824676514,
         "spectral_lower_estimate": 1.1947047710418701,
         "nominal_radius": 7.226936910333893,
@@ -1961,6 +2392,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_k.weight",
+        "spectral_svd": 1.6070630236524677,
+        "spectral_svd_over_final_radius": 0.2223712540446433,
         "frobenius": 5.74761438369751,
         "spectral_lower_estimate": 1.6070630550384521,
         "nominal_radius": 7.226936910333893,
@@ -1970,6 +2403,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_v.weight",
+        "spectral_svd": 0.5500540796197767,
+        "spectral_svd_over_final_radius": 0.07611164819126165,
         "frobenius": 5.154592990875244,
         "spectral_lower_estimate": 0.5500483512878418,
         "nominal_radius": 7.226936910333893,
@@ -1979,6 +2414,8 @@
       },
       {
         "name": "transformer.h.0.attn.c_proj.weight",
+        "spectral_svd": 0.6475360476880105,
+        "spectral_svd_over_final_radius": 0.08960034600026605,
         "frobenius": 5.123061180114746,
         "spectral_lower_estimate": 0.6475360989570618,
         "nominal_radius": 7.226936910333893,
@@ -1988,6 +2425,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_q.weight",
+        "spectral_svd": 0.731847304115769,
+        "spectral_svd_over_final_radius": 0.10126659651190408,
         "frobenius": 6.404313564300537,
         "spectral_lower_estimate": 0.7318472862243652,
         "nominal_radius": 7.226936910333893,
@@ -1997,6 +2436,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_k.weight",
+        "spectral_svd": 0.8758048493508682,
+        "spectral_svd_over_final_radius": 0.12118617613757542,
         "frobenius": 6.1005940437316895,
         "spectral_lower_estimate": 0.8758047819137573,
         "nominal_radius": 7.226936910333893,
@@ -2006,6 +2447,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_v.weight",
+        "spectral_svd": 0.542203017949123,
+        "spectral_svd_over_final_radius": 0.07502528729340638,
         "frobenius": 5.351711273193359,
         "spectral_lower_estimate": 0.5416187047958374,
         "nominal_radius": 7.226936910333893,
@@ -2015,6 +2458,8 @@
       },
       {
         "name": "transformer.h.1.attn.c_proj.weight",
+        "spectral_svd": 0.4214782142135903,
+        "spectral_svd_over_final_radius": 0.05832045020497038,
         "frobenius": 5.303986549377441,
         "spectral_lower_estimate": 0.41784346103668213,
         "nominal_radius": 7.226936910333893,
@@ -2024,6 +2469,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_q.weight",
+        "spectral_svd": 0.7995956869180224,
+        "spectral_svd_over_final_radius": 0.1106410221700801,
         "frobenius": 5.8895649909973145,
         "spectral_lower_estimate": 0.7995957136154175,
         "nominal_radius": 7.226936910333893,
@@ -2033,6 +2480,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_k.weight",
+        "spectral_svd": 0.9720353788570675,
+        "spectral_svd_over_final_radius": 0.13450171087935486,
         "frobenius": 5.738241672515869,
         "spectral_lower_estimate": 0.9720354080200195,
         "nominal_radius": 7.226936910333893,
@@ -2042,6 +2491,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_v.weight",
+        "spectral_svd": 0.605041829115713,
+        "spectral_svd_over_final_radius": 0.08372036958708684,
         "frobenius": 5.624902725219727,
         "spectral_lower_estimate": 0.599046528339386,
         "nominal_radius": 7.226936910333893,
@@ -2051,6 +2502,8 @@
       },
       {
         "name": "transformer.h.2.attn.c_proj.weight",
+        "spectral_svd": 0.4876568474146042,
+        "spectral_svd_over_final_radius": 0.0674776677124851,
         "frobenius": 5.278587818145752,
         "spectral_lower_estimate": 0.4872830808162689,
         "nominal_radius": 7.226936910333893,
@@ -2060,6 +2513,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_q.weight",
+        "spectral_svd": 0.72434011135846,
+        "spectral_svd_over_final_radius": 0.10022781717143765,
         "frobenius": 5.637885570526123,
         "spectral_lower_estimate": 0.7243400812149048,
         "nominal_radius": 7.226936910333893,
@@ -2069,6 +2524,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_k.weight",
+        "spectral_svd": 0.7697022987172545,
+        "spectral_svd_over_final_radius": 0.10650463789391144,
         "frobenius": 5.899711608886719,
         "spectral_lower_estimate": 0.7697023153305054,
         "nominal_radius": 7.226936910333893,
@@ -2078,6 +2535,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_v.weight",
+        "spectral_svd": 0.7761123597241572,
+        "spectral_svd_over_final_radius": 0.10739160578728503,
         "frobenius": 6.299410343170166,
         "spectral_lower_estimate": 0.77611243724823,
         "nominal_radius": 7.226936910333893,
@@ -2087,6 +2546,8 @@
       },
       {
         "name": "transformer.h.3.attn.c_proj.weight",
+        "spectral_svd": 0.4832150451152482,
+        "spectral_svd_over_final_radius": 0.06686305015673966,
         "frobenius": 5.883759498596191,
         "spectral_lower_estimate": 0.48256123065948486,
         "nominal_radius": 7.226936910333893,
@@ -2096,6 +2557,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_q.weight",
+        "spectral_svd": 0.8889401199291519,
+        "spectral_svd_over_final_radius": 0.12300371941230656,
         "frobenius": 5.804144859313965,
         "spectral_lower_estimate": 0.8889402151107788,
         "nominal_radius": 7.226936910333893,
@@ -2105,6 +2568,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_k.weight",
+        "spectral_svd": 0.9722869949406105,
+        "spectral_svd_over_final_radius": 0.1345365273011204,
         "frobenius": 5.691218376159668,
         "spectral_lower_estimate": 0.9722869396209717,
         "nominal_radius": 7.226936910333893,
@@ -2114,6 +2579,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_v.weight",
+        "spectral_svd": 0.6007344147665369,
+        "spectral_svd_over_final_radius": 0.08312434745452651,
         "frobenius": 5.99237585067749,
         "spectral_lower_estimate": 0.6007295846939087,
         "nominal_radius": 7.226936910333893,
@@ -2123,6 +2590,8 @@
       },
       {
         "name": "transformer.h.4.attn.c_proj.weight",
+        "spectral_svd": 0.5528434668605451,
+        "spectral_svd_over_final_radius": 0.07649761907704312,
         "frobenius": 5.409241676330566,
         "spectral_lower_estimate": 0.5527400970458984,
         "nominal_radius": 7.226936910333893,
@@ -2132,6 +2601,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_q.weight",
+        "spectral_svd": 0.8413032137600593,
+        "spectral_svd_over_final_radius": 0.116412143097177,
         "frobenius": 5.840643882751465,
         "spectral_lower_estimate": 0.8413031697273254,
         "nominal_radius": 7.226936910333893,
@@ -2141,6 +2612,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_k.weight",
+        "spectral_svd": 0.7966070713687,
+        "spectral_svd_over_final_radius": 0.11022748382231218,
         "frobenius": 5.948446273803711,
         "spectral_lower_estimate": 0.7966070771217346,
         "nominal_radius": 7.226936910333893,
@@ -2150,6 +2623,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_v.weight",
+        "spectral_svd": 0.7473616328746646,
+        "spectral_svd_over_final_radius": 0.10341333294414155,
         "frobenius": 5.815325736999512,
         "spectral_lower_estimate": 0.7473616003990173,
         "nominal_radius": 7.226936910333893,
@@ -2159,6 +2634,8 @@
       },
       {
         "name": "transformer.h.5.attn.c_proj.weight",
+        "spectral_svd": 0.4138226892156679,
+        "spectral_svd_over_final_radius": 0.05726114595298837,
         "frobenius": 5.100488662719727,
         "spectral_lower_estimate": 0.4136603772640228,
         "nominal_radius": 7.226936910333893,
@@ -2168,6 +2645,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_q.weight",
+        "spectral_svd": 0.9138750344163958,
+        "spectral_svd_over_final_radius": 0.12645399368432755,
         "frobenius": 5.802061557769775,
         "spectral_lower_estimate": 0.9138749837875366,
         "nominal_radius": 7.226936910333893,
@@ -2177,6 +2656,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_k.weight",
+        "spectral_svd": 0.9519068545880938,
+        "spectral_svd_over_final_radius": 0.13171650263432486,
         "frobenius": 5.868810653686523,
         "spectral_lower_estimate": 0.9519067406654358,
         "nominal_radius": 7.226936910333893,
@@ -2186,6 +2667,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_v.weight",
+        "spectral_svd": 0.5630138917563845,
+        "spectral_svd_over_final_radius": 0.07790491306923178,
         "frobenius": 5.453096866607666,
         "spectral_lower_estimate": 0.5630139708518982,
         "nominal_radius": 7.226936910333893,
@@ -2195,6 +2678,8 @@
       },
       {
         "name": "transformer.h.6.attn.c_proj.weight",
+        "spectral_svd": 0.49266332806074176,
+        "spectral_svd_over_final_radius": 0.06817042049395448,
         "frobenius": 4.668516635894775,
         "spectral_lower_estimate": 0.4926620423793793,
         "nominal_radius": 7.226936910333893,
@@ -2204,6 +2689,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_q.weight",
+        "spectral_svd": 1.0165867792017027,
+        "spectral_svd_over_final_radius": 0.14066634202217426,
         "frobenius": 5.269370079040527,
         "spectral_lower_estimate": 1.0165867805480957,
         "nominal_radius": 7.226936910333893,
@@ -2213,6 +2700,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_k.weight",
+        "spectral_svd": 0.9717619018651571,
+        "spectral_svd_over_final_radius": 0.1344638695372616,
         "frobenius": 5.602898120880127,
         "spectral_lower_estimate": 0.9717618823051453,
         "nominal_radius": 7.226936910333893,
@@ -2222,6 +2711,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_v.weight",
+        "spectral_svd": 0.7988427571633123,
+        "spectral_svd_over_final_radius": 0.11053683836938391,
         "frobenius": 5.792455673217773,
         "spectral_lower_estimate": 0.79884272813797,
         "nominal_radius": 7.226936910333893,
@@ -2231,6 +2722,8 @@
       },
       {
         "name": "transformer.h.7.attn.c_proj.weight",
+        "spectral_svd": 0.4056403481292435,
+        "spectral_svd_over_final_radius": 0.05612894552174836,
         "frobenius": 4.096364974975586,
         "spectral_lower_estimate": 0.4056403338909149,
         "nominal_radius": 7.226936910333893,
@@ -2240,6 +2733,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_proj.weight",
+        "spectral_svd": 0.6191671575235663,
+        "spectral_svd_over_final_radius": 0.08567490836099745,
         "frobenius": 6.426091194152832,
         "spectral_lower_estimate": 0.619167149066925,
         "nominal_radius": 7.226936910333893,
@@ -2249,6 +2744,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_proj.weight",
+        "spectral_svd": 0.762218730041347,
+        "spectral_svd_over_final_radius": 0.10546912744615776,
         "frobenius": 6.8170857429504395,
         "spectral_lower_estimate": 0.7622186541557312,
         "nominal_radius": 7.226936910333893,
@@ -2258,6 +2755,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_proj.weight",
+        "spectral_svd": 0.7796560486669288,
+        "spectral_svd_over_final_radius": 0.10788195031176878,
         "frobenius": 6.91002082824707,
         "spectral_lower_estimate": 0.7796560525894165,
         "nominal_radius": 7.226936910333893,
@@ -2267,6 +2766,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_proj.weight",
+        "spectral_svd": 0.6602018295209054,
+        "spectral_svd_over_final_radius": 0.09135292554953317,
         "frobenius": 6.748591899871826,
         "spectral_lower_estimate": 0.6602017879486084,
         "nominal_radius": 7.226936910333893,
@@ -2276,6 +2777,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_proj.weight",
+        "spectral_svd": 0.6942372397243136,
+        "spectral_svd_over_final_radius": 0.09606244641925883,
         "frobenius": 6.946786880493164,
         "spectral_lower_estimate": 0.6942371726036072,
         "nominal_radius": 7.226936910333893,
@@ -2285,6 +2788,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_proj.weight",
+        "spectral_svd": 0.7565626682849462,
+        "spectral_svd_over_final_radius": 0.10468649134090643,
         "frobenius": 7.049185752868652,
         "spectral_lower_estimate": 0.7565627098083496,
         "nominal_radius": 7.226936910333893,
@@ -2294,6 +2799,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_proj.weight",
+        "spectral_svd": 0.6470776779052602,
+        "spectral_svd_over_final_radius": 0.08953692081910875,
         "frobenius": 7.188528060913086,
         "spectral_lower_estimate": 0.6470755338668823,
         "nominal_radius": 7.226936910333893,
@@ -2303,6 +2810,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_proj.weight",
+        "spectral_svd": 0.7405587525420732,
+        "spectral_svd_over_final_radius": 0.1024720101656261,
         "frobenius": 7.006776809692383,
         "spectral_lower_estimate": 0.7405586242675781,
         "nominal_radius": 7.226936910333893,
@@ -2312,6 +2821,8 @@
       },
       {
         "name": "transformer.h.0.mlp.c_fc.weight",
+        "spectral_svd": 1.2421255497023427,
+        "spectral_svd_over_final_radius": 0.08593720722303601,
         "frobenius": 13.260115623474121,
         "spectral_lower_estimate": 1.2421244382858276,
         "nominal_radius": 14.453873820667786,
@@ -2321,6 +2832,8 @@
       },
       {
         "name": "transformer.h.1.mlp.c_fc.weight",
+        "spectral_svd": 1.2365412821859765,
+        "spectral_svd_over_final_radius": 0.08555085629831842,
         "frobenius": 14.677696228027344,
         "spectral_lower_estimate": 1.2365373373031616,
         "nominal_radius": 14.453873820667786,
@@ -2330,6 +2843,8 @@
       },
       {
         "name": "transformer.h.2.mlp.c_fc.weight",
+        "spectral_svd": 1.252416171989066,
+        "spectral_svd_over_final_radius": 0.08664917014829751,
         "frobenius": 14.710698127746582,
         "spectral_lower_estimate": 1.252402901649475,
         "nominal_radius": 14.453873820667786,
@@ -2339,6 +2854,8 @@
       },
       {
         "name": "transformer.h.3.mlp.c_fc.weight",
+        "spectral_svd": 1.2146389300933036,
+        "spectral_svd_over_final_radius": 0.08403552882525342,
         "frobenius": 14.220355987548828,
         "spectral_lower_estimate": 1.202164649963379,
         "nominal_radius": 14.453873820667786,
@@ -2348,6 +2865,8 @@
       },
       {
         "name": "transformer.h.4.mlp.c_fc.weight",
+        "spectral_svd": 1.3439520615795337,
+        "spectral_svd_over_final_radius": 0.09298213601794411,
         "frobenius": 14.527460098266602,
         "spectral_lower_estimate": 1.3439520597457886,
         "nominal_radius": 14.453873820667786,
@@ -2357,6 +2876,8 @@
       },
       {
         "name": "transformer.h.5.mlp.c_fc.weight",
+        "spectral_svd": 1.3940303753301493,
+        "spectral_svd_over_final_radius": 0.09644683443526446,
         "frobenius": 14.635625839233398,
         "spectral_lower_estimate": 1.3940304517745972,
         "nominal_radius": 14.453873820667786,
@@ -2366,6 +2887,8 @@
       },
       {
         "name": "transformer.h.6.mlp.c_fc.weight",
+        "spectral_svd": 1.3344965513350076,
+        "spectral_svd_over_final_radius": 0.09232795082428305,
         "frobenius": 14.704997062683105,
         "spectral_lower_estimate": 1.3344967365264893,
         "nominal_radius": 14.453873820667786,
@@ -2375,6 +2898,8 @@
       },
       {
         "name": "transformer.h.7.mlp.c_fc.weight",
+        "spectral_svd": 1.5161104514056916,
+        "spectral_svd_over_final_radius": 0.10489301831580854,
         "frobenius": 12.854588508605957,
         "spectral_lower_estimate": 1.5161106586456299,
         "nominal_radius": 14.453873820667786,
