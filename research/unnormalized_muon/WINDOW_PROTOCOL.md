@@ -1,0 +1,29 @@
+# Three-hour continuation protocol, 17 October 2026
+
+Work window07:48:18–10:48:18UTC. Exactly one verified B300 per run, no more than six outstanding jobs, one queue lock,50B300 GPU-hours PROJECT TOTAL including earlier and failed jobs. This is a cap, not a spending target. Decline new submissions that cannot reasonably finish in the window; finish/reap started jobs. Configs, code and summaries push to martin jaggi's `nanochat:unnormalized-muon` branch; raw outputs remain outside Git.
+
+## Shared implementation
+
+125,829,354-parameter dense depth8/width512, native ClimbMix and32K tokenizer, context1024, B32, accumulation1,32768 update-data tokens. Clean native direction retains Nesterov,5 Polar Express iterations and Frobenius correction; no row equilibration/NorMuon. Native precision and auxiliary groups unchanged. Shape is inside Q=c*NS(M); CLI peakLR times.25 is actual eta. Complete matrix displacement is -eta*(Q+lambda*W). Standard unmasked matrix WD only, reference lambda=.1837498798375862. Never apply c twice. All non-Muon schedules and momentum remain matched.
+
+## Hypotheses and gates
+
+1. Fairly retune original-lambda long-horizon cooldown and plain reciprocal on seed0 before NEW paired seeds20/21/22, heldout block2. Original control prefersCLI.01 after edge/midpoint refinement; earlier reciprocal advantage versusCLI.028284 was confounded by the under-tuned control. Before observing new seeds, predeclare futility: all3 reciprocal heldout deltas>+.003CE stops additional time/scale-up work for this family. Original-frozen equal-time results remain labelled against their weaker control.
+2. At the SAME peakCLI.005 screen static lambda multiples{0,.25,.5,2}, reciprocal-mixing WD and a static coefficient matching its final log contraction. Mixing hypothesis uses lambda_t=gamma_t/eta_t with shifted reciprocal gamma and retains native momentum; its domain changes. It is NOT the coupled stochastic-FW estimator theorem. Zero WD is unconstrained. Static matched decay currently does slightly better than changing WD.
+3. Reciprocal plus terminal cooldown: finals{.05,.25}, initial peakCLI{.02,.04}, same factor-two LR edge rule for both. It adds no forward/backward passes. Because terminal eta differs from the original control, also test ordinary matrix-only cooldown finals{.01,.25} at peakCLI{.005,.01}; auxiliary and momentum cooldowns keep their original settings. The paired reference will be the strongest original-lambda ordinary control INCLUDING these terminal choices, preserving its full config.
+4. Cheap cap/sign: exact logged layer-Armijo rates matched cap*I(b>0,v>0) on19,995/20,000 updates in BOTH long layer runs; only indices1–5 differed. Frozen diagnosis matched12/12 displacement probes. Test eta_l=eta_base*I(<G,Q+lambda*W>>0), with current raw G preserved BEFORE fused Nesterov mutates gradients. Skip BOTH matrix direction and decay, advance native momentum once, retain auxiliary updates. No candidate loss calls. Test peakLR factors{half,best,double} around the tuned original control. B300 check001 passed arithmetic tests but failed an import-order guard before training; record its cost, fix guard, add import regression, and require unique check002's64updates plus per-matrix LR/exposure validation before long pilots. No exact counterfactual trajectory equivalence is claimed.
+5. Joint LR/WD screen: static lambda levels{0,.25,.5} times reference PLUS the first screen's best static coefficient if distinct; peakLR factors{half,best,double}. Give changing WD the SAME3LRs. Include the previously competitive zero-WDCLI.04 anchor. Reuse only exact full configs/horizons; no old schedule prefixes.
+
+The failed fresh-fit gate remains CLOSED:7/12 independent improvements versus required8/12, and one-step changes did not persist. No fresh-fit online-controller grid or broad curvature sweep is reopened.
+
+## Selection and confirmation
+
+Only seed0 development loss selects settings. The frozen window candidate is the best NON-control variant, compared with the strongest ordinary original-lambda control (including terminal controls). Require>.001CE screen gain before promotion. Freeze full configs before NEW paired seeds40/41/42, heldout block4,20k updates655.36M update-data tokens. Check identical initial parameter and validation-token hashes. Report all paired deltas, mean and SAMPLE SD; n=3 is limited evidence.
+
+Separate equal-time reruns use H=median NEW reference active time, same3seeds and block4. Actual matrix, auxiliary and momentum clocks use active fraction; finish last update and report overshoot. Token-clock curve prefixes are not matched equal-time endpoints. If all3 token-matched deltas improve with mean<-.003CE and time remains, tune BOTH families at40k/1.31B tokens,3peakLRs each, then NEW seeds60/61/62 and unused heldout block5 only if feasible.
+
+## Accounting and interpretation
+
+Log actual eta, gamma=eta*lambda, per-matrix gated decisions and cumulative sum eta*lambda / product(1-eta*lambda). Product is an initial-iterate coefficient, not a final norm ratio. CPU-only saved-weight audit shows changing WD's shrinking final radius can exclude its iterate; no fixed-ball theorem claim. Finite NS/Frobenius approximation is not a certified exact LMO. Armijo proposal L collapsing to1e-16 is not evidence of zero measured curvature.
+
+Training-active time includes data, optimizer, searches and ordinary logging; excludes separately recorded compilation/validation/checkpoint I/O. Report full process and conservative scheduler-job cost too. GPU warmup is disposable, then model/optimizer/data/RNG reset. No extra diagnostic model evaluations outside run accounting. Endpoint CE is natural-log nats/token; native BPB is separately logged. See WINDOW_RESULTS.md, FOLLOWUP_RESULTS.md, WINDOW_SCHEDULE_AUDIT.md, WINDOW_WEIGHT_AUDIT.md and GAP_SATURATION_AUDIT.md. Paired/time reports exist only after complete groups.
