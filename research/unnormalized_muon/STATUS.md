@@ -207,3 +207,5 @@ NEW targeted schedule hypothesis from terminal-step audit: plain reciprocal ends
 Continue after completed gap/fresh-data campaign,21.22GPUh charged. Respect failed fresh gate: NO further online-controller sweep. First six jobs: missing reciprocal equal-time seeds10/11/12 at frozen LR.02 and H=678.993s, plus seed0 655M-token control LRs{.01,.02} and reciprocal.01. Long control optimum was at its tested lower edge. Six-slot queue,1verified B300/job,50GPUh PROJECT TOTAL.
 
 Matched factor-two long-horizon boundary rule round0, both prescribed schedules. Seed0 only,20000 updates; no heldout selection.
+
+Refine both long-horizon schedule families with geometric midpoints adjacent to their seed0 best rates. Restart every candidate for the full655M-token horizon.
