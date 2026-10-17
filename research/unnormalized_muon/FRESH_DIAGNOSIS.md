@@ -47,4 +47,6 @@ Keep the successful scheduled gradient LR eta_t. After warmup prescribe gamma_t=
 
 | Run | WD rule | Actual reference lambda | Validation CE | Active sec |
 |---|---|---:|---:|---:|
+| um-fresh-wd-mixing | fw_mixing_reciprocal | 0.18374988 | 3.555051 | 68.570 |
+| um-fresh-wd-static-product | fixed | 0.153864237 | 3.553682 | 66.784 |
 | reused compatible reference control | fixed | .183749880 | 3.554822 | 65.063 |
