@@ -16,12 +16,14 @@ def publish():
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
   if cfg.get('gap_scope'):arm=f'GapWD {cfg["gap_scope"]} {cfg.get("gap_shape","uniform")}'
   elif cfg.get('matrix_schedule','').startswith('fw_reciprocal'):arm='Muon shifted reciprocal'+(f' +cooldown{cfg.get("reciprocal_final_factor",.25):g}' if cfg.get('matrix_schedule')=='fw_reciprocal_cooldown' else '')
+  if cfg.get('matrix_schedule')=='early_reciprocal':arm=f'Muon early reciprocal peak{cfg.get("early_peak_multiplier",1):g}x'
   if cfg.get('clean'):arm='Clean '+arm
   if cfg.get('cap_sign'):arm+=' cap/sign'
   if cfg.get('protocol_version')==2:arm+=' v2 c-in-Q'
   if cfg.get('gap_scope'):arm+=f' {cfg.get("gap_acceptance","quadratic")} cap{cfg.get("gap_eta_cap",0):g}/{cfg.get("gap_cap_schedule","none")}'
   if cfg.get('time_budget'):arm+=f' time{cfg["time_budget"]:.1f}s'
-  if cfg.get('fixed_wd'):arm+=f' fixed_lambda={cfg["fixed_wd"]:.6g}'
+  if cfg.get('fixed_wd'):
+   arm+=f' fixed_lambda={cfg["fixed_wd"]:.6g}' if cfg.get('wd_schedule','fixed')=='fixed' else f' reference_lambda={cfg["fixed_wd"]:.6g}, schedule={cfg["wd_schedule"]}'
   if cfg.get('decay_mode','none')!='none':arm+=f' WD:{cfg["decay_mode"]}({cfg.get("weight_decay",0):g})'
   if cfg.get('fw'):arm+=f' {cfg.get("fw_oracle","momentum")} Rfactor{cfg.get("fw_radius_factor",2):g} {cfg.get("fw_acceptance","smoothness")} {"compiled" if cfg.get("fw_compile_candidates") else "eager"}'
   label=str(path.parent.relative_to(ROOT));runs.append((label,arm,cfg,s,path))
@@ -40,7 +42,7 @@ def publish():
   'FW is a separate fixed-spectral-ball method with shared mixing, same-batch backtracking, frozen auxiliary weights during checks, and no extra matrix decay. Its extra candidate forwards count toward wall time and are logged.']
  (DEST/'RESULTS.md').write_text('\n'.join(rows)+'\n')
  # Completed historical plots do not change during follow-up-only runs.
- historical=[r for r in runs if not r[0].startswith(('um-follow-','um-window-'))]
+ historical=[r for r in runs if not r[0].startswith(('um-follow-','um-window-','um-earlyalloc-'))]
  def stale(artifact,inputs):
   p=DEST/artifact
   return bool(inputs) and (not p.exists() or max(x.stat().st_mtime_ns for x in inputs)>p.stat().st_mtime_ns)

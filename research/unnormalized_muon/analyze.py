@@ -9,10 +9,11 @@ def generate():
  for p in ROOT.glob('um-*/summary.json'):
   s=json.loads(p.read_text());c=s.get('config',json.loads((p.parent/'resolved_config.json').read_text()))
   if not c.get('clean'):continue
+  if c.get('matrix_schedule')=='early_reciprocal':continue # Dedicated EARLY_ALLOCATION_* reports preserve the new schedule/WD distinctions.
   points=read_events(p.parent/'metrics.jsonl',{'manifest','validation','fw_update','fw_search_audit'})
   vals=[x for x in points if x['event']=='validation' and x['label']=='tuning']
   runs.append((p.parent.name,c,s,points,vals))
- rows=['# Detailed clean Muon evaluation','',
+ rows=['# Detailed clean Muon evaluation','', '[WD-independent early reciprocal experiment](EARLY_ALLOCATION_RESULTS.md) is reported separately, including six-seed replication and dynamic-WD controls.','',
  'All results use the B300 fork model/data/tokenizer and a fixed tuning-validation prefix. CE is natural-log token cross-entropy; lower is better. Single-seed LR/WD screening is not a confirmation. Final heldout data is reserved for frozen settings. Compare endpoints only at matching token budgets. Wall-time curves include all training work, including FW forward probes; curves with token-based LR schedules are descriptive, not a separately matched equal-time experiment.','',
  '## Longer runs','', '| Method | LR | Updates | Val CE | Training sec | Total process sec |', '|---|---:|---:|---:|---:|---:|']
  for n,c,s,pts,vals in sorted(runs):
