@@ -183,15 +183,24 @@ def main():
             else:high=middle
         cc=dict(original_template,fixed_wd=(low+high)/2,matrix_schedule='cooldown_refined',matrix_final_factor=original_template.get('matrix_final_factor',.05),window_family='matched-cooled-contraction',contraction_target_run=target_run,contraction_target_log=target_log)
         terminal_cfg['window-static-matched-contraction']=cc
+        best_positive=min((x for x in controls if x['c']['fixed_wd']>0),key=lambda r:r['s']['validation']['loss'])['c']['fixed_wd']
+        base_cooled=min(cooled,key=lambda x:x[0])[1]
+        for decay in [best_positive,math.sqrt(best_positive*LAM)]:
+            if math.isclose(decay,LAM,rel_tol=1e-12):continue
+            cc=dict(base_cooled,fixed_wd=decay,window_family='cooled-wd-refinement')
+            terminal_cfg[f'window-cooled-wd-x{decay/LAM:.6g}']=cc
     if terminal_cfg:
-        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most3 one-B300 jobs in this wave. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. This prevents attributing weaker total shrinkage or terminal effects to adaptation.')
-        stage('window-static-terminal-,window-static-matched-')
+        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most5 one-B300 jobs in this wave, including targeted cooled-schedule WD probes at best-positive-static lambda and its geometric midpoint toward original lambda. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. This prevents attributing weaker total shrinkage or terminal effects to adaptation.')
+        stage('window-static-terminal-,window-static-matched-,window-cooled-wd-')
         for p in list(ROOT.glob('um-window-static-terminal-*/summary.json'))+list(ROOT.glob('um-window-static-matched-*/summary.json')):
             ss=json.loads(p.read_text());cc=ss.get('config',{})
             if ss.get('status')=='completed' and ss.get('updates')==20000:
                 if 'contraction_target_log' in cc:
                     assert all(abs(x['log_abs']-cc['contraction_target_log'])<1e-7 for x in ss['muon_contraction'].values()),'static/cooled contraction mismatch'
                 controls.append(dict(name=p.parent.name,c=cc,s=ss))
+    for p in ROOT.glob('um-window-cooled-wd-*/summary.json'):
+        ss=json.loads(p.read_text());cc=ss.get('config',{})
+        if ss.get('status')=='completed' and ss.get('updates')==20000:candidates.append((ss['validation']['loss'],cc,p.parent.name))
     original=min((x for x in controls if x['c']['fixed_wd']==LAM),key=lambda r:r['s']['validation']['loss'])
     tuned_static=min(controls,key=lambda r:r['s']['validation']['loss'])
     variants=[x for x in candidates if not static_control(x[1])]
