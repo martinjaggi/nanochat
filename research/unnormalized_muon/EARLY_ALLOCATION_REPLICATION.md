@@ -14,16 +14,26 @@ All arms use ordinary fixed WD .04593746995939655, actual join LR .005 and ident
 | 72 | mid | 3.137712240 | +0.005539656 | 691.419 | 0.9478 |
 | 72 | early | 3.138991833 | +0.006819248 | 701.115 | 0.9347 |
 | 80 | baseline | 3.127713203 | +0.000000000 | 635.789 | 1.0308 |
+| 80 | mid | 3.130561352 | +0.002848148 | 669.179 | 0.9793 |
+| 80 | early | 3.130208015 | +0.002494812 | 697.640 | 0.9394 |
 | 81 | baseline | 3.132445335 | +0.000000000 | 666.782 | 0.9829 |
+| 81 | mid | 3.133066177 | +0.000620842 | 645.593 | 1.0151 |
+| 81 | early | 3.131148815 | -0.001296520 | 693.270 | 0.9453 |
 | 82 | baseline | 3.129633188 | +0.000000000 | 647.532 | 1.0121 |
+| 82 | mid | 3.130227566 | +0.000594378 | 636.516 | 1.0296 |
+| 82 | early | 3.127330542 | -0.002302647 | 714.632 | 0.9171 |
 
 mid/initial3: n=3, mean **+0.001721CE**, sampleSD **0.003497**.
 
-mid/pooled6: n=3, mean **+0.001721CE**, sampleSD **0.003497**.
+mid/new3: n=3, mean **+0.001354CE**, sampleSD **0.001294**.
+
+mid/pooled6: n=6, mean **+0.001538CE**, sampleSD **0.002366**.
 
 early/initial3: n=3, mean **+0.001822CE**, sampleSD **0.005377**.
 
-early/pooled6: n=3, mean **+0.001822CE**, sampleSD **0.005377**.
+early/new3: n=3, mean **-0.000368CE**, sampleSD **0.002530**.
+
+early/pooled6: n=6, mean **+0.000727CE**, sampleSD **0.003945**.
 
 Negative deltas favor the early reciprocal arm. No setting is retuned from these heldout results. Static/history contraction controls have3seeds only and are reported separately. Token-matched endpoints contain the same gradient count and native optimizer pipeline. Different wall times across jobs are descriptive; no independent equal-time result is implied.125829354 trainable parameters,655360000 update-data tokens/run,5.2083tokens/parameter. Finite NS/BF16/Nesterov and these stochastic outcomes establish no deterministic FW theorem.
 

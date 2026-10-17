@@ -25,6 +25,8 @@ class Capture:
 def main():
     p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--config',required=True);a=p.parse_args()
     out=pathlib.Path(a.output);cfg=json.loads(pathlib.Path(a.config).read_text());assert cfg['evaluation_only']
+    (out/'resolved_config.json').write_text(json.dumps(cfg,indent=2)+'\n')
+    assert cfg['large_start_batch']==64 and cfg['large_batches']==64
     assert torch.cuda.device_count()==1 and 'B300' in torch.cuda.get_device_name(0)
     _,_,_,world,device=compute_init('cuda');assert world==1
     names=cfg['model_run_ids'];assert len(names)==len(set(names))
