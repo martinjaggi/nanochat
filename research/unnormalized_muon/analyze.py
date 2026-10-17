@@ -8,7 +8,7 @@ def generate():
  runs=[]
  for p in ROOT.glob('um-*/summary.json'):
   s=json.loads(p.read_text());c=s.get('config',json.loads((p.parent/'resolved_config.json').read_text()))
-  if not c.get('clean'):continue
+  if not c.get('clean') or c.get('evaluation_only'):continue
   if c.get('matrix_schedule')=='early_reciprocal':continue # Dedicated EARLY_ALLOCATION_* reports preserve the new schedule/WD distinctions.
   points=read_events(p.parent/'metrics.jsonl',{'manifest','validation','fw_update','fw_search_audit'})
   vals=[x for x in points if x['event']=='validation' and x['label']=='tuning']

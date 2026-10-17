@@ -51,3 +51,7 @@ Keep2x LR but choose lambda_t=lambda_base*eta_base(t)/eta_early(t), so gamma_t a
 ![Frozen LR/WD/contraction controls](EARLY_ALLOCATION_CONTROLS.png)
 
 For the history-matched diagnostic, lambda_t=lambda0/k during warmup, then lambda0*(1+s/tau)/k until the join, and lambda0 afterwards. This is linear WD warmup paired with reciprocal LR, preserving the baseline FW mixing/contraction coefficient gamma_t. The implied radius changes; this is not a stochastic-FW convergence guarantee.
+
+## Larger untouched heldout evaluation
+
+After ALL30frozen confirmation checkpoints exist, one evaluation-only B300 job will score every arm on2097152targets from validation batch indices64–127, native32x1024. This is8x the original heldout size, token positions disjoint from original blocks0–7; assert validation epoch1 to prevent wrapping. Clone batches because the native loader reuses buffers. Compile the same native model once and copy complete checkpoint states with preserved dtypes; reproduce both original tuning and block6 scores/hashes within1e-5 for EVERY checkpoint before larger scoring. No training or gradients. All original outcomes remain reported. Save per-sequence nats/token counts outside Git, with explicit dependence caveats; across-seed paired differences remain primary. This new evaluation does not select LR/WD/method settings. OneB300,600s limit,~0.1GPUh; only submit once checkpoints complete and at least600s remain in the two-hour window.

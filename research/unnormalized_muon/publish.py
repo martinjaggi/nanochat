@@ -13,6 +13,7 @@ def publish():
    p=path.parent/'resolved_config.json'
    if not p.exists():continue
    cfg=json.loads(p.read_text())
+  if cfg.get('evaluation_only'):continue # Frozen-model scores have their own report, not a training curve.
   arm='FW backtracking' if cfg.get('fw') else ('Unnormalized '+cfg.get('matrix_schedule','cooldown') if cfg['variant'] else 'Native cooldown')
   if cfg.get('gap_scope'):arm=f'GapWD {cfg["gap_scope"]} {cfg.get("gap_shape","uniform")}'
   elif cfg.get('matrix_schedule','').startswith('fw_reciprocal'):arm='Muon shifted reciprocal'+(f' +cooldown{cfg.get("reciprocal_final_factor",.25):g}' if cfg.get('matrix_schedule')=='fw_reciprocal_cooldown' else '')
