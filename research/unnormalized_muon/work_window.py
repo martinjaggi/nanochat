@@ -158,12 +158,26 @@ def main():
         return (c.get('clean') and not c.get('variant') and not c.get('cap_sign') and not c.get('gap_scope')
                 and c.get('wd_schedule','fixed')=='fixed' and c.get('matrix_schedule') in {'cooldown','cooldown_refined'})
     controls=tuning('control',20000)+[dict(name=n,c=c,s=json.loads((ROOT/n/'summary.json').read_text())) for loss,c,n in candidates if static_control(c)]
+    # The best changed static WD gets the SAME terminal-factor test as
+    # original WD before a new method can claim practical superiority.
+    preliminary=min(controls,key=lambda r:r['s']['validation']['loss']);terminal_cfg={}
+    for final in [.01,.25]:
+        exists=any(x['c']['fixed_wd']==preliminary['c']['fixed_wd'] and x['c']['matrix_lr']==preliminary['c']['matrix_lr'] and x['c'].get('matrix_final_factor',.05)==final for x in controls)
+        if not exists:
+            cc=dict(preliminary['c'],matrix_schedule='cooldown_refined',matrix_final_factor=final,window_family='static-terminal-refinement')
+            terminal_cfg[f'window-static-terminal-f{final:g}']=cc
+    if terminal_cfg:
+        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. This prevents a cooldown advantage versus a control whose WD and terminal factor were tuned separately.')
+        stage('window-static-terminal-')
+        for p in ROOT.glob('um-window-static-terminal-*/summary.json'):
+            ss=json.loads(p.read_text());cc=ss.get('config',{})
+            if ss.get('status')=='completed' and ss.get('updates')==20000:controls.append(dict(name=p.parent.name,c=cc,s=ss))
     original=min((x for x in controls if x['c']['fixed_wd']==LAM),key=lambda r:r['s']['validation']['loss'])
     tuned_static=min(controls,key=lambda r:r['s']['validation']['loss'])
     variants=[x for x in candidates if not static_control(x[1])]
     adaptive=min(variants,key=lambda x:x[0])
     if adaptive[0]<tuned_static['s']['validation']['loss']-.001:
-        best=adaptive;reference=tuned_static;comparison_kind='adaptive versus fully tuned static-WD control'
+        best=adaptive;reference=tuned_static;comparison_kind='adaptive versus best tested static-WD control'
     elif tuned_static['s']['validation']['loss']<original['s']['validation']['loss']-.001:
         best=(tuned_static['s']['validation']['loss'],tuned_static['c'],tuned_static['name'])
         reference=original;comparison_kind='static WD/LR retuning; no adaptive method screen win'
