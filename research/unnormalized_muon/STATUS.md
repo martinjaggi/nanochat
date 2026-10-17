@@ -249,3 +249,5 @@ Predeclared follow-up futility rule: all three NEW paired reciprocal losses exce
 Follow-up completed: reciprocal failed preregistered scale-up gate (all3 paired improvements and mean<-.003 CE) after fair long-horizon LR tuning. Stop scale-up; preserve negative/ambiguous results. Remaining budget is not a spending target. See FOLLOWUP_RESULTS.md.
 
 Compiled cap/sign checks passed. Frozen diagnosis supported exact12/12 cap/sign==Armijo,zeta1. Now test cheap per-matrix eta=eta_base*I(<G,Q+lambda W> >0), using current raw G and skipping BOTH direction/decay while native momentum advances once. No extra gradients/forwards, same auxiliary recipe. Fair peak-LR factors{half,best,double} around tuned long reference; actual gated contraction logged per matrix.
+
+Equal factor-two edge expansion for BOTH ordinary terminal controls before claiming schedule superiority: final.01 preferred upper peak.01, expand to.02; final.25 preferred lower peak.005, expand to.0025. Full20k,seed0; auxiliary/momentum unchanged.
