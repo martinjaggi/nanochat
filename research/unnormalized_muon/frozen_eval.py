@@ -77,7 +77,11 @@ def main():
         rows.append(row);(out/'scores.json').write_text(json.dumps(rows,indent=2)+'\n')
         print('FROZEN_SCORE',name,score['loss'],score['bpb'],flush=True)
     torch.cuda.synchronize()
-    summary=dict(status='completed',evaluation_only=True,config=cfg,git_commit=os.environ['RESEARCH_COMMIT'],updates=0,fresh_tokens=0,fresh_microbatch_gradient_passes=0,training_seconds=0.,training_active_seconds=0.,validation=rows[0]['roundtrip_tuning'],heldout=None,validation_seconds=validation_seconds,checkpoint_seconds=0.,checkpoint_load_seconds=load_seconds,compile_seconds=None,end_to_end_seconds=time.perf_counter()-STARTED,process_seconds=time.perf_counter()-STARTED,peak_gpu_memory=torch.cuda.max_memory_allocated(),models_scored=len(rows),evaluation_tokens=len(rows)*80*32768,evaluation_microbatch_forwards=len(rows)*80,large_heldout_tokens=2097152,large_heldout_hash=large_hash)
+    from torch._dynamo.utils import get_compilation_metrics
+    intervals=sorted((m.start_time_us/1e6,m.end_time_us/1e6) for m in get_compilation_metrics() if getattr(m,'start_time_us',None) is not None and getattr(m,'end_time_us',None) is not None)
+    compile_seconds=0.;last=-float('inf')
+    for left,right in intervals:compile_seconds+=max(0.,right-max(left,last));last=max(last,right)
+    summary=dict(status='completed',evaluation_only=True,config=cfg,git_commit=os.environ['RESEARCH_COMMIT'],updates=0,fresh_tokens=0,fresh_microbatch_gradient_passes=0,training_seconds=0.,training_active_seconds=0.,validation=rows[0]['roundtrip_tuning'],heldout=None,validation_seconds=validation_seconds,checkpoint_seconds=0.,checkpoint_load_seconds=load_seconds,compile_seconds=compile_seconds,validation_clock_includes_compilation=True,end_to_end_seconds=time.perf_counter()-STARTED,process_seconds=time.perf_counter()-STARTED,peak_gpu_memory=torch.cuda.max_memory_allocated(),models_scored=len(rows),evaluation_tokens=len(rows)*80*32768,evaluation_microbatch_forwards=len(rows)*80,large_heldout_tokens=2097152,large_heldout_hash=large_hash)
     (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n');compute_cleanup()
 
 if __name__=='__main__':main()
