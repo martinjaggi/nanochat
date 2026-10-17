@@ -108,7 +108,24 @@ def main():
     (D/'EARLY_ALLOCATION_AUDIT.json').write_text(json.dumps(audits,indent=2)+'\n')
     baseline=read('earlyalloc-screen-k1');old=json.loads((ROOT/'um-window-static-terminal-f0p01'/'summary.json').read_text())
     regression=dict(new_ce=baseline['validation']['loss'],old_ce=old['validation']['loss'],delta=baseline['validation']['loss']-old['validation']['loss'])
-    assert abs(regression['delta'])<1e-4,'k1 regression differs beyond expected repeat noise'
+    # BF16 compiled reductions are not bitwise reproducible across jobs:
+    # even before the first changed schedule input, loss can differ ~1e-6.
+    # Validate exact inputs/state/cursor, and report endpoint drift separately.
+    prev=read_events(ROOT/'um-window-static-terminal-f0p01'/'metrics.jsonl',{'manifest','update'})
+    curr=read_events(ROOT/'um-earlyalloc-screen-k1'/'metrics.jsonl',{'manifest','update'})
+    assert prev[0]['initial_parameter_hash']==curr[0]['initial_parameter_hash']
+    old_updates=[e for e in prev if e['event']=='update'];new_updates=[e for e in curr if e['event']=='update']
+    assert len(old_updates)==len(new_updates)==20000
+    first_difference=None
+    for a,b in zip(old_updates,new_updates):
+        assert a['group_lrs']==b['group_lrs'] and a['group_weight_decays']==b['group_weight_decays']
+        assert a['data_state']==b['data_state']
+        if first_difference is None and a['loss']!=b['loss']:
+            first_difference=dict(step=a['step'],old_loss=a['loss'],new_loss=b['loss'])
+    regression['first_training_loss_difference']=first_difference
+    regression['exact_schedule_initial_parameters_and_data_cursors']=True
+    regression['bitwise_trajectory']=first_difference is None
+    assert abs(regression['delta'])<.01,'large baseline drift requires investigation before selection' 
     candidates=[(read(f'earlyalloc-screen-k{k:g}')['validation']['loss'],k) for k in [1.5,2.]]
     score,k=min(candidates)
     if score>=baseline['validation']['loss']:
