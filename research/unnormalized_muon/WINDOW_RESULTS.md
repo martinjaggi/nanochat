@@ -22,6 +22,7 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-joint-terminal-lr0p005-f0p25 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown_refined | 3.132740 | — | 717.720 | 770.78 |
 | um-window-joint-terminal-lr0p01-f0p01 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.104185 | — | 689.960 | 758.60 |
 | um-window-joint-terminal-lr0p01-f0p25 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.170352 | — | 686.162 | 755.55 |
+| um-window-joint-zero-lr0p04 | 20000 | 0 | 0.04 | 0 | fixed | cooldown | 3.107898 | — | 728.677 | 787.70 |
 | um-window-schedule-edge0-f0p05 | 20000 | 0 | 0.01 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.105950 | — | 716.757 | 789.58 |
 | um-window-schedule-edge0-f0p25 | 20000 | 0 | 0.08 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.104520 | — | 705.623 | 778.27 |
 | um-window-schedule-lr0p02-f0p05 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096101 | — | 638.844 | 711.40 |
