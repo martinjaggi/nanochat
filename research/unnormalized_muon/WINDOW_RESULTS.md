@@ -9,6 +9,7 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | Run | Updates | Seed | CLI LR | Reference lambda | WD rule | Matrix schedule | Validation CE | Heldout CE | Active sec | Process sec |
 |---|---:|---:|---:|---:|---|---|---:|---:|---:|---:|
 | um-window-cap-check-002 | 64 | 0 | 0.01 | 0.18375 | fixed | cooldown cap/sign | 6.438628 | — | 2.595 | 61.30 |
+| um-window-cap-tune-x0p5 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown cap/sign | 3.121832 | — | 682.636 | 739.60 |
 | um-window-first-wd-mixing | 20000 | 0 | 0.005 | 0.18375 | fw_mixing_reciprocal | cooldown | 3.105714 | — | 672.405 | 728.95 |
 | um-window-first-wd-static-product | 20000 | 0 | 0.005 | 0.138371 | fixed | cooldown | 3.103214 | — | 696.460 | 770.97 |
 | um-window-first-wd-x0 | 20000 | 0 | 0.005 | 0 | fixed | cooldown | 3.133004 | — | 724.601 | 798.92 |
@@ -26,6 +27,6 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-terminal-edge-lr0p0025-f0p25 | 20000 | 0 | 0.0025 | 0.18375 | fixed | cooldown_refined | 3.147864 | — | 732.953 | 785.67 |
 | um-window-terminal-edge-lr0p02-f0p01 | 20000 | 0 | 0.02 | 0.18375 | fixed | cooldown_refined | 3.127284 | — | 739.787 | 797.67 |
 
-Additional cheap-schedule hypothesis: reciprocal plus terminal cooldown, keeping fixed lambda. Final factors.05/.25 and fair peak LR boundaries test a terminal noise-floor explanation; no extra queries or exact FW claim. No heldout tokens select settings. If a development candidate improves by>.001CE, freeze against the tuned original-lambda reference and confirm with NEW seeds40/41/42 on NEW heldout block4; paired table in WINDOW_PAIRED.md only after all complete. No equal-time endpoint claim from token-clock prefixes. Actual group WD/contraction histories and costs are in persistent per-update logs.
+Additional cheap-schedule hypothesis: reciprocal plus terminal cooldown, keeping fixed lambda. Final factors.05/.25 and fair peak LR boundaries test a terminal noise-floor explanation; no extra queries or exact FW claim. No heldout tokens select settings. If a development candidate improves by>.001CE, freeze against the best tested static-WD reference (or static retuning versus original lambda) and confirm with NEW seeds40/41/42 on NEW heldout block4; paired table in WINDOW_PAIRED.md only after all complete. No equal-time endpoint claim from token-clock prefixes. Actual group WD/contraction histories and costs are in persistent per-update logs.
 
 Old historical plots remain intact and regenerate only when their input summaries change. Full raw logs remain outside Git; streaming publication parses only required events. Deadline guard declines new runs that cannot reasonably fit in the window; last-started jobs finish/reap normally.
