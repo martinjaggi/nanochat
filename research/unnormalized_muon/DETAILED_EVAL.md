@@ -22,6 +22,8 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.04 | 20000 | 3.201502 | 1640.94 | 1719.76 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.202821 | 1578.96 | 1656.38 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.151175 | 662.61 | 720.44 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.153493 | 657.94 | 718.91 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.154174 | 618.61 | 673.99 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199618 | 710.50 | 788.71 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.168332 | 723.17 | 786.20 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199090 | 1763.98 | 1834.23 |
@@ -336,6 +338,8 @@ um-lens-confirm-layer-s12: accepted 20000/20000; skipped nonpositive blocks 466;
 Timing seconds: direction=570.370, reference=146.431, candidates=141.366, auxiliary=18.228.
 
 | um-lens-confirm-reciprocal-s10 | fw_reciprocal native | 0.1837499 | 20000 | 3.151175 | 0 | 720.44 |
+| um-lens-confirm-reciprocal-s11 | fw_reciprocal native | 0.1837499 | 20000 | 3.153493 | 0 | 718.91 |
+| um-lens-confirm-reciprocal-s12 | fw_reciprocal native | 0.1837499 | 20000 | 3.154174 | 0 | 673.99 |
 | um-lens-creative-ema0p5 | layer native | 0.1837499 | 2000 | 3.555660 | 4000 | 247.79 |
 
 um-lens-creative-ema0p5: accepted 2000/2000; skipped nonpositive blocks 90; median actual eta 0.00757385; median gamma 0.00139169; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.405719. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
