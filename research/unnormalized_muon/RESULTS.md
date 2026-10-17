@@ -42,43 +42,43 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-clean-long-1-1-cooldown-lr0p32 | Clean Unnormalized cooldown | 20000 | 0 | 0.32 | 3.168984 | 0.960728 | — | 754.69 |
 | um-clean-long-1-2-constant-lr0p32 | Clean Unnormalized constant | 20000 | 0 | 0.32 | 3.209921 | 0.973169 | — | 765.35 |
 | um-clean-long-2-fw-pilot | Clean FW backtracking momentum Rfactor2 smoothness eager | 2000 | 0 | 0.02 | 4.185817 | 1.268782 | — | 409.98 |
-| um-earlyalloc-confirm-baseline-s70 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.091088 | 0.937149 | 3.132269 | 784.34 |
-| um-earlyalloc-confirm-baseline-s71 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.085667 | 0.935485 | 3.126217 | 798.23 |
-| um-earlyalloc-confirm-baseline-s72 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.089873 | 0.936781 | 3.132173 | 783.07 |
-| um-earlyalloc-confirm-baseline-s80 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.085548 | 0.935477 | 3.127713 | 695.15 |
-| um-earlyalloc-confirm-baseline-s81 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.086114 | 0.935633 | 3.132445 | 720.02 |
-| um-earlyalloc-confirm-baseline-s82 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 82 | 0.02 | 3.088922 | 0.936494 | 3.129633 | 707.03 |
-| um-earlyalloc-confirm-early-s70 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.088452 | 0.936346 | 3.128402 | 794.05 |
-| um-earlyalloc-confirm-early-s71 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.086768 | 0.935854 | 3.128732 | 770.47 |
-| um-earlyalloc-confirm-early-s72 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.097495 | 0.939100 | 3.138992 | 758.31 |
-| um-earlyalloc-confirm-early-s80 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.090832 | 0.937032 | 3.130208 | 759.04 |
-| um-earlyalloc-confirm-early-s81 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.090599 | 0.937002 | 3.131149 | 753.52 |
-| um-earlyalloc-confirm-early-s82 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 82 | 0.02 | 3.085357 | 0.935421 | 3.127331 | 790.92 |
-| um-earlyalloc-confirm-history-check-002 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 128 | 0 | 0.02 | 5.910295 | 1.791403 | — | 61.07 |
-| um-earlyalloc-confirm-history-s0 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.090946 | 0.937095 | — | 743.58 |
-| um-earlyalloc-confirm-history-s70 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.088016 | 0.936229 | 3.130941 | 746.39 |
-| um-earlyalloc-confirm-history-s71 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.089795 | 0.936774 | 3.130548 | 730.64 |
-| um-earlyalloc-confirm-history-s72 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.099023 | 0.939563 | 3.138726 | 804.65 |
-| um-earlyalloc-confirm-matched-s70 | Clean Native cooldown fixed_lambda=0.0551271 WD:standard(0) | 20000 | 70 | 0.02 | 3.091825 | 0.937357 | 3.133393 | 747.43 |
-| um-earlyalloc-confirm-matched-s71 | Clean Native cooldown fixed_lambda=0.0551271 WD:standard(0) | 20000 | 71 | 0.02 | 3.087015 | 0.935905 | 3.127414 | 743.56 |
-| um-earlyalloc-confirm-matched-s72 | Clean Native cooldown fixed_lambda=0.0551271 WD:standard(0) | 20000 | 72 | 0.02 | 3.091281 | 0.937221 | 3.133921 | 779.60 |
-| um-earlyalloc-confirm-mid-s70 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.088300 | 0.936291 | 3.130945 | 714.18 |
-| um-earlyalloc-confirm-mid-s71 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.085330 | 0.935397 | 3.127163 | 769.38 |
-| um-earlyalloc-confirm-mid-s72 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.098647 | 0.939434 | 3.137712 | 771.85 |
-| um-earlyalloc-confirm-mid-s80 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.088423 | 0.936321 | 3.130561 | 740.81 |
-| um-earlyalloc-confirm-mid-s81 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.090870 | 0.937089 | 3.133066 | 717.19 |
-| um-earlyalloc-confirm-mid-s82 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 82 | 0.02 | 3.088668 | 0.936423 | 3.130228 | 696.33 |
-| um-earlyalloc-confirm-midmatched-s70 | Clean Native cooldown fixed_lambda=0.051081 WD:standard(0) | 20000 | 70 | 0.02 | 3.089281 | 0.936576 | 3.131528 | 830.62 |
-| um-earlyalloc-confirm-midmatched-s71 | Clean Native cooldown fixed_lambda=0.051081 WD:standard(0) | 20000 | 71 | 0.02 | 3.084761 | 0.935227 | 3.127134 | 759.87 |
-| um-earlyalloc-confirm-midmatched-s72 | Clean Native cooldown fixed_lambda=0.051081 WD:standard(0) | 20000 | 72 | 0.02 | 3.091987 | 0.937423 | 3.132429 | 842.36 |
-| um-earlyalloc-confirm-neutral-s70 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 70 | 0.02 | 3.087880 | 0.936181 | 3.128062 | 806.59 |
-| um-earlyalloc-confirm-neutral-s71 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 71 | 0.02 | 3.086275 | 0.935689 | 3.128008 | 700.68 |
-| um-earlyalloc-confirm-neutral-s72 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 72 | 0.02 | 3.098150 | 0.939295 | 3.139013 | 712.74 |
-| um-earlyalloc-match-seed0 | Clean Native cooldown fixed_lambda=0.0551271 WD:standard(0) | 20000 | 0 | 0.02 | 3.091718 | 0.937353 | — | 749.39 |
-| um-earlyalloc-neutral-seed0 | Clean Native cooldown fixed_lambda=0.0382798 WD:standard(0) | 20000 | 0 | 0.02 | 3.089156 | 0.936554 | — | 729.26 |
-| um-earlyalloc-screen-k1 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.090448 | 0.936955 | — | 783.18 |
-| um-earlyalloc-screen-k1p5 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.089904 | 0.936790 | — | 701.43 |
-| um-earlyalloc-screen-k2 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.089891 | 0.936781 | — | 790.30 |
+| um-earlyalloc-confirm-baseline-s70 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.091088 | 0.937149 | 3.132269 | 784.34 |
+| um-earlyalloc-confirm-baseline-s71 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.085667 | 0.935485 | 3.126217 | 798.23 |
+| um-earlyalloc-confirm-baseline-s72 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.089873 | 0.936781 | 3.132173 | 783.07 |
+| um-earlyalloc-confirm-baseline-s80 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.085548 | 0.935477 | 3.127713 | 695.15 |
+| um-earlyalloc-confirm-baseline-s81 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.086114 | 0.935633 | 3.132445 | 720.02 |
+| um-earlyalloc-confirm-baseline-s82 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 82 | 0.02 | 3.088922 | 0.936494 | 3.129633 | 707.03 |
+| um-earlyalloc-confirm-early-s70 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.088452 | 0.936346 | 3.128402 | 794.05 |
+| um-earlyalloc-confirm-early-s71 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.086768 | 0.935854 | 3.128732 | 770.47 |
+| um-earlyalloc-confirm-early-s72 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.097495 | 0.939100 | 3.138992 | 758.31 |
+| um-earlyalloc-confirm-early-s80 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.090832 | 0.937032 | 3.130208 | 759.04 |
+| um-earlyalloc-confirm-early-s81 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.090599 | 0.937002 | 3.131149 | 753.52 |
+| um-earlyalloc-confirm-early-s82 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 82 | 0.02 | 3.085357 | 0.935421 | 3.127331 | 790.92 |
+| um-earlyalloc-confirm-history-check-002 | Clean Muon early reciprocal peak2x reference_lambda=0.0459375, schedule=early_history_matched WD:standard(0) | 128 | 0 | 0.02 | 5.910295 | 1.791403 | — | 61.07 |
+| um-earlyalloc-confirm-history-s0 | Clean Muon early reciprocal peak2x reference_lambda=0.0459375, schedule=early_history_matched WD:standard(0) | 20000 | 0 | 0.02 | 3.090946 | 0.937095 | — | 743.58 |
+| um-earlyalloc-confirm-history-s70 | Clean Muon early reciprocal peak2x reference_lambda=0.0459375, schedule=early_history_matched WD:standard(0) | 20000 | 70 | 0.02 | 3.088016 | 0.936229 | 3.130941 | 746.39 |
+| um-earlyalloc-confirm-history-s71 | Clean Muon early reciprocal peak2x reference_lambda=0.0459375, schedule=early_history_matched WD:standard(0) | 20000 | 71 | 0.02 | 3.089795 | 0.936774 | 3.130548 | 730.64 |
+| um-earlyalloc-confirm-history-s72 | Clean Muon early reciprocal peak2x reference_lambda=0.0459375, schedule=early_history_matched WD:standard(0) | 20000 | 72 | 0.02 | 3.099023 | 0.939563 | 3.138726 | 804.65 |
+| um-earlyalloc-confirm-matched-s70 | Clean Muon early reciprocal peak1x fixed_lambda=0.0551271 WD:standard(0) | 20000 | 70 | 0.02 | 3.091825 | 0.937357 | 3.133393 | 747.43 |
+| um-earlyalloc-confirm-matched-s71 | Clean Muon early reciprocal peak1x fixed_lambda=0.0551271 WD:standard(0) | 20000 | 71 | 0.02 | 3.087015 | 0.935905 | 3.127414 | 743.56 |
+| um-earlyalloc-confirm-matched-s72 | Clean Muon early reciprocal peak1x fixed_lambda=0.0551271 WD:standard(0) | 20000 | 72 | 0.02 | 3.091281 | 0.937221 | 3.133921 | 779.60 |
+| um-earlyalloc-confirm-mid-s70 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 70 | 0.02 | 3.088300 | 0.936291 | 3.130945 | 714.18 |
+| um-earlyalloc-confirm-mid-s71 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 71 | 0.02 | 3.085330 | 0.935397 | 3.127163 | 769.38 |
+| um-earlyalloc-confirm-mid-s72 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 72 | 0.02 | 3.098647 | 0.939434 | 3.137712 | 771.85 |
+| um-earlyalloc-confirm-mid-s80 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 80 | 0.02 | 3.088423 | 0.936321 | 3.130561 | 740.81 |
+| um-earlyalloc-confirm-mid-s81 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 81 | 0.02 | 3.090870 | 0.937089 | 3.133066 | 717.19 |
+| um-earlyalloc-confirm-mid-s82 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 82 | 0.02 | 3.088668 | 0.936423 | 3.130228 | 696.33 |
+| um-earlyalloc-confirm-midmatched-s70 | Clean Muon early reciprocal peak1x fixed_lambda=0.051081 WD:standard(0) | 20000 | 70 | 0.02 | 3.089281 | 0.936576 | 3.131528 | 830.62 |
+| um-earlyalloc-confirm-midmatched-s71 | Clean Muon early reciprocal peak1x fixed_lambda=0.051081 WD:standard(0) | 20000 | 71 | 0.02 | 3.084761 | 0.935227 | 3.127134 | 759.87 |
+| um-earlyalloc-confirm-midmatched-s72 | Clean Muon early reciprocal peak1x fixed_lambda=0.051081 WD:standard(0) | 20000 | 72 | 0.02 | 3.091987 | 0.937423 | 3.132429 | 842.36 |
+| um-earlyalloc-confirm-neutral-s70 | Clean Muon early reciprocal peak2x fixed_lambda=0.0382798 WD:standard(0) | 20000 | 70 | 0.02 | 3.087880 | 0.936181 | 3.128062 | 806.59 |
+| um-earlyalloc-confirm-neutral-s71 | Clean Muon early reciprocal peak2x fixed_lambda=0.0382798 WD:standard(0) | 20000 | 71 | 0.02 | 3.086275 | 0.935689 | 3.128008 | 700.68 |
+| um-earlyalloc-confirm-neutral-s72 | Clean Muon early reciprocal peak2x fixed_lambda=0.0382798 WD:standard(0) | 20000 | 72 | 0.02 | 3.098150 | 0.939295 | 3.139013 | 712.74 |
+| um-earlyalloc-match-seed0 | Clean Muon early reciprocal peak1x fixed_lambda=0.0551271 WD:standard(0) | 20000 | 0 | 0.02 | 3.091718 | 0.937353 | — | 749.39 |
+| um-earlyalloc-neutral-seed0 | Clean Muon early reciprocal peak2x fixed_lambda=0.0382798 WD:standard(0) | 20000 | 0 | 0.02 | 3.089156 | 0.936554 | — | 729.26 |
+| um-earlyalloc-screen-k1 | Clean Muon early reciprocal peak1x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.090448 | 0.936955 | — | 783.18 |
+| um-earlyalloc-screen-k1p5 | Clean Muon early reciprocal peak1.5x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.089904 | 0.936790 | — | 701.43 |
+| um-earlyalloc-screen-k2 | Clean Muon early reciprocal peak2x fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.089891 | 0.936781 | — | 790.30 |
 | um-follow-confirm20000-control-s20 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 20 | 0.01 | 3.111594 | 0.943356 | 3.112870 | 729.25 |
 | um-follow-confirm20000-control-s21 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 21 | 0.01 | 3.111298 | 0.943268 | 3.113533 | 751.79 |
 | um-follow-confirm20000-control-s22 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 22 | 0.01 | 3.110596 | 0.943063 | 3.113324 | 755.31 |
@@ -97,7 +97,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-follow-mid-reciprocal-high | Clean Muon shifted reciprocal fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.0282843 | 3.152773 | 0.955841 | — | 721.58 |
 | um-follow-mid-reciprocal-low | Clean Muon shifted reciprocal fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.0141421 | 3.152943 | 0.955902 | — | 727.28 |
 | um-fresh-diagnosis-001 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.557051 | 1.078327 | — | 340.47 |
-| um-fresh-wd-mixing | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.555051 | 1.077723 | — | 149.73 |
+| um-fresh-wd-mixing | Clean Native cooldown reference_lambda=0.18375, schedule=fw_mixing_reciprocal WD:standard(0) | 2000 | 0 | 0.04 | 3.555051 | 1.077723 | — | 149.73 |
 | um-fresh-wd-static-product | Clean Native cooldown fixed_lambda=0.153864 WD:standard(0) | 2000 | 0 | 0.04 | 3.553682 | 1.077298 | — | 123.04 |
 | um-fw-diagnostic-001 | FW backtracking momentum Rfactor2 smoothness eager | 64 | 0 | 0.02 | 6.469995 | 1.960658 | — | 95.07 |
 | um-fw-diagnostic-002 | FW backtracking momentum Rfactor2 smoothness eager | 64 | 0 | 0.02 | 6.900428 | 2.091122 | — | 117.14 |
@@ -258,17 +258,17 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-window-confirm-reference-s41 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 41 | 0.01 | 3.104613 | 0.941244 | 3.186403 | 666.93 |
 | um-window-confirm-reference-s42 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 42 | 0.01 | 3.104400 | 0.941187 | 3.190003 | 667.35 |
 | um-window-cooled-wd-x0p25 | Clean Muon shifted reciprocal +cooldown0.05 fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.02 | 3.096870 | 0.938922 | — | 737.58 |
-| um-window-cosine-lr-edge | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.02 | 3.101129 | 0.940186 | — | 734.59 |
-| um-window-first-wd-mixing | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.005 | 3.105714 | 0.941595 | — | 728.95 |
+| um-window-cosine-lr-edge | Clean Native cooldown reference_lambda=0.18375, schedule=cosine_radius WD:standard(0) | 20000 | 0 | 0.02 | 3.101129 | 0.940186 | — | 734.59 |
+| um-window-first-wd-mixing | Clean Native cooldown reference_lambda=0.18375, schedule=fw_mixing_reciprocal WD:standard(0) | 20000 | 0 | 0.005 | 3.105714 | 0.941595 | — | 728.95 |
 | um-window-first-wd-static-product | Clean Native cooldown fixed_lambda=0.138371 WD:standard(0) | 20000 | 0 | 0.005 | 3.103214 | 0.940837 | — | 770.97 |
 | um-window-first-wd-x0 | Clean Native cooldown WD:standard(0) | 20000 | 0 | 0.005 | 3.133004 | 0.949842 | — | 798.92 |
 | um-window-first-wd-x0p25 | Clean Native cooldown fixed_lambda=0.0459375 WD:standard(0) | 20000 | 0 | 0.005 | 3.116976 | 0.945011 | — | 767.80 |
 | um-window-first-wd-x0p5 | Clean Native cooldown fixed_lambda=0.0918749 WD:standard(0) | 20000 | 0 | 0.005 | 3.104900 | 0.941332 | — | 794.45 |
 | um-window-first-wd-x2 | Clean Native cooldown fixed_lambda=0.3675 WD:standard(0) | 20000 | 0 | 0.005 | 3.135778 | 0.950699 | — | 772.24 |
-| um-window-joint-cosine-wd-lr0p005 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.005 | 3.118502 | 0.945456 | — | 659.14 |
-| um-window-joint-cosine-wd-lr0p01 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.094790 | 0.938262 | — | 651.90 |
-| um-window-joint-mixing-x1 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.097867 | 0.939196 | — | 730.73 |
-| um-window-joint-mixing-x2 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.02 | 3.092627 | 0.937609 | — | 707.60 |
+| um-window-joint-cosine-wd-lr0p005 | Clean Native cooldown reference_lambda=0.18375, schedule=cosine_radius WD:standard(0) | 20000 | 0 | 0.005 | 3.118502 | 0.945456 | — | 659.14 |
+| um-window-joint-cosine-wd-lr0p01 | Clean Native cooldown reference_lambda=0.18375, schedule=cosine_radius WD:standard(0) | 20000 | 0 | 0.01 | 3.094790 | 0.938262 | — | 651.90 |
+| um-window-joint-mixing-x1 | Clean Native cooldown reference_lambda=0.18375, schedule=fw_mixing_reciprocal WD:standard(0) | 20000 | 0 | 0.01 | 3.097867 | 0.939196 | — | 730.73 |
+| um-window-joint-mixing-x2 | Clean Native cooldown reference_lambda=0.18375, schedule=fw_mixing_reciprocal WD:standard(0) | 20000 | 0 | 0.02 | 3.092627 | 0.937609 | — | 707.60 |
 | um-window-joint-terminal-lr0p005-f0p01 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.005 | 3.120314 | 0.945998 | — | 734.57 |
 | um-window-joint-terminal-lr0p005-f0p25 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.005 | 3.132740 | 0.949796 | — | 770.78 |
 | um-window-joint-terminal-lr0p01-f0p01 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.104185 | 0.941123 | — | 758.60 |
@@ -282,7 +282,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-window-joint-wd0p753041-x1 | Clean Native cooldown fixed_lambda=0.138371 WD:standard(0) | 20000 | 0 | 0.01 | 3.106556 | 0.941828 | — | 750.51 |
 | um-window-joint-wd0p753041-x2 | Clean Native cooldown fixed_lambda=0.138371 WD:standard(0) | 20000 | 0 | 0.02 | 3.125062 | 0.947431 | — | 772.65 |
 | um-window-joint-zero-lr0p04 | Clean Native cooldown WD:standard(0) | 20000 | 0 | 0.04 | 3.107898 | 0.942247 | — | 787.70 |
-| um-window-mixing-lr-edge | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.04 | 3.097083 | 0.938931 | — | 773.43 |
+| um-window-mixing-lr-edge | Clean Native cooldown reference_lambda=0.18375, schedule=fw_mixing_reciprocal WD:standard(0) | 20000 | 0 | 0.04 | 3.097083 | 0.938931 | — | 773.43 |
 | um-window-schedule-edge0-f0p05 | Clean Muon shifted reciprocal +cooldown0.05 fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.105950 | 0.941635 | — | 789.58 |
 | um-window-schedule-edge0-f0p25 | Clean Muon shifted reciprocal +cooldown0.25 fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.08 | 3.104520 | 0.941213 | — | 778.27 |
 | um-window-schedule-lr0p02-f0p05 | Clean Muon shifted reciprocal +cooldown0.05 fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.02 | 3.096101 | 0.938674 | — | 711.40 |
@@ -299,7 +299,7 @@ Review of um-fw-diagnostic-001: Compiled training f0 compared against functional
 
 Review of um-earlyalloc-confirm-history-check-001: Invalid short check: horizon64 gives cooldown join22 before warmup40. Non-time runs intentionally ignore reference_updates override. early_reciprocal asserts warmup<join on first measured step. Fix check002 horizon128/join45 and fail-fast launcher validation; full20k arms unaffected.
 
-Conservative charged/reserved total: 45.1470 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 45.1881 / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
