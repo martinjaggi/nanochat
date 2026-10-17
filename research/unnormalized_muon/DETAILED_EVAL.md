@@ -18,8 +18,10 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.04 | 20000 | 3.198918 | 1844.40 | 1934.59 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.201077 | 1891.19 | 1981.90 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.206757 | 1936.58 | 2028.32 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.197503 | 1783.84 | 1882.20 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.201502 | 1640.94 | 1719.76 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.202821 | 1578.96 | 1656.38 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.151175 | 662.61 | 720.44 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199618 | 710.50 | 788.71 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.168332 | 723.17 | 786.20 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.199090 | 1763.98 | 1834.23 |
@@ -315,6 +317,12 @@ um-lens-confirm-joint-s12: accepted 20000/20000; skipped nonpositive blocks 465;
 
 Timing seconds: direction=687.736, reference=150.582, candidates=295.063, auxiliary=18.164.
 
+| um-lens-confirm-layer-s10 | layer native | 0.1837499 | 20000 | 3.197503 | 40000 | 1882.20 |
+
+um-lens-confirm-layer-s10: accepted 20000/20000; skipped nonpositive blocks 410; median actual eta 0.00778065; median gamma 0.00142969; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.31436. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=661.032, reference=151.402, candidates=147.486, auxiliary=18.910.
+
 | um-lens-confirm-layer-s11 | layer native | 0.1837499 | 20000 | 3.201502 | 40000 | 1719.76 |
 
 um-lens-confirm-layer-s11: accepted 20000/20000; skipped nonpositive blocks 331; median actual eta 0.00778212; median gamma 0.00142996; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.264642. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
@@ -327,6 +335,7 @@ um-lens-confirm-layer-s12: accepted 20000/20000; skipped nonpositive blocks 466;
 
 Timing seconds: direction=570.370, reference=146.431, candidates=141.366, auxiliary=18.228.
 
+| um-lens-confirm-reciprocal-s10 | fw_reciprocal native | 0.1837499 | 20000 | 3.151175 | 0 | 720.44 |
 | um-lens-creative-ema0p5 | layer native | 0.1837499 | 2000 | 3.555660 | 4000 | 247.79 |
 
 um-lens-creative-ema0p5: accepted 2000/2000; skipped nonpositive blocks 90; median actual eta 0.00757385; median gamma 0.00139169; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.405719. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
