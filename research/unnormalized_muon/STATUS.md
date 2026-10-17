@@ -195,3 +195,5 @@ Start first NEW paired seed20 in two free slots, settings frozen from completed 
 Complete frozen plain-reciprocal versus tuned original-control seed set21/22 in four freed slots, seed20 already running. Same initial/data pairing,20k updates, heldout block2. Exactly oneB300/run,max6central slots,2400s fail-safe; all configs frozen before heldout outcomes.
 
 Matrix-only terminal controls completed: bestCLI.01/final.01 CE3.104185, improving original3.112087. Reciprocal+cooldown best3.096101 now only.008084 ahead. Extend BOTH terminal-control peak LR edges by factor2 before reference selection; this is stronger control tuning, no heldout-based setting changes.
+
+Use two freed slots for ordinary terminal-control LR edge checks, CLI.02/final.01 and CLI.0025/final.25, full20k,seed0. Preserve original AdamW/momentum clocks; fixed standard matrix WD. OneB300 each,1200s fail-safe; exactly six total outstanding after submission.
