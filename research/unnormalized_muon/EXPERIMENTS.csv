@@ -465,3 +465,33 @@ um-follow-mid-control-high,follow-mid-control-high,completed,fe5d34103fbe5f40441
 um-follow-mid-reciprocal-high,follow-mid-reciprocal-high,completed,fe5d34103fbe5f404416613209ba4b4a297534a2,"{""protocol_version"": 4, ""clean"": true, ""variant"": false, ""decay_mode"": ""standard"", ""fixed_wd"": 0.1837498798375862, ""gap_geometry"": ""q_scaled"", ""matrix_lr"": 0.0282842712474619, ""matrix_schedule"": ""fw_reciprocal"", ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 2400, ""warmup_updates"": 3, ""follow_arm"": ""reciprocal"", ""heldout"": false}",um-follow-mid-reciprocal-high,NVIDIA B300 SXM6 AC,1,2400,780.3280880451202,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-follow-mid-reciprocal-high,3.1527726650238037,0.9558409370597399,20000,646.6768074030988,721.583410052117,
 um-follow-mid-reciprocal-low,follow-mid-reciprocal-low,completed,fe5d34103fbe5f404416613209ba4b4a297534a2,"{""protocol_version"": 4, ""clean"": true, ""variant"": false, ""decay_mode"": ""standard"", ""fixed_wd"": 0.1837498798375862, ""gap_geometry"": ""q_scaled"", ""matrix_lr"": 0.01414213562373095, ""matrix_schedule"": ""fw_reciprocal"", ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 2400, ""warmup_updates"": 3, ""follow_arm"": ""reciprocal"", ""heldout"": false}",um-follow-mid-reciprocal-low,NVIDIA B300 SXM6 AC,1,2400,779.8436143398285,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-follow-mid-reciprocal-low,3.152942657470703,0.9559021954466618,20000,652.8442543158308,727.2789665088058,
 um-follow-mid-control-low,follow-mid-control-low,completed,fe5d34103fbe5f404416613209ba4b4a297534a2,"{""protocol_version"": 4, ""clean"": true, ""variant"": false, ""decay_mode"": ""standard"", ""fixed_wd"": 0.1837498798375862, ""gap_geometry"": ""q_scaled"", ""matrix_lr"": 0.007071067811865475, ""matrix_schedule"": ""cooldown"", ""updates"": 20000, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 2400, ""warmup_updates"": 3, ""follow_arm"": ""control"", ""heldout"": false}",um-follow-mid-control-low,NVIDIA B300 SXM6 AC,1,2400,813.9521005153656,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-follow-mid-control-low,3.1133182048797607,0.9438798573125063,20000,719.444672442507,775.0162409809418,
+um-window-cap-check-001,window-cap-check-001,submitted,28a541725cee28bfe2a2ed64d379396e4a83f900,"{""protocol_version"": 5, ""clean"": true, ""variant"": false, ""decay_mode"": ""standard"", ""fixed_wd"": 0.1837498798375862, ""gap_geometry"": ""q_scaled"", ""matrix_lr"": 0.01, ""matrix_schedule"": ""cooldown"", ""updates"": 64, ""seed"": 0, ""depth"": 8, ""runtime_limit"": 1200, ""warmup_updates"": 3, ""follow_arm"": ""control"", ""heldout"": false, ""window_family"": ""cap-sign-check"", ""cap_sign"": true, ""gpu_checks"": true}",um-window-cap-check-001,,1,1200,,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001,,,,,,
+um-window-cap-check-001,window-cap-check-001,failed,28a541725cee28bfe2a2ed64d379396e4a83f900,,um-window-cap-check-001,,1,1200,88.70532488822937,/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001,,,,,,"NVIDIA B300 SXM6 AC
+.........
+9 passed in 30.59s
+........
+8 passed in 25.41s
+TRAIN COMMAND ['/mloscratch/homes/mljaggi/nanochat-b300/.venv-b300/bin/python', '-m', 'scripts.base_train', '--depth=8', '--max-seq-len=1024', '--device-batch-size=32', '--total-batch-size=32768', '--num-iterations=64', '--matrix-lr=0.01', '--weight-decay=0.0', '--warmup-steps=40', '--eval-every=16', '--eval-tokens=262144', '--core-metric-every=-1', '--sample-every=-1', '--model-tag=d8', '--run=dummy']
+Traceback (most recent call last):
+  File ""<frozen runpy>"", line 198, in _run_module_as_main
+  File ""<frozen runpy>"", line 88, in _run_code
+  File ""/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001/source/scripts/base_train.py"", line 28, in <module>
+    from nanochat.gpt import GPT, GPTConfig, Linear
+  File ""/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001/source/nanochat/gpt.py"", line 23, in <module>
+    from nanochat.optim import MuonAdamW
+  File ""/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001/source/nanochat/optim.py"", line 106, in <module>
+    assert not CAP_SIGN or (CLEAN_MUON and not UNNORMALIZED_MUON and not RECORD_DUAL_SCALE and MUON_DECAY_MODE == ""standard"" and MUON_GEOMETRY == ""q_scaled""), ""cap/sign is clean normalized one-GPU ordinary-WD research only""
+                                                                         ^^^^^^^^^^^^^^^^^
+NameError: name 'RECORD_DUAL_SCALE' is not defined
+Traceback (most recent call last):
+  File ""<frozen runpy>"", line 198, in _run_module_as_main
+  File ""<frozen runpy>"", line 88, in _run_code
+  File ""/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001/source/research/unnormalized_muon/run.py"", line 33, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File ""/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/um-window-cap-check-001/source/research/unnormalized_muon/run.py"", line 28, in main
+    subprocess.run(command,env=env,check=True)
+  File ""/mloscratch/homes/mljaggi/.uv/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/subprocess.py"", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/mloscratch/homes/mljaggi/nanochat-b300/.venv-b300/bin/python', '-m', 'scripts.base_train', '--depth=8', '--max-seq-len=1024', '--device-batch-size=32', '--total-batch-size=32768', '--num-iterations=64', '--matrix-lr=0.01', '--weight-decay=0.0', '--warmup-steps=40', '--eval-every=16', '--eval-tokens=262144', '--core-metric-every=-1', '--sample-every=-1', '--model-tag=d8', '--run=dummy']' returned non-zero exit status 1.
+"
