@@ -1,0 +1,2387 @@
+[
+  {
+    "run": "um-follow-first-tune-control-lr0p01",
+    "validation": 3.1120874881744385,
+    "global_matrix_frobenius": 43.41419615913991,
+    "max_spectral_lower_over_reference_radius": 0.25143115246009196,
+    "max_spectral_lower_over_final_radius": 0.25143115246009196,
+    "matrices": [
+      {
+        "name": "transformer.h.1.attn.ve_gate.weight",
+        "frobenius": 1.075978398323059,
+        "spectral_lower_estimate": 0.9731259942054749,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1788117845020876,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1788117845020876
+      },
+      {
+        "name": "transformer.h.3.attn.ve_gate.weight",
+        "frobenius": 1.5091310739517212,
+        "spectral_lower_estimate": 1.2767364978790283,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.2346001780695321,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.2346001780695321
+      },
+      {
+        "name": "transformer.h.5.attn.ve_gate.weight",
+        "frobenius": 1.0845333337783813,
+        "spectral_lower_estimate": 0.9353475570678711,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.17187000121760113,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.17187000121760113
+      },
+      {
+        "name": "transformer.h.7.attn.ve_gate.weight",
+        "frobenius": 0.93932044506073,
+        "spectral_lower_estimate": 0.7604021430015564,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13972380240477902,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13972380240477902
+      },
+      {
+        "name": "transformer.h.0.attn.c_q.weight",
+        "frobenius": 4.451645374298096,
+        "spectral_lower_estimate": 0.8082289695739746,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14851197604047395,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14851197604047395
+      },
+      {
+        "name": "transformer.h.0.attn.c_k.weight",
+        "frobenius": 4.342622756958008,
+        "spectral_lower_estimate": 1.3683336973190308,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.25143115246009196,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.25143115246009196
+      },
+      {
+        "name": "transformer.h.0.attn.c_v.weight",
+        "frobenius": 3.879232168197632,
+        "spectral_lower_estimate": 0.4502098560333252,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0827260069478205,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0827260069478205
+      },
+      {
+        "name": "transformer.h.0.attn.c_proj.weight",
+        "frobenius": 3.9675397872924805,
+        "spectral_lower_estimate": 0.44645851850509644,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08203669912777822,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08203669912777822
+      },
+      {
+        "name": "transformer.h.1.attn.c_q.weight",
+        "frobenius": 4.786084175109863,
+        "spectral_lower_estimate": 0.5116055011749268,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09400744936514085,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09400744936514085
+      },
+      {
+        "name": "transformer.h.1.attn.c_k.weight",
+        "frobenius": 4.540218353271484,
+        "spectral_lower_estimate": 0.6586064696311951,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12101885965498896,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12101885965498896
+      },
+      {
+        "name": "transformer.h.1.attn.c_v.weight",
+        "frobenius": 3.843822479248047,
+        "spectral_lower_estimate": 0.39955925941467285,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07341896590544107,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07341896590544107
+      },
+      {
+        "name": "transformer.h.1.attn.c_proj.weight",
+        "frobenius": 4.057156085968018,
+        "spectral_lower_estimate": 0.3436000645160675,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06313647056701427,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06313647056701427
+      },
+      {
+        "name": "transformer.h.2.attn.c_q.weight",
+        "frobenius": 4.512237548828125,
+        "spectral_lower_estimate": 0.5626277923583984,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10338278923914211,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10338278923914211
+      },
+      {
+        "name": "transformer.h.2.attn.c_k.weight",
+        "frobenius": 4.320776462554932,
+        "spectral_lower_estimate": 0.6996936798095703,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12856862958812706,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12856862958812706
+      },
+      {
+        "name": "transformer.h.2.attn.c_v.weight",
+        "frobenius": 3.787012815475464,
+        "spectral_lower_estimate": 0.38700827956199646,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07111272486566782,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07111272486566782
+      },
+      {
+        "name": "transformer.h.2.attn.c_proj.weight",
+        "frobenius": 3.7635209560394287,
+        "spectral_lower_estimate": 0.3467830717563629,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06372134776494072,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06372134776494072
+      },
+      {
+        "name": "transformer.h.3.attn.c_q.weight",
+        "frobenius": 4.337844371795654,
+        "spectral_lower_estimate": 0.5662317872047424,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1040450228590931,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1040450228590931
+      },
+      {
+        "name": "transformer.h.3.attn.c_k.weight",
+        "frobenius": 4.408634185791016,
+        "spectral_lower_estimate": 0.6059801578521729,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11134878118929828,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11134878118929828
+      },
+      {
+        "name": "transformer.h.3.attn.c_v.weight",
+        "frobenius": 4.224888801574707,
+        "spectral_lower_estimate": 0.4944232404232025,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09085021101667345,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09085021101667345
+      },
+      {
+        "name": "transformer.h.3.attn.c_proj.weight",
+        "frobenius": 4.097101211547852,
+        "spectral_lower_estimate": 0.3531995415687561,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06490037332194946,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06490037332194946
+      },
+      {
+        "name": "transformer.h.4.attn.c_q.weight",
+        "frobenius": 4.364102840423584,
+        "spectral_lower_estimate": 0.668405294418335,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12281939253217547,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12281939253217547
+      },
+      {
+        "name": "transformer.h.4.attn.c_k.weight",
+        "frobenius": 4.19677209854126,
+        "spectral_lower_estimate": 0.8290764093399048,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.15234269059238492,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.15234269059238492
+      },
+      {
+        "name": "transformer.h.4.attn.c_v.weight",
+        "frobenius": 4.043200969696045,
+        "spectral_lower_estimate": 0.42014533281326294,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07720165441875973,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07720165441875973
+      },
+      {
+        "name": "transformer.h.4.attn.c_proj.weight",
+        "frobenius": 3.9379591941833496,
+        "spectral_lower_estimate": 0.3685964345932007,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06772955056506333,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06772955056506333
+      },
+      {
+        "name": "transformer.h.5.attn.c_q.weight",
+        "frobenius": 4.445291042327881,
+        "spectral_lower_estimate": 0.5980136394500732,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10988493439018855,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10988493439018855
+      },
+      {
+        "name": "transformer.h.5.attn.c_k.weight",
+        "frobenius": 4.483161926269531,
+        "spectral_lower_estimate": 0.6234539747238159,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11455959293976668,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11455959293976668
+      },
+      {
+        "name": "transformer.h.5.attn.c_v.weight",
+        "frobenius": 4.127996921539307,
+        "spectral_lower_estimate": 0.49571123719215393,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09108688026819947,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09108688026819947
+      },
+      {
+        "name": "transformer.h.5.attn.c_proj.weight",
+        "frobenius": 4.075737953186035,
+        "spectral_lower_estimate": 0.31491783261299133,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.05786611390135024,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.05786611390135024
+      },
+      {
+        "name": "transformer.h.6.attn.c_q.weight",
+        "frobenius": 4.352355480194092,
+        "spectral_lower_estimate": 0.6577562093734741,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12086262443480206,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12086262443480206
+      },
+      {
+        "name": "transformer.h.6.attn.c_k.weight",
+        "frobenius": 4.3858723640441895,
+        "spectral_lower_estimate": 0.719199001789093,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13215273015805779,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13215273015805779
+      },
+      {
+        "name": "transformer.h.6.attn.c_v.weight",
+        "frobenius": 4.037504196166992,
+        "spectral_lower_estimate": 0.39045101404190063,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07174532691266293,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07174532691266293
+      },
+      {
+        "name": "transformer.h.6.attn.c_proj.weight",
+        "frobenius": 3.5318140983581543,
+        "spectral_lower_estimate": 0.3695940375328064,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0679128599853415,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0679128599853415
+      },
+      {
+        "name": "transformer.h.7.attn.c_q.weight",
+        "frobenius": 3.9623939990997314,
+        "spectral_lower_estimate": 0.7177448868751526,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13188553671735118,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13188553671735118
+      },
+      {
+        "name": "transformer.h.7.attn.c_k.weight",
+        "frobenius": 4.302638053894043,
+        "spectral_lower_estimate": 0.702322244644165,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12905162806062914,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12905162806062914
+      },
+      {
+        "name": "transformer.h.7.attn.c_v.weight",
+        "frobenius": 4.3347554206848145,
+        "spectral_lower_estimate": 0.7085911631584167,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13020354108433452,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13020354108433452
+      },
+      {
+        "name": "transformer.h.7.attn.c_proj.weight",
+        "frobenius": 2.989932060241699,
+        "spectral_lower_estimate": 0.2684636116027832,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.049330156372775824,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.049330156372775824
+      },
+      {
+        "name": "transformer.h.0.mlp.c_proj.weight",
+        "frobenius": 5.2111616134643555,
+        "spectral_lower_estimate": 0.5875459909439087,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10796150523499873,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10796150523499873
+      },
+      {
+        "name": "transformer.h.1.mlp.c_proj.weight",
+        "frobenius": 5.437285900115967,
+        "spectral_lower_estimate": 0.6105785369873047,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11219373280282642,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11219373280282642
+      },
+      {
+        "name": "transformer.h.2.mlp.c_proj.weight",
+        "frobenius": 5.562582015991211,
+        "spectral_lower_estimate": 0.6273332834243774,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11527241544734776,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11527241544734776
+      },
+      {
+        "name": "transformer.h.3.mlp.c_proj.weight",
+        "frobenius": 5.431517124176025,
+        "spectral_lower_estimate": 0.5516780018806458,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1013707665546083,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1013707665546083
+      },
+      {
+        "name": "transformer.h.4.mlp.c_proj.weight",
+        "frobenius": 5.650627136230469,
+        "spectral_lower_estimate": 0.5903427004814148,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10847540027645611,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10847540027645611
+      },
+      {
+        "name": "transformer.h.5.mlp.c_proj.weight",
+        "frobenius": 5.714554786682129,
+        "spectral_lower_estimate": 0.5960012078285217,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10951515032154711,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10951515032154711
+      },
+      {
+        "name": "transformer.h.6.mlp.c_proj.weight",
+        "frobenius": 5.739286422729492,
+        "spectral_lower_estimate": 0.5395098328590393,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09913486695904469,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09913486695904469
+      },
+      {
+        "name": "transformer.h.7.mlp.c_proj.weight",
+        "frobenius": 5.799108505249023,
+        "spectral_lower_estimate": 0.5886077880859375,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10815661033225842,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10815661033225842
+      },
+      {
+        "name": "transformer.h.0.mlp.c_fc.weight",
+        "frobenius": 10.933897972106934,
+        "spectral_lower_estimate": 1.1072580814361572,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10172926970654506,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10172926970654506
+      },
+      {
+        "name": "transformer.h.1.mlp.c_fc.weight",
+        "frobenius": 11.77435302734375,
+        "spectral_lower_estimate": 0.9518453478813171,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.08745073414857873,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08745073414857873
+      },
+      {
+        "name": "transformer.h.2.mlp.c_fc.weight",
+        "frobenius": 11.930977821350098,
+        "spectral_lower_estimate": 0.9612168073654175,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.08831173642563185,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08831173642563185
+      },
+      {
+        "name": "transformer.h.3.mlp.c_fc.weight",
+        "frobenius": 11.729280471801758,
+        "spectral_lower_estimate": 1.0395203828811646,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.0955058727215678,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0955058727215678
+      },
+      {
+        "name": "transformer.h.4.mlp.c_fc.weight",
+        "frobenius": 11.720626831054688,
+        "spectral_lower_estimate": 1.04489266872406,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.0959994511606104,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0959994511606104
+      },
+      {
+        "name": "transformer.h.5.mlp.c_fc.weight",
+        "frobenius": 12.222972869873047,
+        "spectral_lower_estimate": 1.1011768579483032,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10117055766396572,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10117055766396572
+      },
+      {
+        "name": "transformer.h.6.mlp.c_fc.weight",
+        "frobenius": 11.873298645019531,
+        "spectral_lower_estimate": 1.1238887310028076,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10325720963629156,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10325720963629156
+      },
+      {
+        "name": "transformer.h.7.mlp.c_fc.weight",
+        "frobenius": 10.466814994812012,
+        "spectral_lower_estimate": 1.204859972000122,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.11069643753806996,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11069643753806996
+      }
+    ]
+  },
+  {
+    "run": "um-follow-mid-reciprocal-high",
+    "validation": 3.1527726650238037,
+    "global_matrix_frobenius": 39.81213159194739,
+    "max_spectral_lower_over_reference_radius": 0.2230278851434642,
+    "max_spectral_lower_over_final_radius": 0.2230278851434642,
+    "matrices": [
+      {
+        "name": "transformer.h.1.attn.ve_gate.weight",
+        "frobenius": 1.1646974086761475,
+        "spectral_lower_estimate": 1.057107925415039,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.19424345427037346,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.19424345427037346
+      },
+      {
+        "name": "transformer.h.3.attn.ve_gate.weight",
+        "frobenius": 1.4223788976669312,
+        "spectral_lower_estimate": 1.1948570013046265,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.2195548304128237,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.2195548304128237
+      },
+      {
+        "name": "transformer.h.5.attn.ve_gate.weight",
+        "frobenius": 1.0843545198440552,
+        "spectral_lower_estimate": 0.9487578272819519,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.17433413675802803,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.17433413675802803
+      },
+      {
+        "name": "transformer.h.7.attn.ve_gate.weight",
+        "frobenius": 0.9336034655570984,
+        "spectral_lower_estimate": 0.7458750009536743,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13705444179909715,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13705444179909715
+      },
+      {
+        "name": "transformer.h.0.attn.c_q.weight",
+        "frobenius": 4.043022632598877,
+        "spectral_lower_estimate": 0.8046245574951172,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14784966575409875,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14784966575409875
+      },
+      {
+        "name": "transformer.h.0.attn.c_k.weight",
+        "frobenius": 3.965045928955078,
+        "spectral_lower_estimate": 1.2137579917907715,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.2230278851434642,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.2230278851434642
+      },
+      {
+        "name": "transformer.h.0.attn.c_v.weight",
+        "frobenius": 3.622319221496582,
+        "spectral_lower_estimate": 0.4018024206161499,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07383114650666882,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07383114650666882
+      },
+      {
+        "name": "transformer.h.0.attn.c_proj.weight",
+        "frobenius": 3.638193130493164,
+        "spectral_lower_estimate": 0.4202028512954712,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07721222343295393,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07721222343295393
+      },
+      {
+        "name": "transformer.h.1.attn.c_q.weight",
+        "frobenius": 4.337569236755371,
+        "spectral_lower_estimate": 0.48314806818962097,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08877839947360476,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08877839947360476
+      },
+      {
+        "name": "transformer.h.1.attn.c_k.weight",
+        "frobenius": 4.09431266784668,
+        "spectral_lower_estimate": 0.6209509968757629,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1140996710609508,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1140996710609508
+      },
+      {
+        "name": "transformer.h.1.attn.c_v.weight",
+        "frobenius": 3.608552932739258,
+        "spectral_lower_estimate": 0.3731096684932709,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06855885675188014,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06855885675188014
+      },
+      {
+        "name": "transformer.h.1.attn.c_proj.weight",
+        "frobenius": 3.712547540664673,
+        "spectral_lower_estimate": 0.30495086312294006,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.056034684455208435,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.056034684455208435
+      },
+      {
+        "name": "transformer.h.2.attn.c_q.weight",
+        "frobenius": 4.059393405914307,
+        "spectral_lower_estimate": 0.5205166339874268,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09564486894865451,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09564486894865451
+      },
+      {
+        "name": "transformer.h.2.attn.c_k.weight",
+        "frobenius": 3.9035730361938477,
+        "spectral_lower_estimate": 0.6847123503684998,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12581581210352305,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12581581210352305
+      },
+      {
+        "name": "transformer.h.2.attn.c_v.weight",
+        "frobenius": 3.5180823802948,
+        "spectral_lower_estimate": 0.34961333870887756,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06424140897737357,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06424140897737357
+      },
+      {
+        "name": "transformer.h.2.attn.c_proj.weight",
+        "frobenius": 3.4943435192108154,
+        "spectral_lower_estimate": 0.3194201588630676,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.05869341580879137,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.05869341580879137
+      },
+      {
+        "name": "transformer.h.3.attn.c_q.weight",
+        "frobenius": 3.907315254211426,
+        "spectral_lower_estimate": 0.4724358320236206,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08681002736531035,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08681002736531035
+      },
+      {
+        "name": "transformer.h.3.attn.c_k.weight",
+        "frobenius": 3.9733943939208984,
+        "spectral_lower_estimate": 0.5432871580123901,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09982895000208039,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09982895000208039
+      },
+      {
+        "name": "transformer.h.3.attn.c_v.weight",
+        "frobenius": 3.8737125396728516,
+        "spectral_lower_estimate": 0.4177427887916565,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07676018724348503,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07676018724348503
+      },
+      {
+        "name": "transformer.h.3.attn.c_proj.weight",
+        "frobenius": 3.714460849761963,
+        "spectral_lower_estimate": 0.315429151058197,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.05796006860421553,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.05796006860421553
+      },
+      {
+        "name": "transformer.h.4.attn.c_q.weight",
+        "frobenius": 3.985781192779541,
+        "spectral_lower_estimate": 0.6123740077018738,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1125236503308804,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1125236503308804
+      },
+      {
+        "name": "transformer.h.4.attn.c_k.weight",
+        "frobenius": 3.8583433628082275,
+        "spectral_lower_estimate": 0.750085175037384,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13782806078107412,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13782806078107412
+      },
+      {
+        "name": "transformer.h.4.attn.c_v.weight",
+        "frobenius": 3.8668839931488037,
+        "spectral_lower_estimate": 0.39424407482147217,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07244230137512585,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07244230137512585
+      },
+      {
+        "name": "transformer.h.4.attn.c_proj.weight",
+        "frobenius": 3.7297723293304443,
+        "spectral_lower_estimate": 0.37759652733802795,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06938331652545247,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06938331652545247
+      },
+      {
+        "name": "transformer.h.5.attn.c_q.weight",
+        "frobenius": 4.0206170082092285,
+        "spectral_lower_estimate": 0.5516155958175659,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10135929944801625,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10135929944801625
+      },
+      {
+        "name": "transformer.h.5.attn.c_k.weight",
+        "frobenius": 4.074691295623779,
+        "spectral_lower_estimate": 0.546220600605011,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10036796972598493,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10036796972598493
+      },
+      {
+        "name": "transformer.h.5.attn.c_v.weight",
+        "frobenius": 3.776386022567749,
+        "spectral_lower_estimate": 0.4782275855541229,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08787426138058906,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08787426138058906
+      },
+      {
+        "name": "transformer.h.5.attn.c_proj.weight",
+        "frobenius": 3.54008412361145,
+        "spectral_lower_estimate": 0.2781957983970642,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0511184445267819,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0511184445267819
+      },
+      {
+        "name": "transformer.h.6.attn.c_q.weight",
+        "frobenius": 3.9733729362487793,
+        "spectral_lower_estimate": 0.6290404200553894,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11558610159816256,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11558610159816256
+      },
+      {
+        "name": "transformer.h.6.attn.c_k.weight",
+        "frobenius": 3.9905033111572266,
+        "spectral_lower_estimate": 0.6506787538528442,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11956214283333046,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11956214283333046
+      },
+      {
+        "name": "transformer.h.6.attn.c_v.weight",
+        "frobenius": 3.5809264183044434,
+        "spectral_lower_estimate": 0.3869604170322418,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07110393013157668,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07110393013157668
+      },
+      {
+        "name": "transformer.h.6.attn.c_proj.weight",
+        "frobenius": 3.120704174041748,
+        "spectral_lower_estimate": 0.3374009132385254,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06199737726467089,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06199737726467089
+      },
+      {
+        "name": "transformer.h.7.attn.c_q.weight",
+        "frobenius": 3.64897084236145,
+        "spectral_lower_estimate": 0.6620045900344849,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12164326387076711,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12164326387076711
+      },
+      {
+        "name": "transformer.h.7.attn.c_k.weight",
+        "frobenius": 3.934154987335205,
+        "spectral_lower_estimate": 0.6452115178108215,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11855753886756507,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11855753886756507
+      },
+      {
+        "name": "transformer.h.7.attn.c_v.weight",
+        "frobenius": 4.045997142791748,
+        "spectral_lower_estimate": 0.574133038520813,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10549687683898763,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10549687683898763
+      },
+      {
+        "name": "transformer.h.7.attn.c_proj.weight",
+        "frobenius": 2.682081460952759,
+        "spectral_lower_estimate": 0.24218334257602692,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.04450116009700992,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.04450116009700992
+      },
+      {
+        "name": "transformer.h.0.mlp.c_proj.weight",
+        "frobenius": 4.75882625579834,
+        "spectral_lower_estimate": 0.5419140458106995,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09957664080001621,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09957664080001621
+      },
+      {
+        "name": "transformer.h.1.mlp.c_proj.weight",
+        "frobenius": 4.918615818023682,
+        "spectral_lower_estimate": 0.5837069749832153,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10725608651352675,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10725608651352675
+      },
+      {
+        "name": "transformer.h.2.mlp.c_proj.weight",
+        "frobenius": 5.0882954597473145,
+        "spectral_lower_estimate": 0.5988966822624207,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11004719340084884,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11004719340084884
+      },
+      {
+        "name": "transformer.h.3.mlp.c_proj.weight",
+        "frobenius": 5.001615047454834,
+        "spectral_lower_estimate": 0.5002062320709229,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09191283503704382,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09191283503704382
+      },
+      {
+        "name": "transformer.h.4.mlp.c_proj.weight",
+        "frobenius": 5.14778470993042,
+        "spectral_lower_estimate": 0.5247822999954224,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09642868456505098,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09642868456505098
+      },
+      {
+        "name": "transformer.h.5.mlp.c_proj.weight",
+        "frobenius": 5.206982612609863,
+        "spectral_lower_estimate": 0.5548940300941467,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1019617113523934,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1019617113523934
+      },
+      {
+        "name": "transformer.h.6.mlp.c_proj.weight",
+        "frobenius": 5.270766258239746,
+        "spectral_lower_estimate": 0.4955693781375885,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0910608136839692,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0910608136839692
+      },
+      {
+        "name": "transformer.h.7.mlp.c_proj.weight",
+        "frobenius": 5.293705940246582,
+        "spectral_lower_estimate": 0.5181281566619873,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09520598652711021,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09520598652711021
+      },
+      {
+        "name": "transformer.h.0.mlp.c_fc.weight",
+        "frobenius": 10.185529708862305,
+        "spectral_lower_estimate": 1.0032105445861816,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.09216990850975515,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09216990850975515
+      },
+      {
+        "name": "transformer.h.1.mlp.c_fc.weight",
+        "frobenius": 10.796537399291992,
+        "spectral_lower_estimate": 0.8691107630729675,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.07984949914010532,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07984949914010532
+      },
+      {
+        "name": "transformer.h.2.mlp.c_fc.weight",
+        "frobenius": 10.98363208770752,
+        "spectral_lower_estimate": 0.9455925822257996,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.08687626167965176,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08687626167965176
+      },
+      {
+        "name": "transformer.h.3.mlp.c_fc.weight",
+        "frobenius": 10.837263107299805,
+        "spectral_lower_estimate": 0.953208327293396,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.08757595780017402,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08757595780017402
+      },
+      {
+        "name": "transformer.h.4.mlp.c_fc.weight",
+        "frobenius": 10.682732582092285,
+        "spectral_lower_estimate": 1.0043195486068726,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.09227179818752582,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09227179818752582
+      },
+      {
+        "name": "transformer.h.5.mlp.c_fc.weight",
+        "frobenius": 11.105486869812012,
+        "spectral_lower_estimate": 0.9575691819190979,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.08797661105690498,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08797661105690498
+      },
+      {
+        "name": "transformer.h.6.mlp.c_fc.weight",
+        "frobenius": 10.952157974243164,
+        "spectral_lower_estimate": 1.063771367073059,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.0977339304371697,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0977339304371697
+      },
+      {
+        "name": "transformer.h.7.mlp.c_fc.weight",
+        "frobenius": 9.685991287231445,
+        "spectral_lower_estimate": 1.1312272548675537,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10393143607545775,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10393143607545775
+      }
+    ]
+  },
+  {
+    "run": "um-window-schedule-lr0p02-f0p05",
+    "validation": 3.0961005687713623,
+    "global_matrix_frobenius": 49.390173410801076,
+    "max_spectral_lower_over_reference_radius": 0.2514667475856165,
+    "max_spectral_lower_over_final_radius": 0.2514667475856165,
+    "matrices": [
+      {
+        "name": "transformer.h.1.attn.ve_gate.weight",
+        "frobenius": 1.2952529191970825,
+        "spectral_lower_estimate": 1.1474580764770508,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.21084528367132588,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.21084528367132588
+      },
+      {
+        "name": "transformer.h.3.attn.ve_gate.weight",
+        "frobenius": 1.577134370803833,
+        "spectral_lower_estimate": 1.3685274124145508,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.2514667475856165,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.2514667475856165
+      },
+      {
+        "name": "transformer.h.5.attn.ve_gate.weight",
+        "frobenius": 1.1140673160552979,
+        "spectral_lower_estimate": 0.9657462239265442,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1774557526001051,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1774557526001051
+      },
+      {
+        "name": "transformer.h.7.attn.ve_gate.weight",
+        "frobenius": 1.0479785203933716,
+        "spectral_lower_estimate": 0.8413814902305603,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.15460374772743465,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.15460374772743465
+      },
+      {
+        "name": "transformer.h.0.attn.c_q.weight",
+        "frobenius": 5.001645565032959,
+        "spectral_lower_estimate": 0.9972020387649536,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1832357547968562,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1832357547968562
+      },
+      {
+        "name": "transformer.h.0.attn.c_k.weight",
+        "frobenius": 4.878724098205566,
+        "spectral_lower_estimate": 1.358049988746643,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.24954152224563095,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.24954152224563095
+      },
+      {
+        "name": "transformer.h.0.attn.c_v.weight",
+        "frobenius": 4.596768379211426,
+        "spectral_lower_estimate": 0.5018447041511536,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09221390408490346,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09221390408490346
+      },
+      {
+        "name": "transformer.h.0.attn.c_proj.weight",
+        "frobenius": 4.765934944152832,
+        "spectral_lower_estimate": 0.5360132455825806,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09849236946715376,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09849236946715376
+      },
+      {
+        "name": "transformer.h.1.attn.c_q.weight",
+        "frobenius": 5.494970798492432,
+        "spectral_lower_estimate": 0.6323010921478271,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11618524970333775,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11618524970333775
+      },
+      {
+        "name": "transformer.h.1.attn.c_k.weight",
+        "frobenius": 5.203088760375977,
+        "spectral_lower_estimate": 0.7788233757019043,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14310870169992818,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14310870169992818
+      },
+      {
+        "name": "transformer.h.1.attn.c_v.weight",
+        "frobenius": 4.9184417724609375,
+        "spectral_lower_estimate": 0.5281676054000854,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09705073402637135,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09705073402637135
+      },
+      {
+        "name": "transformer.h.1.attn.c_proj.weight",
+        "frobenius": 4.992488384246826,
+        "spectral_lower_estimate": 0.40889590978622437,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07513457428929922,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07513457428929922
+      },
+      {
+        "name": "transformer.h.2.attn.c_q.weight",
+        "frobenius": 5.212881088256836,
+        "spectral_lower_estimate": 0.6732932925224304,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12371756159644937,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12371756159644937
+      },
+      {
+        "name": "transformer.h.2.attn.c_k.weight",
+        "frobenius": 4.946303844451904,
+        "spectral_lower_estimate": 0.9201472401618958,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1690769448126349,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1690769448126349
+      },
+      {
+        "name": "transformer.h.2.attn.c_v.weight",
+        "frobenius": 4.72104549407959,
+        "spectral_lower_estimate": 0.46988922357559204,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08634208836899171,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08634208836899171
+      },
+      {
+        "name": "transformer.h.2.attn.c_proj.weight",
+        "frobenius": 4.652889728546143,
+        "spectral_lower_estimate": 0.42467790842056274,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07803451464195583,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07803451464195583
+      },
+      {
+        "name": "transformer.h.3.attn.c_q.weight",
+        "frobenius": 4.92708158493042,
+        "spectral_lower_estimate": 0.579484224319458,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10648015658647726,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10648015658647726
+      },
+      {
+        "name": "transformer.h.3.attn.c_k.weight",
+        "frobenius": 5.0338239669799805,
+        "spectral_lower_estimate": 0.6633108854293823,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12188329549261191,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12188329549261191
+      },
+      {
+        "name": "transformer.h.3.attn.c_v.weight",
+        "frobenius": 5.167766571044922,
+        "spectral_lower_estimate": 0.5521866679191589,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10146423387806257,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10146423387806257
+      },
+      {
+        "name": "transformer.h.3.attn.c_proj.weight",
+        "frobenius": 4.989826202392578,
+        "spectral_lower_estimate": 0.4066978991031647,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07473069009040527,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07473069009040527
+      },
+      {
+        "name": "transformer.h.4.attn.c_q.weight",
+        "frobenius": 5.021820545196533,
+        "spectral_lower_estimate": 0.7799926400184631,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14332355387759424,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14332355387759424
+      },
+      {
+        "name": "transformer.h.4.attn.c_k.weight",
+        "frobenius": 4.863816738128662,
+        "spectral_lower_estimate": 0.959509015083313,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.17630966622463945,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.17630966622463945
+      },
+      {
+        "name": "transformer.h.4.attn.c_v.weight",
+        "frobenius": 5.192470073699951,
+        "spectral_lower_estimate": 0.5326589941978455,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09787602617826363,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09787602617826363
+      },
+      {
+        "name": "transformer.h.4.attn.c_proj.weight",
+        "frobenius": 4.969310760498047,
+        "spectral_lower_estimate": 0.4886321425437927,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0897860974772042,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.0897860974772042
+      },
+      {
+        "name": "transformer.h.5.attn.c_q.weight",
+        "frobenius": 5.072945594787598,
+        "spectral_lower_estimate": 0.686709463596344,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12618278141916148,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12618278141916148
+      },
+      {
+        "name": "transformer.h.5.attn.c_k.weight",
+        "frobenius": 5.161210536956787,
+        "spectral_lower_estimate": 0.6532108187675476,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12002740945714817,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12002740945714817
+      },
+      {
+        "name": "transformer.h.5.attn.c_v.weight",
+        "frobenius": 5.1746039390563965,
+        "spectral_lower_estimate": 0.659293532371521,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12114510735096473,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12114510735096473
+      },
+      {
+        "name": "transformer.h.5.attn.c_proj.weight",
+        "frobenius": 4.76160192489624,
+        "spectral_lower_estimate": 0.38865581154823303,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07141545867016737,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.07141545867016737
+      },
+      {
+        "name": "transformer.h.6.attn.c_q.weight",
+        "frobenius": 5.007349491119385,
+        "spectral_lower_estimate": 0.8066334128379822,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14821879268196128,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14821879268196128
+      },
+      {
+        "name": "transformer.h.6.attn.c_k.weight",
+        "frobenius": 5.025331974029541,
+        "spectral_lower_estimate": 0.8215693831443787,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1509632754310194,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1509632754310194
+      },
+      {
+        "name": "transformer.h.6.attn.c_v.weight",
+        "frobenius": 4.755594730377197,
+        "spectral_lower_estimate": 0.5184119939804077,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09525814160026337,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09525814160026337
+      },
+      {
+        "name": "transformer.h.6.attn.c_proj.weight",
+        "frobenius": 4.144952297210693,
+        "spectral_lower_estimate": 0.43884414434432983,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08063755879069893,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.08063755879069893
+      },
+      {
+        "name": "transformer.h.7.attn.c_q.weight",
+        "frobenius": 4.630778789520264,
+        "spectral_lower_estimate": 0.8576912879943848,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.15760067110671275,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.15760067110671275
+      },
+      {
+        "name": "transformer.h.7.attn.c_k.weight",
+        "frobenius": 4.9351983070373535,
+        "spectral_lower_estimate": 0.7984744906425476,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14671959170894597,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14671959170894597
+      },
+      {
+        "name": "transformer.h.7.attn.c_v.weight",
+        "frobenius": 5.4205780029296875,
+        "spectral_lower_estimate": 0.8006117343902588,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14711230999077154,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.14711230999077154
+      },
+      {
+        "name": "transformer.h.7.attn.c_proj.weight",
+        "frobenius": 3.9782233238220215,
+        "spectral_lower_estimate": 0.35167554020881653,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06462033825518824,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.06462033825518824
+      },
+      {
+        "name": "transformer.h.0.mlp.c_proj.weight",
+        "frobenius": 5.806768417358398,
+        "spectral_lower_estimate": 0.6646806597709656,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12213499136328244,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12213499136328244
+      },
+      {
+        "name": "transformer.h.1.mlp.c_proj.weight",
+        "frobenius": 6.08866024017334,
+        "spectral_lower_estimate": 0.7051787972450256,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12957651925778702,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12957651925778702
+      },
+      {
+        "name": "transformer.h.2.mlp.c_proj.weight",
+        "frobenius": 6.2926106452941895,
+        "spectral_lower_estimate": 0.7450039982795715,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13689439516239255,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13689439516239255
+      },
+      {
+        "name": "transformer.h.3.mlp.c_proj.weight",
+        "frobenius": 6.120970249176025,
+        "spectral_lower_estimate": 0.6275272965431213,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11530806533460387,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11530806533460387
+      },
+      {
+        "name": "transformer.h.4.mlp.c_proj.weight",
+        "frobenius": 6.278456211090088,
+        "spectral_lower_estimate": 0.6431896090507507,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11818601337585949,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11818601337585949
+      },
+      {
+        "name": "transformer.h.5.mlp.c_proj.weight",
+        "frobenius": 6.383371353149414,
+        "spectral_lower_estimate": 0.7176219820976257,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13186295297924916,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.13186295297924916
+      },
+      {
+        "name": "transformer.h.6.mlp.c_proj.weight",
+        "frobenius": 6.489862442016602,
+        "spectral_lower_estimate": 0.6190661191940308,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11375332501342397,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11375332501342397
+      },
+      {
+        "name": "transformer.h.7.mlp.c_proj.weight",
+        "frobenius": 6.4679741859436035,
+        "spectral_lower_estimate": 0.6766444444656372,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1243333353633311,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1243333353633311
+      },
+      {
+        "name": "transformer.h.0.mlp.c_fc.weight",
+        "frobenius": 12.265946388244629,
+        "spectral_lower_estimate": 1.1804661750793457,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10845525891158238,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10845525891158238
+      },
+      {
+        "name": "transformer.h.1.mlp.c_fc.weight",
+        "frobenius": 13.102215766906738,
+        "spectral_lower_estimate": 1.0876433849334717,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.09992717064383547,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.09992717064383547
+      },
+      {
+        "name": "transformer.h.2.mlp.c_fc.weight",
+        "frobenius": 13.359275817871094,
+        "spectral_lower_estimate": 1.164216160774231,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10696228982362044,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10696228982362044
+      },
+      {
+        "name": "transformer.h.3.mlp.c_fc.weight",
+        "frobenius": 13.162237167358398,
+        "spectral_lower_estimate": 1.1916850805282593,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10948599517565594,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10948599517565594
+      },
+      {
+        "name": "transformer.h.4.mlp.c_fc.weight",
+        "frobenius": 12.904348373413086,
+        "spectral_lower_estimate": 1.2372273206710815,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.11367018575254498,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.11367018575254498
+      },
+      {
+        "name": "transformer.h.5.mlp.c_fc.weight",
+        "frobenius": 13.376688003540039,
+        "spectral_lower_estimate": 1.1718595027923584,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10766452141231468,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.10766452141231468
+      },
+      {
+        "name": "transformer.h.6.mlp.c_fc.weight",
+        "frobenius": 13.391298294067383,
+        "spectral_lower_estimate": 1.3260475397109985,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.1218305380404114,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.1218305380404114
+      },
+      {
+        "name": "transformer.h.7.mlp.c_fc.weight",
+        "frobenius": 11.956635475158691,
+        "spectral_lower_estimate": 1.3867578506469727,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.12740829421010527,
+        "final_wd": 0.1837498798375862,
+        "spectral_lower_over_final_radius": 0.12740829421010527
+      }
+    ]
+  },
+  {
+    "run": "um-window-first-wd-mixing",
+    "validation": 3.1057138442993164,
+    "global_matrix_frobenius": 50.4306118200004,
+    "max_spectral_lower_over_reference_radius": 0.24672913494941837,
+    "max_spectral_lower_over_final_radius": 1.4966993697704438,
+    "matrices": [
+      {
+        "name": "transformer.h.1.attn.ve_gate.weight",
+        "frobenius": 1.2528032064437866,
+        "spectral_lower_estimate": 1.0875500440597534,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.19983718991334126,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.212245145922113
+      },
+      {
+        "name": "transformer.h.3.attn.ve_gate.weight",
+        "frobenius": 1.405877947807312,
+        "spectral_lower_estimate": 1.1751168966293335,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.21592758855075722,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.309852141159675
+      },
+      {
+        "name": "transformer.h.5.attn.ve_gate.weight",
+        "frobenius": 1.0341622829437256,
+        "spectral_lower_estimate": 0.8771402835845947,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.16117442170937557,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9777104574414869
+      },
+      {
+        "name": "transformer.h.7.attn.ve_gate.weight",
+        "frobenius": 1.010335922241211,
+        "spectral_lower_estimate": 0.8615390062332153,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.15830768887074675,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9603203862050453
+      },
+      {
+        "name": "transformer.h.0.attn.c_q.weight",
+        "frobenius": 5.449446201324463,
+        "spectral_lower_estimate": 1.046757698059082,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.19234160123742466,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.1667756765398174
+      },
+      {
+        "name": "transformer.h.0.attn.c_k.weight",
+        "frobenius": 5.321420669555664,
+        "spectral_lower_estimate": 1.3427444696426392,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.24672913494941837,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.4966993697704438
+      },
+      {
+        "name": "transformer.h.0.attn.c_v.weight",
+        "frobenius": 4.7249674797058105,
+        "spectral_lower_estimate": 0.5138559937477112,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09442097710496537,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5727731220517714
+      },
+      {
+        "name": "transformer.h.0.attn.c_proj.weight",
+        "frobenius": 4.713613986968994,
+        "spectral_lower_estimate": 0.5903535485267639,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10847739360348549,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6580416482794459
+      },
+      {
+        "name": "transformer.h.1.attn.c_q.weight",
+        "frobenius": 5.963305473327637,
+        "spectral_lower_estimate": 0.681394636631012,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12520618260292415,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7595212240807213
+      },
+      {
+        "name": "transformer.h.1.attn.c_k.weight",
+        "frobenius": 5.643058776855469,
+        "spectral_lower_estimate": 0.8129218220710754,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14937428712291173,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9061289070810581
+      },
+      {
+        "name": "transformer.h.1.attn.c_v.weight",
+        "frobenius": 5.0334062576293945,
+        "spectral_lower_estimate": 0.5074861645698547,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0932505217589483,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5656729480934453
+      },
+      {
+        "name": "transformer.h.1.attn.c_proj.weight",
+        "frobenius": 4.938082218170166,
+        "spectral_lower_estimate": 0.3871983587741852,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.07114765189806711,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.4315933170126612
+      },
+      {
+        "name": "transformer.h.2.attn.c_q.weight",
+        "frobenius": 5.487184047698975,
+        "spectral_lower_estimate": 0.7634828686714172,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14028988537642853,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.8510214372174346
+      },
+      {
+        "name": "transformer.h.2.attn.c_k.weight",
+        "frobenius": 5.317248344421387,
+        "spectral_lower_estimate": 0.9174225330352783,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.16857628020552634,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.0226113441916067
+      },
+      {
+        "name": "transformer.h.2.attn.c_v.weight",
+        "frobenius": 5.251260280609131,
+        "spectral_lower_estimate": 0.5633665919303894,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10351854357171951,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6279604512661632
+      },
+      {
+        "name": "transformer.h.2.attn.c_proj.weight",
+        "frobenius": 4.880071640014648,
+        "spectral_lower_estimate": 0.44873011112213135,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08245410399819834,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5001801084999143
+      },
+      {
+        "name": "transformer.h.3.attn.c_q.weight",
+        "frobenius": 5.223968982696533,
+        "spectral_lower_estimate": 0.6630244255065918,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12183065851622087,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7390447417461583
+      },
+      {
+        "name": "transformer.h.3.attn.c_k.weight",
+        "frobenius": 5.453526020050049,
+        "spectral_lower_estimate": 0.7025970816612244,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12910212932948872,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7831546754422876
+      },
+      {
+        "name": "transformer.h.3.attn.c_v.weight",
+        "frobenius": 5.819759845733643,
+        "spectral_lower_estimate": 0.715804934501648,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13152907070182907,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7978768995654999
+      },
+      {
+        "name": "transformer.h.3.attn.c_proj.weight",
+        "frobenius": 5.396787166595459,
+        "spectral_lower_estimate": 0.45063072443008423,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08280334146515239,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5022986402120185
+      },
+      {
+        "name": "transformer.h.4.attn.c_q.weight",
+        "frobenius": 5.397929668426514,
+        "spectral_lower_estimate": 0.827491819858551,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.15205152246559428,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9223694554497847
+      },
+      {
+        "name": "transformer.h.4.attn.c_k.weight",
+        "frobenius": 5.277247428894043,
+        "spectral_lower_estimate": 0.9011382460594177,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1655840444304712,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.0044599515737558
+      },
+      {
+        "name": "transformer.h.4.attn.c_v.weight",
+        "frobenius": 5.659191608428955,
+        "spectral_lower_estimate": 0.5652294754981995,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10386084820345602,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6300369272635948
+      },
+      {
+        "name": "transformer.h.4.attn.c_proj.weight",
+        "frobenius": 5.070132255554199,
+        "spectral_lower_estimate": 0.5090500712394714,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09353788942156757,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5674161674324295
+      },
+      {
+        "name": "transformer.h.5.attn.c_q.weight",
+        "frobenius": 5.425871849060059,
+        "spectral_lower_estimate": 0.7736107110977173,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.14215087520527517,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.8623105065223425
+      },
+      {
+        "name": "transformer.h.5.attn.c_k.weight",
+        "frobenius": 5.541536331176758,
+        "spectral_lower_estimate": 0.7330307960510254,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13469432069162607,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.8170778247657859
+      },
+      {
+        "name": "transformer.h.5.attn.c_v.weight",
+        "frobenius": 5.417679786682129,
+        "spectral_lower_estimate": 0.7155498266220093,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13148219465959984,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7975925418106843
+      },
+      {
+        "name": "transformer.h.5.attn.c_proj.weight",
+        "frobenius": 4.746140003204346,
+        "spectral_lower_estimate": 0.37805914878845215,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.0694683231613782,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.4214062336657554
+      },
+      {
+        "name": "transformer.h.6.attn.c_q.weight",
+        "frobenius": 5.376183032989502,
+        "spectral_lower_estimate": 0.8545522689819336,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.15702387674036694,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9525325714143963
+      },
+      {
+        "name": "transformer.h.6.attn.c_k.weight",
+        "frobenius": 5.437685012817383,
+        "spectral_lower_estimate": 0.8927707672119141,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.16404652119769886,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9951330836545311
+      },
+      {
+        "name": "transformer.h.6.attn.c_v.weight",
+        "frobenius": 5.0956501960754395,
+        "spectral_lower_estimate": 0.5181102752685547,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.09520270082321564,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5775151862456885
+      },
+      {
+        "name": "transformer.h.6.attn.c_proj.weight",
+        "frobenius": 4.327984809875488,
+        "spectral_lower_estimate": 0.451937735080719,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.08304350451515298,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.5037555086343543
+      },
+      {
+        "name": "transformer.h.7.attn.c_q.weight",
+        "frobenius": 4.88186502456665,
+        "spectral_lower_estimate": 0.9380574822425842,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1723679496428235,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 1.0456122324261639
+      },
+      {
+        "name": "transformer.h.7.attn.c_k.weight",
+        "frobenius": 5.201203346252441,
+        "spectral_lower_estimate": 0.8867539763450623,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.16294093659890693,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.9884264262807314
+      },
+      {
+        "name": "transformer.h.7.attn.c_v.weight",
+        "frobenius": 5.417436599731445,
+        "spectral_lower_estimate": 0.7378641366958618,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13558244645432888,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.8224653411998978
+      },
+      {
+        "name": "transformer.h.7.attn.c_proj.weight",
+        "frobenius": 3.791973352432251,
+        "spectral_lower_estimate": 0.3677580654621124,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.06757550033796632,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.4099240601986111
+      },
+      {
+        "name": "transformer.h.0.mlp.c_proj.weight",
+        "frobenius": 5.876479625701904,
+        "spectral_lower_estimate": 0.5660533308982849,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10401223153422527,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6309552433587027
+      },
+      {
+        "name": "transformer.h.1.mlp.c_proj.weight",
+        "frobenius": 6.2523884773254395,
+        "spectral_lower_estimate": 0.7011679410934448,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12883952492188822,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7815616740667702
+      },
+      {
+        "name": "transformer.h.2.mlp.c_proj.weight",
+        "frobenius": 6.312288284301758,
+        "spectral_lower_estimate": 0.7120543122291565,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.13083989430994258,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7936962426211603
+      },
+      {
+        "name": "transformer.h.3.mlp.c_proj.weight",
+        "frobenius": 6.173565864562988,
+        "spectral_lower_estimate": 0.6092032194137573,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11194101836394857,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6790525637401157
+      },
+      {
+        "name": "transformer.h.4.mlp.c_proj.weight",
+        "frobenius": 6.341807842254639,
+        "spectral_lower_estimate": 0.639656662940979,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.11753683495271627,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7129977042825029
+      },
+      {
+        "name": "transformer.h.5.mlp.c_proj.weight",
+        "frobenius": 6.415807723999023,
+        "spectral_lower_estimate": 0.6894363164901733,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.1266838403107374,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7684849379140062
+      },
+      {
+        "name": "transformer.h.6.mlp.c_proj.weight",
+        "frobenius": 6.5477681159973145,
+        "spectral_lower_estimate": 0.5941835045814514,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.10918114756831755,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6623107351704349
+      },
+      {
+        "name": "transformer.h.7.mlp.c_proj.weight",
+        "frobenius": 6.381041049957275,
+        "spectral_lower_estimate": 0.6681138873100281,
+        "nominal_radius": 5.442180429635574,
+        "spectral_lower_over_radius": 0.12276584651104026,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7447177453934578
+      },
+      {
+        "name": "transformer.h.0.mlp.c_fc.weight",
+        "frobenius": 12.106945037841797,
+        "spectral_lower_estimate": 1.1462032794952393,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10530735743834872,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6388116893551284
+      },
+      {
+        "name": "transformer.h.1.mlp.c_fc.weight",
+        "frobenius": 13.412774085998535,
+        "spectral_lower_estimate": 1.126920223236084,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10353572780308812,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6280646936300197
+      },
+      {
+        "name": "transformer.h.2.mlp.c_fc.weight",
+        "frobenius": 13.452186584472656,
+        "spectral_lower_estimate": 1.1453951597213745,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10523311148267771,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.638361301219639
+      },
+      {
+        "name": "transformer.h.3.mlp.c_fc.weight",
+        "frobenius": 13.035689353942871,
+        "spectral_lower_estimate": 1.1183077096939087,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10274445363885097,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6232646948654953
+      },
+      {
+        "name": "transformer.h.4.mlp.c_fc.weight",
+        "frobenius": 13.244444847106934,
+        "spectral_lower_estimate": 1.2707483768463135,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.11674993077465891,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.708224214570355
+      },
+      {
+        "name": "transformer.h.5.mlp.c_fc.weight",
+        "frobenius": 13.318411827087402,
+        "spectral_lower_estimate": 1.2685980796813965,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.1165523723518246,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.7070257927990082
+      },
+      {
+        "name": "transformer.h.6.mlp.c_fc.weight",
+        "frobenius": 13.412079811096191,
+        "spectral_lower_estimate": 1.1971861124038696,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.10999140214871901,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.6672258722501685
+      },
+      {
+        "name": "transformer.h.7.mlp.c_fc.weight",
+        "frobenius": 11.704533576965332,
+        "spectral_lower_estimate": 1.3828673362731934,
+        "nominal_radius": 10.884360859271148,
+        "spectral_lower_over_radius": 0.12705085343576109,
+        "final_wd": 1.1146568864057795,
+        "spectral_lower_over_final_radius": 0.770711299681266
+      }
+    ]
+  },
+  {
+    "run": "um-window-first-wd-static-product",
+    "validation": 3.1032142639160156,
+    "global_matrix_frobenius": 54.91964663214968,
+    "max_spectral_lower_over_reference_radius": 0.22237125838755992,
+    "max_spectral_lower_over_final_radius": 0.22237125838755992,
+    "matrices": [
+      {
+        "name": "transformer.h.1.attn.ve_gate.weight",
+        "frobenius": 1.3453149795532227,
+        "spectral_lower_estimate": 1.1547513008117676,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.1597843339632,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.1597843339632
+      },
+      {
+        "name": "transformer.h.3.attn.ve_gate.weight",
+        "frobenius": 1.4982577562332153,
+        "spectral_lower_estimate": 1.2296807765960693,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.17015241614157894,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.17015241614157894
+      },
+      {
+        "name": "transformer.h.5.attn.ve_gate.weight",
+        "frobenius": 1.0778440237045288,
+        "spectral_lower_estimate": 0.9176806807518005,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.12698058557002162,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.12698058557002162
+      },
+      {
+        "name": "transformer.h.7.attn.ve_gate.weight",
+        "frobenius": 1.1031179428100586,
+        "spectral_lower_estimate": 0.9388091564178467,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.129904158299131,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.129904158299131
+      },
+      {
+        "name": "transformer.h.0.attn.c_q.weight",
+        "frobenius": 5.896464824676514,
+        "spectral_lower_estimate": 1.1947047710418701,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.16531274395567863,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.16531274395567863
+      },
+      {
+        "name": "transformer.h.0.attn.c_k.weight",
+        "frobenius": 5.74761438369751,
+        "spectral_lower_estimate": 1.6070630550384521,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.22237125838755992,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.22237125838755992
+      },
+      {
+        "name": "transformer.h.0.attn.c_v.weight",
+        "frobenius": 5.154592990875244,
+        "spectral_lower_estimate": 0.5500483512878418,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.0761108555550444,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.0761108555550444
+      },
+      {
+        "name": "transformer.h.0.attn.c_proj.weight",
+        "frobenius": 5.123061180114746,
+        "spectral_lower_estimate": 0.6475360989570618,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.08960035309442667,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08960035309442667
+      },
+      {
+        "name": "transformer.h.1.attn.c_q.weight",
+        "frobenius": 6.404313564300537,
+        "spectral_lower_estimate": 0.7318472862243652,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.1012665940362489,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.1012665940362489
+      },
+      {
+        "name": "transformer.h.1.attn.c_k.weight",
+        "frobenius": 6.1005940437316895,
+        "spectral_lower_estimate": 0.8758047819137573,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.12118616680622082,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.12118616680622082
+      },
+      {
+        "name": "transformer.h.1.attn.c_v.weight",
+        "frobenius": 5.351711273193359,
+        "spectral_lower_estimate": 0.5416187047958374,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.07494443517576162,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.07494443517576162
+      },
+      {
+        "name": "transformer.h.1.attn.c_proj.weight",
+        "frobenius": 5.303986549377441,
+        "spectral_lower_estimate": 0.41784346103668213,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.057817505012282895,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.057817505012282895
+      },
+      {
+        "name": "transformer.h.2.attn.c_q.weight",
+        "frobenius": 5.8895649909973145,
+        "spectral_lower_estimate": 0.7995957136154175,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.11064102586423094,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.11064102586423094
+      },
+      {
+        "name": "transformer.h.2.attn.c_k.weight",
+        "frobenius": 5.738241672515869,
+        "spectral_lower_estimate": 0.9720354080200195,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.1345017149146678,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.1345017149146678
+      },
+      {
+        "name": "transformer.h.2.attn.c_v.weight",
+        "frobenius": 5.624902725219727,
+        "spectral_lower_estimate": 0.599046528339386,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.08289079256839801,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08289079256839801
+      },
+      {
+        "name": "transformer.h.2.attn.c_proj.weight",
+        "frobenius": 5.278587818145752,
+        "spectral_lower_estimate": 0.4872830808162689,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.06742594917626808,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.06742594917626808
+      },
+      {
+        "name": "transformer.h.3.attn.c_q.weight",
+        "frobenius": 5.637885570526123,
+        "spectral_lower_estimate": 0.7243400812149048,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10022781300043747,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10022781300043747
+      },
+      {
+        "name": "transformer.h.3.attn.c_k.weight",
+        "frobenius": 5.899711608886719,
+        "spectral_lower_estimate": 0.7697023153305054,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10650464019270707,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10650464019270707
+      },
+      {
+        "name": "transformer.h.3.attn.c_v.weight",
+        "frobenius": 6.299410343170166,
+        "spectral_lower_estimate": 0.77611243724823,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10739161651438474,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10739161651438474
+      },
+      {
+        "name": "transformer.h.3.attn.c_proj.weight",
+        "frobenius": 5.883759498596191,
+        "spectral_lower_estimate": 0.48256123065948486,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.06677258105982137,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.06677258105982137
+      },
+      {
+        "name": "transformer.h.4.attn.c_q.weight",
+        "frobenius": 5.804144859313965,
+        "spectral_lower_estimate": 0.8889402151107788,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.12300373258270338,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.12300373258270338
+      },
+      {
+        "name": "transformer.h.4.attn.c_k.weight",
+        "frobenius": 5.691218376159668,
+        "spectral_lower_estimate": 0.9722869396209717,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.13453651964647506,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.13453651964647506
+      },
+      {
+        "name": "transformer.h.4.attn.c_v.weight",
+        "frobenius": 5.99237585067749,
+        "spectral_lower_estimate": 0.6007295846939087,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.08312367911153583,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08312367911153583
+      },
+      {
+        "name": "transformer.h.4.attn.c_proj.weight",
+        "frobenius": 5.409241676330566,
+        "spectral_lower_estimate": 0.5527400970458984,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.07648331567078273,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.07648331567078273
+      },
+      {
+        "name": "transformer.h.5.attn.c_q.weight",
+        "frobenius": 5.840643882751465,
+        "spectral_lower_estimate": 0.8413031697273254,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.11641213700431435,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.11641213700431435
+      },
+      {
+        "name": "transformer.h.5.attn.c_k.weight",
+        "frobenius": 5.948446273803711,
+        "spectral_lower_estimate": 0.7966070771217346,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.11022748461836654,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.11022748461836654
+      },
+      {
+        "name": "transformer.h.5.attn.c_v.weight",
+        "frobenius": 5.815325736999512,
+        "spectral_lower_estimate": 0.7473616003990173,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10341332845044697,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10341332845044697
+      },
+      {
+        "name": "transformer.h.5.attn.c_proj.weight",
+        "frobenius": 5.100488662719727,
+        "spectral_lower_estimate": 0.4136603772640228,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.05723868665195131,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.05723868665195131
+      },
+      {
+        "name": "transformer.h.6.attn.c_q.weight",
+        "frobenius": 5.802061557769775,
+        "spectral_lower_estimate": 0.9138749837875366,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.12645398667875107,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.12645398667875107
+      },
+      {
+        "name": "transformer.h.6.attn.c_k.weight",
+        "frobenius": 5.868810653686523,
+        "spectral_lower_estimate": 0.9519067406654358,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.1317164868707089,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.1317164868707089
+      },
+      {
+        "name": "transformer.h.6.attn.c_v.weight",
+        "frobenius": 5.453096866607666,
+        "spectral_lower_estimate": 0.5630139708518982,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.07790492401377366,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.07790492401377366
+      },
+      {
+        "name": "transformer.h.6.attn.c_proj.weight",
+        "frobenius": 4.668516635894775,
+        "spectral_lower_estimate": 0.4926620423793793,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.06817024259266956,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.06817024259266956
+      },
+      {
+        "name": "transformer.h.7.attn.c_q.weight",
+        "frobenius": 5.269370079040527,
+        "spectral_lower_estimate": 1.0165867805480957,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.1406663422084763,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.1406663422084763
+      },
+      {
+        "name": "transformer.h.7.attn.c_k.weight",
+        "frobenius": 5.602898120880127,
+        "spectral_lower_estimate": 0.9717618823051453,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.13446386683071912,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.13446386683071912
+      },
+      {
+        "name": "transformer.h.7.attn.c_v.weight",
+        "frobenius": 5.792455673217773,
+        "spectral_lower_estimate": 0.79884272813797,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.11053683435311219,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.11053683435311219
+      },
+      {
+        "name": "transformer.h.7.attn.c_proj.weight",
+        "frobenius": 4.096364974975586,
+        "spectral_lower_estimate": 0.4056403338909149,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.056128943551573614,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.056128943551573614
+      },
+      {
+        "name": "transformer.h.0.mlp.c_proj.weight",
+        "frobenius": 6.426091194152832,
+        "spectral_lower_estimate": 0.619167149066925,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.08567490719084177,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08567490719084177
+      },
+      {
+        "name": "transformer.h.1.mlp.c_proj.weight",
+        "frobenius": 6.8170857429504395,
+        "spectral_lower_estimate": 0.7622186541557312,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10546911694577334,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10546911694577334
+      },
+      {
+        "name": "transformer.h.2.mlp.c_proj.weight",
+        "frobenius": 6.91002082824707,
+        "spectral_lower_estimate": 0.7796560525894165,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10788195085452813,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10788195085452813
+      },
+      {
+        "name": "transformer.h.3.mlp.c_proj.weight",
+        "frobenius": 6.748591899871826,
+        "spectral_lower_estimate": 0.6602017879486084,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.09135291979712416,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.09135291979712416
+      },
+      {
+        "name": "transformer.h.4.mlp.c_proj.weight",
+        "frobenius": 6.946786880493164,
+        "spectral_lower_estimate": 0.6942371726036072,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.09606243713168551,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.09606243713168551
+      },
+      {
+        "name": "transformer.h.5.mlp.c_proj.weight",
+        "frobenius": 7.049185752868652,
+        "spectral_lower_estimate": 0.7565627098083496,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10468649708654998,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10468649708654998
+      },
+      {
+        "name": "transformer.h.6.mlp.c_proj.weight",
+        "frobenius": 7.188528060913086,
+        "spectral_lower_estimate": 0.6470755338668823,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.08953662414592556,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08953662414592556
+      },
+      {
+        "name": "transformer.h.7.mlp.c_proj.weight",
+        "frobenius": 7.006776809692383,
+        "spectral_lower_estimate": 0.7405586242675781,
+        "nominal_radius": 7.226936910333893,
+        "spectral_lower_over_radius": 0.10247199241612909,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10247199241612909
+      },
+      {
+        "name": "transformer.h.0.mlp.c_fc.weight",
+        "frobenius": 13.260115623474121,
+        "spectral_lower_estimate": 1.2421244382858276,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.08593713032901237,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08593713032901237
+      },
+      {
+        "name": "transformer.h.1.mlp.c_fc.weight",
+        "frobenius": 14.677696228027344,
+        "spectral_lower_estimate": 1.2365373373031616,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.08555058336921556,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08555058336921556
+      },
+      {
+        "name": "transformer.h.2.mlp.c_fc.weight",
+        "frobenius": 14.710698127746582,
+        "spectral_lower_estimate": 1.252402901649475,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.08664825203182883,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08664825203182883
+      },
+      {
+        "name": "transformer.h.3.mlp.c_fc.weight",
+        "frobenius": 14.220355987548828,
+        "spectral_lower_estimate": 1.202164649963379,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.08317248821173377,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.08317248821173377
+      },
+      {
+        "name": "transformer.h.4.mlp.c_fc.weight",
+        "frobenius": 14.527460098266602,
+        "spectral_lower_estimate": 1.3439520597457886,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.09298213589107535,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.09298213589107535
+      },
+      {
+        "name": "transformer.h.5.mlp.c_fc.weight",
+        "frobenius": 14.635625839233398,
+        "spectral_lower_estimate": 1.3940304517745972,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.0964468397241198,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.0964468397241198
+      },
+      {
+        "name": "transformer.h.6.mlp.c_fc.weight",
+        "frobenius": 14.704997062683105,
+        "spectral_lower_estimate": 1.3344967365264893,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.0923279636368677,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.0923279636368677
+      },
+      {
+        "name": "transformer.h.7.mlp.c_fc.weight",
+        "frobenius": 12.854588508605957,
+        "spectral_lower_estimate": 1.5161106586456299,
+        "nominal_radius": 14.453873820667786,
+        "spectral_lower_over_radius": 0.10489303265382897,
+        "final_wd": 0.13837120932522418,
+        "spectral_lower_over_final_radius": 0.10489303265382897
+      }
+    ]
+  }
+]
