@@ -1,5 +1,6 @@
 """Commit small result tables and plots, never logs/checkpoints/data/credentials."""
 import json,os,pathlib,subprocess
+from research.unnormalized_muon.events import read_events
 ROOT=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs')
 REPO=pathlib.Path(__file__).resolve().parents[2]
 DEST=REPO/'research/unnormalized_muon'
@@ -33,16 +34,21 @@ def publish():
  state=json.loads((ROOT/'queue.json').read_text());charged=sum(v.get('gpu_seconds',v['seconds']+30) for v in state.values())/3600
  for review in ROOT.glob('um-*/review.json'):
   x=json.loads(review.read_text());rows+=['',f'Review of {review.parent.name}: {x["reason"]}']
- rows+=['',f'Conservative charged/reserved total: {charged:.4f} / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.','',
+ rows+=['',f'Conservative charged/reserved total: {charged:.4f} / 50 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.','',
   'CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.','',
   'FW is a separate fixed-spectral-ball method with shared mixing, same-batch backtracking, frozen auxiliary weights during checks, and no extra matrix decay. Its extra candidate forwards count toward wall time and are logged.']
  (DEST/'RESULTS.md').write_text('\n'.join(rows)+'\n')
- if runs:
+ # Completed historical plots do not change during follow-up-only runs.
+ historical=[r for r in runs if not r[0].startswith('um-follow-')]
+ def stale(artifact,inputs):
+  p=DEST/artifact
+  return bool(inputs) and (not p.exists() or max(x.stat().st_mtime_ns for x in inputs)>p.stat().st_mtime_ns)
+ if historical and stale('validation_vs_tokens.png',[r[4] for r in historical]):
   import matplotlib
   matplotlib.use('Agg')
   import matplotlib.pyplot as plt
   fig,ax=plt.subplots(figsize=(9,5))
-  eligible=[r for r in runs if r[3]['updates']>=1000 and r[2]['seed']==0]
+  eligible=[r for r in historical if r[3]['updates']>=1000 and r[2]['seed']==0]
   longest=max([r[3]['updates'] for r in eligible],default=1000)
   chosen={}
   for r in eligible:
@@ -52,7 +58,7 @@ def publish():
    if key not in chosen or s['validation']['loss']<chosen[key][3]['validation']['loss']:chosen[key]=r
   ax.set_title(f'Seed0 tuning: best LR per method at {longest:,} updates')
   for name,arm,c,s,p in chosen.values():
-   points=[json.loads(x) for x in (p.parent/'metrics.jsonl').read_text().splitlines() if x.strip()]
+   points=read_events(p.parent/'metrics.jsonl',{'validation'})
    points=[x for x in points if x['event']=='validation' and x['label']=='tuning' and x['step']>0]
    ax.plot([x['step']*32768 for x in points],[x['loss'] for x in points],marker='.',label=f'{arm} lr{c["matrix_lr"]:g}, n{s["updates"]}, seed{c["seed"]}')
   ax.set_xlabel('Fresh training tokens');ax.set_ylabel('Validation CE (nats)');ax.grid(alpha=.2)
@@ -61,11 +67,11 @@ def publish():
  paths=['research/unnormalized_muon/EXPERIMENTS.csv','research/unnormalized_muon/STATUS.md','research/unnormalized_muon/RESULTS.md']
  if (DEST/'validation_vs_tokens.png').exists():paths.append('research/unnormalized_muon/validation_vs_tokens.png')
  from research.unnormalized_muon.analyze import generate
- paths+=generate()
+ if stale('DETAILED_EVAL.md',[r[4] for r in historical]):paths+=generate()
  from research.unnormalized_muon.lens_report import generate as lens_generate
- paths+=lens_generate()
+ if stale('FW_LENS_RESULTS.md',list(ROOT.glob('um-lens-*/summary.json'))):paths+=lens_generate()
  from research.unnormalized_muon.fresh_report import generate as fresh_generate
- paths+=fresh_generate()
+ if stale('FRESH_DIAGNOSIS.md',list(ROOT.glob('um-fresh-*/summary.json'))):paths+=fresh_generate()
  from research.unnormalized_muon.continue_report import generate as follow_generate
  paths+=follow_generate()
  subprocess.run(['git','add',*paths],cwd=REPO,check=True)

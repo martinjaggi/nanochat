@@ -1,5 +1,6 @@
 """Aggregate saved metrics only: no model execution or extra training queries."""
 import json,pathlib
+from research.unnormalized_muon.events import read_events
 ROOT=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs')
 DEST=pathlib.Path(__file__).resolve().parent
 
@@ -8,7 +9,7 @@ def generate():
  for p in ROOT.glob('um-*/summary.json'):
   s=json.loads(p.read_text());c=s.get('config',json.loads((p.parent/'resolved_config.json').read_text()))
   if not c.get('clean'):continue
-  points=[json.loads(l) for l in (p.parent/'metrics.jsonl').read_text().splitlines() if l.strip()]
+  points=read_events(p.parent/'metrics.jsonl',{'manifest','validation','fw_update','fw_search_audit'})
   vals=[x for x in points if x['event']=='validation' and x['label']=='tuning']
   runs.append((p.parent.name,c,s,points,vals))
  rows=['# Detailed clean Muon evaluation','',

@@ -1,5 +1,6 @@
 """Compact v2 search, cost and contraction report from saved run artifacts."""
 import json,pathlib,statistics
+from research.unnormalized_muon.events import read_events
 ROOT=pathlib.Path('/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs');DEST=pathlib.Path(__file__).resolve().parent
 
 def generate():
@@ -49,7 +50,7 @@ def generate():
   key=(fam,s['updates'])
   if key not in selected or s['validation']['loss']<selected[key][2]['validation']['loss']:selected[key]=r
  for n,c,s,p in selected.values():
-  pts=[json.loads(l) for l in (p/'metrics.jsonl').read_text().splitlines() if l.strip()]
+  pts=read_events(p/'metrics.jsonl',{'validation'})
   pts=[x for x in pts if x['event']=='validation' and x['label']=='tuning' and x['step']>0]
   label=c.get('lens_family','method')+f' T{s["updates"]}'
   axes[0].plot([x['step']*32768/1e6 for x in pts],[x['loss'] for x in pts],'.-',label=label)
