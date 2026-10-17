@@ -33,3 +33,5 @@ Every scheduler job archives its exact source/base commits and config under `/ml
 Cluster recovery: six frozen confirmations were accepted but stalled before GPU assignment. `monitor_confirmation.py` monitors ONLY these existing requests, publishes a complete paired report if all succeed, and submits NO new experiments. The queue counts TrainingWorkloads even when legacy RunaiJobs are absent. GPU runtime starts at observed node assignment, with a1hour unallocated-request expiry; it does not consume the runtime allowance while waiting for the controller.
 
 Additional review links: [static LR/WD grid](WINDOW_STATIC_GRID.md), [delayed confirmation state](CONFIRMATION_STATE.md).
+
+[Three-hour report and completed new-seed confirmation](THREE_HOUR_REPORT.md), [paired endpoints](WINDOW_PAIRED.md). Independent equal-time reruns remain uncompleted; token-clock time curves do not replace them.
