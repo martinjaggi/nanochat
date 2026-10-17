@@ -219,3 +219,5 @@ Follow-up completed: reciprocal failed preregistered scale-up gate (all3 paired 
 Compiled cap/sign checks passed. Frozen diagnosis supported exact12/12 cap/sign==Armijo,zeta1. Now test cheap per-matrix eta=eta_base*I(<G,Q+lambda W> >0), using current raw G and skipping BOTH direction/decay while native momentum advances once. No extra gradients/forwards, same auxiliary recipe. Fair peak-LR factors{half,best,double} around tuned long reference; actual gated contraction logged per matrix.
 
 Fair factor-two peak-LR boundary expansion round0 for BOTH reciprocal terminal-cooldown factors; seed0, full20k schedule. No heldout selection.
+
+Fill the sixth slot with the already-planned zero-Muon-WD CLI.04 long anchor,20k updates,seed0, unchanged auxiliary WD. It will be reused in the joint screen, not rerun. One actualB300,1200s fail-safe, exactly six outstanding alongside3cap/sign and2cooled-schedule edge runs.
