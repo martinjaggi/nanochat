@@ -51,7 +51,8 @@ def main():
     cfg['window-first-wd-mixing']=base(.005,LAM,wd_schedule='fw_mixing_reciprocal',window_family='mixing')
     cfg['window-first-wd-static-product']=base(.005,matched_static_wd(.00125,LAM,20000))
     register(cfg,'Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pending baseline LR.005 with6 WD probes at SAME LR,20k updates. Fixed lambda multiples{0,.25,.5,2}, shifted reciprocal mixing lambda_t=gamma_t/eta_t, and matched-final-product static WD. Reuse pending reference lambda1. One central queue/one B300/job/max6/50GPUh total. WD0 is unconstrained, no finite-radius FW claim.')
-    stage('follow-edge0-,window-first-')
+    # Preserve backfilling when resuming an already registered joint stage.
+    stage('follow-edge0-,window-first-'+(',window-joint-' if (D/'WINDOW_REUSE.json').exists() else ''))
     cfg={}
     for lr in [.02,.04]:
         for final in [.05,.25]:
