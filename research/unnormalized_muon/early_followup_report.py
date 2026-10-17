@@ -9,7 +9,7 @@ def main():
     for title,arm,prefix,control in [
         ('Predeclared near-tied1.5x confirmation','mid','earlyalloc-confirm-mid','baseline'),
         ('1.5x final-contraction-matched control','midmatched','earlyalloc-confirm-midmatched','baseline'),
-        ('2x with complete contraction history matched','history','earlyalloc-history','baseline')]:
+        ('2x with complete contraction history matched','history','earlyalloc-confirm-history','baseline')]:
         lines+=['',f'## {title}','','| Seed | Heldout CE | Delta vs original baseline | Active seconds | Contraction product |','|---|---:|---:|---:|---:|'];ds=[];ss={}
         for seed in [70,71,72]:
             a=ROOT/f'um-{prefix}-s{seed}'/'summary.json';b=ROOT/f'um-earlyalloc-confirm-baseline-s{seed}'/'summary.json'
@@ -32,9 +32,9 @@ def main():
                     c=json.loads(x.read_text());pairs.append(ss[seed]['heldout']['loss']-c['heldout']['loss'])
                     assert all(abs(a['log_abs']-b['log_abs'])<1e-8 for a,b in zip(ss[seed]['muon_contraction'].values(),c['muon_contraction'].values()))
             if len(pairs)==3:lines+=['',f'1.5x minus its final-contraction-matched baseline: mean **{statistics.mean(pairs):+.6f} CE**, sample SD **{statistics.stdev(pairs):.6f}**.']
-    check=ROOT/'um-earlyalloc-confirm-history-check-001'/'summary.json'
+    check=ROOT/'um-earlyalloc-confirm-history-check-002'/'summary.json'
     if check.exists():
-        s=json.loads(check.read_text());lines+=['','History-matched64-update B300 integration job: '+s['status']+'. Actual per-update gamma is audited before full diagnostic runs.']
+        s=json.loads(check.read_text());lines+=['','History-matched128-update B300 integration job: '+s['status']+'. Actual per-update gamma is audited before full diagnostic runs.']
     lines+=['','The1.5x secondary arm and history-matched diagnostic were committed before any fresh heldout endpoints. They are reported alongside the primary2x selection, not chosen after test-set inspection. History matching deliberately varies WD/the implied domain; it is a diagnostic of LR allocation, not a fixed-WD FW method.']
     p.write_text(p.read_text()+'\n'.join(lines)+'\n')
 
