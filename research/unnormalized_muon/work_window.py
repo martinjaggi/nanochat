@@ -189,15 +189,20 @@ def main():
             if math.isclose(decay,LAM,rel_tol=1e-12):continue
             cc=dict(base_cooled,fixed_wd=decay,window_family='cooled-wd-refinement')
             terminal_cfg[f'window-cooled-wd-x{decay/LAM:.6g}']=cc
+    # One spare slot protects against an edge-limited static reference.
+    pc=preliminary['c'];same=[x['c']['matrix_lr'] for x in controls if x['c']['fixed_wd']==pc['fixed_wd'] and x['c'].get('matrix_final_factor',.05)==pc.get('matrix_final_factor',.05)]
+    edge=pc['matrix_lr']/2 if pc['matrix_lr']==min(same) else pc['matrix_lr']*2 if pc['matrix_lr']==max(same) else None
+    if edge is not None:terminal_cfg['window-static-lr-edge']=dict(pc,matrix_lr=edge,window_family='static-lr-edge')
+    assert len(terminal_cfg)<=6
     refinement_path=D/'WINDOW_REFINEMENT_SELECTION.json'
     if refinement_path.exists():terminal_cfg=json.loads(refinement_path.read_text())['configs']
     elif terminal_cfg:
         refinement_path.write_text(json.dumps(dict(configs=terminal_cfg,selection_data='completed seed0 development grid; frozen before refinement outcomes'),indent=2)+'\n')
         subprocess.run(['git','add',str(refinement_path.relative_to(REPO))],cwd=REPO,check=True)
     if terminal_cfg:
-        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most5 one-B300 jobs in this wave, including targeted cooled-schedule WD probes at best-positive-static lambda and its geometric midpoint toward original lambda. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. This prevents attributing weaker total shrinkage or terminal effects to adaptation.')
-        stage('window-static-terminal-,window-static-matched-,window-cooled-wd-')
-        for p in list(ROOT.glob('um-window-static-terminal-*/summary.json'))+list(ROOT.glob('um-window-static-matched-*/summary.json')):
+        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most6 one-B300 jobs in this wave, including targeted cooled-schedule WD probes at best-positive-static lambda and its geometric midpoint toward original lambda. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. This prevents attributing weaker total shrinkage or terminal effects to adaptation.')
+        stage('window-static-terminal-,window-static-matched-,window-cooled-wd-,window-static-lr-edge')
+        for p in list(ROOT.glob('um-window-static-terminal-*/summary.json'))+list(ROOT.glob('um-window-static-matched-*/summary.json'))+list(ROOT.glob('um-window-static-lr-edge/summary.json')):
             ss=json.loads(p.read_text());cc=ss.get('config',{})
             if ss.get('status')=='completed' and ss.get('updates')==20000:
                 if 'contraction_target_log' in cc:
