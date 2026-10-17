@@ -196,10 +196,10 @@ def main():
     variants=[x for x in candidates if not static_control(x[1])]
     adaptive=min(variants,key=lambda x:x[0])
     if adaptive[0]<tuned_static['s']['validation']['loss']-.001:
-        best=adaptive;reference=tuned_static;comparison_kind='adaptive versus best tested static-WD control'
+        best=adaptive;reference=tuned_static;comparison_kind=('native cosine-WD schedule' if adaptive[1].get('wd_schedule')=='cosine_radius' else 'reciprocal-mixing WD' if adaptive[1].get('wd_schedule')=='fw_mixing_reciprocal' else 'reciprocal LR plus cooldown' if adaptive[1].get('matrix_schedule')=='fw_reciprocal_cooldown' else 'gap-sign gating')+' versus best tested static-WD control'
     elif tuned_static['s']['validation']['loss']<original['s']['validation']['loss']-.001:
         best=(tuned_static['s']['validation']['loss'],tuned_static['c'],tuned_static['name'])
-        reference=original;comparison_kind='static WD/LR retuning; no adaptive method screen win'
+        reference=original;comparison_kind='static WD/LR retuning; no tested schedule/gap screen win'
     else:
         record({},'Work-window screen found neither an adaptive advantage>.001CE over fully tuned static WD nor static retuning gain>.001CE over original-lambda control. Stop promotions, retain negative result and audit until deadline.');return
     reference_config=dict(reference['c'])

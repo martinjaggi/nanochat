@@ -18,3 +18,10 @@ def matrix_cooldown(eta0,step,*,horizon=20000,warmup=40,final=.05,time_progress=
     if step<warmup:return eta0*(step+1)/warmup
     end=round(.65*horizon);start=horizon-end
     return eta0*(1. if step<=start else final+(1-final)*(horizon-step)/end)
+
+
+def cosine_wd(reference,step,*,horizon=20000,time_progress=None):
+    import math
+    assert reference>=0 and horizon>0
+    r=min(1.,max(0.,time_progress if time_progress is not None else step/horizon))
+    return reference*.5*(1+math.cos(math.pi*r))

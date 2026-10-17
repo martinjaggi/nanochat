@@ -31,3 +31,12 @@ def test_matrix_terminal_control_time_clock_and_endpoint():
     assert matrix_cooldown(.0025,20000,final=.01)==.000025
     for p in [0.,.001,.002,.35,.75,1.]:
         assert matrix_cooldown(.0025,300,final=.01,time_progress=p)==matrix_cooldown(.0025,900,final=.01,time_progress=p)
+
+
+def test_cosine_wd_native_schedule_and_time_clock():
+    from research.unnormalized_muon.cooldown_schedule import cosine_wd
+    assert cosine_wd(.18,0)==.18
+    assert math.isclose(cosine_wd(.18,10000),.09)
+    assert cosine_wd(.18,20000)==0
+    for p in [0.,.001,.35,.75,1.]:
+        assert cosine_wd(.18,300,time_progress=p)==cosine_wd(.18,p*20000)

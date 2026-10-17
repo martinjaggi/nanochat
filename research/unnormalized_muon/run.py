@@ -9,6 +9,7 @@ def main():
  if cfg.get('matrix_schedule','').startswith('fw_reciprocal'):assert cfg.get('fixed_wd',0)>0 and 0<cfg.get('reciprocal_final_factor',.25)<=1
  if cfg.get('cap_sign'):assert cfg.get('clean') and not cfg.get('variant') and not cfg.get('gap_scope') and not cfg.get('fw') and not cfg.get('fresh_diagnosis') and cfg.get('gap_geometry')=='q_scaled' and cfg.get('decay_mode')=='standard'
  if cfg.get('wd_schedule'):assert not cfg.get('gap_scope'), 'changing WD domain is a separate native diagnostic'
+ if cfg.get('wd_schedule')=='cosine_radius':assert cfg.get('matrix_schedule')=='cooldown' and cfg.get('fixed_wd',0)>0 and not cfg.get('variant'), 'native cosine-WD control keeps original matrix LR schedule'
  if cfg.get('wd_schedule')=='fw_mixing_reciprocal':assert cfg.get('matrix_schedule')=='cooldown', 'mixing WD diagnostic keeps the baseline gradient LR schedule'
  if cfg.get('gap_scope'):assert not cfg['variant'] and not cfg.get('fw') and cfg.get('decay_mode')=='standard' and cfg.get('fixed_wd',0)>0, 'fixed-WD normalized gap arm required'
  if cfg.get('fw'):assert cfg.get('decay_mode','none')=='none', 'FW shrinkage already belongs to its constrained step'
