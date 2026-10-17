@@ -53,4 +53,4 @@ def history_matched_early_wd(reference,step,*,peak_multiplier=2.,horizon=20000,w
     kw=dict(horizon=horizon,warmup=warmup,final=final,time_progress=time_progress)
     baseline=matrix_cooldown(1.,step,**kw)
     early=early_reciprocal(1.,step,peak_multiplier=peak_multiplier,**kw)
-    return reference*baseline/early
+    return reference if baseline==early else reference*baseline/early
