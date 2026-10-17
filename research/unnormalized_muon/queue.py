@@ -9,11 +9,20 @@ GPU_HOUR_CAP=50
 MAX_OUTSTANDING=6
 FIELDS='run_id stage status git_commit config job_id GPU_model GPU_count runtime_limit charged_gpu_seconds output validation_loss bpb updates training_seconds process_seconds failure'.split()
 def cli(*a):return subprocess.check_output([HELPER,*a,'--project','mlo-mljaggi'],text=True,env=dict(os.environ,SUPPRESS_DEPRECATION_MESSAGE='true'))
+def training_workloads(client=None):
+ owned=client is None;k=client or Kube()
+ try:
+  return {x['metadata']['name']:x for x in k.request('GET','/apis/run.ai/v2alpha1/namespaces/'+k.namespace+'/trainingworkloads')['items'] if x['metadata']['name'].startswith('um-')}
+ finally:
+  if owned:k.close()
+
 def jobs():
  rows={}
  for l in cli('list').splitlines():
   x=l.split()
   if x and x[0].startswith('um-'):rows[x[0]]=x[1]
+ for name in training_workloads():
+  rows.setdefault(name,'PendingController')
  return rows
 def load():
  p=ROOT/'queue.json';return json.loads(p.read_text()) if p.exists() else {}
@@ -57,7 +66,8 @@ def reap():
    if name not in jobs():removed=True;break
    live=k.request('GET','/apis/run.ai/v1/namespaces/'+k.namespace+'/runaijobs')['items']
    pods=k.request('GET','/api/v1/namespaces/'+k.namespace+'/pods')['items']
-   if not any(o['metadata']['name']==name for o in live) and not any(o['metadata']['name'].startswith(name+'-') for o in pods):removed=True;break
+   workloads=training_workloads(k)
+   if name not in workloads and not any(o['metadata']['name']==name for o in live) and not any(o['metadata']['name'].startswith(name+'-') for o in pods):removed=True;break
    time.sleep(1)
   assert removed,'cleanup still pending'
   changed=True
