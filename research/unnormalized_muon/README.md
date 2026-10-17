@@ -31,3 +31,5 @@ Current checks:54optimizer/math CPU analytic/regression checks plus5queue-state 
 Every scheduler job archives its exact source/base commits and config under `/mloscratch/homes/mljaggi/nanochat-unnormalized-muon-runs/<run_id>/`. Checkpoints, datasets, raw per-update logs and credentials stay outside Git. One locked queue in `queue.py` enforces hardware/resource/deadline guards; `work_window.py` records the staged gates and immutable refinement batch. CPU development is for implementation/analytic and saved-output analysis; all training runs in scheduled one-B300 jobs.
 
 Cluster recovery: six frozen confirmations were accepted but stalled before GPU assignment. `monitor_confirmation.py` monitors ONLY these existing requests, publishes a complete paired report if all succeed, and submits NO new experiments. The queue counts TrainingWorkloads even when legacy RunaiJobs are absent. GPU runtime starts at observed node assignment, with a1hour unallocated-request expiry; it does not consume the runtime allowance while waiting for the controller.
+
+Additional review links: [static LR/WD grid](WINDOW_STATIC_GRID.md), [delayed confirmation state](CONFIRMATION_STATE.md).

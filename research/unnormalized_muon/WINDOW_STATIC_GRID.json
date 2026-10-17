@@ -1,0 +1,242 @@
+[
+  {
+    "run": "um-lens-long-control-0",
+    "commit": "1c491ffb9eb8ea42ec7ac968a9cd83f9bf816f73",
+    "lr": 0.04,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.199618339538574
+  },
+  {
+    "run": "um-lens-long-control-1",
+    "commit": "1c491ffb9eb8ea42ec7ac968a9cd83f9bf816f73",
+    "lr": 0.028284271247461905,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.1683316230773926
+  },
+  {
+    "run": "um-follow-first-tune-control-lr0p01",
+    "commit": "915f36dc20088812dd7e261abd04f7b06b082733",
+    "lr": 0.01,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.1120874881744385
+  },
+  {
+    "run": "um-follow-first-tune-control-lr0p02",
+    "commit": "915f36dc20088812dd7e261abd04f7b06b082733",
+    "lr": 0.02,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.1422512531280518
+  },
+  {
+    "run": "um-follow-edge0-control-lr0p005",
+    "commit": "788d303b6189d3453b7436a1ee8ce6ae950e32a2",
+    "lr": 0.005,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.119279384613037
+  },
+  {
+    "run": "um-window-first-wd-static-product",
+    "commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "lr": 0.005,
+    "wd": 0.13837120932522418,
+    "final": 0.05,
+    "ce": 3.1032142639160156
+  },
+  {
+    "run": "um-window-first-wd-x0p25",
+    "commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "lr": 0.005,
+    "wd": 0.04593746995939655,
+    "final": 0.05,
+    "ce": 3.116975784301758
+  },
+  {
+    "run": "um-window-first-wd-x0p5",
+    "commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "lr": 0.005,
+    "wd": 0.0918749399187931,
+    "final": 0.05,
+    "ce": 3.1048996448516846
+  },
+  {
+    "run": "um-window-first-wd-x0",
+    "commit": "b0f442f60e30868142b191f5949eea5202dd43d1",
+    "lr": 0.005,
+    "wd": 0.0,
+    "final": 0.05,
+    "ce": 3.1330037117004395
+  },
+  {
+    "run": "um-window-first-wd-x2",
+    "commit": "2526d2cf8390bbdea13f86610166c7e4e3e9e1ef",
+    "lr": 0.005,
+    "wd": 0.3674997596751724,
+    "final": 0.05,
+    "ce": 3.1357779502868652
+  },
+  {
+    "run": "um-follow-mid-control-high",
+    "commit": "fe5d34103fbe5f404416613209ba4b4a297534a2",
+    "lr": 0.01414213562373095,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.1221823692321777
+  },
+  {
+    "run": "um-follow-mid-control-low",
+    "commit": "fe5d34103fbe5f404416613209ba4b4a297534a2",
+    "lr": 0.007071067811865475,
+    "wd": 0.1837498798375862,
+    "final": 0.05,
+    "ce": 3.1133182048797607
+  },
+  {
+    "run": "um-window-joint-terminal-lr0p005-f0p01",
+    "commit": "58e171507c92e6e676b0ec43ec6a63468a1dc46b",
+    "lr": 0.005,
+    "wd": 0.1837498798375862,
+    "final": 0.01,
+    "ce": 3.120314359664917
+  },
+  {
+    "run": "um-window-joint-terminal-lr0p005-f0p25",
+    "commit": "58e171507c92e6e676b0ec43ec6a63468a1dc46b",
+    "lr": 0.005,
+    "wd": 0.1837498798375862,
+    "final": 0.25,
+    "ce": 3.132740020751953
+  },
+  {
+    "run": "um-window-joint-terminal-lr0p01-f0p01",
+    "commit": "58e171507c92e6e676b0ec43ec6a63468a1dc46b",
+    "lr": 0.01,
+    "wd": 0.1837498798375862,
+    "final": 0.01,
+    "ce": 3.104184627532959
+  },
+  {
+    "run": "um-window-joint-terminal-lr0p01-f0p25",
+    "commit": "58e171507c92e6e676b0ec43ec6a63468a1dc46b",
+    "lr": 0.01,
+    "wd": 0.1837498798375862,
+    "final": 0.25,
+    "ce": 3.17035174369812
+  },
+  {
+    "run": "um-window-terminal-edge-lr0p02-f0p01",
+    "commit": "4332534666abb720f1301b395b608b18d9183f8b",
+    "lr": 0.02,
+    "wd": 0.1837498798375862,
+    "final": 0.01,
+    "ce": 3.1272835731506348
+  },
+  {
+    "run": "um-window-terminal-edge-lr0p0025-f0p25",
+    "commit": "4332534666abb720f1301b395b608b18d9183f8b",
+    "lr": 0.0025,
+    "wd": 0.1837498798375862,
+    "final": 0.25,
+    "ce": 3.1478641033172607
+  },
+  {
+    "run": "um-window-joint-zero-lr0p04",
+    "commit": "141503ffeced040cf71b315b05ae8fab7cad26e6",
+    "lr": 0.04,
+    "wd": 0.0,
+    "final": 0.05,
+    "ce": 3.1078975200653076
+  },
+  {
+    "run": "um-window-joint-wd0-x1",
+    "commit": "1ea0d9957b9b1d43ea54b695733e2e49c309ca43",
+    "lr": 0.01,
+    "wd": 0.0,
+    "final": 0.05,
+    "ce": 3.1185379028320312
+  },
+  {
+    "run": "um-window-joint-wd0-x2",
+    "commit": "1ea0d9957b9b1d43ea54b695733e2e49c309ca43",
+    "lr": 0.02,
+    "wd": 0.0,
+    "final": 0.05,
+    "ce": 3.105875253677368
+  },
+  {
+    "run": "um-window-joint-wd0p25-x1",
+    "commit": "1ea0d9957b9b1d43ea54b695733e2e49c309ca43",
+    "lr": 0.01,
+    "wd": 0.04593746995939655,
+    "final": 0.05,
+    "ce": 3.0976788997650146
+  },
+  {
+    "run": "um-window-joint-wd0p25-x2",
+    "commit": "1ea0d9957b9b1d43ea54b695733e2e49c309ca43",
+    "lr": 0.02,
+    "wd": 0.04593746995939655,
+    "final": 0.05,
+    "ce": 3.0930874347686768
+  },
+  {
+    "run": "um-window-joint-wd0p5-x1",
+    "commit": "962dee0d911da404db599c43bfac4a207369ad5d",
+    "lr": 0.01,
+    "wd": 0.0918749399187931,
+    "final": 0.05,
+    "ce": 3.100059747695923
+  },
+  {
+    "run": "um-window-joint-wd0p5-x2",
+    "commit": "962dee0d911da404db599c43bfac4a207369ad5d",
+    "lr": 0.02,
+    "wd": 0.0918749399187931,
+    "final": 0.05,
+    "ce": 3.1062490940093994
+  },
+  {
+    "run": "um-window-joint-wd0p753041-x1",
+    "commit": "e66692c556f9ef7f0b618957640b55cf9091e38c",
+    "lr": 0.01,
+    "wd": 0.13837120932522418,
+    "final": 0.05,
+    "ce": 3.106555700302124
+  },
+  {
+    "run": "um-window-joint-wd0p753041-x2",
+    "commit": "e66692c556f9ef7f0b618957640b55cf9091e38c",
+    "lr": 0.02,
+    "wd": 0.13837120932522418,
+    "final": 0.05,
+    "ce": 3.1250619888305664
+  },
+  {
+    "run": "um-window-static-lr-edge",
+    "commit": "678f72c22ab5a0c86bf856ba7b4314c1226246b0",
+    "lr": 0.04,
+    "wd": 0.04593746995939655,
+    "final": 0.05,
+    "ce": 3.106809616088867
+  },
+  {
+    "run": "um-window-static-matched-contraction",
+    "commit": "678f72c22ab5a0c86bf856ba7b4314c1226246b0",
+    "lr": 0.01,
+    "wd": 0.11634478643017529,
+    "final": 0.01,
+    "ce": 3.0942270755767822
+  },
+  {
+    "run": "um-window-static-terminal-f0p01",
+    "commit": "678f72c22ab5a0c86bf856ba7b4314c1226246b0",
+    "lr": 0.02,
+    "wd": 0.04593746995939655,
+    "final": 0.01,
+    "ce": 3.0895402431488037
+  }
+]
