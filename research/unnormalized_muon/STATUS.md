@@ -211,3 +211,5 @@ Matched factor-two long-horizon boundary rule round0, both prescribed schedules.
 Refine both long-horizon schedule families with geometric midpoints adjacent to their seed0 best rates. Restart every candidate for the full655M-token horizon.
 
 Fresh paired seeds[20, 21, 22], 20000 updates; freeze both LRs using seed0 development scores only. NEW disjoint heldout block2; prior blocks are not used to select settings. One B300/run, maximum6,50GPUh total.
+
+Predeclared follow-up futility rule: all three NEW paired reciprocal losses exceed tuned control by>.003CE; stop this losing family before additional equal-time/scale-up GPU work. Already completed original-frozen equal-time result remains reported against its weaker control. New paired deltas[0.04380202293395996, 0.04749321937561035, 0.04074525833129883].
