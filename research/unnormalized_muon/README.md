@@ -35,3 +35,9 @@ Cluster recovery: six frozen confirmations were accepted but stalled before GPU 
 Additional review links: [static LR/WD grid](WINDOW_STATIC_GRID.md), [delayed confirmation state](CONFIRMATION_STATE.md).
 
 [Three-hour report and completed new-seed confirmation](THREE_HOUR_REPORT.md), [paired endpoints](WINDOW_PAIRED.md). Independent equal-time reruns remain uncompleted; token-clock time curves do not replace them.
+
+## WD-independent early reciprocal allocation
+
+The October17 continuation changes only the matrix LR warmup/early plateau, leaving the tuned baseline's entire late65% cooldown and all auxiliary/momentum schedules identical. `cooldown_schedule.early_reciprocal` and one `scripts/base_train.py` matrix-only branch implement it; `run.py` forwards the peak multiplier. No optimizer direction or decay kernel changes. `early_allocation.py` audits the executed schedule, selects on seed0 development only, solves exact final-contraction controls, then uses frozen fresh-seed/equal-time stages through the existing capped queue.
+
+[Protocol](EARLY_ALLOCATION_PROTOCOL.md), [live results](EARLY_ALLOCATION_RESULTS.md), [schedule figure](EARLY_ALLOCATION_SCREEN.png). Run `python -m research.unnormalized_muon.early_plot` to regenerate the plot from immutable raw runs. Tests:64 passed,4GPU-only skipped on CPU; new pure math tests cover all20001 baseline/join/late indices and exact contraction matching.
