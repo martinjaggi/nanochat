@@ -7,6 +7,9 @@ def main():
  assert cfg.get('heldout_block',1)>=1
  if cfg.get('gap_geometry')=='q_scaled':assert cfg.get('decay_mode')=='standard' and 'fixed_wd' in cfg and cfg['fixed_wd']>=0, 'c-inside-Q explicit nonnegative ordinary WD required'
  if cfg.get('matrix_schedule','').startswith('fw_reciprocal'):assert cfg.get('fixed_wd',0)>0 and 0<cfg.get('reciprocal_final_factor',.25)<=1
+ if cfg.get('matrix_schedule')=='early_reciprocal':
+  h=cfg.get('reference_updates',cfg['updates']) if cfg.get('time_budget') else cfg['updates']
+  assert 40<h-round(.65*h), 'early reciprocal requires LR warmup to finish before cooldown; reference_updates overrides the horizon only in time-budget runs'
  if cfg.get('cap_sign'):assert cfg.get('clean') and not cfg.get('variant') and not cfg.get('gap_scope') and not cfg.get('fw') and not cfg.get('fresh_diagnosis') and cfg.get('gap_geometry')=='q_scaled' and cfg.get('decay_mode')=='standard'
  if cfg.get('wd_schedule'):assert not cfg.get('gap_scope'), 'changing WD domain is a separate native diagnostic'
  if cfg.get('wd_schedule')=='early_history_matched':assert cfg.get('matrix_schedule')=='early_reciprocal' and cfg.get('gap_geometry')=='q_scaled' and cfg.get('clean') and not cfg.get('variant'), 'history-matched contraction diagnostic uses clean normalized early-reciprocal Muon'

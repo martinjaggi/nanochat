@@ -34,3 +34,13 @@ def test_history_match_time_clock():
     for p in [0.,.001,.002,.1,.35,.75,1.]:
         lam=history_matched_early_wd(.04,600,time_progress=p)
         assert math.isclose(lam*early_reciprocal(.005,600,peak_multiplier=2.,time_progress=p),.04*matrix_cooldown(.005,600,final=.01,time_progress=p),rel_tol=1e-14)
+
+
+def test_short_check_has_a_valid_early_phase():
+    import pytest
+    from research.unnormalized_muon.cooldown_schedule import early_reciprocal,history_matched_early_wd,matrix_cooldown
+    with pytest.raises(AssertionError):early_reciprocal(.005,0,horizon=64,peak_multiplier=2.)
+    for t in range(129):
+        eta=early_reciprocal(.005,t,horizon=128,peak_multiplier=2.)
+        wd=history_matched_early_wd(.04,t,horizon=128,peak_multiplier=2.)
+        assert math.isclose(eta*wd,.04*matrix_cooldown(.005,t,horizon=128,final=.01),rel_tol=1e-14)
