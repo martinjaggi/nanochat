@@ -189,6 +189,11 @@ def main():
             if math.isclose(decay,LAM,rel_tol=1e-12):continue
             cc=dict(base_cooled,fixed_wd=decay,window_family='cooled-wd-refinement')
             terminal_cfg[f'window-cooled-wd-x{decay/LAM:.6g}']=cc
+    refinement_path=D/'WINDOW_REFINEMENT_SELECTION.json'
+    if refinement_path.exists():terminal_cfg=json.loads(refinement_path.read_text())['configs']
+    elif terminal_cfg:
+        refinement_path.write_text(json.dumps(dict(configs=terminal_cfg,selection_data='completed seed0 development grid; frozen before refinement outcomes'),indent=2)+'\n')
+        subprocess.run(['git','add',str(refinement_path.relative_to(REPO))],cwd=REPO,check=True)
     if terminal_cfg:
         register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most5 one-B300 jobs in this wave, including targeted cooled-schedule WD probes at best-positive-static lambda and its geometric midpoint toward original lambda. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. This prevents attributing weaker total shrinkage or terminal effects to adaptation.')
         stage('window-static-terminal-,window-static-matched-,window-cooled-wd-')
@@ -201,6 +206,8 @@ def main():
     for p in ROOT.glob('um-window-cooled-wd-*/summary.json'):
         ss=json.loads(p.read_text());cc=ss.get('config',{})
         if ss.get('status')=='completed' and ss.get('updates')==20000:candidates.append((ss['validation']['loss'],cc,p.parent.name))
+    if left()<1000:
+        record({},'Refinement completed, but insufficient time remains to finish a full six-job paired confirmation within the requested window. Do not start a partial seed group or claim confirmation; preserve tuned development results and stop submissions.');return
     original=min((x for x in controls if x['c']['fixed_wd']==LAM),key=lambda r:r['s']['validation']['loss'])
     tuned_static=min(controls,key=lambda r:r['s']['validation']['loss'])
     variants=[x for x in candidates if not static_control(x[1])]
