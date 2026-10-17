@@ -121,3 +121,5 @@ Promote at most10 fresh655M-token settings: control/reciprocal best2, best stabl
 Freeze best v2 settings using seed0 tuning. Three NEW paired seeds10/11/12 for tuned control and strongest gap comparison(s); reciprocal only if competitive. Reserved heldout used only now. All attempts and actual cost retained.
 
 Explicit equal-training-time reruns: H=678.993020s, median three control confirmation active times. Rerun control and strongest gap on same3 seeds; time-clock LR/caps/auxiliary schedules, finish one started update and report overshoot. Include compile/eval/checkpoint/job costs separately.
+
+FW-lens v2 stages completed. See FW_LENS_CONFIRMATION.md, FW_LENS_EQUAL_TIME.md, and detailed results. Report negative outcomes and full tuning/compute cost; no deterministic theorem validation claim.
