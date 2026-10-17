@@ -8,6 +8,14 @@ from research.unnormalized_muon.fresh_math import matched_static_wd
 D=REPO/'research/unnormalized_muon';LAM=.1837498798375862
 
 
+def commit_if_changed(message):
+    result=subprocess.run(['git','diff','--cached','--quiet'],cwd=REPO)
+    if result.returncode==0:return False
+    result.check_returncode() if result.returncode!=1 else None
+    subprocess.run(['git','commit','-m',message],cwd=REPO,check=True)
+    return True
+
+
 def deadline():return json.loads((ROOT/'work-window.json').read_text())['deadline_epoch']
 def left():return deadline()-time.time()
 
@@ -34,7 +42,7 @@ def paired_report(prefix,seeds,filename="WINDOW_PAIRED.md"):
         ds.append(b['heldout']['loss']-a['heldout']['loss'])
     rows+=['',f'Candidate paired heldout deltas mean {statistics.mean(ds):+.6f}; sample SD {statistics.stdev(ds):.6f}; n=3.']
     p=D/filename;p.write_text('\n'.join(rows)+'\n');subprocess.run(['git','add',str(p.relative_to(REPO))],cwd=REPO,check=True)
-    subprocess.run(['git','commit','-m','Report new paired WD/schedule confirmation'],cwd=REPO,check=True)
+    commit_if_changed('Report new paired WD/schedule confirmation')
     from research.unnormalized_muon.gap_wd_campaign import push
     push();return ds
 
@@ -62,7 +70,14 @@ def main():
     cfg['window-cap-check-002']=cap
     register(cfg,'NEW targeted schedule hypothesis from terminal-step audit: plain reciprocal ends near.00049, tuned cooldown control near.000125. Test reciprocal PLUS common65% terminal cooldown with final factors{.05,.25}, peak LRs{.02,.04}, fixed ordinary lambda. Native momentum/auxiliary schedule matched, no extra gradient queries. Quarter factor approximately matches the stronger baseline terminal LR. Not an online controller or exact-theorem claim.')
     publish_status('finish fair long-horizon schedule/LR comparison')
-    subprocess.run([sys.executable,'-u','-m','research.unnormalized_muon.continue_campaign'],cwd=REPO,check=True)
+    confirmation_paths=[ROOT/f'um-follow-confirm20000-{arm}-s{seed}/summary.json' for seed in [20,21,22] for arm in ['control','reciprocal']]
+    futile=False
+    if all(p.exists() for p in confirmation_paths):
+        rr=[json.loads(p.read_text()) for p in confirmation_paths]
+        futile=all(rr[2*i+1]['heldout']['loss']-rr[2*i]['heldout']['loss']>.003 for i in range(3))
+    if not futile:
+        subprocess.run([sys.executable,'-u','-m','research.unnormalized_muon.continue_campaign'],cwd=REPO,check=True)
+
     if left()<1500:return
     # Frozen diagnosis had EXACT cap/sign==Armijo on12/12 probes with zeta1.
     # Only promote the cheap no-query rule after compiled GPU/state checks.
@@ -146,7 +161,7 @@ def main():
     if reused:
         reuse_path=D/'WINDOW_REUSE.json';reuse_path.write_text(json.dumps(reused,indent=2)+'\n')
         subprocess.run(['git','add',str(reuse_path.relative_to(REPO))],cwd=REPO,check=True)
-        subprocess.run(['git','commit','-m','Reuse only exact full-configuration completed WD screens'],cwd=REPO,check=True)
+        commit_if_changed('Reuse only exact full-configuration completed WD screens')
         record({},'Exact full-configuration equality avoids duplicate GPU work: '+json.dumps({k:v['source_run'] for k,v in reused.items()})+'. Native default path passed compiled GPU parity after opt-in additions; preserve original implementation commit/cost. Existing source results stay in candidate pool; no synthetic trials or duplicated charges.')
     register(cfg,'Remaining work-window stage: joint LR/WD interaction around newly tuned baseline. Static lambda{0,.25,.5} times reference PLUS the first screen best static coefficient if distinct, across peak LR{half,best,double}; include zero-WD LR.04 because earlier long zero-WD runs preferred larger LR. Give changing-radius mixing WD the SAME3 LR candidates. Full20k schedules; seed0 development only, no final-heldout selection.')
     stage('window-joint-')
@@ -236,7 +251,7 @@ def main():
         record({},'Work-window screen found neither an adaptive advantage>.001CE over fully tuned static WD nor static retuning gain>.001CE over original-lambda control. Stop promotions, retain negative result and audit until deadline.');return
     reference_config=dict(reference['c'])
     chosen=dict(best[1]);frozen=D/'WINDOW_SELECTION.json';frozen.write_text(json.dumps(dict(comparison_kind=comparison_kind,candidate=chosen,candidate_run=best[2],reference_run=reference['name'],reference_lr=reference['c']['matrix_lr'],reference_config=reference_config),indent=2)+'\n')
-    subprocess.run(['git','add',str(frozen.relative_to(REPO))],cwd=REPO,check=True);subprocess.run(['git','commit','-m','Freeze seed0-only WD candidate before new paired seeds'],cwd=REPO,check=True)
+    subprocess.run(['git','add',str(frozen.relative_to(REPO))],cwd=REPO,check=True);commit_if_changed('Freeze seed0-only WD candidate before new paired seeds')
     from research.unnormalized_muon.gap_wd_campaign import push
     push();cfg={}
     for seed in [40,41,42]:
@@ -276,9 +291,11 @@ def main():
     publish_status('paired confirmation complete; audit and report until work-window deadline')
 
 if __name__=='__main__':
+    window_error=None
     try:
         main()
     except Exception as error:
+        window_error=str(error)
         publish_status('stage stopped: '+str(error))
         # Reap only this campaign's registered jobs; never cancel other work.
         subprocess.run([sys.executable,'-m','research.unnormalized_muon.queue','watch'],cwd=REPO)
@@ -287,7 +304,7 @@ if __name__=='__main__':
         # Stay active for the full requested window, monitoring persistent
         # artifacts. No blind GPU spending when the scientific gate fails.
         while left()>0:
-            publish_status('monitoring completed stages; ready for new input, no unjustified GPU sweep')
+            publish_status('stage failed: '+window_error if window_error else 'monitoring completed stages; ready for new input, no unjustified GPU sweep')
             time.sleep(min(30,max(0,left())))
         subprocess.run([sys.executable,'-m','research.unnormalized_muon.queue','watch'],cwd=REPO)
         record({},'Requested three-hour work window ended. New submissions stopped at10:48:18UTC; last-started jobs finished/reaped. See FOLLOWUP_RESULTS.md, WINDOW_RESULTS.md and paired report if completed. Hard50B300 GPUh total remains; completed research gates do not justify spending unused allowance.')
