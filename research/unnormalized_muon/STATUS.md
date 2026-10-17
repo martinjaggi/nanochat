@@ -189,3 +189,5 @@ Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pendi
 Fill four available slots with ordinary Muon terminal-LR controls, peak CLI{.005,.01}, matrix final factors{.01,.25},20k updates, seed0. AdamW and momentum schedules remain identical; fixed ordinary lambda. OneB300 each, runtime1200s, exact commands and persistent paths follow. No extra model-gradient passes.
 
 Before any NEW seeds20/21/22 are submitted/observed, add plain-reciprocal futility rule: if ALL3 paired heldout deltas exceed+.003CE, stop further equal-time reruns of that failed family and scale-up. Preserve all losses and old weaker-control equal-time result. This prioritizes promising cooled/WD variants within finite3h window without post-hoc endpoint claims.
+
+Start first NEW paired seed20 in two free slots, settings frozen from completed seed0 LR refinement. Original fixed-lambda cooldown versus plain reciprocal,20k updates, disjoint heldout block2. Predeclared all3-loss futility rule recorded BEFORE these jobs; remaining seeds21/22 follow through same central queue. OneB300/run,2400s fail-safe, expected~12min.
