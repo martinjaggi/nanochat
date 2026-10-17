@@ -77,13 +77,20 @@ def main():
     # Joint LR/WD screen around the improved baseline, including zero-WD's
     # previously competitive larger LR. This is not an online-controller grid.
     selected=json.loads((D/'FOLLOWUP_SELECTION_20000.json').read_text());peak=selected['control']['matrix_lr']
-    cfg={}
-    for x in [0.,.25,.5]:
+    cfg={};levels=[0.,.25,.5]
+    first_static=[]
+    for p in ROOT.glob('um-window-first-*/summary.json'):
+        ss=json.loads(p.read_text());cc=ss.get('config',{})
+        if ss.get('status')=='completed' and ss.get('updates')==20000 and cc.get('wd_schedule','fixed')=='fixed':first_static.append((ss['validation']['loss'],cc['fixed_wd']/LAM))
+    if first_static:
+        best_level=min(first_static,key=lambda z:z[0])[1]
+        if not any(math.isclose(best_level,x,rel_tol=1e-12,abs_tol=1e-12) for x in levels+[1.]):levels.append(best_level)
+    for x in levels:
         for factor in [.5,1.,2.]:
             lr=peak*factor;cfg[f'window-joint-wd{x:g}-x{factor:g}']=base(lr,LAM*x)
     cfg['window-joint-zero-lr0.04']=base(.04,0.)
     for factor in [.5,1.,2.]:cfg[f'window-joint-mixing-x{factor:g}']=base(peak*factor,LAM,wd_schedule='fw_mixing_reciprocal',window_family='mixing')
-    register(cfg,'Remaining work-window stage: joint LR/WD interaction around newly tuned baseline. Static lambda{0,.25,.5} times reference across peak LR{half,best,double}; include zero-WD LR.04 because earlier long zero-WD runs preferred larger LR. Give changing-radius mixing WD the SAME3 LR candidates. Full20k schedules; seed0 development only, no final-heldout selection.')
+    register(cfg,'Remaining work-window stage: joint LR/WD interaction around newly tuned baseline. Static lambda{0,.25,.5} times reference PLUS the first screen best static coefficient if distinct, across peak LR{half,best,double}; include zero-WD LR.04 because earlier long zero-WD runs preferred larger LR. Give changing-radius mixing WD the SAME3 LR candidates. Full20k schedules; seed0 development only, no final-heldout selection.')
     stage('window-joint-')
     if left()<1500:return
     candidates=[]
