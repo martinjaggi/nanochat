@@ -23,6 +23,8 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-schedule-lr0p02-f0p25 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.101839 | — | 638.613 | 711.22 |
 | um-window-schedule-lr0p04-f0p05 | 20000 | 0 | 0.04 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096862 | — | 721.605 | 780.16 |
 | um-window-schedule-lr0p04-f0p25 | 20000 | 0 | 0.04 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.100892 | — | 643.475 | 714.25 |
+| um-window-terminal-edge-lr0p0025-f0p25 | 20000 | 0 | 0.0025 | 0.18375 | fixed | cooldown_refined | 3.147864 | — | 732.953 | 785.67 |
+| um-window-terminal-edge-lr0p02-f0p01 | 20000 | 0 | 0.02 | 0.18375 | fixed | cooldown_refined | 3.127284 | — | 739.787 | 797.67 |
 
 Additional cheap-schedule hypothesis: reciprocal plus terminal cooldown, keeping fixed lambda. Final factors.05/.25 and fair peak LR boundaries test a terminal noise-floor explanation; no extra queries or exact FW claim. No heldout tokens select settings. If a development candidate improves by>.001CE, freeze against the tuned original-lambda reference and confirm with NEW seeds40/41/42 on NEW heldout block4; paired table in WINDOW_PAIRED.md only after all complete. No equal-time endpoint claim from token-clock prefixes. Actual group WD/contraction histories and costs are in persistent per-update logs.
 
