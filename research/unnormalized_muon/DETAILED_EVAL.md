@@ -216,6 +216,7 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 
 | Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |
 |---|---|---:|---:|---:|---:|---:|
+| um-fresh-diagnosis-001 | cooldown native | 0.1837499 | 2000 | 3.557051 | 0 | 340.47 |
 | um-gapwd-first-cosine-001 | cooldown native | 0.1837499 | 64 | 6.415227 | 0 | 76.24 |
 | um-gapwd-first-layer-001 | layer uniform | 0.1837499 | 64 | 6.463019 | 193 | 91.78 |
 
