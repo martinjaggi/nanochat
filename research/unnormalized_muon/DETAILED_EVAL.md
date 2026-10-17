@@ -39,9 +39,12 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.02 | 20000 | 3.088668 | 634.15 | 696.33 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.089281 | 743.24 | 830.62 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.084761 | 697.46 | 759.87 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.091987 | 777.61 | 842.36 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.087880 | 726.88 | 806.59 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.086275 | 639.78 | 700.68 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.098150 | 657.07 | 712.74 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.091718 | 687.21 | 749.39 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.089156 | 671.32 | 729.26 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.090448 | 708.99 | 783.18 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.089904 | 641.82 | 701.43 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.089891 | 715.08 | 790.30 |
@@ -339,9 +342,12 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 | um-earlyalloc-confirm-mid-s82 | early_reciprocal native | 0.04593747 | 20000 | 3.088668 | 0 | 696.33 |
 | um-earlyalloc-confirm-midmatched-s70 | early_reciprocal native | 0.05108095 | 20000 | 3.089281 | 0 | 830.62 |
 | um-earlyalloc-confirm-midmatched-s71 | early_reciprocal native | 0.05108095 | 20000 | 3.084761 | 0 | 759.87 |
+| um-earlyalloc-confirm-midmatched-s72 | early_reciprocal native | 0.05108095 | 20000 | 3.091987 | 0 | 842.36 |
 | um-earlyalloc-confirm-neutral-s70 | early_reciprocal native | 0.03827981 | 20000 | 3.087880 | 0 | 806.59 |
 | um-earlyalloc-confirm-neutral-s71 | early_reciprocal native | 0.03827981 | 20000 | 3.086275 | 0 | 700.68 |
 | um-earlyalloc-confirm-neutral-s72 | early_reciprocal native | 0.03827981 | 20000 | 3.098150 | 0 | 712.74 |
+| um-earlyalloc-match-seed0 | early_reciprocal native | 0.05512714 | 20000 | 3.091718 | 0 | 749.39 |
+| um-earlyalloc-neutral-seed0 | early_reciprocal native | 0.03827981 | 20000 | 3.089156 | 0 | 729.26 |
 | um-earlyalloc-screen-k1 | early_reciprocal native | 0.04593747 | 20000 | 3.090448 | 0 | 783.18 |
 | um-earlyalloc-screen-k1p5 | early_reciprocal native | 0.04593747 | 20000 | 3.089904 | 0 | 701.43 |
 | um-earlyalloc-screen-k2 | early_reciprocal native | 0.04593747 | 20000 | 3.089891 | 0 | 790.30 |
