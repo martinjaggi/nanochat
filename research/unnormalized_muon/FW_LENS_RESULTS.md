@@ -82,6 +82,12 @@ Token-based schedule curves are descriptive. Independently scheduled equal-time 
 | um-lens-startl-layer-cooldown-1 | layer-cooldown | 2000 updates | 0 | 3.562346 | — | 155.110 | 4000 | 40.323 | 241.40 |
 | um-lens-startl-layer-stable-0 | layer-stable | 2000 updates | 0 | 3.654067 | — | 179.069 | 4000 | 31.795 | 247.29 |
 | um-lens-startl-layer-stable-1 | layer-stable | 2000 updates | 0 | 3.653376 | — | 169.669 | 4000 | 31.552 | 237.19 |
+| um-lens-time-control-s10 | control | 678.993s | 10 | 3.178579 | 3.120702 | 679.026 | 0 | 35.435 | 761.22 |
+| um-lens-time-control-s11 | control | 678.993s | 11 | 3.169040 | 3.113390 | 678.994 | 0 | 24.978 | 737.06 |
+| um-lens-time-control-s12 | control | 678.993s | 12 | 3.169580 | 3.116667 | 679.008 | 0 | 23.341 | 732.06 |
+| um-lens-time-layer-s10 | layer-cooldown | 678.993s | 10 | 3.272616 | 3.218791 | 679.048 | 17036 | 39.118 | 771.10 |
+| um-lens-time-layer-s11 | layer-cooldown | 678.993s | 11 | 3.274756 | 3.218212 | 679.060 | 16812 | 39.115 | 771.26 |
+| um-lens-time-layer-s12 | layer-cooldown | 678.993s | 12 | 3.293004 | 3.238780 | 679.002 | 15188 | 39.125 | 770.03 |
 
 ## Adaptive diagnostics and contraction
 
@@ -141,5 +147,8 @@ Contraction is the actual coefficient product_t(1-lambda*eta_l,t), represented i
 | um-lens-startl-layer-cooldown-1 | 2000/2000 | 0 | 0.0037942 | 0.00069719 | 1e-16 | 1 | -1.253 to -1.229 | 0.32947 |
 | um-lens-startl-layer-stable-0 | 2000/2000 | 0 | 0.005 | 0.00091875 | 1e-16 | 1 | -1.82 to -1.801 | 0.306437 |
 | um-lens-startl-layer-stable-1 | 2000/2000 | 0 | 0.005 | 0.00091875 | 1e-16 | 1 | -1.82 to -1.793 | 0.309576 |
+| um-lens-time-layer-s10 | 8518/8518 | 0 | 0.0079885 | 0.0014679 | 1e-16 | 1 | -10.95 to -10.61 | 0.319904 |
+| um-lens-time-layer-s11 | 8406/8406 | 0 | 0.0079613 | 0.0014629 | 1e-16 | 1 | -10.78 to -10.55 | 0.313068 |
+| um-lens-time-layer-s12 | 7594/7594 | 0 | 0.0080384 | 0.0014771 | 1e-16 | 1 | -9.799 to -9.586 | 0.308425 |
 
 Curvature values in Armijo variants parameterize proposals; their acceptance is NOT a certificate of the quadratic upper model. Final spectral ratios are lambda*||W_l||op/c_l; native approximate NS output is not certified to have unit spectral norm. Initial/final iterate feasibility alone does not certify oracle accuracy. Cold two-second clock checks intentionally permit one-update overshoot; do not use them as quality endpoints.

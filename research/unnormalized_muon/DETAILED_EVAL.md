@@ -34,6 +34,7 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.04 | 20000 | 3.321643 | 1734.89 | 1813.94 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.155148 | 710.04 | 770.45 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.155272 | 706.85 | 762.24 |
+| normalized WD standard 0 | 0.0282843 | 20225 | 3.178579 | 676.45 | 761.22 |
 
 ## Weight decay search
 
@@ -592,4 +593,25 @@ Timing seconds: direction=68.799, reference=15.065, candidates=14.671, auxiliary
 um-lens-startl-layer-stable-1: accepted 2000/2000; skipped nonpositive blocks 226; median actual eta 0.005; median gamma 0.000918749; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.309576. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
 
 Timing seconds: direction=60.805, reference=14.714, candidates=14.296, auxiliary=1.824.
+
+| um-lens-time-control-s10 | cooldown native | 0.1837499 | 20225 | 3.178579 | 0 | 761.22 |
+| um-lens-time-control-s11 | cooldown native | 0.1837499 | 19762 | 3.169040 | 0 | 737.06 |
+| um-lens-time-control-s12 | cooldown native | 0.1837499 | 19890 | 3.169580 | 0 | 732.06 |
+| um-lens-time-layer-s10 | layer native | 0.1837499 | 8518 | 3.272616 | 17036 | 771.10 |
+
+um-lens-time-layer-s10: accepted 8518/8518; skipped nonpositive blocks 312; median actual eta 0.00798851; median gamma 0.00146789; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.319904. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=227.194, reference=61.903, candidates=60.476, auxiliary=7.953.
+
+| um-lens-time-layer-s11 | layer native | 0.1837499 | 8406 | 3.274756 | 16812 | 771.26 |
+
+um-lens-time-layer-s11: accepted 8406/8406; skipped nonpositive blocks 262; median actual eta 0.00796131; median gamma 0.00146289; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.313068. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=229.890, reference=61.673, candidates=60.315, auxiliary=7.876.
+
+| um-lens-time-layer-s12 | layer native | 0.1837499 | 7594 | 3.293004 | 15188 | 770.03 |
+
+um-lens-time-layer-s12: accepted 7594/7594; skipped nonpositive blocks 287; median actual eta 0.00803841; median gamma 0.00147706; median L 1e-16; median trials 1; max measured spectral ratio lambda*||W||op=0.308425. Native approximate NS can violate the ideal unit-oracle premise; this is recorded, not hidden.
+
+Timing seconds: direction=272.800, reference=57.289, candidates=55.597, auxiliary=6.868.
 
