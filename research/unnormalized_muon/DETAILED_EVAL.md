@@ -12,11 +12,23 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD none 0 | 0.08 | 20000 | 3.112453 | 680.91 | 755.24 |
 | unnormalized cooldown WD none 0 | 0.32 | 20000 | 3.168984 | 681.31 | 754.69 |
 | unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.089904 | 641.82 | 701.43 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.111594 | 669.52 | 729.25 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.111298 | 689.36 | 751.79 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.110596 | 694.37 | 755.31 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.157425 | 685.59 | 741.30 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.162671 | 684.83 | 745.00 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.149971 | 726.70 | 782.37 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.119279 | 661.35 | 719.39 |
 | normalized WD standard 0 | 0.02 | 20740 | 3.154321 | 676.22 | 733.36 |
 | normalized WD standard 0 | 0.02 | 20007 | 3.156209 | 676.41 | 734.10 |
 | normalized WD standard 0 | 0.01 | 20000 | 3.112087 | 703.74 | 777.47 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.142251 | 694.30 | 767.69 |
 | normalized WD standard 0 | 0.01 | 20000 | 3.156622 | 670.54 | 744.07 |
+| normalized WD standard 0 | 0.0141421 | 20000 | 3.122182 | 679.06 | 738.56 |
+| normalized WD standard 0 | 0.00707107 | 20000 | 3.113318 | 719.44 | 775.02 |
+| normalized WD standard 0 | 0.0282843 | 20000 | 3.152773 | 646.68 | 721.58 |
+| normalized WD standard 0 | 0.0141421 | 20000 | 3.152943 | 652.84 | 727.28 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.167631 | 658.92 | 741.10 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.164999 | 684.42 | 745.36 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.169816 | 676.02 | 733.38 |
@@ -40,6 +52,52 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.02 | 20000 | 3.155148 | 710.04 | 770.45 |
 | normalized WD standard 0 | 0.04 | 20000 | 3.155272 | 706.85 | 762.24 |
 | normalized WD standard 0 | 0.0282843 | 20225 | 3.178579 | 676.45 | 761.22 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.121832 | 679.62 | 739.60 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.114210 | 721.38 | 776.59 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.142147 | 704.53 | 779.55 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.087717 | 715.59 | 775.31 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.086025 | 678.92 | 734.51 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.088866 | 598.29 | 673.18 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.103223 | 650.71 | 725.89 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.104613 | 591.70 | 666.93 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.104400 | 592.06 | 667.35 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.096870 | 680.36 | 737.58 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.101129 | 677.13 | 734.59 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.105714 | 669.92 | 728.95 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.103214 | 694.03 | 770.97 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.133004 | 720.75 | 798.92 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.116976 | 690.43 | 767.80 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.104900 | 716.25 | 794.45 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.135778 | 713.84 | 772.24 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.118502 | 598.82 | 659.14 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.094790 | 595.73 | 651.90 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.097867 | 669.53 | 730.73 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.092627 | 654.56 | 707.60 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.120314 | 674.59 | 734.57 |
+| normalized WD standard 0 | 0.005 | 20000 | 3.132740 | 714.53 | 770.78 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.104185 | 687.27 | 758.60 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.170352 | 683.23 | 755.55 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.118538 | 717.03 | 790.98 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.105875 | 729.67 | 804.53 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.097679 | 717.27 | 792.33 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.093087 | 702.81 | 777.21 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.100060 | 698.63 | 780.80 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.106249 | 702.20 | 784.21 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.106556 | 691.48 | 750.51 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.125062 | 716.99 | 772.65 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.107898 | 724.84 | 787.70 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.097083 | 693.23 | 773.43 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.105950 | 714.00 | 789.58 |
+| normalized WD standard 0 | 0.08 | 20000 | 3.104520 | 702.63 | 778.27 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.096101 | 636.21 | 711.40 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.101839 | 636.04 | 711.22 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.096862 | 718.41 | 780.16 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.100892 | 641.14 | 714.25 |
+| normalized WD standard 0 | 0.04 | 20000 | 3.106810 | 706.08 | 787.45 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.094227 | 771.84 | 853.89 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.089540 | 691.80 | 772.89 |
+| normalized WD standard 0 | 0.0025 | 20000 | 3.147864 | 729.38 | 785.67 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.127284 | 736.15 | 797.67 |
 
 ## Weight decay search
 
@@ -221,12 +279,24 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 
 | Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |
 |---|---|---:|---:|---:|---:|---:|
+| um-earlyalloc-screen-k1p5 | early_reciprocal native | 0.04593747 | 20000 | 3.089904 | 0 | 701.43 |
+| um-follow-confirm20000-control-s20 | cooldown native | 0.1837499 | 20000 | 3.111594 | 0 | 729.25 |
+| um-follow-confirm20000-control-s21 | cooldown native | 0.1837499 | 20000 | 3.111298 | 0 | 751.79 |
+| um-follow-confirm20000-control-s22 | cooldown native | 0.1837499 | 20000 | 3.110596 | 0 | 755.31 |
+| um-follow-confirm20000-reciprocal-s20 | fw_reciprocal native | 0.1837499 | 20000 | 3.157425 | 0 | 741.30 |
+| um-follow-confirm20000-reciprocal-s21 | fw_reciprocal native | 0.1837499 | 20000 | 3.162671 | 0 | 745.00 |
+| um-follow-confirm20000-reciprocal-s22 | fw_reciprocal native | 0.1837499 | 20000 | 3.149971 | 0 | 782.37 |
+| um-follow-edge0-control-lr0p005 | cooldown native | 0.1837499 | 20000 | 3.119279 | 0 | 719.39 |
 | um-follow-first-time-reciprocal-s10 | fw_reciprocal native | 0.1837499 | 20740 | 3.154321 | 0 | 733.36 |
 | um-follow-first-time-reciprocal-s11 | fw_reciprocal native | 0.1837499 | 20007 | 3.156209 | 0 | 734.10 |
 | um-follow-first-time-reciprocal-s12 | fw_reciprocal native | 0.1837499 | 18127 | 3.161711 | 0 | 750.97 |
 | um-follow-first-tune-control-lr0p01 | cooldown native | 0.1837499 | 20000 | 3.112087 | 0 | 777.47 |
 | um-follow-first-tune-control-lr0p02 | cooldown native | 0.1837499 | 20000 | 3.142251 | 0 | 767.69 |
 | um-follow-first-tune-reciprocal-lr0p01 | fw_reciprocal native | 0.1837499 | 20000 | 3.156622 | 0 | 744.07 |
+| um-follow-mid-control-high | cooldown native | 0.1837499 | 20000 | 3.122182 | 0 | 738.56 |
+| um-follow-mid-control-low | cooldown native | 0.1837499 | 20000 | 3.113318 | 0 | 775.02 |
+| um-follow-mid-reciprocal-high | fw_reciprocal native | 0.1837499 | 20000 | 3.152773 | 0 | 721.58 |
+| um-follow-mid-reciprocal-low | fw_reciprocal native | 0.1837499 | 20000 | 3.152943 | 0 | 727.28 |
 | um-fresh-diagnosis-001 | cooldown native | 0.1837499 | 2000 | 3.557051 | 0 | 340.47 |
 | um-fresh-wd-mixing | cooldown native | 0.1837499 | 2000 | 3.555051 | 0 | 149.73 |
 | um-fresh-wd-static-product | cooldown native | 0.1538642 | 2000 | 3.553682 | 0 | 123.04 |
@@ -629,3 +699,50 @@ um-lens-time-layer-s12: accepted 7594/7594; skipped nonpositive blocks 287; medi
 
 Timing seconds: direction=272.800, reference=57.289, candidates=55.597, auxiliary=6.868.
 
+| um-window-cap-check-002 | cooldown native | 0.1837499 | 64 | 6.438628 | 0 | 61.30 |
+| um-window-cap-tune-x0p5 | cooldown native | 0.1837499 | 20000 | 3.121832 | 0 | 739.60 |
+| um-window-cap-tune-x1 | cooldown native | 0.1837499 | 20000 | 3.114210 | 0 | 776.59 |
+| um-window-cap-tune-x2 | cooldown native | 0.1837499 | 20000 | 3.142147 | 0 | 779.55 |
+| um-window-confirm-candidate-s40 | cooldown_refined native | 0.04593747 | 20000 | 3.087717 | 0 | 775.31 |
+| um-window-confirm-candidate-s41 | cooldown_refined native | 0.04593747 | 20000 | 3.086025 | 0 | 734.51 |
+| um-window-confirm-candidate-s42 | cooldown_refined native | 0.04593747 | 20000 | 3.088866 | 0 | 673.18 |
+| um-window-confirm-reference-s40 | cooldown_refined native | 0.1837499 | 20000 | 3.103223 | 0 | 725.89 |
+| um-window-confirm-reference-s41 | cooldown_refined native | 0.1837499 | 20000 | 3.104613 | 0 | 666.93 |
+| um-window-confirm-reference-s42 | cooldown_refined native | 0.1837499 | 20000 | 3.104400 | 0 | 667.35 |
+| um-window-cooled-wd-x0p25 | fw_reciprocal_cooldown native | 0.04593747 | 20000 | 3.096870 | 0 | 737.58 |
+| um-window-cosine-lr-edge | cooldown native | 0.1837499 | 20000 | 3.101129 | 0 | 734.59 |
+| um-window-first-wd-mixing | cooldown native | 0.1837499 | 20000 | 3.105714 | 0 | 728.95 |
+| um-window-first-wd-static-product | cooldown native | 0.1383712 | 20000 | 3.103214 | 0 | 770.97 |
+| um-window-first-wd-x0 | cooldown native | 0 | 20000 | 3.133004 | 0 | 798.92 |
+| um-window-first-wd-x0p25 | cooldown native | 0.04593747 | 20000 | 3.116976 | 0 | 767.80 |
+| um-window-first-wd-x0p5 | cooldown native | 0.09187494 | 20000 | 3.104900 | 0 | 794.45 |
+| um-window-first-wd-x2 | cooldown native | 0.3674998 | 20000 | 3.135778 | 0 | 772.24 |
+| um-window-joint-cosine-wd-lr0p005 | cooldown native | 0.1837499 | 20000 | 3.118502 | 0 | 659.14 |
+| um-window-joint-cosine-wd-lr0p01 | cooldown native | 0.1837499 | 20000 | 3.094790 | 0 | 651.90 |
+| um-window-joint-mixing-x1 | cooldown native | 0.1837499 | 20000 | 3.097867 | 0 | 730.73 |
+| um-window-joint-mixing-x2 | cooldown native | 0.1837499 | 20000 | 3.092627 | 0 | 707.60 |
+| um-window-joint-terminal-lr0p005-f0p01 | cooldown_refined native | 0.1837499 | 20000 | 3.120314 | 0 | 734.57 |
+| um-window-joint-terminal-lr0p005-f0p25 | cooldown_refined native | 0.1837499 | 20000 | 3.132740 | 0 | 770.78 |
+| um-window-joint-terminal-lr0p01-f0p01 | cooldown_refined native | 0.1837499 | 20000 | 3.104185 | 0 | 758.60 |
+| um-window-joint-terminal-lr0p01-f0p25 | cooldown_refined native | 0.1837499 | 20000 | 3.170352 | 0 | 755.55 |
+| um-window-joint-wd0-x1 | cooldown native | 0 | 20000 | 3.118538 | 0 | 790.98 |
+| um-window-joint-wd0-x2 | cooldown native | 0 | 20000 | 3.105875 | 0 | 804.53 |
+| um-window-joint-wd0p25-x1 | cooldown native | 0.04593747 | 20000 | 3.097679 | 0 | 792.33 |
+| um-window-joint-wd0p25-x2 | cooldown native | 0.04593747 | 20000 | 3.093087 | 0 | 777.21 |
+| um-window-joint-wd0p5-x1 | cooldown native | 0.09187494 | 20000 | 3.100060 | 0 | 780.80 |
+| um-window-joint-wd0p5-x2 | cooldown native | 0.09187494 | 20000 | 3.106249 | 0 | 784.21 |
+| um-window-joint-wd0p753041-x1 | cooldown native | 0.1383712 | 20000 | 3.106556 | 0 | 750.51 |
+| um-window-joint-wd0p753041-x2 | cooldown native | 0.1383712 | 20000 | 3.125062 | 0 | 772.65 |
+| um-window-joint-zero-lr0p04 | cooldown native | 0 | 20000 | 3.107898 | 0 | 787.70 |
+| um-window-mixing-lr-edge | cooldown native | 0.1837499 | 20000 | 3.097083 | 0 | 773.43 |
+| um-window-schedule-edge0-f0p05 | fw_reciprocal_cooldown native | 0.1837499 | 20000 | 3.105950 | 0 | 789.58 |
+| um-window-schedule-edge0-f0p25 | fw_reciprocal_cooldown native | 0.1837499 | 20000 | 3.104520 | 0 | 778.27 |
+| um-window-schedule-lr0p02-f0p05 | fw_reciprocal_cooldown native | 0.1837499 | 20000 | 3.096101 | 0 | 711.40 |
+| um-window-schedule-lr0p02-f0p25 | fw_reciprocal_cooldown native | 0.1837499 | 20000 | 3.101839 | 0 | 711.22 |
+| um-window-schedule-lr0p04-f0p05 | fw_reciprocal_cooldown native | 0.1837499 | 20000 | 3.096862 | 0 | 780.16 |
+| um-window-schedule-lr0p04-f0p25 | fw_reciprocal_cooldown native | 0.1837499 | 20000 | 3.100892 | 0 | 714.25 |
+| um-window-static-lr-edge | cooldown native | 0.04593747 | 20000 | 3.106810 | 0 | 787.45 |
+| um-window-static-matched-contraction | cooldown_refined native | 0.1163448 | 20000 | 3.094227 | 0 | 853.89 |
+| um-window-static-terminal-f0p01 | cooldown_refined native | 0.04593747 | 20000 | 3.089540 | 0 | 772.89 |
+| um-window-terminal-edge-lr0p0025-f0p25 | cooldown_refined native | 0.1837499 | 20000 | 3.147864 | 0 | 785.67 |
+| um-window-terminal-edge-lr0p02-f0p01 | cooldown_refined native | 0.1837499 | 20000 | 3.127284 | 0 | 797.67 |
