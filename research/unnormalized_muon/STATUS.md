@@ -297,3 +297,5 @@ Compiled cap/sign checks passed. Frozen diagnosis supported exact12/12 cap/sign=
 Equal factor-two edge expansion for BOTH ordinary terminal controls before claiming schedule superiority: final.01 preferred upper peak.01, expand to.02; final.25 preferred lower peak.005, expand to.0025. Full20k,seed0; auxiliary/momentum unchanged.
 
 10:01UTC controller bookkeeping interruption, zero training lost: exact-reuse mapping was unchanged, but unconditional git commit raised on empty index. Make all work-window milestone commits idempotent, preserve error heartbeat instead of overwriting it as completed, and skip replay of already completed plain-reciprocal futility stages. GPU grid complete, resume final frozen refinement. No new GPU failure or cost from this CPU-only issue.
+
+Three-hour work window until2026-10-17 10:48:18UTC: fill free slots beside pending baseline LR.005 with6 WD probes at SAME LR,20k updates. Fixed lambda multiples{0,.25,.5,2}, shifted reciprocal mixing lambda_t=gamma_t/eta_t, and matched-final-product static WD. Reuse pending reference lambda1. One central queue/one B300/job/max6/50GPUh total. WD0 is unconstrained, no finite-radius FW claim.
