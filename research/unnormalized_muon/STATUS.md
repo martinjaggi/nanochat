@@ -193,3 +193,5 @@ Before any NEW seeds20/21/22 are submitted/observed, add plain-reciprocal futili
 Start first NEW paired seed20 in two free slots, settings frozen from completed seed0 LR refinement. Original fixed-lambda cooldown versus plain reciprocal,20k updates, disjoint heldout block2. Predeclared all3-loss futility rule recorded BEFORE these jobs; remaining seeds21/22 follow through same central queue. OneB300/run,2400s fail-safe, expected~12min.
 
 Complete frozen plain-reciprocal versus tuned original-control seed set21/22 in four freed slots, seed20 already running. Same initial/data pairing,20k updates, heldout block2. Exactly oneB300/run,max6central slots,2400s fail-safe; all configs frozen before heldout outcomes.
+
+Matrix-only terminal controls completed: bestCLI.01/final.01 CE3.104185, improving original3.112087. Reciprocal+cooldown best3.096101 now only.008084 ahead. Extend BOTH terminal-control peak LR edges by factor2 before reference selection; this is stronger control tuning, no heldout-based setting changes.

@@ -101,6 +101,13 @@ def main():
         register(cfg,f'Fair factor-two peak-LR boundary expansion round{round_index} for BOTH reciprocal terminal-cooldown factors; seed0, full20k schedule. No heldout selection.')
         stage(f'window-schedule-edge{round_index}-'+(',window-cap-tune-' if round_index==0 else ''))
         if left()<1500:return
+    cfg={}
+    for lr,final in [(.02,.01),(.0025,.25)]:
+        c=base(lr,LAM);c.update(matrix_schedule='cooldown_refined',matrix_final_factor=final,window_family='terminal-control')
+        cfg[f'window-terminal-edge-lr{lr:g}-f{final:g}']=c
+    register(cfg,'Equal factor-two edge expansion for BOTH ordinary terminal controls before claiming schedule superiority: final.01 preferred upper peak.01, expand to.02; final.25 preferred lower peak.005, expand to.0025. Full20k,seed0; auxiliary/momentum unchanged.')
+    stage('window-terminal-edge-')
+    if left()<1500:return
     # Joint LR/WD screen around the improved baseline, including zero-WD's
     # previously competitive larger LR. This is not an online-controller grid.
     selected=json.loads((D/'FOLLOWUP_SELECTION_20000.json').read_text());peak=selected['control']['matrix_lr']
