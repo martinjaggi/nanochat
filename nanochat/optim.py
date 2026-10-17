@@ -103,11 +103,11 @@ UNNORMALIZED_MUON = os.environ.get("NANOCHAT_UNNORMALIZED_MUON", "0") == "1"
 CLEAN_MUON = os.environ.get("NANOCHAT_CLEAN_MUON", "0") == "1"
 MUON_GEOMETRY = os.environ.get("RESEARCH_MUON_GEOMETRY", "legacy")
 CAP_SIGN = os.environ.get("NANOCHAT_CAP_SIGN", "0") == "1"
-assert not CAP_SIGN or (CLEAN_MUON and not UNNORMALIZED_MUON and not RECORD_DUAL_SCALE and MUON_DECAY_MODE == "standard" and MUON_GEOMETRY == "q_scaled"), "cap/sign is clean normalized one-GPU ordinary-WD research only"
 assert MUON_GEOMETRY in {"legacy", "q_scaled"}
 MUON_DECAY_MODE = os.environ.get("RESEARCH_MUON_DECAY", "none" if CLEAN_MUON else "cautious")
 assert MUON_DECAY_MODE in {"none", "standard", "cautious"}
 RECORD_DUAL_SCALE = os.environ.get("RESEARCH_DUAL_DIAGNOSTICS", "0") == "1"
+assert not CAP_SIGN or (CLEAN_MUON and not UNNORMALIZED_MUON and not RECORD_DUAL_SCALE and MUON_DECAY_MODE == "standard" and MUON_GEOMETRY == "q_scaled"), "cap/sign is clean normalized one-GPU ordinary-WD research only"
 
 
 def nonnegative_dual_scale(gradient, direction):

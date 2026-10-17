@@ -55,17 +55,17 @@ def main():
             c=base(lr,LAM);c.update(matrix_schedule='fw_reciprocal_cooldown',reciprocal_final_factor=final,window_family='reciprocal-cooled')
             cfg[f'window-schedule-lr{lr:g}-f{final:g}']=c
     cap=base(.01,LAM);cap.update(updates=64,cap_sign=True,gpu_checks=True,window_family='cap-sign-check')
-    cfg['window-cap-check-001']=cap
+    cfg['window-cap-check-002']=cap
     register(cfg,'NEW targeted schedule hypothesis from terminal-step audit: plain reciprocal ends near.00049, tuned cooldown control near.000125. Test reciprocal PLUS common65% terminal cooldown with final factors{.05,.25}, peak LRs{.02,.04}, fixed ordinary lambda. Native momentum/auxiliary schedule matched, no extra gradient queries. Quarter factor approximately matches the stronger baseline terminal LR. Not an online controller or exact-theorem claim.')
     publish_status('finish fair long-horizon schedule/LR comparison')
     subprocess.run([sys.executable,'-u','-m','research.unnormalized_muon.continue_campaign'],cwd=REPO,check=True)
     if left()<1500:return
     # Frozen diagnosis had EXACT cap/sign==Armijo on12/12 probes with zeta1.
     # Only promote the cheap no-query rule after compiled GPU/state checks.
-    check=json.loads((ROOT/'um-window-cap-check-001/summary.json').read_text())
+    check=json.loads((ROOT/'um-window-cap-check-002/summary.json').read_text())
     assert check['status']=='completed' and check['updates']==64
     from research.unnormalized_muon.events import read_events
-    check_rows=read_events(ROOT/'um-window-cap-check-001/metrics.jsonl',{'manifest','update'});manifest=next(x for x in check_rows if x['event']=='manifest')
+    check_rows=read_events(ROOT/'um-window-cap-check-002/metrics.jsonl',{'manifest','update'});manifest=next(x for x in check_rows if x['event']=='manifest')
     matrices=[n for g in manifest['optimizer_groups'] if g['kind']=='muon' for n in g['names']]
     assert check['cap_sign_statistics']['total']==64*len(matrices)
     expected={n:0. for n in matrices}

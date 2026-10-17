@@ -43,3 +43,9 @@ def test_cap_sign_cpu(monkeypatch,shape,reason):case(monkeypatch,shape,reason,'c
 def test_cap_sign_b300(monkeypatch,shape,reason):
     assert torch.cuda.device_count()==1 and 'B300' in torch.cuda.get_device_name(0)
     case(monkeypatch,shape,reason,'cuda',True)
+
+
+def test_cap_sign_optin_import():
+    import os,subprocess,sys
+    env=dict(os.environ,NANOCHAT_CAP_SIGN='1',NANOCHAT_CLEAN_MUON='1',NANOCHAT_UNNORMALIZED_MUON='0',RESEARCH_DUAL_DIAGNOSTICS='0',RESEARCH_MUON_GEOMETRY='q_scaled',RESEARCH_MUON_DECAY='standard')
+    subprocess.run([sys.executable,'-c','import nanochat.optim as o; assert o.CAP_SIGN'],env=env,check=True)
