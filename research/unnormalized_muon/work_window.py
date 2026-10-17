@@ -128,6 +128,22 @@ def main():
         for final in [.01,.25]:
             c=base(lr,LAM);c.update(matrix_schedule='cooldown_refined',matrix_final_factor=final,window_family='terminal-control')
             cfg[f'window-joint-terminal-lr{lr:g}-f{final:g}']=c
+    reused={}
+    completed=[]
+    for result_path in ROOT.glob('um-*/summary.json'):
+        prior=json.loads(result_path.read_text())
+        if prior.get('status')=='completed':completed.append((result_path,prior))
+    for name,c in list(cfg.items()):
+        if (D/'configs'/(name+'.json')).exists():continue
+        matches=[(p,ss) for p,ss in completed if ss.get('config')==c]
+        if matches:
+            p,ss=matches[0];reused[name]=dict(source_run=p.parent.name,source_commit=ss['git_commit'],config=c)
+            del cfg[name]
+    if reused:
+        reuse_path=D/'WINDOW_REUSE.json';reuse_path.write_text(json.dumps(reused,indent=2)+'\n')
+        subprocess.run(['git','add',str(reuse_path.relative_to(REPO))],cwd=REPO,check=True)
+        subprocess.run(['git','commit','-m','Reuse only exact full-configuration completed WD screens'],cwd=REPO,check=True)
+        record({},'Exact full-configuration equality avoids duplicate GPU work: '+json.dumps({k:v['source_run'] for k,v in reused.items()})+'. Native default path passed compiled GPU parity after opt-in additions; preserve original implementation commit/cost. Existing source results stay in candidate pool; no synthetic trials or duplicated charges.')
     register(cfg,'Remaining work-window stage: joint LR/WD interaction around newly tuned baseline. Static lambda{0,.25,.5} times reference PLUS the first screen best static coefficient if distinct, across peak LR{half,best,double}; include zero-WD LR.04 because earlier long zero-WD runs preferred larger LR. Give changing-radius mixing WD the SAME3 LR candidates. Full20k schedules; seed0 development only, no final-heldout selection.')
     stage('window-joint-')
     if left()<1500:return

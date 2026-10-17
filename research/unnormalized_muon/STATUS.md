@@ -197,3 +197,5 @@ Complete frozen plain-reciprocal versus tuned original-control seed set21/22 in 
 Matrix-only terminal controls completed: bestCLI.01/final.01 CE3.104185, improving original3.112087. Reciprocal+cooldown best3.096101 now only.008084 ahead. Extend BOTH terminal-control peak LR edges by factor2 before reference selection; this is stronger control tuning, no heldout-based setting changes.
 
 Use two freed slots for ordinary terminal-control LR edge checks, CLI.02/final.01 and CLI.0025/final.25, full20k,seed0. Preserve original AdamW/momentum clocks; fixed standard matrix WD. OneB300 each,1200s fail-safe; exactly six total outstanding after submission.
+
+Verified exact full-config reuse for five prospective joint-WD runs atCLI.005 (lambda0,.25,.5,first-best-static,changing-WD). Record mapping/source commits in WINDOW_REUSE.json; do not submit duplicate jobs, synthesize endpoints, or double-count cost. Full horizon, seed, schedules, precision, microbatch, auxiliary settings and all config fields match.
