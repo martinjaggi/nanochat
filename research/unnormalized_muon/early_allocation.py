@@ -81,7 +81,7 @@ def report():
         rows=[]
         for seed in [70,71,72]:
             ss={}
-            for arm in ['baseline','early','matched']:
+            for arm in ['baseline','early','matched','neutral']:
                 p=ROOT/f'um-earlyalloc-{kind}-{arm}-s{seed}'/'summary.json'
                 if p.exists():ss[arm]=json.loads(p.read_text())
             if ss:rows.append((seed,ss))
@@ -91,7 +91,7 @@ def report():
                 for arm,s in ss.items():
                     delta=s['heldout']['loss']-ss['baseline']['heldout']['loss'] if 'baseline' in ss else float('nan')
                     lines.append(f'| {seed} | {arm} | {s["heldout"]["loss"]:.9f} | {delta:+.9f} | {s["training_active_seconds"]:.3f} | {s["updates"]} |')
-            for arm in ['early','matched']:
+            for arm in ['early','matched','neutral']:
                 ds=[ss[arm]['heldout']['loss']-ss['baseline']['heldout']['loss'] for seed,ss in rows if arm in ss and 'baseline' in ss]
                 if len(ds)==3:lines+=['',f'{arm} minus baseline: mean **{statistics.mean(ds):+.6f} CE**, sample SD **{statistics.stdev(ds):.6f}**, n=3.']
     lines+=['','## Limits and accounting','',
@@ -131,37 +131,40 @@ def main():
     if score>=baseline['validation']['loss']:
         report();record({},f'Early allocation seed0 screen: no elevated peak beats exact baseline. k1 regression {regression}; retain negative result, inspect curves before any additional hypothesis.');commit('Report early-allocation development screen without a win');return
     wd=matching_wd(log_contraction(rates(k),baseline['config']['fixed_wd']),rates(1.))
-    selection=dict(peak_multiplier=k,tau_updates=6960/(k-1),fixed_wd=baseline['config']['fixed_wd'],matched_baseline_wd=wd,seed0_ce=score,baseline_seed0_ce=baseline['validation']['loss'],regression=regression,frozen_before_heldout=True,confirmation_seeds=[70,71,72],heldout_block=6)
+    neutral_wd=matching_wd(log_contraction(rates(1.),baseline['config']['fixed_wd']),rates(k))
+    selection=dict(neutral_early_wd=neutral_wd,peak_multiplier=k,tau_updates=6960/(k-1),fixed_wd=baseline['config']['fixed_wd'],matched_baseline_wd=wd,seed0_ce=score,baseline_seed0_ce=baseline['validation']['loss'],regression=regression,frozen_before_heldout=True,confirmation_seeds=[70,71,72],heldout_block=6)
     p=D/'EARLY_ALLOCATION_SELECTION.json'
     if p.exists():assert json.loads(p.read_text())==selection
     else:p.write_text(json.dumps(selection,indent=2)+'\n')
     report();commit('Freeze early allocation peak using development only; validate executed LR curves')
-    cfg={'earlyalloc-match-seed0':config(1.,fixed_wd=wd,contraction_control=True)}
+    cfg={'earlyalloc-match-seed0':config(1.,fixed_wd=wd,contraction_control=True),
+         'earlyalloc-neutral-seed0':config(k,fixed_wd=neutral_wd,contraction_control=True)}
     for seed in [70,71,72]:
-        for arm,peak,lam in [('baseline',1.,selection['fixed_wd']),('early',k,selection['fixed_wd']),('matched',1.,wd)]:
+        for arm,peak,lam in [('baseline',1.,selection['fixed_wd']),('early',k,selection['fixed_wd']),('matched',1.,wd),('neutral',k,neutral_wd)]:
             cfg[f'earlyalloc-confirm-{arm}-s{seed}']=config(peak,seed,fixed_wd=lam,heldout=True,heldout_block=6,early_arm=arm)
-    record(cfg,f'Early allocation {k:g}x improves seed0 CE {score:.6f} vs {baseline["validation"]["loss"]:.6f}. Freeze before NEW paired seeds70/71/72/block6. Add baseline schedule with static WD {wd:.12f} matching final contraction exactly. Ten trials inclseed0 matching control, one B300 each, timeout1200s, at most six via central queue; estimated2.2GPUh.')
-    stage('earlyalloc-match-,earlyalloc-confirm-')
+    record(cfg,f'Early allocation {k:g}x improves seed0 CE {score:.6f} vs {baseline["validation"]["loss"]:.6f}. Freeze before NEW paired seeds70/71/72/block6. Add baseline schedule with static WD {wd:.12f} matching final contraction exactly. Fourteen trials including two seed0 contraction controls, one B300 each, timeout1200s, at most six via central queue; estimated3.1GPUh. Both directions of final-contraction matching are predeclared before fresh heldout scores.')
+    stage('earlyalloc-match-,earlyalloc-neutral-,earlyalloc-confirm-')
     for seed in [70,71,72]:
-        ss=[read(f'earlyalloc-confirm-{arm}-s{seed}') for arm in ['baseline','early','matched']]
+        ss=[read(f'earlyalloc-confirm-{arm}-s{seed}') for arm in ['baseline','early','matched','neutral']]
         assert len({s['heldout']['validation_hash'] for s in ss})==1
-        ms=[read_events(ROOT/f'um-earlyalloc-confirm-{arm}-s{seed}'/'metrics.jsonl',{'manifest'})[0] for arm in ['baseline','early','matched']]
+        ms=[read_events(ROOT/f'um-earlyalloc-confirm-{arm}-s{seed}'/'metrics.jsonl',{'manifest'})[0] for arm in ['baseline','early','matched','neutral']]
         assert len({m['initial_parameter_hash'] for m in ms})==1
     report();commit('Report fresh paired early allocation and contraction-control confirmation')
     ds=[read(f'earlyalloc-confirm-early-s{s}')['heldout']['loss']-read(f'earlyalloc-confirm-baseline-s{s}')['heldout']['loss'] for s in [70,71,72]]
-    if not all(d<0 for d in ds):
+    neutral_ds=[read(f'earlyalloc-confirm-neutral-s{s}')['heldout']['loss']-read(f'earlyalloc-confirm-baseline-s{s}')['heldout']['loss'] for s in [70,71,72]]
+    if not (all(d<0 for d in ds) or all(d<0 for d in neutral_ds)):
         record({},f'Early allocation fresh-seed confirmation not consistently better: {ds}. Stop before extra equal-time jobs; inspect complete matched-control evidence.');report();commit('Record early allocation confirmation gate');return
     H=statistics.median(read(f'earlyalloc-confirm-baseline-s{s}')['training_active_seconds'] for s in [70,71,72])
     window=json.loads((ROOT/'work-window.json').read_text())
     import time
-    # Nine fresh runs require two waves. Reserve compilation, evaluation, and cleanup.
+    # Twelve fresh runs require two waves. Reserve compilation, evaluation, and cleanup.
     if time.time()+2*(H+180)>window['deadline_epoch']:
-        record({},f'Consistent paired token win, but insufficient two-hour window for nine independent equal-time reruns at H={H:.3f}s. Do not interpret token-clock curves as equal-time endpoints.');return
+        record({},f'Consistent paired token win, but insufficient two-hour window for twelve independent equal-time reruns at H={H:.3f}s. Do not interpret token-clock curves as equal-time endpoints.');return
     cfg={}
     for seed in [70,71,72]:
-        for arm,peak,lam in [('baseline',1.,selection['fixed_wd']),('early',k,selection['fixed_wd']),('matched',1.,wd)]:
+        for arm,peak,lam in [('baseline',1.,selection['fixed_wd']),('early',k,selection['fixed_wd']),('matched',1.,wd),('neutral',k,neutral_wd)]:
             cfg[f'earlyalloc-time-{arm}-s{seed}']=config(peak,seed,fixed_wd=lam,heldout=True,heldout_block=6,early_arm=arm,time_budget=H,reference_updates=20000,max_updates=200000,runtime_limit=math.ceil(H+300))
-    record(cfg,f'Independent equal-time reruns, all three frozen arms and pairedseeds70/71/72, H={H:.9f}s median baseline confirmations. Matrix, auxiliary and momentum schedules use common active-time clock; actual contraction remeasured. Nine trials, oneB300each, maxsix, limitsH+300s, cost~{9*(H+60)/3600:.2f}GPUh. Outputs um-earlyalloc-time-* .')
+    record(cfg,f'Independent equal-time reruns, all four frozen arms and pairedseeds70/71/72, H={H:.9f}s median baseline confirmations. Matrix, auxiliary and momentum schedules use common active-time clock; actual contraction remeasured. Twelve trials, oneB300each, maxsix, limitsH+300s, cost~{12*(H+60)/3600:.2f}GPUh. Outputs um-earlyalloc-time-* .')
     stage('earlyalloc-time-');report();commit('Report independent equal-time early allocation comparison')
 
 if __name__=='__main__':main()

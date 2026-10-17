@@ -39,3 +39,7 @@ No backtracking or extra gradients; these variants differ only in native matrix 
 ```
 
 All nine schedule unit tests pass, including all20001 indices of k1 identity and all late indices for both elevated peaks. No old coupled reciprocal result is treated as evidence against this distinct schedule family.
+
+## Pre-confirmation contraction diagnosis
+
+Seed0 screen endpoints:1x3.090447664,1.5x3.089904308,2x3.089890957; elevated curves are almost tied, and the0.000557 improvement is below the0.000907 drift from the older baseline repeat. No established win. Freeze2x using development CE only, before fresh heldout results. Also test both directions of exact total contraction matching: baseline LR with WD0.05512713564910121 matches raw2x contraction0.023892497;2x with WD0.03827980744972244 matches original baseline contraction0.044527729. These are analytical controls, not a WD grid. New paired seeds70/71/72 compare all four frozen arms; retain small/null results. Baseline and2x fixed-WD remain the primary comparison. A neutral-control gain alone is not evidence for the original fixed-WD proposal. Equal-time reruns follow only if either early arm improves all3fresh paired seeds; this is a pilot promotion rule, not a significance test.
