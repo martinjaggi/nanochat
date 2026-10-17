@@ -102,6 +102,8 @@ Some of the changes in nanochat implementation:
 UNNORMALIZED_MUON = os.environ.get("NANOCHAT_UNNORMALIZED_MUON", "0") == "1"
 CLEAN_MUON = os.environ.get("NANOCHAT_CLEAN_MUON", "0") == "1"
 MUON_GEOMETRY = os.environ.get("RESEARCH_MUON_GEOMETRY", "legacy")
+CAP_SIGN = os.environ.get("NANOCHAT_CAP_SIGN", "0") == "1"
+assert not CAP_SIGN or (CLEAN_MUON and not UNNORMALIZED_MUON and not RECORD_DUAL_SCALE and MUON_DECAY_MODE == "standard" and MUON_GEOMETRY == "q_scaled"), "cap/sign is clean normalized one-GPU ordinary-WD research only"
 assert MUON_GEOMETRY in {"legacy", "q_scaled"}
 MUON_DECAY_MODE = os.environ.get("RESEARCH_MUON_DECAY", "none" if CLEAN_MUON else "cautious")
 assert MUON_DECAY_MODE in {"none", "standard", "cautious"}
@@ -144,7 +146,7 @@ def muon_step_fused(
     """
 
     compute_scale = UNNORMALIZED_MUON or RECORD_DUAL_SCALE
-    raw_input = stacked_grads.clone() if compute_scale else None
+    raw_input = stacked_grads.clone() if compute_scale or CAP_SIGN else None
 
     # Nesterov momentum
     momentum = momentum_t.to(stacked_grads.dtype)
@@ -206,14 +208,23 @@ def muon_step_fused(
     # Cautious weight decay + parameter update
     lr = lr_t.to(g.dtype)
     wd = wd_t.to(g.dtype)
-    if MUON_DECAY_MODE == "standard":
+    if CAP_SIGN:
+        # lr=eta*c and wd=lambda/c. Positive c cancels from the sign of
+        # <G,Q+lambda W>; use CURRENT raw G, not the Nesterov input.
+        block_gap=(raw_input.float()*(g.float()+wd*stacked_params.float())).sum(dim=(-2,-1),keepdim=True)
+        gate=block_gap>0
+        actual_lr=lr*gate.to(g.dtype)
+        # Skip BOTH direction and decay on non-descent blocks; momentum was
+        # already advanced exactly once. No candidate loss or extra gradient.
+        stacked_params.mul_(1-actual_lr*wd).sub_(actual_lr*g)
+    elif MUON_DECAY_MODE == "standard":
         stacked_params.mul_(1 - lr * wd).sub_(lr * g)
     elif MUON_DECAY_MODE == "cautious":
         mask = (g * stacked_params) >= 0
         stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
     else:
         stacked_params.sub_(lr * g)
-    return (dual_scale, current_alignment) if compute_scale else None
+    return gate if CAP_SIGN else (dual_scale, current_alignment) if compute_scale else None
 
 # -----------------------------------------------------------------------------
 
@@ -434,6 +445,7 @@ class MuonAdamW(torch.optim.Optimizer):
                 self._muon_momentum_t, self._muon_lr_t, self._muon_wd_t, self._muon_beta2_t,
                 group["ns_steps"], red_dim,
             )
+            if CAP_SIGN:self.last_cap_gates.append(dual_scale.detach())
             if UNNORMALIZED_MUON or RECORD_DUAL_SCALE:
                 self.last_dual_scales.append(dual_scale[0].detach())
                 self.last_current_alignments.append(dual_scale[1].detach())
@@ -474,6 +486,9 @@ class MuonAdamW(torch.optim.Optimizer):
             rank = 0
             world_size = 1
 
+        if CAP_SIGN:
+            assert world_size==1, "cap/sign research currently requires one GPU"
+            self.last_cap_gates=[]
         if UNNORMALIZED_MUON or RECORD_DUAL_SCALE:
             self.last_dual_scales = []
             self.last_current_alignments = []

@@ -12,6 +12,7 @@ class Recorder:
         self.warming_up=False;self.warmup_updates=0;self.warmup_seconds=0.;self.warmup_extra_forwards=0
         self.active_seconds=0.;self.last_step_active=0.;self.contractions={};self.training_compile_seconds=0.
         self.time_budget=float(os.environ.get("RESEARCH_TIME_BUDGET","0"));self.reference_updates=int(os.environ.get("RESEARCH_REFERENCE_UPDATES","20000"))
+        self.cap_positive=0;self.cap_total=0
         self.final={};self.validation_hash=None;self.exposure={};self.last_step=-1
     def emit(self,event,**kw):
         if self.warming_up:return
@@ -26,7 +27,7 @@ class Recorder:
             initial.update(n.encode());initial.update(p.detach().cpu().reshape(-1).view(torch.uint8).numpy().tobytes())
         self.emit('manifest',base_commit='b2bdf9890e028965ee7f2e97acc02d72b3c663ec',
             git_commit=os.environ['RESEARCH_COMMIT'],seed=int(os.environ['RESEARCH_SEED']),
-            variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',clean=os.environ.get('NANOCHAT_CLEAN_MUON')=='1',config=config,
+            cap_sign=os.environ.get('NANOCHAT_CAP_SIGN','0')=='1',variant=os.environ.get('NANOCHAT_UNNORMALIZED_MUON','0')=='1',matrix_schedule=os.environ.get('RESEARCH_MATRIX_SCHEDULE','cooldown'),fw=os.environ.get('RESEARCH_FW')=='1',clean=os.environ.get('NANOCHAT_CLEAN_MUON')=='1',config=config,
             wd_schedule=os.environ.get('RESEARCH_WD_SCHEDULE','fixed'),geometry=os.environ.get('RESEARCH_MUON_GEOMETRY','legacy'),time_budget=self.time_budget,reference_updates=self.reference_updates,decay_mode=os.environ.get('RESEARCH_MUON_DECAY','native'),fixed_wd=os.environ.get('RESEARCH_FIXED_WD',''),gap_scope=os.environ.get('RESEARCH_GAP_WD',''),gap_shape=os.environ.get('RESEARCH_GAP_SHAPE','uniform'),
             decay_exposure_definition='sum eta*shape*lambda; nominal upper exposure for cautious masked decay',
             initial_parameter_hash=initial.hexdigest(),model_parameters=sum(p.numel() for p in model.parameters()),
@@ -67,7 +68,19 @@ class Recorder:
         compiled=overlap_seconds(intervals,wall_start,wall_start+dt) if wall_start is not None else 0.
         self.training_compile_seconds+=compiled;self.last_step_active=max(0.,dt-compiled);self.active_seconds+=self.last_step_active
         if step>10:self.steady_seconds+=dt
+        cap_masks=None
+        if hasattr(opt,'last_cap_gates'):
+            cap_masks=[x.flatten().cpu().tolist() for x in opt.last_cap_gates]
+            self.cap_positive+=sum(sum(x) for x in cap_masks);self.cap_total+=sum(len(x) for x in cap_masks)
+        cap_index=0
         for i,g in enumerate(opt.param_groups):
+            if g['kind']=='muon' and cap_masks is not None:
+                masks=cap_masks[cap_index];cap_index+=1
+                assert len(masks)==len(g['params']), 'cap/sign parameter partition changed'
+                for parameter,accepted in zip(g['params'],masks):
+                    key='actual_muon:'+self.names[id(parameter)];gamma=g['lr']*g['weight_decay']*int(accepted)
+                    self.exposure[key]=self.exposure.get(key,0.)+gamma;self.contractions[key]=contraction(self.contractions.get(key),gamma)
+                continue
             p=g['params'][0];shape=max(1.,p.shape[-2]/p.shape[-1])**.5 if g['kind']=='muon' and os.environ.get('RESEARCH_MUON_GEOMETRY')!='q_scaled' else 1.
             if g['kind']=='muon' and hasattr(opt,'decay_exposure_by_parameter'):
                 continue
@@ -77,6 +90,9 @@ class Recorder:
             self.exposure.update({'actual_muon:'+k:v for k,v in opt.decay_exposure_by_parameter.items()})
             self.contractions.update({'actual_muon:'+k:v for k,v in opt.contraction_by_parameter.items()})
         fields={}
+        if cap_masks is not None:
+            fields['cap_sign_gates']=cap_masks
+            fields['cap_sign_effective_lrs']=[[g['lr']*int(b) for b in mask] for g,mask in zip((g for g in opt.param_groups if g['kind']=='muon'),cap_masks)]
         if step%25==0:
             assert all(bool(torch.isfinite(p).all()) for p in self.model.parameters()),'nonfinite parameters'
             scales=getattr(opt,'last_dual_scales',[])
@@ -112,7 +128,7 @@ class Recorder:
             if a is not None and b is not None:intervals.append((a/1e6,b/1e6))
         compile_seconds=0.;end=-float('inf')
         for a,b in sorted(intervals):compile_seconds+=max(0.,b-max(a,end));end=max(end,b)
-        summary=dict(status='completed',warmup_seconds=self.warmup_seconds,warmup_gradient_evals=self.warmup_updates,warmup_extra_forwards=self.warmup_extra_forwards,training_active_seconds=self.active_seconds,training_compile_seconds=self.training_compile_seconds,time_budget=self.time_budget,time_overshoot=max(0.,self.active_seconds-self.time_budget) if self.time_budget else 0.,last_step_active_seconds=self.last_step_active,muon_contraction=self.contractions,updates=step,fresh_tokens=step*self.batch,fresh_microbatch_gradient_passes=step*self.batch//(self.config['device_batch_size']*self.config['max_seq_len']),training_seconds=self.train_seconds,
+        summary=dict(status='completed',cap_sign_statistics=dict(positive=self.cap_positive,total=self.cap_total,skipped=self.cap_total-self.cap_positive),warmup_seconds=self.warmup_seconds,warmup_gradient_evals=self.warmup_updates,warmup_extra_forwards=self.warmup_extra_forwards,training_active_seconds=self.active_seconds,training_compile_seconds=self.training_compile_seconds,time_budget=self.time_budget,time_overshoot=max(0.,self.active_seconds-self.time_budget) if self.time_budget else 0.,last_step_active_seconds=self.last_step_active,muon_contraction=self.contractions,updates=step,fresh_tokens=step*self.batch,fresh_microbatch_gradient_passes=step*self.batch//(self.config['device_batch_size']*self.config['max_seq_len']),training_seconds=self.train_seconds,
             steady_training_seconds=self.steady_seconds,steady_time_definition='native steps after first11, plus measured research logging',
             validation_seconds=self.validation_seconds,checkpoint_seconds=self.checkpoint_seconds,compile_seconds=compile_seconds,
             end_to_end_seconds=time.perf_counter()-self.started,peak_gpu_memory=torch.cuda.max_memory_allocated(),

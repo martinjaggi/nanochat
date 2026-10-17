@@ -19,6 +19,7 @@ def tuning(arm,horizon):
     rows=[]
     for p in ROOT.glob('um-*/summary.json'):
         s=json.loads(p.read_text());c=s.get('config',{})
+        if c.get('cap_sign'):continue
         if s.get('status')!='completed' or c.get('seed')!=0 or s['updates']!=horizon or c.get('time_budget') or c.get('fresh_diagnosis'):continue
         if not c.get('clean') or c.get('variant') or c.get('gap_scope') or c.get('gap_geometry')!='q_scaled' or c.get('fixed_wd')!=LAM:continue
         if c.get('wd_schedule','fixed')!='fixed':continue
@@ -111,7 +112,7 @@ def main():
         for side,j in [('low',i-1),('high',i+1)]:
             if 0<=j<len(values):cfg[f'follow-mid-{arm}-{side}']=config(arm,math.sqrt(values[i]*values[j]))
     register(cfg,'Refine both long-horizon schedule families with geometric midpoints adjacent to their seed0 best rates. Restart every candidate for the full655M-token horizon.')
-    stage('follow-mid-,window-schedule-');groups=confirm_and_time(20000,[20,21,22],2)
+    stage('follow-mid-,window-schedule-,window-cap-check-');groups=confirm_and_time(20000,[20,21,22],2)
     deltas=[groups['reciprocal'][s]['heldout']['loss']-groups['control'][s]['heldout']['loss'] for s in [20,21,22]]
     if not(all(x<0 for x in deltas) and statistics.mean(deltas)<-.003):
         record({},'Follow-up completed: reciprocal failed preregistered scale-up gate (all3 paired improvements and mean<-.003 CE) after fair long-horizon LR tuning. Stop scale-up; preserve negative/ambiguous results. Remaining budget is not a spending target. See FOLLOWUP_RESULTS.md.');return

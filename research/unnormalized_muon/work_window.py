@@ -54,10 +54,35 @@ def main():
         for final in [.05,.25]:
             c=base(lr,LAM);c.update(matrix_schedule='fw_reciprocal_cooldown',reciprocal_final_factor=final,window_family='reciprocal-cooled')
             cfg[f'window-schedule-lr{lr:g}-f{final:g}']=c
+    cap=base(.01,LAM);cap.update(updates=64,cap_sign=True,gpu_checks=True,window_family='cap-sign-check')
+    cfg['window-cap-check-001']=cap
     register(cfg,'NEW targeted schedule hypothesis from terminal-step audit: plain reciprocal ends near.00049, tuned cooldown control near.000125. Test reciprocal PLUS common65% terminal cooldown with final factors{.05,.25}, peak LRs{.02,.04}, fixed ordinary lambda. Native momentum/auxiliary schedule matched, no extra gradient queries. Quarter factor approximately matches the stronger baseline terminal LR. Not an online controller or exact-theorem claim.')
     publish_status('finish fair long-horizon schedule/LR comparison')
     subprocess.run([sys.executable,'-u','-m','research.unnormalized_muon.continue_campaign'],cwd=REPO,check=True)
     if left()<1500:return
+    # Frozen diagnosis had EXACT cap/sign==Armijo on12/12 probes with zeta1.
+    # Only promote the cheap no-query rule after compiled GPU/state checks.
+    check=json.loads((ROOT/'um-window-cap-check-001/summary.json').read_text())
+    assert check['status']=='completed' and check['updates']==64
+    from research.unnormalized_muon.events import read_events
+    check_rows=read_events(ROOT/'um-window-cap-check-001/metrics.jsonl',{'manifest','update'});manifest=next(x for x in check_rows if x['event']=='manifest')
+    matrices=[n for g in manifest['optimizer_groups'] if g['kind']=='muon' for n in g['names']]
+    assert check['cap_sign_statistics']['total']==64*len(matrices)
+    expected={n:0. for n in matrices}
+    for row in [x for x in check_rows if x['event']=='update']:
+        j=0
+        for i,g in enumerate(manifest['optimizer_groups']):
+            if g['kind']!='muon':continue
+            for n,gate,eta in zip(g['names'],row['cap_sign_gates'][j],row['cap_sign_effective_lrs'][j]):
+                assert eta==row['group_lrs'][i]*int(gate)
+                expected[n]+=eta*row['group_weight_decays'][i]
+            j+=1
+    assert all(math.isclose(check['decay_exposure']['actual_muon:'+n],x,rel_tol=1e-10,abs_tol=1e-12) for n,x in expected.items()),'gated contraction accounting failed'
+    selection=json.loads((D/'FOLLOWUP_SELECTION_20000.json').read_text());peak=selection['control']['matrix_lr'];cfg={}
+    for factor in [.5,1.,2.]:
+        c=base(peak*factor,LAM);c.update(cap_sign=True,window_family='cap-sign')
+        cfg[f'window-cap-tune-x{factor:g}']=c
+    register(cfg,'Compiled cap/sign checks passed. Frozen diagnosis supported exact12/12 cap/sign==Armijo,zeta1. Now test cheap per-matrix eta=eta_base*I(<G,Q+lambda W> >0), using current raw G and skipping BOTH direction/decay while native momentum advances once. No extra gradients/forwards, same auxiliary recipe. Fair peak-LR factors{half,best,double} around tuned long reference; actual gated contraction logged per matrix.')
     # Equal boundary rule for both terminal factors, full20k budgets.
     for round_index in range(2):
         cfg={}
@@ -70,9 +95,11 @@ def main():
             new=lr/2 if lr==min(vals) else lr*2 if lr==max(vals) else None
             if new is not None:
                 c=dict(best,matrix_lr=new);cfg[f'window-schedule-edge{round_index}-f{final:g}']=c
-        if not cfg:break
+        if not cfg:
+            if round_index==0:stage('window-cap-tune-')
+            break
         register(cfg,f'Fair factor-two peak-LR boundary expansion round{round_index} for BOTH reciprocal terminal-cooldown factors; seed0, full20k schedule. No heldout selection.')
-        stage(f'window-schedule-edge{round_index}-')
+        stage(f'window-schedule-edge{round_index}-'+(',window-cap-tune-' if round_index==0 else ''))
         if left()<1500:return
     # Joint LR/WD screen around the improved baseline, including zero-WD's
     # previously competitive larger LR. This is not an online-controller grid.
@@ -96,7 +123,7 @@ def main():
     candidates=[]
     for p in ROOT.glob('um-window-*/summary.json'):
         s=json.loads(p.read_text());c=s.get('config',{})
-        if s.get('status')=='completed' and c.get('seed')==0:candidates.append((s['validation']['loss'],c,p.parent.name))
+        if s.get('status')=='completed' and s.get('updates')==20000 and not c.get('time_budget') and c.get('seed')==0:candidates.append((s['validation']['loss'],c,p.parent.name))
     best=min(candidates,key=lambda x:x[0]);reference=min(tuning('control',20000),key=lambda r:r['s']['validation']['loss'])
     if best[0]>=reference['s']['validation']['loss']-.001:
         record({},'Work-window WD screen found no >.001 CE gain over tuned reference; no large confirmation sweep justified. Keep exact losses and costs, continue audit/report work until requested deadline.');return

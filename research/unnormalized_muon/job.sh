@@ -18,6 +18,7 @@ if [[ "$(basename "$out")" == *smoke* ]]; then
 else
  if "$py" -c 'import json,sys; raise SystemExit(0 if json.load(open(sys.argv[1])).get("gpu_checks") else 1)' "$out/config.json"; then
   "$py" -m pytest tests/test_unnormalized_muon_gpu.py -q -s
+  "$py" -m pytest tests/test_cap_sign.py -q -s
  fi
  if "$py" -c 'import json,sys; raise SystemExit(0 if json.load(open(sys.argv[1])).get("fresh_diagnosis") else 1)' "$out/config.json"; then
   "$py" -m research.unnormalized_muon.fresh_probe --output "$out" --config "$out/config.json"

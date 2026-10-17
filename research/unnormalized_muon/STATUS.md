@@ -169,3 +169,5 @@ Continue after completed gap/fresh-data campaign,21.22GPUh charged. Respect fail
 Matched factor-two long-horizon boundary rule round0, both prescribed schedules. Seed0 only,20000 updates; no heldout selection.
 
 Refine both long-horizon schedule families with geometric midpoints adjacent to their seed0 best rates. Restart every candidate for the full655M-token horizon.
+
+2026-10-17 08:36 UTC: add opt-in native fused cap/sign rule, justified by frozen diagnosis: all12 cap/sign displacements matched layer Armijo exactly, zeta1. Current raw gradient scores complete Q+lambda W; nonpositive blocks skip direction AND ordinary decay, native momentum advances once. No extra model forwards/backwards. Actual per-matrix gated LR/contraction logged. Pure baseline tuning excludes this variant. CPU regression suite50passed,4scheduled-GPU checks pending; launch64-update B300 check before three fair long-LR pilots. Original failed fresh-fit gate remains closed. Three-hour window still ends10:48:18UTC, oneB300/job, max6, total50GPUh.
