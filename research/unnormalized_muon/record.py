@@ -54,6 +54,7 @@ class Recorder:
         assert math.isfinite(ce) and math.isfinite(bpb)
         result=dict(step=step,label=label,loss=ce,bpb=bpb,tokens=count,validation_hash=h,seconds=seconds,
                     training_seconds=self.train_seconds,training_active_seconds=self.active_seconds,steady_training_seconds=self.steady_seconds)
+        if label=='heldout':result['block_index']=int(os.environ.get('RESEARCH_HELDOUT_BLOCK','1'))
         self.emit('validation',**result)
         if label=='tuning':self.final=result
         else:self.heldout=result

@@ -66,3 +66,15 @@ def test_actual_optimizer_q_scaled_geometry_does_not_scale_decay_twice(monkeypat
   o.step();return p.detach()
  legacy=run('legacy');inside=run('q_scaled');c=max(1.,shape[0]/shape[1])**.5
  torch.testing.assert_close(inside,legacy+.01*.2*(c-1)*initial,rtol=1e-5,atol=2e-7)
+
+
+def test_reciprocal_equal_time_clock_ignores_update_count():
+ from research.unnormalized_muon.protocol_math import reciprocal_schedule
+ eta=.005;lam=.18
+ for r in [0.,.001,.002,.25,.75,1.]:
+  assert reciprocal_schedule(eta,lam,300,time_progress=r)==reciprocal_schedule(eta,lam,900,time_progress=r)
+ assert reciprocal_schedule(eta,lam,0,time_progress=0)==eta/40
+ assert reciprocal_schedule(eta,lam,1,time_progress=.002)==eta
+ assert reciprocal_schedule(eta,lam,0)==eta/40
+ assert reciprocal_schedule(eta,lam,39)==eta
+ assert reciprocal_schedule(eta,lam,400)==eta/(1+.5*lam*eta*360)

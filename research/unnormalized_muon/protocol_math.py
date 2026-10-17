@@ -27,3 +27,15 @@ def budget_multiplier(progress,warmup_fraction=.002,warmdown_fraction=.65,final=
     if r<warmup_fraction:return min(1.,effective/warmup_fraction)
     if r<=1-warmdown_fraction:return 1.
     return final+(1-final)*(1-r)/warmdown_fraction
+
+
+def reciprocal_schedule(eta0,decay,step,warmup=40,*,time_progress=None,reference_updates=20000):
+    """Original update clock, or a shared active-time clock for equal-time runs."""
+    assert eta0>=0 and decay>0 and warmup>0
+    if time_progress is None:
+        clock=step
+        if clock<warmup:return eta0*(clock+1)/warmup
+    else:
+        clock=min(1.,max(0.,time_progress))*reference_updates
+        if clock<warmup:return eta0*min(1.,max(1.,clock)/warmup)
+    return eta0/(1+.5*decay*eta0*(clock-warmup))

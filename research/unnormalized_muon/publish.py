@@ -66,6 +66,8 @@ def publish():
  paths+=lens_generate()
  from research.unnormalized_muon.fresh_report import generate as fresh_generate
  paths+=fresh_generate()
+ from research.unnormalized_muon.continue_report import generate as follow_generate
+ paths+=follow_generate()
  subprocess.run(['git','add',*paths],cwd=REPO,check=True)
  if subprocess.run(['git','diff','--cached','--quiet'],cwd=REPO).returncode:
   subprocess.run(['git','commit','-m','Update live Muon experiment results'],cwd=REPO,check=True)

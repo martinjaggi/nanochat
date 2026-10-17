@@ -605,13 +605,12 @@ while True:
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "constant":
                 group["lr"] = group["initial_lr"] * min(1.0, (step + 1) / max(1, args.warmup_steps))
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "fw_reciprocal":
-                from research.unnormalized_muon.gap_wd import reciprocal_eta
+                from research.unnormalized_muon.protocol_math import reciprocal_schedule
                 assert os.environ.get("RESEARCH_FIXED_WD"), "reciprocal FW schedule requires fixed WD"
                 c = (1.0 if os.environ.get('RESEARCH_MUON_GEOMETRY') == 'q_scaled' else max(1.0, group['params'][0].shape[-2] / group['params'][0].shape[-1]) ** .5)
-                if step < args.warmup_steps:
-                    group['lr'] = group['initial_lr'] * (step + 1) / max(1, args.warmup_steps)
-                else:
-                    group['lr'] = reciprocal_eta(group['initial_lr'] * c, weight_decay_scaled, step - args.warmup_steps) / c
+                group['lr'] = reciprocal_schedule(group['initial_lr']*c,weight_decay_scaled,step,args.warmup_steps,
+                    time_progress=recorder.active_seconds/research_time_budget if research_time_budget else None,
+                    reference_updates=research_reference_updates)/c
             group["momentum"] = muon_momentum
             group["weight_decay"] = 0.0 if os.environ.get("RESEARCH_FW") == "1" else muon_weight_decay
     if scaler is not None:
@@ -698,7 +697,7 @@ if recorder:
     if os.environ.get("RESEARCH_HELDOUT") == "1":
         model.eval()
         heldout_loader = build_val_loader()
-        for _ in range(args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size)):
+        for _ in range(int(os.environ.get("RESEARCH_HELDOUT_BLOCK", "1")) * (args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size))):
             next(heldout_loader)
         recorder.evaluate(model, heldout_loader, args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size), token_bytes, step, label="heldout")
     recorder.finish(step)
