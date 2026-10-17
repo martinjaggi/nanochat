@@ -47,3 +47,7 @@ Seed0 screen endpoints:1x3.090447664,1.5x3.089904308,2x3.089890957; elevated cur
 ## Stronger history-matched diagnostic (predeclared before fresh endpoints)
 
 Keep2x LR but choose lambda_t=lambda_base*eta_base(t)/eta_early(t), so gamma_t and the entire contraction history equal baseline at every update. WD starts at half baseline, rises to baseline at the join, and is identical thereafter. This changes the implied FW domain; it is a controlled empirical diagnostic, not fixed-WD FW. First run64-update B300 integration check, then seed0 and paired70/71/72/block6. No tuning against these heldout outcomes; compare all predeclared arms. Four full runs plus one short check, about0.9GPUh. All queued through the same controller, at most six B300 jobs. Early-history configuration cannot use gap/unnormalized geometry.
+
+![Frozen LR/WD/contraction controls](EARLY_ALLOCATION_CONTROLS.png)
+
+For the history-matched diagnostic, lambda_t=lambda0/k during warmup, then lambda0*(1+s/tau)/k until the join, and lambda0 afterwards. This is linear WD warmup paired with reciprocal LR, preserving the baseline FW mixing/contraction coefficient gamma_t. The implied radius changes; this is not a stochastic-FW convergence guarantee.
