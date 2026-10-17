@@ -2,6 +2,10 @@
 
 Requested window17 October2026,07:48:18–10:48:18UTC. One locked submission queue,one actual B300/job,max6 jobs,50B300 GPUh PROJECT TOTAL including earlier runs. No new online-controller grid: prior fresh-data promotion gate failed. First compare WD at the same LR as the pending .005 reference; later tune LR/WD interaction using only seed0 development data. Static WD0 is unconstrained; changing reciprocal-mixing WD changes the radius and retains native momentum, so it is not a fixed-domain stochastic FW theorem test.
 
+**Best completed seed-0 development endpoint so far: 3.096101CE**, `um-window-schedule-lr0p02-f0p05`. This is a tuning result, not a new-seed or equal-time claim.
+
+Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE_AUDIT.md), [exact saved-weight norms](WINDOW_WEIGHT_AUDIT.md), [layer-search saturation](GAP_SATURATION_AUDIT.md), [plain reciprocal follow-up](FOLLOWUP_RESULTS.md).
+
 | Run | Updates | Seed | CLI LR | Reference lambda | WD rule | Matrix schedule | Validation CE | Heldout CE | Active sec | Process sec |
 |---|---:|---:|---:|---:|---|---|---:|---:|---:|---:|
 | um-window-cap-check-002 | 64 | 0 | 0.01 | 0.18375 | fixed | cooldown cap/sign | 6.438628 | — | 2.595 | 61.30 |
