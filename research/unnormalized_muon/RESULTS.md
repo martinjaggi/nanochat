@@ -132,8 +132,12 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-lens-startl-layer-cooldown-1 | Clean GapWD layer uniform v2 c-in-Q armijo cap0.005/cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.562346 | 1.079948 | — | 241.40 |
 | um-lens-startl-layer-stable-0 | Clean GapWD layer uniform v2 c-in-Q armijo cap0.005/stable fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.654067 | 1.107714 | — | 247.29 |
 | um-lens-startl-layer-stable-1 | Clean GapWD layer uniform v2 c-in-Q armijo cap0.005/stable fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.653376 | 1.107509 | — | 237.19 |
+| um-lens-time-control-s10 | Clean Native cooldown v2 c-in-Q time679.0s fixed_lambda=0.18375 WD:standard(0) | 20225 | 10 | 0.0282843 | 3.178579 | 0.963716 | 3.120702 | 761.22 |
 | um-lens-time-control-s11 | Clean Native cooldown v2 c-in-Q time679.0s fixed_lambda=0.18375 WD:standard(0) | 19762 | 11 | 0.0282843 | 3.169040 | 0.960766 | 3.113390 | 737.06 |
 | um-lens-time-control-s12 | Clean Native cooldown v2 c-in-Q time679.0s fixed_lambda=0.18375 WD:standard(0) | 19890 | 12 | 0.0282843 | 3.169580 | 0.960944 | 3.116667 | 732.06 |
+| um-lens-time-layer-s10 | Clean GapWD layer uniform v2 c-in-Q armijo cap0.01/cooldown time679.0s fixed_lambda=0.18375 WD:standard(0) | 8518 | 10 | 0.04 | 3.272616 | 0.992150 | 3.218791 | 771.10 |
+| um-lens-time-layer-s11 | Clean GapWD layer uniform v2 c-in-Q armijo cap0.01/cooldown time679.0s fixed_lambda=0.18375 WD:standard(0) | 8406 | 11 | 0.04 | 3.274756 | 0.992869 | 3.218212 | 771.26 |
+| um-lens-time-layer-s12 | Clean GapWD layer uniform v2 c-in-Q armijo cap0.01/cooldown time679.0s fixed_lambda=0.18375 WD:standard(0) | 7594 | 12 | 0.04 | 3.293004 | 0.998353 | 3.238780 | 770.03 |
 | um-screen-00-0-native-lr0p005 | Native cooldown | 2000 | 0 | 0.005 | 3.734536 | 1.132046 | — | 145.49 |
 | um-screen-00-1-scaled-lr0p0002 | Unnormalized cooldown | 2000 | 0 | 0.0002 | 4.818060 | 1.460343 | — | 153.42 |
 | um-screen-00-2-constant-lr0p0002 | Unnormalized constant | 2000 | 0 | 0.0002 | 4.581043 | 1.388601 | — | 151.98 |
@@ -189,7 +193,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 21.6561 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 20.9738 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 
