@@ -12,6 +12,9 @@ Requested window17 October2026,07:48:18–10:48:18UTC. One locked submission que
 | um-window-first-wd-x0p5 | 20000 | 0 | 0.005 | 0.0918749 | fixed | cooldown | 3.104900 | — | 720.153 | 794.45 |
 | um-window-first-wd-x2 | 20000 | 0 | 0.005 | 0.3675 | fixed | cooldown | 3.135778 | — | 716.690 | 772.24 |
 | um-window-joint-terminal-lr0p005-f0p01 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown_refined | 3.120314 | — | 677.357 | 734.57 |
+| um-window-joint-terminal-lr0p005-f0p25 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown_refined | 3.132740 | — | 717.720 | 770.78 |
+| um-window-joint-terminal-lr0p01-f0p01 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.104185 | — | 689.960 | 758.60 |
+| um-window-joint-terminal-lr0p01-f0p25 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.170352 | — | 686.162 | 755.55 |
 | um-window-schedule-lr0p02-f0p05 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096101 | — | 638.844 | 711.40 |
 | um-window-schedule-lr0p02-f0p25 | 20000 | 0 | 0.02 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.101839 | — | 638.613 | 711.22 |
 | um-window-schedule-lr0p04-f0p05 | 20000 | 0 | 0.04 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.096862 | — | 721.605 | 780.16 |
