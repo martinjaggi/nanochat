@@ -15,6 +15,9 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.02 | 20000 | 3.091088 | 722.24 | 784.34 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.085667 | 740.05 | 798.23 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.089873 | 719.21 | 783.07 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.085548 | 633.52 | 695.15 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.086114 | 664.11 | 720.02 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.088922 | 645.26 | 707.03 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.088452 | 736.52 | 794.05 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.086768 | 712.18 | 770.47 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.097495 | 698.50 | 758.31 |
@@ -22,6 +25,8 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD standard 0 | 0.02 | 20000 | 3.087015 | 680.93 | 743.56 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.091281 | 700.68 | 779.60 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.088300 | 650.49 | 714.18 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.085330 | 685.93 | 769.38 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.098647 | 688.60 | 771.85 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.087880 | 726.88 | 806.59 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.086275 | 639.78 | 700.68 |
 | normalized WD standard 0 | 0.02 | 20000 | 3.098150 | 657.07 | 712.74 |
@@ -297,6 +302,9 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 | um-earlyalloc-confirm-baseline-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.091088 | 0 | 784.34 |
 | um-earlyalloc-confirm-baseline-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.085667 | 0 | 798.23 |
 | um-earlyalloc-confirm-baseline-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.089873 | 0 | 783.07 |
+| um-earlyalloc-confirm-baseline-s80 | early_reciprocal native | 0.04593747 | 20000 | 3.085548 | 0 | 695.15 |
+| um-earlyalloc-confirm-baseline-s81 | early_reciprocal native | 0.04593747 | 20000 | 3.086114 | 0 | 720.02 |
+| um-earlyalloc-confirm-baseline-s82 | early_reciprocal native | 0.04593747 | 20000 | 3.088922 | 0 | 707.03 |
 | um-earlyalloc-confirm-early-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.088452 | 0 | 794.05 |
 | um-earlyalloc-confirm-early-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.086768 | 0 | 770.47 |
 | um-earlyalloc-confirm-early-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.097495 | 0 | 758.31 |
@@ -304,6 +312,8 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 | um-earlyalloc-confirm-matched-s71 | early_reciprocal native | 0.05512714 | 20000 | 3.087015 | 0 | 743.56 |
 | um-earlyalloc-confirm-matched-s72 | early_reciprocal native | 0.05512714 | 20000 | 3.091281 | 0 | 779.60 |
 | um-earlyalloc-confirm-mid-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.088300 | 0 | 714.18 |
+| um-earlyalloc-confirm-mid-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.085330 | 0 | 769.38 |
+| um-earlyalloc-confirm-mid-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.098647 | 0 | 771.85 |
 | um-earlyalloc-confirm-neutral-s70 | early_reciprocal native | 0.03827981 | 20000 | 3.087880 | 0 | 806.59 |
 | um-earlyalloc-confirm-neutral-s71 | early_reciprocal native | 0.03827981 | 20000 | 3.086275 | 0 | 700.68 |
 | um-earlyalloc-confirm-neutral-s72 | early_reciprocal native | 0.03827981 | 20000 | 3.098150 | 0 | 712.74 |
