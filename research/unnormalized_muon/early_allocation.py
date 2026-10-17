@@ -75,6 +75,10 @@ def report():
     if p.exists():
         s=json.loads(p.read_text());c=next(iter(s['muon_contraction'].values()))['value']
         lines.append(f'| Baseline LR, matched WD {s["config"]["fixed_wd"]:.9f} | {s["validation"]["loss"]:.9f} | {s["training_active_seconds"]:.3f} | {c:.9f} |')
+    p=ROOT/'um-earlyalloc-neutral-seed0'/'summary.json'
+    if p.exists():
+        s=json.loads(p.read_text());c=next(iter(s['muon_contraction'].values()))['value']
+        lines.append(f'| Early2x, baseline-contraction WD {s["config"]["fixed_wd"]:.9f} | {s["validation"]["loss"]:.9f} | {s["training_active_seconds"]:.3f} | {c:.9f} |')
     if selpath.exists():
         selection=json.loads(selpath.read_text());lines+=['','Frozen seed0-only selection:', '```json',json.dumps(selection,indent=2),'```']
     for kind,title in [('confirm','Token-matched fresh seeds'),('time','Independent equal-training-time reruns')]:
@@ -94,6 +98,15 @@ def report():
             for arm in ['early','matched','neutral']:
                 ds=[ss[arm]['heldout']['loss']-ss['baseline']['heldout']['loss'] for seed,ss in rows if arm in ss and 'baseline' in ss]
                 if len(ds)==3:lines+=['',f'{arm} minus baseline: mean **{statistics.mean(ds):+.6f} CE**, sample SD **{statistics.stdev(ds):.6f}**, n=3.']
+        if len(rows)==3 and all(all(a in ss for a in ['baseline','early','matched','neutral']) for _,ss in rows):
+            for left,right in [('early','matched'),('neutral','baseline')]:
+                ds=[ss[left]['heldout']['loss']-ss[right]['heldout']['loss'] for _,ss in rows]
+                lines+=['',f'Final-contraction-controlled {left} minus {right}: mean **{statistics.mean(ds):+.6f} CE**, sample SD **{statistics.stdev(ds):.6f}**.']
+            if kind=='confirm':
+                for _,ss in rows:
+                    for left,right in [('early','matched'),('neutral','baseline')]:
+                        a=list(ss[left]['muon_contraction'].values());b=list(ss[right]['muon_contraction'].values())
+                        assert all(abs(x['log_abs']-y['log_abs'])<1e-8 for x,y in zip(a,b))
     lines+=['','## Limits and accounting','',
     'Matching final contraction does not match decay history. Both fixed-WD early-allocation and matched-contraction comparisons are required to separate explanations. Auxiliary LRs/WD and momentum are matched. Per-run schedules/logs/checkpoints and hardware assertions are preserved outside Git. Three paired seeds provide limited evidence. Development and heldout blocks are distinct; block6 is used only after settings freeze. Token-clock time curves are descriptive and are not equal-time endpoints.', '',
     f'Conservative recorded request-hours {sum(v.get("gpu_seconds",0) for v in q.values())/3600:.6f}; outstanding reserved hours {sum(v["seconds"]+30 for v in q.values() if not v["recorded"])/3600:.6f}. Includes prior and failed work; queued/startup/cleanup request time upper-bounds GPU occupancy.']
