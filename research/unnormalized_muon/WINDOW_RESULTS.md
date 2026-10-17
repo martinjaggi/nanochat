@@ -18,6 +18,8 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-first-wd-x0p25 | 20000 | 0 | 0.005 | 0.0459375 | fixed | cooldown | 3.116976 | — | 693.217 | 767.80 |
 | um-window-first-wd-x0p5 | 20000 | 0 | 0.005 | 0.0918749 | fixed | cooldown | 3.104900 | — | 720.153 | 794.45 |
 | um-window-first-wd-x2 | 20000 | 0 | 0.005 | 0.3675 | fixed | cooldown | 3.135778 | — | 716.690 | 772.24 |
+| um-window-joint-cosine-wd-lr0p005 | 20000 | 0 | 0.005 | 0.18375 | cosine_radius | cooldown | 3.118502 | — | 601.961 | 659.14 |
+| um-window-joint-cosine-wd-lr0p01 | 20000 | 0 | 0.01 | 0.18375 | cosine_radius | cooldown | 3.094790 | — | 598.498 | 651.90 |
 | um-window-joint-mixing-x1 | 20000 | 0 | 0.01 | 0.18375 | fw_mixing_reciprocal | cooldown | 3.097867 | — | 672.643 | 730.73 |
 | um-window-joint-mixing-x2 | 20000 | 0 | 0.02 | 0.18375 | fw_mixing_reciprocal | cooldown | 3.092627 | — | 657.099 | 707.60 |
 | um-window-joint-terminal-lr0p005-f0p01 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown_refined | 3.120314 | — | 677.357 | 734.57 |
