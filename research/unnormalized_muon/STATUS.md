@@ -123,3 +123,5 @@ Freeze best v2 settings using seed0 tuning. Three NEW paired seeds10/11/12 for t
 Explicit equal-training-time reruns: H=678.993020s, median three control confirmation active times. Rerun control and strongest gap on same3 seeds; time-clock LR/caps/auxiliary schedules, finish one started update and report overshoot. Include compile/eval/checkpoint/job costs separately.
 
 FW-lens v2 stages completed. See FW_LENS_CONFIRMATION.md, FW_LENS_EQUAL_TIME.md, and detailed results. Report negative outcomes and full tuning/compute cost; no deterministic theorem validation claim.
+
+After existing FW-lens campaign: ONE B300 frozen diagnosis,1800s limit, checkpoints40/400/1500 with exact full state and replay; four disjoint training/fit/check triples each, own-path derivative/noise checks, cap/sign comparison and400-step branch continuations. No new online sweep before independent benefit survives continuation. Project total50GPUh, six-slot queue unchanged.
