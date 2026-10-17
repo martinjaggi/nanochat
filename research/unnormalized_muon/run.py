@@ -5,7 +5,7 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--config',required=True);a=p.parse_args()
  out=pathlib.Path(a.output);out.mkdir(parents=True,exist_ok=True);cfg=json.load(open(a.config));
  assert cfg.get('heldout_block',1)>=1
- if cfg.get('gap_geometry')=='q_scaled':assert cfg.get('decay_mode')=='standard' and cfg.get('fixed_wd',0)>0, 'c-inside-Q fixed ordinary WD required'
+ if cfg.get('gap_geometry')=='q_scaled':assert cfg.get('decay_mode')=='standard' and 'fixed_wd' in cfg and cfg['fixed_wd']>=0, 'c-inside-Q explicit nonnegative ordinary WD required'
  if cfg.get('wd_schedule'):assert not cfg.get('gap_scope') and not cfg.get('time_budget'), 'changing WD domain is a separate native token-clock diagnostic'
  if cfg.get('gap_scope'):assert not cfg['variant'] and not cfg.get('fw') and cfg.get('decay_mode')=='standard' and cfg.get('fixed_wd',0)>0, 'fixed-WD normalized gap arm required'
  if cfg.get('fw'):assert cfg.get('decay_mode','none')=='none', 'FW shrinkage already belongs to its constrained step'

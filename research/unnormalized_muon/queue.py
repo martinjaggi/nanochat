@@ -68,6 +68,12 @@ def reap():
   publish()
  print('QUEUE',jobs(),'charged/reserved GPUh',sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())/3600,flush=True)
 def submit(stage,name,seconds,config=None):
+ window_path=ROOT/'work-window.json'
+ if window_path.exists():
+  window=json.loads(window_path.read_text())
+  if window.get('active'):
+   expected=(float(config.get('time_budget',0)) if config and config.get('time_budget') else .04*float(config.get('updates',2000)) if config else seconds)+90
+   assert time.time()+min(seconds,expected)<=window['deadline_epoch'],'requested three-hour work window has insufficient time for a new run; preserve/reap existing jobs'
  s=load();j=jobs();assert name.startswith('um-') and len(name)<=55 and name not in s and name not in j
  assert len(set(j)|{n for n,v in s.items() if not v['recorded']})<MAX_OUTSTANDING,'six-slot cap'
  assert sum(v.get('gpu_seconds',v['seconds']+30) for v in s.values())+seconds+30<=GPU_HOUR_CAP*3600,f'{GPU_HOUR_CAP} GPU-hour cap'

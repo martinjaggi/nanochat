@@ -313,7 +313,7 @@ if batch_ratio != 1.0:
 weight_decay_scaled = args.weight_decay * math.sqrt(total_batch_size / B_REF) * (D_REF / target_tokens)
 if os.environ.get("RESEARCH_FIXED_WD", ""):
     weight_decay_scaled = float(os.environ["RESEARCH_FIXED_WD"])
-    assert weight_decay_scaled > 0
+    assert weight_decay_scaled >= 0
 if weight_decay_scaled != args.weight_decay:
     print0(f"Scaling weight decay from {args.weight_decay:.6f} to {weight_decay_scaled:.6f} for depth {args.depth}")
 

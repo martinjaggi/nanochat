@@ -39,7 +39,7 @@ def publish():
   'FW is a separate fixed-spectral-ball method with shared mixing, same-batch backtracking, frozen auxiliary weights during checks, and no extra matrix decay. Its extra candidate forwards count toward wall time and are logged.']
  (DEST/'RESULTS.md').write_text('\n'.join(rows)+'\n')
  # Completed historical plots do not change during follow-up-only runs.
- historical=[r for r in runs if not r[0].startswith('um-follow-')]
+ historical=[r for r in runs if not r[0].startswith(('um-follow-','um-window-'))]
  def stale(artifact,inputs):
   p=DEST/artifact
   return bool(inputs) and (not p.exists() or max(x.stat().st_mtime_ns for x in inputs)>p.stat().st_mtime_ns)
@@ -74,6 +74,8 @@ def publish():
  if stale('FRESH_DIAGNOSIS.md',list(ROOT.glob('um-fresh-*/summary.json'))):paths+=fresh_generate()
  from research.unnormalized_muon.continue_report import generate as follow_generate
  paths+=follow_generate()
+ from research.unnormalized_muon.window_report import generate as window_generate
+ paths+=window_generate()
  subprocess.run(['git','add',*paths],cwd=REPO,check=True)
  if subprocess.run(['git','diff','--cached','--quiet'],cwd=REPO).returncode:
   subprocess.run(['git','commit','-m','Update live Muon experiment results'],cwd=REPO,check=True)
