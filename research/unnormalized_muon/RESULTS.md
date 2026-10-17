@@ -42,6 +42,10 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 | um-clean-long-1-1-cooldown-lr0p32 | Clean Unnormalized cooldown | 20000 | 0 | 0.32 | 3.168984 | 0.960728 | — | 754.69 |
 | um-clean-long-1-2-constant-lr0p32 | Clean Unnormalized constant | 20000 | 0 | 0.32 | 3.209921 | 0.973169 | — | 765.35 |
 | um-clean-long-2-fw-pilot | Clean FW backtracking momentum Rfactor2 smoothness eager | 2000 | 0 | 0.02 | 4.185817 | 1.268782 | — | 409.98 |
+| um-follow-first-time-reciprocal-s10 | Clean Muon shifted reciprocal time679.0s fixed_lambda=0.18375 WD:standard(0) | 20740 | 10 | 0.02 | 3.154321 | 0.956268 | 3.095921 | 733.36 |
+| um-follow-first-time-reciprocal-s11 | Clean Muon shifted reciprocal time679.0s fixed_lambda=0.18375 WD:standard(0) | 20007 | 11 | 0.02 | 3.156209 | 0.956928 | 3.099467 | 734.10 |
+| um-follow-first-time-reciprocal-s12 | Clean Muon shifted reciprocal time679.0s fixed_lambda=0.18375 WD:standard(0) | 18127 | 12 | 0.02 | 3.161711 | 0.958558 | 3.105612 | 750.97 |
+| um-follow-first-tune-reciprocal-lr0p01 | Clean Muon shifted reciprocal fixed_lambda=0.18375 WD:standard(0) | 20000 | 0 | 0.01 | 3.156622 | 0.957022 | — | 744.07 |
 | um-fresh-diagnosis-001 | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.557051 | 1.078327 | — | 340.47 |
 | um-fresh-wd-mixing | Clean Native cooldown fixed_lambda=0.18375 WD:standard(0) | 2000 | 0 | 0.04 | 3.555051 | 1.077723 | — | 149.73 |
 | um-fresh-wd-static-product | Clean Native cooldown fixed_lambda=0.153864 WD:standard(0) | 2000 | 0 | 0.04 | 3.553682 | 1.077298 | — | 123.04 |
@@ -196,7 +200,7 @@ One B300 per job. CE is token cross-entropy (nats); lower is better. Rows with d
 
 Review of um-fw-diagnostic-001: Compiled training f0 compared against functional candidate losses; vanishing-step mismatch2-4e-5 exceeded tolerance, leading to curvature1e186 and45 skipped steps. Replaced by paired functional reference and candidates; retain all645 measured forwards and GPUcost.
 
-Conservative charged/reserved total: 21.2226 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
+Conservative charged/reserved total: 24.1150 / 30 B300 GPU-hours. Includes prior smoke/failed attempts and current maximum-duration reservations. Six-slot central queue; one B300 per run.
 
 CLEAN geometry disables row equilibration and NorMuon. Original clean runs use zero matrix decay; new WD runs explicitly label standard or cautious decay and their CLI coefficient. Same five Polar Express steps and Frobenius correction; scale by the per-matrix nonnegative FP32 inner product of the native Nesterov input with the NS/Frobenius direction. Shape scaling occurs once outside the scalar. Legacy rows retain production extras and must be compared separately. Constant schedule changes only matrix LR; auxiliary schedules and momentum remain matched.
 

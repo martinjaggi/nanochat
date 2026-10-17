@@ -12,6 +12,11 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD none 0 | 0.08 | 20000 | 3.112453 | 680.91 | 755.24 |
 | unnormalized cooldown WD none 0 | 0.32 | 20000 | 3.168984 | 681.31 | 754.69 |
 | unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
+| normalized WD standard 0 | 0.02 | 20740 | 3.154321 | 676.22 | 733.36 |
+| normalized WD standard 0 | 0.02 | 20007 | 3.156209 | 676.41 | 734.10 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.112087 | 703.74 | 777.47 |
+| normalized WD standard 0 | 0.02 | 20000 | 3.142251 | 694.30 | 767.69 |
+| normalized WD standard 0 | 0.01 | 20000 | 3.156622 | 670.54 | 744.07 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.167631 | 658.92 | 741.10 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.164999 | 684.42 | 745.36 |
 | normalized WD standard 0 | 0.0282843 | 20000 | 3.169816 | 676.02 | 733.38 |
@@ -216,6 +221,12 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 
 | Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |
 |---|---|---:|---:|---:|---:|---:|
+| um-follow-first-time-reciprocal-s10 | fw_reciprocal native | 0.1837499 | 20740 | 3.154321 | 0 | 733.36 |
+| um-follow-first-time-reciprocal-s11 | fw_reciprocal native | 0.1837499 | 20007 | 3.156209 | 0 | 734.10 |
+| um-follow-first-time-reciprocal-s12 | fw_reciprocal native | 0.1837499 | 18127 | 3.161711 | 0 | 750.97 |
+| um-follow-first-tune-control-lr0p01 | cooldown native | 0.1837499 | 20000 | 3.112087 | 0 | 777.47 |
+| um-follow-first-tune-control-lr0p02 | cooldown native | 0.1837499 | 20000 | 3.142251 | 0 | 767.69 |
+| um-follow-first-tune-reciprocal-lr0p01 | fw_reciprocal native | 0.1837499 | 20000 | 3.156622 | 0 | 744.07 |
 | um-fresh-diagnosis-001 | cooldown native | 0.1837499 | 2000 | 3.557051 | 0 | 340.47 |
 | um-fresh-wd-mixing | cooldown native | 0.1837499 | 2000 | 3.555051 | 0 | 149.73 |
 | um-fresh-wd-static-product | cooldown native | 0.1538642 | 2000 | 3.553682 | 0 | 123.04 |
