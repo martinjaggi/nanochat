@@ -221,3 +221,5 @@ Compiled cap/sign checks passed. Frozen diagnosis supported exact12/12 cap/sign=
 Fair factor-two peak-LR boundary expansion round0 for BOTH reciprocal terminal-cooldown factors; seed0, full20k schedule. No heldout selection.
 
 Fill the sixth slot with the already-planned zero-Muon-WD CLI.04 long anchor,20k updates,seed0, unchanged auxiliary WD. It will be reused in the joint screen, not rerun. One actualB300,1200s fail-safe, exactly six outstanding alongside3cap/sign and2cooled-schedule edge runs.
+
+Before joint-grid results/new heldout40-series seeds: strengthen practical reference to BEST static ordinary-WD native control across matrix LR, WD and tested terminal factors. Adaptive candidates need>.001 development CE gain over that tuned static control. Otherwise, if static retuning improves original-lambda control by>.001, confirm the simpler static improvement and explicitly record NO adaptive-method screen win. Preserve full settings and comparison_kind; no claiming improvement over a weaker WD control.

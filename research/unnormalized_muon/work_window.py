@@ -20,6 +20,9 @@ def paired_report(prefix,seeds,filename="WINDOW_PAIRED.md"):
     rows=['# Three-hour WD/schedule comparison','',
         f'Focused seed0 tuning first, then settings frozen for NEW paired seeds{seeds}; matched heldout block recorded in each config. Fixed standard WD and a changing-radius reciprocal-mixing WD hypothesis are separately labelled. Same native direction and auxiliary rules; one B300/run. Three seeds are limited evidence.','',
         '| Arm | Seed | Heldout CE | Delta vs reference | Updates | Active sec | Process sec |','|---|---:|---:|---:|---:|---:|---:|']
+    selection_path=D/'WINDOW_SELECTION.json'
+    if selection_path.exists():
+        sel=json.loads(selection_path.read_text());rows[4:4]=[f'Frozen comparison: **{sel.get("comparison_kind","WD/schedule comparison")}**. Reference `{sel["reference_run"]}`, candidate `{sel["candidate_run"]}`. See [full settings](WINDOW_SELECTION.json). Static retuning is not evidence of adaptive-gap superiority.','']
     ds=[]
     for seed in seeds:
         a=json.loads((ROOT/f'um-{prefix}-reference-s{seed}/summary.json').read_text());b=json.loads((ROOT/f'um-{prefix}-candidate-s{seed}/summary.json').read_text())
@@ -151,23 +154,30 @@ def main():
     for p in ROOT.glob('um-window-*/summary.json'):
         s=json.loads(p.read_text());c=s.get('config',{})
         if s.get('status')=='completed' and s.get('updates')==20000 and not c.get('time_budget') and c.get('seed')==0:candidates.append((s['validation']['loss'],c,p.parent.name))
-    def pure_control(c):
-        return (not c.get('cap_sign') and c.get('fixed_wd')==LAM and c.get('wd_schedule','fixed')=='fixed'
-                and c.get('matrix_schedule') in {'cooldown','cooldown_refined'})
-    controls=tuning('control',20000)+[dict(name=n,c=c,s=json.loads((ROOT/n/'summary.json').read_text())) for loss,c,n in candidates if pure_control(c)]
-    reference=min(controls,key=lambda r:r['s']['validation']['loss']);reference_config=dict(reference['c'])
-    variants=[x for x in candidates if not pure_control(x[1])]
-    best=min(variants,key=lambda x:x[0])
-    if best[0]>=reference['s']['validation']['loss']-.001:
-        record({},'Work-window WD screen found no >.001 CE gain over tuned reference; no large confirmation sweep justified. Keep exact losses and costs, continue audit/report work until requested deadline.');return
-    chosen=dict(best[1]);frozen=D/'WINDOW_SELECTION.json';frozen.write_text(json.dumps(dict(candidate=chosen,candidate_run=best[2],reference_run=reference['name'],reference_lr=reference['c']['matrix_lr'],reference_config=reference_config),indent=2)+'\n')
+    def static_control(c):
+        return (c.get('clean') and not c.get('variant') and not c.get('cap_sign') and not c.get('gap_scope')
+                and c.get('wd_schedule','fixed')=='fixed' and c.get('matrix_schedule') in {'cooldown','cooldown_refined'})
+    controls=tuning('control',20000)+[dict(name=n,c=c,s=json.loads((ROOT/n/'summary.json').read_text())) for loss,c,n in candidates if static_control(c)]
+    original=min((x for x in controls if x['c']['fixed_wd']==LAM),key=lambda r:r['s']['validation']['loss'])
+    tuned_static=min(controls,key=lambda r:r['s']['validation']['loss'])
+    variants=[x for x in candidates if not static_control(x[1])]
+    adaptive=min(variants,key=lambda x:x[0])
+    if adaptive[0]<tuned_static['s']['validation']['loss']-.001:
+        best=adaptive;reference=tuned_static;comparison_kind='adaptive versus fully tuned static-WD control'
+    elif tuned_static['s']['validation']['loss']<original['s']['validation']['loss']-.001:
+        best=(tuned_static['s']['validation']['loss'],tuned_static['c'],tuned_static['name'])
+        reference=original;comparison_kind='static WD/LR retuning; no adaptive method screen win'
+    else:
+        record({},'Work-window screen found neither an adaptive advantage>.001CE over fully tuned static WD nor static retuning gain>.001CE over original-lambda control. Stop promotions, retain negative result and audit until deadline.');return
+    reference_config=dict(reference['c'])
+    chosen=dict(best[1]);frozen=D/'WINDOW_SELECTION.json';frozen.write_text(json.dumps(dict(comparison_kind=comparison_kind,candidate=chosen,candidate_run=best[2],reference_run=reference['name'],reference_lr=reference['c']['matrix_lr'],reference_config=reference_config),indent=2)+'\n')
     subprocess.run(['git','add',str(frozen.relative_to(REPO))],cwd=REPO,check=True);subprocess.run(['git','commit','-m','Freeze seed0-only WD candidate before new paired seeds'],cwd=REPO,check=True)
     from research.unnormalized_muon.gap_wd_campaign import push
     push();cfg={}
     for seed in [40,41,42]:
         for arm,c in [('reference',dict(reference_config)),('candidate',chosen)]:
             c=dict(c,seed=seed,heldout=True,heldout_block=4);cfg[f'window-confirm-{arm}-s{seed}']=c
-    register(cfg,'Freeze best WD hypothesis and tuned original-lambda reference before NEW paired seeds40/41/42 and NEW heldout block4. Same20k tokens/update/auxiliary streams; all selection used seed0 development. OneB300/run, six slots, runtime1200s.')
+    register(cfg,'Freeze '+comparison_kind+' before NEW paired seeds40/41/42 and NEW heldout block4. Same20k tokens/update/auxiliary streams; all selection used seed0 development. OneB300/run, six slots, runtime1200s.')
     stage('window-confirm-');ds=paired_report('window-confirm',[40,41,42])
     # Independent equal-time endpoints precede any larger-horizon promotion.
     if left()>1100:

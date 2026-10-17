@@ -18,7 +18,7 @@ The failed fresh-fit gate remains CLOSED:7/12 independent improvements versus re
 
 ## Selection and confirmation
 
-Only seed0 development loss selects settings. The frozen window candidate is the best NON-control variant, compared with the strongest ordinary original-lambda control (including terminal controls). Require>.001CE screen gain before promotion. Freeze full configs before NEW paired seeds40/41/42, heldout block4,20k updates655.36M update-data tokens. Check identical initial parameter and validation-token hashes. Report all paired deltas, mean and SAMPLE SD; n=3 is limited evidence.
+Only seed0 development loss selects settings. Strengthened before joint-grid outcomes: an adaptive candidate must beat the BEST static ordinary-WD native control across tested matrix LR, WD and terminal choices by>.001CE. Otherwise, if static retuning improves the original-lambda control by>.001CE, confirm that simpler retuning and label NO adaptive-method screen win. Preserve full settings and comparison_kind. Freeze full configs before NEW paired seeds40/41/42, heldout block4,20k updates655.36M update-data tokens. Check identical initial parameter and validation-token hashes. Report all paired deltas, mean and SAMPLE SD; n=3 is limited evidence.
 
 Separate equal-time reruns use H=median NEW reference active time, same3seeds and block4. Actual matrix, auxiliary and momentum clocks use active fraction; finish last update and report overshoot. Token-clock curve prefixes are not matched equal-time endpoints. If all3 token-matched deltas improve with mean<-.003CE and time remains, tune BOTH families at40k/1.31B tokens,3peakLRs each, then NEW seeds60/61/62 and unused heldout block5 only if feasible.
 
