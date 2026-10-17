@@ -1,0 +1,19 @@
+{
+  "protocol_version": 5,
+  "clean": true,
+  "variant": false,
+  "decay_mode": "standard",
+  "fixed_wd": 0.1837498798375862,
+  "gap_geometry": "q_scaled",
+  "matrix_lr": 0.01,
+  "matrix_schedule": "fw_reciprocal_cooldown",
+  "updates": 20000,
+  "seed": 0,
+  "depth": 8,
+  "runtime_limit": 1200,
+  "warmup_updates": 3,
+  "follow_arm": "control",
+  "heldout": false,
+  "window_family": "reciprocal-cooled",
+  "reciprocal_final_factor": 0.05
+}
