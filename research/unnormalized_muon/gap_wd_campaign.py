@@ -30,7 +30,16 @@ def record(configs,note):
  push()
 
 def push():
- subprocess.run(['git','push','origin','HEAD:unnormalized-muon'],cwd=REPO,check=True,env=dict(os.environ,GIT_SSH_COMMAND='ssh -o BatchMode=yes -o UserKnownHostsFile=/mloscratch/homes/mljaggi/rcp-tools/github-known-hosts'))
+ env=dict(os.environ,GIT_SSH_COMMAND='ssh -o BatchMode=yes -o UserKnownHostsFile=/mloscratch/homes/mljaggi/rcp-tools/github-known-hosts')
+ result=subprocess.run(['git','push','origin','HEAD:unnormalized-muon'],cwd=REPO,env=env)
+ if result.returncode:
+  # An equivalent concurrent push may have already published this exact HEAD.
+  # Do not mask auth failures, different remote tips, or real non-fast-forwards.
+  remote=subprocess.check_output(['git','ls-remote','origin','refs/heads/unnormalized-muon'],cwd=REPO,text=True,env=env).split()
+  local=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()
+  if remote and remote[0]==local:
+   print('Upstream already matches HEAD; equivalent push completed.',flush=True);return
+  result.check_returncode()
 
 def check(name):
  matches=[r for r in rows() if r['name']==name];assert len(matches)==1,name+' not completed'
