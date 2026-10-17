@@ -13,6 +13,7 @@ First complete the missing reciprocal equal-time endpoints on the ORIGINAL froze
 | um-follow-confirm20000-control-s22 | 20000 | cooldown | 0.01 | 22 | 3.110596 | 3.113324 | 2 | 697.706 | 755.31 | 0.00000 |
 | um-follow-confirm20000-reciprocal-s20 | 20000 | fw_reciprocal | 0.0282843 | 20 | 3.157425 | 3.156672 | 2 | 688.482 | 741.30 | 0.00000 |
 | um-follow-confirm20000-reciprocal-s21 | 20000 | fw_reciprocal | 0.0282843 | 21 | 3.162671 | 3.161026 | 2 | 687.855 | 745.00 | 0.00000 |
+| um-follow-confirm20000-reciprocal-s22 | 20000 | fw_reciprocal | 0.0282843 | 22 | 3.149971 | 3.154069 | 2 | 729.591 | 782.37 | 0.00000 |
 | um-follow-edge0-control-lr0p005 | 20000 | cooldown | 0.005 | 0 | 3.119279 | — | — | 664.297 | 719.39 | 0.00000 |
 | um-follow-first-time-reciprocal-s10 | 20740 | fw_reciprocal | 0.02 | 10 | 3.154321 | 3.095921 | 1 | 679.004 | 733.36 | 0.01138 |
 | um-follow-first-time-reciprocal-s11 | 20007 | fw_reciprocal | 0.02 | 11 | 3.156209 | 3.099467 | 1 | 678.997 | 734.10 | 0.00371 |
@@ -37,8 +38,9 @@ original-frozen equal time: paired deltas mean -0.016586, sample SD 0.007240; n=
 
 | 20000 confirm | 20 | +0.043802 | 20000 | 20000 |
 | 20000 confirm | 21 | +0.047493 | 20000 | 20000 |
+| 20000 confirm | 22 | +0.040745 | 20000 | 20000 |
 
-20000 confirm: incomplete (2/3), no final ranking.
+20000 confirm: paired deltas mean +0.044014, sample SD 0.003379; n=3.
 
 
 Scale-up gate: only if fresh20k seeds all improve and mean delta<-.003 CE, tune BOTH families again at40k updates (1.31B tokens), then freeze for NEW seeds30/31/32 and NEW heldout block3, with independent equal-time reruns. Otherwise stop scale-up. Larger horizons and extra tuning are reported as follow-up research, not retroactive confirmation of earlier heldout results.
