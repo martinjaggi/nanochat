@@ -46,15 +46,15 @@ def main():
         available=[seed for seed in seeds if (arm,seed) in ss and len(curves[arm,seed])==4]
         if available:
             ys=np.asarray([[e['loss'] for e in curves[arm,s]] for s in available]);x=np.asarray([5000,10000,15000,20000])*32768/1e6
-            axs[0,0].plot(x,ys.mean(0),'.-',label=f'{arm} n={len(ys)}',color=col)
+            axs[0,0].plot(x,ys.mean(0),'.-',label=f'{dict(baseline="Baseline",mid="1.5×",early="2×")[arm]} (n={len(ys)})',color=col)
             if len(ys)>1:axs[0,0].fill_between(x,ys.mean(0)-ys.std(0,ddof=1),ys.mean(0)+ys.std(0,ddof=1),color=col,alpha=.1)
         if arm!='baseline':
             common=[s for s in available if ('baseline',s) in ss and len(curves['baseline',s])==4]
             if common:
-                ds=np.asarray([[a['loss']-b['loss'] for a,b in zip(curves[arm,s],curves['baseline',s])] for s in common]);axs[0,1].plot(x,ds.mean(0),'.-',color=col,label=arm)
+                ds=np.asarray([[a['loss']-b['loss'] for a,b in zip(curves[arm,s],curves['baseline',s])] for s in common]);axs[0,1].plot(x,ds.mean(0),'.-',color=col,label=dict(baseline="Baseline",mid="1.5×",early="2×")[arm])
                 if len(ds)>1:axs[0,1].fill_between(x,ds.mean(0)-ds.std(0,ddof=1),ds.mean(0)+ds.std(0,ddof=1),color=col,alpha=.1)
-            if deltas[arm]:axs[1,0].plot([r['seed'] for r in deltas[arm]],[r['delta'] for r in deltas[arm]],'o',color=col,label=arm)
-        if available:axs[1,1].scatter([seed for seed in available],[ss[arm,s][0]['fresh_tokens']/ss[arm,s][0]['training_active_seconds']/1e6 for s in available],color=col,label=arm)
+            if deltas[arm]:axs[1,0].plot([r['seed'] for r in deltas[arm]],[r['delta'] for r in deltas[arm]],'o',color=col,label=dict(baseline="Baseline",mid="1.5×",early="2×")[arm])
+        if available:axs[1,1].scatter([seed for seed in available],[ss[arm,s][0]['fresh_tokens']/ss[arm,s][0]['training_active_seconds']/1e6 for s in available],color=col,label=dict(baseline="Baseline",mid="1.5×",early="2×")[arm])
     for ax in axs.flat:ax.grid(alpha=.2);ax.legend()
     axs[0,0].set(xlabel='Fresh tokens (million)',ylabel='Development CE',title='Mean ± sample SD')
     axs[0,1].set(xlabel='Fresh tokens (million)',ylabel='Paired development CE delta',title='Early arm minus baseline');axs[0,1].axhline(0,color='gray',lw=1)

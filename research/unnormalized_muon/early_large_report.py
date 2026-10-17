@@ -17,6 +17,7 @@ def main(name='um-earlyalloc-large-eval-001'):
     'This adds a new evaluation segment without replacing the original outcomes or changing any settings. Absolute CE differs across segments; compare paired method differences within a segment. The fixed-WD family has6seeds; contraction controls have3. Per-sequence nats/counts are retained outside Git; packed sequences can be dependent, so no independent-sequence significance claim is made.','',
     '| Seed | Arm | Original paired CE delta | Larger paired CE delta | Larger CE | Larger BPB |','|---|---|---:|---:|---:|---:|']
     stats={};fig,axs=plt.subplots(1,2,figsize=(12,4.5),layout='constrained')
+    labels=dict(mid='1.5×',early='2×',matched='Baseline: 2× contraction',neutral='2×: baseline contraction',midmatched='Baseline: 1.5× contraction',history='2×: full history match')
     colors=dict(mid='#6b3e91',early='#d96925',matched='#708238',neutral='#8b5e3c',midmatched='#438d8b',history='#d13d62')
     for r in sorted(scores,key=lambda r:(r['seed'],r['arm'])):
         b=lookup['baseline',r['seed']];old=r['original_heldout']['loss']-b['original_heldout']['loss'];new=r['large_heldout']['loss']-b['large_heldout']['loss']
@@ -26,8 +27,8 @@ def main(name='um-earlyalloc-large-eval-001'):
         assert len(rr)==(6 if arm in ['mid','early'] else 3)
         x=dict(n=len(rr),original_mean=statistics.mean(old),large_mean=statistics.mean(new),large_sample_sd=statistics.stdev(new),seeds=[r['seed'] for r in rr],large_deltas=new);stats[arm]=x
         lines+=['',f'{arm}: n={len(rr)}, original mean delta{x["original_mean"]:+.6f}; larger-set mean **{x["large_mean"]:+.6f}CE**, sampleSD **{x["large_sample_sd"]:.6f}**.']
-        axs[0].scatter(old,new,color=colors[arm],label=f'{arm} n={len(rr)}')
-        axs[1].plot([r['seed'] for r in rr],new,'o',color=colors[arm],label=arm)
+        axs[0].scatter(old,new,color=colors[arm],label=f'{labels[arm]} (n={len(rr)})')
+        axs[1].plot([r['seed'] for r in rr],new,'o',color=colors[arm],label=labels[arm])
     for arm,control in [('early','matched'),('mid','midmatched')]:
         rr=[r for r in scores if r['arm']==control];ds=[lookup[arm,r['seed']]['large_heldout']['loss']-r['large_heldout']['loss'] for r in rr]
         key=arm+'_vs_'+control;stats[key]=dict(n=len(ds),large_mean=statistics.mean(ds),large_sample_sd=statistics.stdev(ds),large_deltas=ds)
@@ -38,7 +39,7 @@ def main(name='um-earlyalloc-large-eval-001'):
     (D/'EARLY_ALLOCATION_LARGE_HELDOUT.md').write_text('\n'.join(lines)+'\n');(D/'EARLY_ALLOCATION_LARGE_HELDOUT.json').write_text(json.dumps(stats,indent=2)+'\n')
     limits=axs[0].axis();lo=min(limits[0],limits[2]);hi=max(limits[1],limits[3]);axs[0].plot([lo,hi],[lo,hi],':',color='gray')
     for ax in axs:ax.axhline(0,color='gray',lw=1);ax.grid(alpha=.2);ax.legend(fontsize=8)
-    axs[0].axvline(0,color='gray',lw=1);axs[0].set(xlabel='Original262k paired CE delta',ylabel='Larger2M paired CE delta',title='Frozen methods; different untouched segments')
+    axs[0].axvline(0,color='gray',lw=1);axs[0].set(xlabel='Original 262k paired CE delta',ylabel='Larger 2M paired CE delta',title='Frozen methods; different untouched segments')
     axs[1].set(xlabel='Paired seed',ylabel='Larger-set CE delta vs baseline',title='Negative favors the variant')
     fig.savefig(D/'EARLY_ALLOCATION_LARGE_HELDOUT.png',dpi=150);plt.close(fig)
 
