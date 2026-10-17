@@ -5,6 +5,10 @@ Requested window17 October2026,07:48:18–10:48:18UTC. One locked submission que
 | Run | Updates | Seed | CLI LR | Reference lambda | WD rule | Validation CE | Heldout CE | Active sec | Process sec |
 |---|---:|---:|---:|---:|---|---:|---:|---:|---:|
 | um-window-first-wd-mixing | 20000 | 0 | 0.005 | 0.18375 | fw_mixing_reciprocal | 3.105714 | — | 672.405 | 728.95 |
+| um-window-first-wd-static-product | 20000 | 0 | 0.005 | 0.138371 | fixed | 3.103214 | — | 696.460 | 770.97 |
+| um-window-first-wd-x0 | 20000 | 0 | 0.005 | 0 | fixed | 3.133004 | — | 724.601 | 798.92 |
+| um-window-first-wd-x0p25 | 20000 | 0 | 0.005 | 0.0459375 | fixed | 3.116976 | — | 693.217 | 767.80 |
+| um-window-first-wd-x0p5 | 20000 | 0 | 0.005 | 0.0918749 | fixed | 3.104900 | — | 720.153 | 794.45 |
 
 No heldout tokens select settings. If a development candidate improves by>.001CE, freeze against the tuned original-lambda reference and confirm with NEW seeds40/41/42 on NEW heldout block4; paired table in WINDOW_PAIRED.md only after all complete. No equal-time endpoint claim from token-clock prefixes. Actual group WD/contraction histories and costs are in persistent per-update logs.
 
