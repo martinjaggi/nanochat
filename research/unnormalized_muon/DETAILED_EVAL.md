@@ -1,5 +1,7 @@
 # Detailed clean Muon evaluation
 
+[WD-independent early reciprocal experiment](EARLY_ALLOCATION_RESULTS.md) is reported separately, including six-seed replication and dynamic-WD controls.
+
 All results use the B300 fork model/data/tokenizer and a fixed tuning-validation prefix. CE is natural-log token cross-entropy; lower is better. Single-seed LR/WD screening is not a confirmation. Final heldout data is reserved for frozen settings. Compare endpoints only at matching token budgets. Wall-time curves include all training work, including FW forward probes; curves with token-based LR schedules are descriptive, not a separately matched equal-time experiment.
 
 ## Longer runs
@@ -12,42 +14,6 @@ All results use the B300 fork model/data/tokenizer and a fixed tuning-validation
 | normalized WD none 0 | 0.08 | 20000 | 3.112453 | 680.91 | 755.24 |
 | unnormalized cooldown WD none 0 | 0.32 | 20000 | 3.168984 | 681.31 | 754.69 |
 | unnormalized constant WD none 0 | 0.32 | 20000 | 3.209921 | 691.44 | 765.35 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.091088 | 722.24 | 784.34 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.085667 | 740.05 | 798.23 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.089873 | 719.21 | 783.07 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.085548 | 633.52 | 695.15 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.086114 | 664.11 | 720.02 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.088922 | 645.26 | 707.03 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.088452 | 736.52 | 794.05 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.086768 | 712.18 | 770.47 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.097495 | 698.50 | 758.31 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.090832 | 694.93 | 759.04 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.090599 | 690.72 | 753.52 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.085357 | 711.18 | 790.92 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.090946 | 682.92 | 743.58 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.088016 | 686.79 | 746.39 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.089795 | 667.89 | 730.64 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.099023 | 739.51 | 804.65 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.091825 | 685.49 | 747.43 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.087015 | 680.93 | 743.56 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.091281 | 700.68 | 779.60 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.088300 | 650.49 | 714.18 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.085330 | 685.93 | 769.38 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.098647 | 688.60 | 771.85 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.088423 | 666.20 | 740.81 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.090870 | 642.94 | 717.19 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.088668 | 634.15 | 696.33 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.089281 | 743.24 | 830.62 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.084761 | 697.46 | 759.87 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.091987 | 777.61 | 842.36 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.087880 | 726.88 | 806.59 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.086275 | 639.78 | 700.68 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.098150 | 657.07 | 712.74 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.091718 | 687.21 | 749.39 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.089156 | 671.32 | 729.26 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.090448 | 708.99 | 783.18 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.089904 | 641.82 | 701.43 |
-| normalized WD standard 0 | 0.02 | 20000 | 3.089891 | 715.08 | 790.30 |
 | normalized WD standard 0 | 0.01 | 20000 | 3.111594 | 669.52 | 729.25 |
 | normalized WD standard 0 | 0.01 | 20000 | 3.111298 | 689.36 | 751.79 |
 | normalized WD standard 0 | 0.01 | 20000 | 3.110596 | 694.37 | 755.31 |
@@ -314,43 +280,6 @@ The shifted reciprocal control uses eta_i(t)=eta_i0/(1+lambda eta_i0*t/2) after4
 
 | Run | Mode | Fixed lambda | Updates | Val CE | Extra batch forwards | Process sec |
 |---|---|---:|---:|---:|---:|---:|
-| um-earlyalloc-confirm-baseline-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.091088 | 0 | 784.34 |
-| um-earlyalloc-confirm-baseline-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.085667 | 0 | 798.23 |
-| um-earlyalloc-confirm-baseline-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.089873 | 0 | 783.07 |
-| um-earlyalloc-confirm-baseline-s80 | early_reciprocal native | 0.04593747 | 20000 | 3.085548 | 0 | 695.15 |
-| um-earlyalloc-confirm-baseline-s81 | early_reciprocal native | 0.04593747 | 20000 | 3.086114 | 0 | 720.02 |
-| um-earlyalloc-confirm-baseline-s82 | early_reciprocal native | 0.04593747 | 20000 | 3.088922 | 0 | 707.03 |
-| um-earlyalloc-confirm-early-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.088452 | 0 | 794.05 |
-| um-earlyalloc-confirm-early-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.086768 | 0 | 770.47 |
-| um-earlyalloc-confirm-early-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.097495 | 0 | 758.31 |
-| um-earlyalloc-confirm-early-s80 | early_reciprocal native | 0.04593747 | 20000 | 3.090832 | 0 | 759.04 |
-| um-earlyalloc-confirm-early-s81 | early_reciprocal native | 0.04593747 | 20000 | 3.090599 | 0 | 753.52 |
-| um-earlyalloc-confirm-early-s82 | early_reciprocal native | 0.04593747 | 20000 | 3.085357 | 0 | 790.92 |
-| um-earlyalloc-confirm-history-check-002 | early_reciprocal native | 0.04593747 | 128 | 5.910295 | 0 | 61.07 |
-| um-earlyalloc-confirm-history-s0 | early_reciprocal native | 0.04593747 | 20000 | 3.090946 | 0 | 743.58 |
-| um-earlyalloc-confirm-history-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.088016 | 0 | 746.39 |
-| um-earlyalloc-confirm-history-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.089795 | 0 | 730.64 |
-| um-earlyalloc-confirm-history-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.099023 | 0 | 804.65 |
-| um-earlyalloc-confirm-matched-s70 | early_reciprocal native | 0.05512714 | 20000 | 3.091825 | 0 | 747.43 |
-| um-earlyalloc-confirm-matched-s71 | early_reciprocal native | 0.05512714 | 20000 | 3.087015 | 0 | 743.56 |
-| um-earlyalloc-confirm-matched-s72 | early_reciprocal native | 0.05512714 | 20000 | 3.091281 | 0 | 779.60 |
-| um-earlyalloc-confirm-mid-s70 | early_reciprocal native | 0.04593747 | 20000 | 3.088300 | 0 | 714.18 |
-| um-earlyalloc-confirm-mid-s71 | early_reciprocal native | 0.04593747 | 20000 | 3.085330 | 0 | 769.38 |
-| um-earlyalloc-confirm-mid-s72 | early_reciprocal native | 0.04593747 | 20000 | 3.098647 | 0 | 771.85 |
-| um-earlyalloc-confirm-mid-s80 | early_reciprocal native | 0.04593747 | 20000 | 3.088423 | 0 | 740.81 |
-| um-earlyalloc-confirm-mid-s81 | early_reciprocal native | 0.04593747 | 20000 | 3.090870 | 0 | 717.19 |
-| um-earlyalloc-confirm-mid-s82 | early_reciprocal native | 0.04593747 | 20000 | 3.088668 | 0 | 696.33 |
-| um-earlyalloc-confirm-midmatched-s70 | early_reciprocal native | 0.05108095 | 20000 | 3.089281 | 0 | 830.62 |
-| um-earlyalloc-confirm-midmatched-s71 | early_reciprocal native | 0.05108095 | 20000 | 3.084761 | 0 | 759.87 |
-| um-earlyalloc-confirm-midmatched-s72 | early_reciprocal native | 0.05108095 | 20000 | 3.091987 | 0 | 842.36 |
-| um-earlyalloc-confirm-neutral-s70 | early_reciprocal native | 0.03827981 | 20000 | 3.087880 | 0 | 806.59 |
-| um-earlyalloc-confirm-neutral-s71 | early_reciprocal native | 0.03827981 | 20000 | 3.086275 | 0 | 700.68 |
-| um-earlyalloc-confirm-neutral-s72 | early_reciprocal native | 0.03827981 | 20000 | 3.098150 | 0 | 712.74 |
-| um-earlyalloc-match-seed0 | early_reciprocal native | 0.05512714 | 20000 | 3.091718 | 0 | 749.39 |
-| um-earlyalloc-neutral-seed0 | early_reciprocal native | 0.03827981 | 20000 | 3.089156 | 0 | 729.26 |
-| um-earlyalloc-screen-k1 | early_reciprocal native | 0.04593747 | 20000 | 3.090448 | 0 | 783.18 |
-| um-earlyalloc-screen-k1p5 | early_reciprocal native | 0.04593747 | 20000 | 3.089904 | 0 | 701.43 |
-| um-earlyalloc-screen-k2 | early_reciprocal native | 0.04593747 | 20000 | 3.089891 | 0 | 790.30 |
 | um-follow-confirm20000-control-s20 | cooldown native | 0.1837499 | 20000 | 3.111594 | 0 | 729.25 |
 | um-follow-confirm20000-control-s21 | cooldown native | 0.1837499 | 20000 | 3.111298 | 0 | 751.79 |
 | um-follow-confirm20000-control-s22 | cooldown native | 0.1837499 | 20000 | 3.110596 | 0 | 755.31 |

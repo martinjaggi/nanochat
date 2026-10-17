@@ -1,6 +1,6 @@
 # Early reciprocal allocation results
 
-Updated 2026-10-17T13:34:51.558731+00:00. Two-hour research window11:53–13:53UTC,17October2026. Exactly one verified B300/run, six-slot central queue,50B300-hour project-total cap.
+Updated 2026-10-17T13:42:47.905093+00:00. Two-hour research window11:53–13:53UTC,17October2026. Exactly one verified B300/run, six-slot central queue,50B300-hour project-total cap.
 
 This is a new WD-independent schedule, distinct from the earlier WD-coupled reciprocal curve multiplied by cooldown. Baseline actual eta .005, fixed ordinary WD .04593746995939655; 40-update warmup, join at7000, original late65% cooldown unchanged to nominal .00005. Full20k updates/655.36M tokens per token-matched run. [Protocol](EARLY_ALLOCATION_PROTOCOL.md).
 
@@ -10,6 +10,7 @@ This is a new WD-independent schedule, distinct from the earlier WD-coupled reci
 | Early peak 1.5x | 3.089904308 | 644.464 | 0.031427187 |
 | Early peak 2x | 3.089890957 | 718.603 | 0.023892497 |
 | Baseline LR, matched WD 0.055127136 | 3.091718435 | 690.056 | 0.023892497 |
+| Early2x, baseline-contraction WD 0.038279807 | 3.089156389 | 673.512 | 0.044527729 |
 
 Frozen seed0-only selection:
 ```json
@@ -66,8 +67,48 @@ matched minus baseline: mean **+0.001356 CE**, sample SD **0.000342**, n=3.
 
 neutral minus baseline: mean **+0.001475 CE**, sample SD **0.005531**, n=3.
 
+Final-contraction-controlled early minus matched: mean **+0.000466 CE**, sample SD **0.005085**.
+
+Final-contraction-controlled neutral minus baseline: mean **+0.001475 CE**, sample SD **0.005531**.
+
 ## Limits and accounting
 
 Matching final contraction does not match decay history. Both fixed-WD early-allocation and matched-contraction comparisons are required to separate explanations. Auxiliary LRs/WD and momentum are matched. Per-run schedules/logs/checkpoints and hardware assertions are preserved outside Git. Three paired seeds provide limited evidence. Development and heldout blocks are distinct; block6 is used only after settings freeze. Token-clock time curves are descriptive and are not equal-time endpoints.
 
-Conservative recorded request-hours 45.146974; outstanding reserved hours 0.000000. Includes prior and failed work; queued/startup/cleanup request time upper-bounds GPU occupancy.
+Conservative recorded request-hours 45.188109; outstanding reserved hours 0.000000. Includes prior and failed work; queued/startup/cleanup request time upper-bounds GPU occupancy.
+
+## Predeclared near-tied1.5x confirmation
+
+| Seed | Heldout CE | Delta vs original baseline | Active seconds | Contraction product |
+|---|---:|---:|---:|---:|
+| 70 | 3.130945206 | -0.001323700 | 652.872 | 0.031427187 |
+| 71 | 3.127163172 | +0.000946522 | 688.761 | 0.031427187 |
+| 72 | 3.137712240 | +0.005539656 | 691.419 | 0.031427187 |
+
+Mean paired delta **+0.001721 CE**, sample SD **0.003497**, n=3.
+
+1.5x minus its final-contraction-matched baseline: mean **+0.001576 CE**, sample SD **0.003225**.
+
+## 1.5x final-contraction-matched control
+
+| Seed | Heldout CE | Delta vs original baseline | Active seconds | Contraction product |
+|---|---:|---:|---:|---:|
+| 70 | 3.131527901 | -0.000741005 | 747.199 | 0.031427187 |
+| 71 | 3.127134323 | +0.000917673 | 700.173 | 0.031427187 |
+| 72 | 3.132429123 | +0.000256538 | 780.439 | 0.031427187 |
+
+Mean paired delta **+0.000144 CE**, sample SD **0.000835**, n=3.
+
+## 2x with complete contraction history matched
+
+| Seed | Heldout CE | Delta vs original baseline | Active seconds | Contraction product |
+|---|---:|---:|---:|---:|
+| 70 | 3.130941391 | -0.001327515 | 689.480 | 0.044527729 |
+| 71 | 3.130547523 | +0.004330873 | 670.580 | 0.044527729 |
+| 72 | 3.138725758 | +0.006553173 | 742.163 | 0.044527729 |
+
+Mean paired delta **+0.003186 CE**, sample SD **0.004063**, n=3.
+
+History-matched128-update B300 integration job: completed. Actual per-update gamma is audited before full diagnostic runs.
+
+The1.5x secondary arm and history-matched diagnostic were committed before any fresh heldout endpoints. They are reported alongside the primary2x selection, not chosen after test-set inspection. History matching deliberately varies WD/the implied domain; it is a diagnostic of LR allocation, not a fixed-WD FW method.
