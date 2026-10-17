@@ -12,6 +12,8 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-cap-tune-x0p5 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown cap/sign | 3.121832 | — | 682.636 | 739.60 |
 | um-window-cap-tune-x1 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown cap/sign | 3.114210 | — | 724.767 | 776.59 |
 | um-window-cap-tune-x2 | 20000 | 0 | 0.02 | 0.18375 | fixed | cooldown cap/sign | 3.142147 | — | 707.363 | 779.55 |
+| um-window-cooled-wd-x0p25 | 20000 | 0 | 0.02 | 0.0459375 | fixed | fw_reciprocal_cooldown | 3.096870 | — | 683.255 | 737.58 |
+| um-window-cosine-lr-edge | 20000 | 0 | 0.02 | 0.18375 | cosine_radius | cooldown | 3.101129 | — | 680.241 | 734.59 |
 | um-window-first-wd-mixing | 20000 | 0 | 0.005 | 0.18375 | fw_mixing_reciprocal | cooldown | 3.105714 | — | 672.405 | 728.95 |
 | um-window-first-wd-static-product | 20000 | 0 | 0.005 | 0.138371 | fixed | cooldown | 3.103214 | — | 696.460 | 770.97 |
 | um-window-first-wd-x0 | 20000 | 0 | 0.005 | 0 | fixed | cooldown | 3.133004 | — | 724.601 | 798.92 |
