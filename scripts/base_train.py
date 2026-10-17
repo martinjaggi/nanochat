@@ -613,6 +613,13 @@ while True:
                 group["lr"]=matrix_cooldown(group["initial_lr"],step,horizon=research_reference_updates,
                     warmup=args.warmup_steps,final=float(os.environ.get("RESEARCH_MATRIX_FINAL", ".05")),
                     time_progress=recorder.active_seconds/research_time_budget if research_time_budget else None)
+            if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "early_reciprocal":
+                from research.unnormalized_muon.cooldown_schedule import early_reciprocal
+                group["lr"]=early_reciprocal(group["initial_lr"],step,
+                    peak_multiplier=float(os.environ.get("RESEARCH_EARLY_PEAK", "1")),
+                    horizon=research_reference_updates,warmup=args.warmup_steps,
+                    final=float(os.environ.get("RESEARCH_MATRIX_FINAL", ".01")),
+                    time_progress=recorder.active_seconds/research_time_budget if research_time_budget else None)
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") == "constant":
                 group["lr"] = group["initial_lr"] * min(1.0, (step + 1) / max(1, args.warmup_steps))
             if os.environ.get("RESEARCH_MATRIX_SCHEDULE") in {"fw_reciprocal", "fw_reciprocal_cooldown"}:

@@ -40,3 +40,32 @@ def test_cosine_wd_native_schedule_and_time_clock():
     assert cosine_wd(.18,20000)==0
     for p in [0.,.001,.35,.75,1.]:
         assert cosine_wd(.18,300,time_progress=p)==cosine_wd(.18,p*20000)
+
+
+def test_early_reciprocal_exact_baseline_and_late_identity():
+    from research.unnormalized_muon.cooldown_schedule import early_reciprocal,matrix_cooldown
+    for t in range(20001):
+        b=matrix_cooldown(.005,t,final=.01)
+        assert early_reciprocal(.005,t)==b
+        if t>=7000:
+            for k in [1.5,2.]:assert early_reciprocal(.005,t,peak_multiplier=k)==b
+
+
+def test_early_reciprocal_warmup_join_and_independent_tau():
+    from research.unnormalized_muon.cooldown_schedule import early_reciprocal
+    for k,tau in [(1.5,13920),(2.,6960)]:
+        assert early_reciprocal(.005,39,peak_multiplier=k)==.005*k
+        assert early_reciprocal(.005,40,peak_multiplier=k)==.005*k
+        assert early_reciprocal(.005,7000,peak_multiplier=k)==.005
+        for t in [41,100,1000,6999]:
+            assert math.isclose(early_reciprocal(.005,t,peak_multiplier=k),.005*k/(1+(t-40)/tau))
+        vals=[early_reciprocal(.005,t,peak_multiplier=k) for t in range(40,7001)]
+        assert all(x>=y for x,y in zip(vals,vals[1:]))
+
+
+def test_early_reciprocal_time_clock():
+    from research.unnormalized_muon.cooldown_schedule import early_reciprocal
+    for p in [0.,.001,.002,.1,.35,.75,1.]:
+        assert early_reciprocal(.005,0,peak_multiplier=2,time_progress=p)==early_reciprocal(.005,900,peak_multiplier=2,time_progress=p)
+        if p>=.002:
+            assert math.isclose(early_reciprocal(.005,0,peak_multiplier=2,time_progress=p),early_reciprocal(.005,p*20000,peak_multiplier=2))
