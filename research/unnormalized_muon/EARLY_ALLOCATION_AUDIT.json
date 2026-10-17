@@ -1,0 +1,20 @@
+{
+  "1.0": {
+    "initial_hash": "86aedb4bec8ccfd04b01d8003eec7e0134584d6a00fcc9ff2120dbed18445206",
+    "validation_hash": "a910b47013956661da096091511d8f562a12fdba4a7387ba368d9f7bf2708e4a",
+    "log_contraction": -3.1116431631355974,
+    "updates": 20000
+  },
+  "1.5": {
+    "initial_hash": "86aedb4bec8ccfd04b01d8003eec7e0134584d6a00fcc9ff2120dbed18445206",
+    "validation_hash": "a910b47013956661da096091511d8f562a12fdba4a7387ba368d9f7bf2708e4a",
+    "log_contraction": -3.4600819239618636,
+    "updates": 20000
+  },
+  "2.0": {
+    "initial_hash": "86aedb4bec8ccfd04b01d8003eec7e0134584d6a00fcc9ff2120dbed18445206",
+    "validation_hash": "a910b47013956661da096091511d8f562a12fdba4a7387ba368d9f7bf2708e4a",
+    "log_contraction": -3.7341908038102747,
+    "updates": 20000
+  }
+}

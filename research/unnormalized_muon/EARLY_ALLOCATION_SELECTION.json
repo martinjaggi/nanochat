@@ -1,0 +1,28 @@
+{
+  "neutral_early_wd": 0.03827980744972244,
+  "peak_multiplier": 2.0,
+  "tau_updates": 6960.0,
+  "fixed_wd": 0.04593746995939655,
+  "matched_baseline_wd": 0.05512713564910121,
+  "seed0_ce": 3.089890956878662,
+  "baseline_seed0_ce": 3.0904476642608643,
+  "regression": {
+    "new_ce": 3.0904476642608643,
+    "old_ce": 3.0895402431488037,
+    "delta": 0.0009074211120605469,
+    "first_training_loss_difference": {
+      "step": 11,
+      "old_loss": 9.97259521484375,
+      "new_loss": 9.972596168518066
+    },
+    "exact_schedule_initial_parameters_and_data_cursors": true,
+    "bitwise_trajectory": false
+  },
+  "frozen_before_heldout": true,
+  "confirmation_seeds": [
+    70,
+    71,
+    72
+  ],
+  "heldout_block": 6
+}
