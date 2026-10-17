@@ -24,6 +24,10 @@ Details: [protocol](WINDOW_PROTOCOL.md), [LR/contraction curves](WINDOW_SCHEDULE
 | um-window-joint-terminal-lr0p005-f0p25 | 20000 | 0 | 0.005 | 0.18375 | fixed | cooldown_refined | 3.132740 | — | 717.720 | 770.78 |
 | um-window-joint-terminal-lr0p01-f0p01 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.104185 | — | 689.960 | 758.60 |
 | um-window-joint-terminal-lr0p01-f0p25 | 20000 | 0 | 0.01 | 0.18375 | fixed | cooldown_refined | 3.170352 | — | 686.162 | 755.55 |
+| um-window-joint-wd0-x1 | 20000 | 0 | 0.01 | 0 | fixed | cooldown | 3.118538 | — | 720.050 | 790.98 |
+| um-window-joint-wd0-x2 | 20000 | 0 | 0.02 | 0 | fixed | cooldown | 3.105875 | — | 733.129 | 804.53 |
+| um-window-joint-wd0p25-x1 | 20000 | 0 | 0.01 | 0.0459375 | fixed | cooldown | 3.097679 | — | 720.957 | 792.33 |
+| um-window-joint-wd0p25-x2 | 20000 | 0 | 0.02 | 0.0459375 | fixed | cooldown | 3.093087 | — | 706.220 | 777.21 |
 | um-window-joint-zero-lr0p04 | 20000 | 0 | 0.04 | 0 | fixed | cooldown | 3.107898 | — | 728.677 | 787.70 |
 | um-window-schedule-edge0-f0p05 | 20000 | 0 | 0.01 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.105950 | — | 716.757 | 789.58 |
 | um-window-schedule-edge0-f0p25 | 20000 | 0 | 0.08 | 0.18375 | fixed | fw_reciprocal_cooldown | 3.104520 | — | 705.623 | 778.27 |
