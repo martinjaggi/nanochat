@@ -13,7 +13,7 @@ D=REPO/'research/unnormalized_muon'
 
 
 def read(name):
-    s=json.loads((ROOT/('um-'+name)/'summary.json').read_text())
+    s=json.loads((ROOT/('um-'+name.replace('.','p'))/'summary.json').read_text())
     assert s['status']=='completed'
     return s
 
@@ -47,7 +47,7 @@ def commit(message):
 
 
 def audit(name):
-    s=read(name);k=s['config']['early_peak_multiplier'];es=read_events(ROOT/('um-'+name)/'metrics.jsonl',{'manifest','update','validation'})
+    s=read(name);k=s['config']['early_peak_multiplier'];es=read_events(ROOT/('um-'+name.replace('.','p'))/'metrics.jsonl',{'manifest','update','validation'})
     m=next(e for e in es if e['event']=='manifest');updates=[e for e in es if e['event']=='update']
     assert len(updates)==s['updates']==20000
     for e in updates:
@@ -57,7 +57,7 @@ def audit(name):
     target=log_contraction(rates(k),s['config']['fixed_wd'])
     assert all(abs(v['log_abs']-target)<1e-8 and v['sign']==1 for v in s['muon_contraction'].values())
     assert s['fresh_microbatch_gradient_passes']==20000
-    assert 'B300' in (ROOT/('um-'+name)/'run.log').read_text()[:100]
+    assert 'B300' in (ROOT/('um-'+name.replace('.','p'))/'run.log').read_text()[:100]
     return dict(initial_hash=m['initial_parameter_hash'],validation_hash=s['validation']['validation_hash'],log_contraction=target,updates=len(updates))
 
 
