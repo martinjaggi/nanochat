@@ -193,22 +193,32 @@ def main():
     pc=preliminary['c'];same=[x['c']['matrix_lr'] for x in controls if x['c']['fixed_wd']==pc['fixed_wd'] and x['c'].get('matrix_final_factor',.05)==pc.get('matrix_final_factor',.05)]
     edge=pc['matrix_lr']/2 if pc['matrix_lr']==min(same) else pc['matrix_lr']*2 if pc['matrix_lr']==max(same) else None
     if edge is not None:terminal_cfg['window-static-lr-edge']=dict(pc,matrix_lr=edge,window_family='static-lr-edge')
+    for schedule,label in [('cosine_radius','cosine'),('fw_mixing_reciprocal','mixing')]:
+        family=[x for x in candidates if x[1].get('wd_schedule')==schedule]
+        if not family:continue
+        winner=min(family,key=lambda x:x[0])[1];rates=[x[1]['matrix_lr'] for x in family];lr=winner['matrix_lr']
+        new=lr/2 if lr==min(rates) else lr*2 if lr==max(rates) else None
+        if new is not None:terminal_cfg[f'window-{label}-lr-edge']=dict(winner,matrix_lr=new,window_family=label+'-lr-edge')
+    deferred={}
+    optional_mid=f'window-cooled-wd-x{math.sqrt(best_positive*LAM)/LAM:.6g}' if cooled else ''
+    for optional in [optional_mid,'window-static-terminal-f0.25']:
+        if len(terminal_cfg)>6 and optional in terminal_cfg:deferred[optional]=terminal_cfg.pop(optional)
     assert len(terminal_cfg)<=6
     refinement_path=D/'WINDOW_REFINEMENT_SELECTION.json'
     if refinement_path.exists():terminal_cfg=json.loads(refinement_path.read_text())['configs']
     elif terminal_cfg:
-        refinement_path.write_text(json.dumps(dict(configs=terminal_cfg,selection_data='completed seed0 development grid; frozen before refinement outcomes'),indent=2)+'\n')
+        refinement_path.write_text(json.dumps(dict(configs=terminal_cfg,deferred_configs=deferred,selection_data='completed seed0 development grid; frozen before refinement outcomes'),indent=2)+'\n')
         subprocess.run(['git','add',str(refinement_path.relative_to(REPO))],cwd=REPO,check=True)
     if terminal_cfg:
-        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most6 one-B300 jobs in this wave, including targeted cooled-schedule WD probes at best-positive-static lambda and its geometric midpoint toward original lambda. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. This prevents attributing weaker total shrinkage or terminal effects to adaptation.')
-        stage('window-static-terminal-,window-static-matched-,window-cooled-wd-,window-static-lr-edge')
+        register(terminal_cfg,'Before adaptive confirmation, best static WD/LR gets SAME matrix-only terminal-factor tests{.01,.25}, unchanged auxiliary/momentum; seed0 development only. Plus one static-WD control matching best cooled-reciprocal final log contraction on the original scheduled LR; at most6 one-B300 jobs in this wave, including targeted cooled-schedule WD probes at best-positive-static lambda and its geometric midpoint toward original lambda. Verify actual recorded contraction within1e-7. Matching the final product does not match the history. Priority within6slots: bracket best static/cosine/mixing LR edges before optional cooled-WD midpoint and high terminal factor; deferred configs recorded in frozen batch. This prevents attributing undertuned controls or weaker shrinkage to adaptation.')
+        stage('window-static-terminal-,window-static-matched-,window-cooled-wd-,window-static-lr-edge,window-cosine-lr-edge,window-mixing-lr-edge')
         for p in list(ROOT.glob('um-window-static-terminal-*/summary.json'))+list(ROOT.glob('um-window-static-matched-*/summary.json'))+list(ROOT.glob('um-window-static-lr-edge/summary.json')):
             ss=json.loads(p.read_text());cc=ss.get('config',{})
             if ss.get('status')=='completed' and ss.get('updates')==20000:
                 if 'contraction_target_log' in cc:
                     assert all(abs(x['log_abs']-cc['contraction_target_log'])<1e-7 for x in ss['muon_contraction'].values()),'static/cooled contraction mismatch'
                 controls.append(dict(name=p.parent.name,c=cc,s=ss))
-    for p in ROOT.glob('um-window-cooled-wd-*/summary.json'):
+    for p in list(ROOT.glob('um-window-cooled-wd-*/summary.json'))+list(ROOT.glob('um-window-cosine-lr-edge/summary.json'))+list(ROOT.glob('um-window-mixing-lr-edge/summary.json')):
         ss=json.loads(p.read_text());cc=ss.get('config',{})
         if ss.get('status')=='completed' and ss.get('updates')==20000:candidates.append((ss['validation']['loss'],cc,p.parent.name))
     if left()<1000:
